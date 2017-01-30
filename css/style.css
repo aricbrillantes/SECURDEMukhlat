@@ -1,0 +1,74 @@
+body{
+    background-color: #e7f0ed;
+}
+
+body.sign-in{
+    background-image: url(../images/wood_tile/blue.jpg);
+    font-family: 'Cabin', 'Muli', sans-serif;
+}
+
+.sign-in-logo{
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 47px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    font-weight: bolder;
+    //text-shadow: 0px 0px 1px #5b7375;
+}
+
+.sign-in-form{
+    padding: 15px;
+}
+
+.sign-in-field{
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+.register-field{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.sign-in-div{
+    background-color: white;
+    width: 30%;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 50px black;
+}
+
+.sign-in-header{
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+.navbar-font{
+    font-family: 'Cabin', sans-serif;
+}
+
+.search-div{
+    position: absolute;
+    right: 0px;
+}
+
+.nav-prof-pic{
+    position: relative;
+    float: left;
+    bottom: 5px;
+    margin-right: 5px;
+    height: 30px;
+}
+
+.nav-left-end{
+    margin-left: 50px;
+}
+
+.nav-right-end{
+    margin-right: 30px;
+}
