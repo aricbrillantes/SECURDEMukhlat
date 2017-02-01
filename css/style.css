@@ -1,5 +1,5 @@
 body{
-    background-color: #e7f0ed;
+    background-color: #ECEFF1;
 }
 
 body.sign-in{
@@ -35,12 +35,15 @@ body.sign-in{
 
 .sign-in-div{
     background-color: white;
-    width: 30%;
     border-radius: 2px;
-    margin-left: auto;
+    //box-shadow: 0px 0px 50px black;
+    padding: 0px;
+}
+
+.sign-in-content{
+    width: 60%;
     margin-right: auto;
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 50px black;
+    margin-left: auto;
 }
 
 .sign-in-header{
@@ -71,4 +74,98 @@ body.sign-in{
 
 .nav-right-end{
     margin-right: 30px;
+}
+
+.home-page{
+    margin-top: 65px;
+}
+
+.home-sidebar{
+    border-radius: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.home-create-btn{
+    float: right;
+    margin-top: 8px;
+    padding: 5px;
+    width: 30%;
+    font-size: 12px;
+}
+
+.home-username{
+    margin-bottom: 0px;
+    padding: 3px;
+    font-size: 20px;
+}
+
+.home-user-text{
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 0px;
+}
+
+.home-dropdown{
+    display: inline-block;
+}
+
+.home-user-div{
+    background-color: white;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    padding: 10px;
+    
+    border: 1px solid #CFD8DC;
+}
+
+.sidebar-topic-div{
+    background-color: white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-bottom: 10px;
+    height: 250px;
+    overflow-y: scroll;
+    border: 1px solid #90A4AE;
+}
+
+.home-prof-pic{
+    padding: 0px;
+    margin-left: 25px;
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
+}
+
+.home-content{
+    background-color: white;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #CFD8DC;
+}
+
+.home-container{
+    margin-top: 3px;
+    padding: 0px;
+}
+
+.header-arrow{
+    font-size: 20px;
+    line-height: 1px;
+    color: #78909C;
+}
+
+.sidebar-header{
+    background-color: #26A69A;
+    margin: 0px;
+    padding: 5px;
+    padding-left: 10px;
+    color: white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid #90A4AE;
 }
