@@ -1,5 +1,5 @@
 <?php
-include('header.php');
+include(APPPATH . 'views/header.php');
 ?>
 <body class = "sign-in">
     <div class = "container-fluid">
@@ -60,5 +60,5 @@ include('header.php');
     </div>
 
     <?php
-    include('footer.php');
+    include(APPPATH . 'views/footer.php');
     

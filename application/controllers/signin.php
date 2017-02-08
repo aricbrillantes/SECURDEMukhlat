@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class signin extends CI_Controller {
 
     public function index() {
-        $this->load->view('sign_in');
+        $this->load->view('pages/sign_in_page');
     }
     
     public function signup() {
