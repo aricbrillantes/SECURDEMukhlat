@@ -12,7 +12,6 @@
  * @author Arces
  */
 class topic extends CI_Controller {
-
     public function index() {
         if (!empty($_SESSION['logged_user'])) {
             $this->load->view('pages/topic_list_page');
@@ -26,4 +25,16 @@ class topic extends CI_Controller {
         $this->load->view('pages/topic_page');
     }
 
+    public function thread() {
+        //change to redirect later
+        $this->load->view('pages/thread_page');
+    }
+
+    public function post() {
+        echo 'post! WIP';
+    }
+
+    public function comment() {
+        echo 'comment! WIP';
+    }
 }
