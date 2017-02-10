@@ -101,118 +101,193 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-md-12 user-topic-container">
                         <h3 class = "text-info text-center user-activities-header"><strong>Activities of Juan</strong></h3>
                         <div class = "col-sm-12 user-activities-div">
-                            <!-- Post Sample -->
-                            <div class = "col-xs-12 no-padding" style = "margin-bottom: 10px;">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                 <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Juan Dela Cruz</strong>
                                     </a> 
                                     <span>posted in</span> 
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Dela Cruz Clan</strong>
                                     </a>:
                                 </div>
-                                <div class = "col-xs-12 user-post-content">
-                                    <img class = "pull-left img-circle" style = "margin: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                    <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus mauris, rhoncus in maximus nec, ullamcorper id orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet lacus elementum, imperdiet libero vel, cursus purus. Quisque eget dapibus urna. Integer faucibus urna eu sapien volutpat sagittis. Nam ipsum lorem, malesuada id odio eget, egestas bibendum enim. Morbi vitae semper turpis.</p>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
                                 <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-long-arrow-right"></i></a>
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <!-- Post Sample -->
-                            <div class = "col-xs-12 no-padding" style = "margin-bottom: 10px;">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                 <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Juan Dela Cruz</strong>
                                     </a> 
                                     <span>posted in</span> 
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Dela Cruz Clan</strong>
                                     </a>:
                                 </div>
-                                <div class = "col-xs-12 user-post-content">
-                                    <img class = "pull-left img-circle" style = "margin: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                    <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus mauris, rhoncus in maximus nec, ullamcorper id orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet lacus elementum, imperdiet libero vel, cursus purus. Quisque eget dapibus urna. Integer faucibus urna eu sapien volutpat sagittis. Nam ipsum lorem, malesuada id odio eget, egestas bibendum enim. Morbi vitae semper turpis.</p>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
                                 <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad">View Thread <i class = "fa fa-long-arrow-right"></i></a>
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <!-- Post Sample -->
-                            <div class = "col-xs-12 no-padding" style = "margin-bottom: 10px;">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                 <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Juan Dela Cruz</strong>
                                     </a> 
                                     <span>posted in</span> 
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Dela Cruz Clan</strong>
                                     </a>:
                                 </div>
-                                <div class = "col-xs-12 user-post-content">
-                                    <img class = "pull-left img-circle" style = "margin: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                    <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus mauris, rhoncus in maximus nec, ullamcorper id orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet lacus elementum, imperdiet libero vel, cursus purus. Quisque eget dapibus urna. Integer faucibus urna eu sapien volutpat sagittis. Nam ipsum lorem, malesuada id odio eget, egestas bibendum enim. Morbi vitae semper turpis.</p>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
                                 <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad">View Thread <i class = "fa fa-long-arrow-right"></i></a>
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <!-- Post Sample -->
-                            <div class = "col-xs-12 no-padding" style = "margin-bottom: 10px;">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                 <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Juan Dela Cruz</strong>
                                     </a> 
                                     <span>posted in</span> 
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Dela Cruz Clan</strong>
                                     </a>:
                                 </div>
-                                <div class = "col-xs-12 user-post-content">
-                                    <img class = "pull-left img-circle" style = "margin: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                    <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus mauris, rhoncus in maximus nec, ullamcorper id orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet lacus elementum, imperdiet libero vel, cursus purus. Quisque eget dapibus urna. Integer faucibus urna eu sapien volutpat sagittis. Nam ipsum lorem, malesuada id odio eget, egestas bibendum enim. Morbi vitae semper turpis.</p>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
                                 <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad">View Thread <i class = "fa fa-long-arrow-right"></i></a>
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <!-- Post Sample -->
-                            <div class = "col-xs-12 no-padding" style = "margin-bottom: 10px;">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                 <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Juan Dela Cruz</strong>
                                     </a> 
                                     <span>posted in</span> 
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Dela Cruz Clan</strong>
                                     </a>:
                                 </div>
-                                <div class = "col-xs-12 user-post-content">
-                                    <img class = "pull-left img-circle" style = "margin: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                    <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus mauris, rhoncus in maximus nec, ullamcorper id orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet lacus elementum, imperdiet libero vel, cursus purus. Quisque eget dapibus urna. Integer faucibus urna eu sapien volutpat sagittis. Nam ipsum lorem, malesuada id odio eget, egestas bibendum enim. Morbi vitae semper turpis.</p>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
                                 <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad">View Thread <i class = "fa fa-long-arrow-right"></i></a>
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <!-- Post Sample -->
-                            <div class = "col-xs-12 no-padding" style = "margin-bottom: 10px;">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                 <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Juan Dela Cruz</strong>
                                     </a> 
                                     <span>posted in</span> 
-                                    <a class = "btn btn-user-post-heading no-padding">
+                                    <a class = "btn btn-link no-padding">
                                         <strong>Dela Cruz Clan</strong>
                                     </a>:
                                 </div>
-                                <div class = "col-xs-12 user-post-content">
-                                    <img class = "pull-left img-circle" style = "margin: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                    <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus mauris, rhoncus in maximus nec, ullamcorper id orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sit amet lacus elementum, imperdiet libero vel, cursus purus. Quisque eget dapibus urna. Integer faucibus urna eu sapien volutpat sagittis. Nam ipsum lorem, malesuada id odio eget, egestas bibendum enim. Morbi vitae semper turpis.</p>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
                                 <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad">View Thread <i class = "fa fa-long-arrow-right"></i></a>
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
+                                </div>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                    </div>
+                                    <div class = "col-xs-10 no-padding">
+                                        <p class = "home-content-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec.
+
+                                            Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper.
+
+                                            Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
+                                </div>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>

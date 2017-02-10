@@ -103,7 +103,7 @@ body.sign-in{
 .home-username{
     margin-bottom: 0px;
     padding: 3px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .home-user-text{
@@ -114,6 +114,16 @@ body.sign-in{
 
 .home-dropdown{
     display: inline-block;
+}
+
+.post-pic{
+    width: 75px;
+    margin-bottom: 10px;
+}
+
+.comment-pic{
+    width: 45px;
+    margin-bottom: 10px;
 }
 
 .sidebar-topic-div{
@@ -171,9 +181,9 @@ body.sign-in{
     padding: 0px;
 }
 
-.home-content{
+.post-container{
     border: 1px solid #EEEEEE;
-    border-radius: 3px; 
+    border-radius: 2px; 
     margin-bottom: 5px;
     padding: 0px;
 }
@@ -181,7 +191,6 @@ body.sign-in{
 .home-content-body{
     margin-top: 5px;
     padding-right: 10px;
-    border-right: 1px #CFD8DC solid;
     text-align: justify; 
     text-justify: inter-word;
 }
@@ -212,7 +221,7 @@ body.sign-in{
 }
 
 .header-arrow{
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1px;
     color: #78909C;
 }
@@ -246,6 +255,7 @@ body.sign-in{
     text-align: justify;
     word-wrap: break-word;
     text-justify: inter-word;
+    font-size: 13px;
 }
 
 .topic-preview-div{
@@ -304,13 +314,14 @@ body.sign-in{
 }
 
 .user-post-heading{
-    background-color: #757575;
-    color: white;
+    background-color: #E0E0E0;
     padding-left: 10px;
+    color: #757575;
+    //border-top: 1px solid #F5F5F5;
 }
 
 .user-post-footer{
-    background-color: #757575;
+    background-color: #E0E0E0;
     color: white;
     margin-top: 0px;
 }
@@ -332,28 +343,37 @@ body.sign-in{
 }
 
 .btn-user-post-heading {
-  background-color: transparent;
-  color: #B2DFDB;
+    background-color: transparent;
+    color: #E0F2F1;
 }
 .btn-user-post-heading:hover,
 .btn-user-post-heading:focus,
 .btn-user-post-heading:active,
 .btn-user-post-heading.active {
-  background-color: transparent;
-  color: #80CBC4;
+    background-color: transparent;
+    color: white;
 }
 
 .btn-user-post-footer {
-  background-color: transparent;
-  color: white;
-  border-radius: 0px;
+    background-color: transparent;
+    color: #757575;
+    border-radius: 0px;
 }
 .btn-user-post-footer:hover,
 .btn-user-post-footer:focus,
 .btn-user-post-footer:active,
 .btn-user-post-footer.active {
-  background-color: white;
-  color: #757575;
+    background-color: white;
+    color: #757575;
+}
+
+.btn-gray {
+    background-color: #ECEFF1;
+    color: #757575;
+}
+.btn-gray:hover{
+    background-color: #B0BEC5;
+    color: white;
 }
 
 .user-post-content{
@@ -399,3 +419,17 @@ body.sign-in{
     outline: none;
 }
 
+p{
+    font-size: 13px;
+}
+
+.vote-text{
+    font-size: 17px;
+    color: #757575;
+}
+
+.thread-attachment-header{
+    padding: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}

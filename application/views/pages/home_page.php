@@ -14,7 +14,7 @@ include(APPPATH . 'views/header.php');
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
                         <form action = "" style = "margin-right: 0px;">
-                            <input type = "image" alt = "" class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>"></a>
+                            <input type = "image" alt = "" class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
                         </form>
                         <div class = "col-sm-4 home-user-text">
                             <a class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name . " " . $logged_user->last_name; ?></strong></a>
@@ -28,199 +28,184 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <button class ="btn btn-primary home-create-btn">Create Topic</button>
+                        <a class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
                     </div>
 
                     <!-- CONTENT -->
                     <div class = "col-sm-12 content-container">
-                        <div class = "col-sm-12 home-content">
-                            <!-- CONTENT HEADER -->
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-
-                            <!-- CONTENT BODY -->
-
-                            <!-- PROFILE PICTURE -->
-                            <div class = "col-sm-2" style = "padding-right: 0px;">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "col-xs-12 text-center" style = "margin-bottom: 5px;">
-                                    <i class = "text-muted">3 points</i>
+                        <div class = "col-sm-12">
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
                                 </div>
-                                
-                                <div class = "col-xs-6 text-center" style = "margin: 0px; padding: 0px;">
-                                    <button class = "btn btn-xs btn-success" style = "width: 90%"><i class = "fa fa-thumbs-o-up vote-button"></i></button>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                        <br>
+                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                        <br>
+                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                    </div>
+                                    <div class = "col-xs-11" style = "margin-top: 5px;">
+                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
+                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
-                                <div class = "col-xs-6 text-center" style = "margin: 0px; padding: 0px;">
-                                    <a class = "btn btn-xs btn-danger" style = "width: 90%"><i class = "fa fa-thumbs-o-down vote-button"></i></a>
-                                </div>
-                            </div>
-
-                            <!-- CONTENT TEXT -->
-                            <div class = "col-sm-6" style = "padding-right: 0px;">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;  text-overflow: ellipsis;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
-                                </div>
-                            </div>
-
-                            <!-- ATTACHMENTS -->
-                            <div class = "col-sm-4">
-                                <div class = "list-group" style = "margin-top: 10px;">
-                                    <a class = "list-group-item btn btn-link" style=" border-radius: 0px;"><i class = "fa fa-image"></i> File Link 1</a>
-                                    <a class = "list-group-item btn btn-link"><i class = "fa fa-image"></i> File Link 2</a>
-                                    <a class = "list-group-item btn btn-link"><i class = "fa fa-music"></i> File Link 3</a>
-                                    <a class = "list-group-item btn btn-link"><i class = "fa fa-file"></i> File Link 4</a>
-                                    <a class = "list-group-item btn btn-link"> <i class = "fa fa-video-camera"></i> File Link 5</a>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p class = "post-content">Hello World!World!World!World!World!World!World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
+                                </div>
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                        <br>
+                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                        <br>
+                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                    </div>
+                                    <div class = "col-xs-11" style = "margin-top: 5px;">
+                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
+                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
+                                </div>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
                                 </div>
-                                <div>
-                                    HEHEHE
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                        <br>
+                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                        <br>
+                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                    </div>
+                                    <div class = "col-xs-11" style = "margin-top: 5px;">
+                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
+                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
-                                </div>
-                            </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
-                                </div>
-                                <div>
-                                    HEHEHE
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
                                 </div>
-                                <div>
-                                    HEHEHE
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                        <br>
+                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                        <br>
+                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                    </div>
+                                    <div class = "col-xs-11" style = "margin-top: 5px;">
+                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
+                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
-                                </div>
-                            </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
-                                </div>
-                                <div>
-                                    HEHEHE
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
                                 </div>
-                                <div>
-                                    HEHEHE
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                        <br>
+                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                        <br>
+                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                    </div>
+                                    <div class = "col-xs-11" style = "margin-top: 5px;">
+                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
+                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
-                                </div>
-                            </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
-                                </div>
-                                <div>
-                                    HEHEHE
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "col-sm-12 home-content">
-                            <div class = "home-content-header">
-                                <a class = "btn btn-link home-content-header-link">Juan Dela Cruz</a> posted in 
-                                <a class = "btn btn-link home-content-header-link">Dela Cruz Clan</a>:
-                            </div>
-                            <div class = "col-sm-8">
-                                <img alt = "" class = "pull-left img-circle home-content-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                                <div class = "home-content-body">
-                                    <span><a class = "btn btn-link home-content-body-username">Juan Dela Cruz</a> <i class = "home-content-body-date">Jan 20, 2017</i></span>
-                                    <p style = "text-align: justify; text-justify: inter-word;">Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!</p>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
-                            <div class = "col-sm-4 home-content-attachments">
-                                <div>
-                                    HEHEHE
+                            <!-- POST PREVIEW -->
+                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                <div class = "user-post-heading no-margin">
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Juan Dela Cruz</strong>
+                                    </a> 
+                                    <span>posted in</span> 
+                                    <a class = "btn btn-link no-padding">
+                                        <strong>Dela Cruz Clan</strong>
+                                    </a>:
                                 </div>
-                                <div>
-                                    HEHEHE
+                                <div class = "col-xs-12 user-post-content no-padding">
+                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
+                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                        <br>
+                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                        <br>
+                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                    </div>
+                                    <div class = "col-xs-11" style = "margin-top: 5px;">
+                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
+                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    </div>
+                                </div>
+                                <div class = "user-post-footer no-margin text-right">
+                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -230,6 +215,7 @@ include(APPPATH . 'views/header.php');
 
             <?php
             include(APPPATH . 'views/topic_side_bar.php');
+            include(APPPATH . 'views/create_topic_modal.php');
             ?>
         </div>
     </div>

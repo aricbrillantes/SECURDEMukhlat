@@ -10,7 +10,7 @@ include(APPPATH . 'views/header.php');
         <!-- Topic Page Header -->
         <div class = "row">
             <div class = "col-md-12 content-container" style = "padding: 0px;">
-                <a class = "btn btn-topic-header" href="<?php echo base_url('topic') ?>"><h3 class = "pull-left topic-header-title" style = "margin-top: 3px; margin-bottom: 0px; padding: 0px;"><strong class = "text-info"><i class = "fa fa-caret-left"></i> Dela Cruz Clan</strong></h3></a>
+                <a class = "btn btn-topic-header" href="<?php echo base_url('topic') ?>"><h3 class = "pull-left topic-header-title" style = "margin-top: 3px; margin-bottom: 0px; padding: 0px;"><strong class = "text-info"><i class = "fa fa-chevron-left"></i> Dela Cruz Clan</strong></h3></a>
                 <button class = "btn btn-link btn-sm" data-toggle = "modal" data-target = "#topic-modal" style = "padding-left: 0px; padding-right: 0px;">
                     <i class = "fa fa-question-circle-o"></i> <i><b>About Dela Cruz Clan</b></i>
                 </button>
