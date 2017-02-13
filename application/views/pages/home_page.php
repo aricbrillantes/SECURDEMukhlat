@@ -215,7 +215,8 @@ include(APPPATH . 'views/header.php');
 
             <?php
             include(APPPATH . 'views/topic_side_bar.php');
-            include(APPPATH . 'views/create_topic_modal.php');
+            include(APPPATH . 'views/modals/create_topic_modal.php');
+            include(APPPATH . 'views/modals/topic_description_modal.php');
             ?>
         </div>
     </div>
