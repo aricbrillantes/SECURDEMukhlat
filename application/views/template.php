@@ -9,5 +9,4 @@ include(APPPATH . 'views/header.php');
     <!-- CODE HERE -->
     
     <?php
-    include(APPPATH . 'views/footer.php');
-    
+    include(APPPATH . 'views/chat.php');

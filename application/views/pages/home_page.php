@@ -13,11 +13,12 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-sm-12 home-container">
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
-                        <form action = "" style = "margin-right: 0px;">
-                            <input type = "image" alt = "" class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>">
-                        </form>
+
+                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+                            <img alt = "" class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
+                        </a>
                         <div class = "col-sm-4 home-user-text">
-                            <a class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name . " " . $logged_user->last_name; ?></strong></a>
+                            <a class = "btn btn-link home-username" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
                                 <button class="btn btn-link dropdown-toggle home-username" type="button" data-toggle="dropdown"><strong>Home</strong>
@@ -35,179 +36,46 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-sm-12 content-container">
                         <div class = "col-sm-12">
                             <!-- POST PREVIEW -->
-                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Juan Dela Cruz</strong>
-                                    </a> 
-                                    <span>posted in</span> 
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Dela Cruz Clan</strong>
-                                    </a>:
-                                </div>
-                                <div class = "col-xs-12 user-post-content no-padding">
-                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
-                                        <br>
-                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
-                                        <br>
-                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
+                            <?php foreach ($posts as $post): ?>
+                                <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                    <div class = "user-post-heading no-margin">
+                                        <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                            <strong><?php echo $post->first_name . " " . $post->last_name; ?></strong>
+                                        </a> 
+                                        <span>posted in</span> 
+                                        <a class = "btn btn-link no-padding" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
+                                            <strong><?php echo $post->topic_name; ?></strong>
+                                        </a>:
                                     </div>
-                                    <div class = "col-xs-11" style = "margin-top: 5px;">
-                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
-                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+
+                                    <div class = "col-xs-12 user-post-content no-padding">
+                                        <!-- Left -->
+                                        <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                            <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id);?>">
+                                                <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
+                                            </a>
+                                            <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                            <br>
+                                            <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                            <br>
+                                            <button class = "btn btn-link btn-xs disabled"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                        </div>
+
+                                        <!-- Right -->
+                                        <div class = "col-xs-11" style = "margin-top: 5px;">
+                                            <a class = "btn btn-lg btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                <strong><?php echo $post->first_name . " " . $post->last_name ?></strong>
+                                            </a>
+                                            <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                            <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h4>
+                                            <p class = "home-content-body" style = "border-right: none;"><?php echo $post->post_content ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                            <!-- POST PREVIEW -->
-                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Juan Dela Cruz</strong>
-                                    </a> 
-                                    <span>posted in</span> 
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Dela Cruz Clan</strong>
-                                    </a>:
-                                </div>
-                                <div class = "col-xs-12 user-post-content no-padding">
-                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
-                                        <br>
-                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
-                                        <br>
-                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
-                                    </div>
-                                    <div class = "col-xs-11" style = "margin-top: 5px;">
-                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
-                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
+                                    <div class = "user-post-footer no-margin text-right">
+                                        <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
-                                <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                            <!-- POST PREVIEW -->
-                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Juan Dela Cruz</strong>
-                                    </a> 
-                                    <span>posted in</span> 
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Dela Cruz Clan</strong>
-                                    </a>:
-                                </div>
-                                <div class = "col-xs-12 user-post-content no-padding">
-                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
-                                        <br>
-                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
-                                        <br>
-                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
-                                    </div>
-                                    <div class = "col-xs-11" style = "margin-top: 5px;">
-                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
-                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
-                                    </div>
-                                </div>
-                                <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                            <!-- POST PREVIEW -->
-                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Juan Dela Cruz</strong>
-                                    </a> 
-                                    <span>posted in</span> 
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Dela Cruz Clan</strong>
-                                    </a>:
-                                </div>
-                                <div class = "col-xs-12 user-post-content no-padding">
-                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
-                                        <br>
-                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
-                                        <br>
-                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
-                                    </div>
-                                    <div class = "col-xs-11" style = "margin-top: 5px;">
-                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
-                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
-                                    </div>
-                                </div>
-                                <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                            <!-- POST PREVIEW -->
-                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Juan Dela Cruz</strong>
-                                    </a> 
-                                    <span>posted in</span> 
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Dela Cruz Clan</strong>
-                                    </a>:
-                                </div>
-                                <div class = "col-xs-12 user-post-content no-padding">
-                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
-                                        <br>
-                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
-                                        <br>
-                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
-                                    </div>
-                                    <div class = "col-xs-11" style = "margin-top: 5px;">
-                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
-                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
-                                    </div>
-                                </div>
-                                <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                            <!-- POST PREVIEW -->
-                            <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                <div class = "user-post-heading no-margin">
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Juan Dela Cruz</strong>
-                                    </a> 
-                                    <span>posted in</span> 
-                                    <a class = "btn btn-link no-padding">
-                                        <strong>Dela Cruz Clan</strong>
-                                    </a>:
-                                </div>
-                                <div class = "col-xs-12 user-post-content no-padding">
-                                    <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                        <img class = "img-circle" style = "margin-top: 10px; margin-bottom: 10px;" src = "<?php echo base_url('images/pic.jpg'); ?>"/>
-                                        <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
-                                        <br>
-                                        <span class = "text-muted" style = "margin-left: 3px;">3</span>
-                                        <br>
-                                        <button class = "btn btn-link btn-xs"><i class = "fa fa-chevron-down vote-text"></i></button>
-                                    </div>
-                                    <div class = "col-xs-11" style = "margin-top: 5px;">
-                                        <div><a class = "btn btn-lg btn-link no-padding"><strong>Juan Dela Cruz</strong></a><span class = "text-muted"> <i style = "font-size: 11px">Jan 23, 2017</i></span></div>
-                                        <p class = "home-content-body" style = "border-right: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae velit vitae nisl consequat fermentum. Curabitur lectus tellus, pulvinar ut dictum ac, ullamcorper a leo. Nunc feugiat justo eu metus ultrices pharetra. Donec pharetra lobortis ex aliquet feugiat. Nunc sit amet nisl vehicula, condimentum turpis vitae, accumsan tortor. In quis nibh vel lacus lacinia venenatis. Ut accumsan magna vel quam finibus varius. Quisque ornare, quam a suscipit imperdiet, orci justo porttitor enim, nec facilisis purus leo sit amet sem. Maecenas blandit risus id sodales dapibus. Nulla vehicula lobortis neque, at hendrerit tortor dignissim nec. Etiam mi dui, tempus a vehicula a, euismod et urna. Vivamus eu fermentum odio. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus sed condimentum lectus. Maecenas vitae rhoncus sem. Sed placerat interdum ante, at sagittis ante aliquet sit amet. Sed posuere pretium neque quis ullamcorper. Cras scelerisque, nulla a posuere vehicula, ante libero interdum augue, a feugiat arcu ex posuere ante. Aenean ac orci sit amet odio lacinia dignissim ac eu diam. Fusce a iaculis leo. Donec euismod nisl tortor, ac lacinia libero vulputate id. Aliquam erat volutpat. Proin at quam a nibh eleifend commodo nec sit amet diam. Phasellus massa arcu, finibus in turpis vitae, mollis scelerisque ex.</p>
-                                    </div>
-                                </div>
-                                <div class = "user-post-footer no-margin text-right">
-                                    <a class = "btn btn-user-post-footer no-up-down-pad" href = "topic/thread">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -222,5 +90,5 @@ include(APPPATH . 'views/header.php');
     </div>
 
     <?php
-    include(APPPATH . 'views/footer.php');
+    include(APPPATH . 'views/chat.php');
     

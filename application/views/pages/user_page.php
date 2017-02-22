@@ -12,9 +12,9 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-md-6">
                     <!-- User Info -->
                     <div class = "col-md-12">
-                        <img class = "pull-left img-circle user-profile-img"src = "images/pic.jpg" width = "100px"/>
+                        <img class = "pull-left img-circle user-profile-img"src = "<?php echo base_url('images/default.jpg'); ?>" width = "100px"/>
                         <div class = "user-profile-info">
-                            <h3 style = "margin-bottom: 0px;" class = "text-info"><strong>Juan Dela Cruz</strong></h3>
+                            <h3 style = "margin-bottom: 0px;" class = "text-info"><strong><?php echo $user->first_name . " " . $user->last_name ?></strong></h3>
                             <p><i>Beep Boop Beep Boop</i></p>
                             <button class = "btn btn-success btn-sm"><i class = "fa fa-phone"></i></button>
                             <button class = "btn btn-success btn-sm"><i class = "fa fa-comment"></i></button>
@@ -23,7 +23,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Topics -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-topic-header"><strong>Topics of Juan</strong></h3>
+                        <h3 class = "text-info text-center user-topic-header"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a data-toggle="pill" href="#user-topic-moderated">Moderated Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-followed">Followed Topics</a></li>
@@ -32,7 +32,7 @@ include(APPPATH . 'views/header.php');
                         <div class="tab-content">
                             <div id="user-topic-moderated" class="tab-pane fade in active">
                                 <div class = "user-header">
-                                    <h4 class = "text-center"><strong>Topics Moderated by Juan</strong></h4>
+                                    <h4 class = "text-center"><strong>Topics Moderated by <?php echo $user->first_name; ?></strong></h4>
                                 </div>
                                 <div class = "user-topic-div">
                                     <ul class="nav">
@@ -46,26 +46,20 @@ include(APPPATH . 'views/header.php');
                                 </div>
                             </div>
                             <div id="user-topic-followed" class="tab-pane fade">
-                                <div class = "col-sm-12 user-topic-list">
+                                <div class = "col-sm-12 no-padding">
                                     <div class = "user-header">
-                                        <h4 class = "text-center"><strong>Topics Followed by Juan</strong></h4>
+                                        <h4 class = "text-center"><strong>Topics Followed by <?php echo $user->first_name; ?></strong></h4>
                                     </div>
                                     <div class = "user-topic-div">
                                         <ul class="nav">
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="#">Link 1</a></li>
-                                            <li><a href="#">Link 2</a></li>
-                                            <li><a href="#">Link 3</a></li>
-                                            <li><a href="#">Link 1</a></li>
-                                            <li><a href="#">Link 2</a></li>
-                                            <li><a href="#">Link 3</a></li>
-                                            <li><a href="#">Link 1</a></li>
-                                            <li><a href="#">Link 2</a></li>
-                                            <li><a href="#">Link 3</a></li>
-                                            <li><a href="#">Link 1</a></li>
-                                            <li><a href="#">Link 2</a></li>
-                                            <li><a href="#">Link 3</a></li>
-                                            <li><a href="#">Link 1</a></li>
+                                            <?php foreach ($user->followed_topics as $topic): ?>
+                                                <li>
+                                                    <a class = "user-topic-item" href="<?php echo base_url('topic/view/' . $topic->topic_id); ?>" style = "padding: 5px 30px;">
+                                                        <h4 class = "no-padding no-margin" style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
+                                                        <span class = "pull-right label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0' ?></span>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </div>
                                 </div>
@@ -79,8 +73,8 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-md-12" style = "margin-bottom: 22px; padding-top: 20px;">
                         <div class = "col-sm-4 no-left-right-pad">
                             <div class = "col-xs-12 text-center no-left-right-pad">
-                                <h2 class = "text-info no-margin"><strong>35</strong></h2>
-                                <p>Posts</p>
+                                <h2 class = "text-info no-margin"><strong><?php echo count($logged_user->topics); ?></strong></h2>
+                                <p>Topics</p>
                             </div>
                         </div>
                         <div class = "col-sm-4 no-left-right-pad"style = "border-right: 1px solid #E0E0E0; border-left: 1px solid #E0E0E0;">
@@ -92,7 +86,7 @@ include(APPPATH . 'views/header.php');
                         <div class = "col-sm-4 no-left-right-pad">
                             <div class = "col-xs-12 text-center no-left-right-pad">
                                 <h2 class = "text-info no-margin"><strong>35</strong></h2>
-                                <p>Comments</p>
+                                <p>Posts</p>
                             </div>
                         </div>
                     </div>
@@ -298,5 +292,5 @@ include(APPPATH . 'views/header.php');
     </div>
 
     <?php
-    include(APPPATH . 'views/footer.php');
+    include(APPPATH . 'views/chat.php');
     

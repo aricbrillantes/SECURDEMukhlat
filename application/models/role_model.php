@@ -8,7 +8,6 @@ class role_model extends CI_Model {
 
     public function get_roles() {
         $query = $this->db->get('tbl_roles');
-        return $query->result_array();
+        return $query->result();
     }
-
 }

@@ -12,25 +12,30 @@ class signin extends CI_Controller {
     }
 
     public function signup() {
+        $input = $this->input;
+        
         $data = array(
-            'first_name' => $this->input->post('first_name', TRUE),
-            'last_name' => $this->input->post('last_name', TRUE),
-            'email' => $this->input->post('sign_up_email', TRUE),
-            'password' => $this->input->post('sign_up_password', TRUE),
-            'birthdate' => $this->input->post('sign_up_birthday'),
-            'role_id' => 2,
-            'is_enabled' => true
+            'first_name' => htmlspecialchars($input->post('first_name', TRUE)),
+            'last_name' => htmlspecialchars($input->post('last_name', TRUE)),
+            'email' => htmlspecialchars($input->post('sign_up_email', TRUE)),
+            'password' => htmlspecialchars($input->post('sign_up_password', TRUE)),
+            'birthdate' => htmlspecialchars($input->post('sign_up_birthday', TRUE)),
+            'role_id' => htmlspecialchars($input->post('sign_up_role', TRUE)),
+            'is_enabled' => false,
         );
         $this->db->insert('tbl_users', $data);
     }
 
     public function login() {
         $this->load->model('user_model', 'user');
-        $user = $this->user->login($_POST['log_in_email'], $_POST['log_in_password']);
+        $fields = array('email' => $this->input->post('log_in_email'),
+            'password' => $this->input->post('log_in_password'),
+            'is_enabled' => true);
+        
+        $user = $this->user->get_user(true, $fields);
 
-        //echo "<script>console.log('".count($user). "');</script>";
-        if ($user->num_rows() > 0) {
-            $_SESSION['logged_user'] = $user->row();
+        if ($user) {
+            $_SESSION['logged_user'] = $user;
             echo 1;
         } else {
             echo 0;

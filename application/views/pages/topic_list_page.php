@@ -13,11 +13,10 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
-                        <form action = "" style = "margin-right: 0px;">
-                            <input type = "image" alt = "" class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>"></a>
-                        </form>
+                        <a href = "user"><img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>"></a>
+
                         <div class = "col-sm-4 home-user-text">
-                            <a class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name . " " . $logged_user->last_name; ?></strong></a>
+                            <a href = "user" class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
                                 <button class="btn btn-link dropdown-toggle home-username" type="button" data-toggle="dropdown"><strong>Topic</strong>
@@ -28,36 +27,41 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <button class ="btn btn-primary home-create-btn">Create Topic</button>
+                        <a class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
                     </div>
                 </div>
 
                 <div class = "col-md-12 content-container">
-                    <form class="" role="search">
+                    <form action = "javascript:void(0);" role="search">
                         <div class="input-group" style = "width: 100%">
-                            <input type="text" class="form-control search-text" placeholder="&#xF002; Search for Topic" name="srch-term" id="srch-term">
+                            <input type="text" class="form-control search-text" placeholder="&#xF002; Search for a topic" id = "search-topic-list">
                         </div>
                     </form>
                 </div>
 
                 <div class = "col-md-12 content-container">
-                    <div class = "list-group">
-                        <a class = "list-group-item btn btn-link list-entry" href = "topic/view"><strong>HEHE</strong></a>
-                        <a class = "list-group-item btn btn-link list-entry"><strong>HEHE</strong></a>
-                        <a class = "list-group-item btn btn-link list-entry"><strong>HEHE</strong></a>
-                        <a class = "list-group-item btn btn-link list-entry"><strong>HEHE</strong></a>
-                        <a class = "list-group-item btn btn-link list-entry"><strong>HEHE</strong></a>
-                        <a class = "list-group-item btn btn-link list-entry"><strong>HEHE</strong></a>
-                        <a class = "list-group-item btn btn-link list-entry"><strong>HEHE</strong></a>
+                    <div id = "topic-list" class = "list-group">
+                        <?php foreach ($topics as $topic): ?>
+                            <a class = "list-group-item btn btn-link list-entry" href = "topic/view/<?php echo $topic->topic_id; ?>">
+                                <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
+                                <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
+                                <div class = "pull-right">
+                                    <span class = "label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0' ?></span>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
             <?php
             include(APPPATH . 'views/topic_side_bar.php');
+            include(APPPATH . 'views/modals/create_topic_modal.php');
             ?>
         </div>
     </div>
 
+    <!-- Search Script -->
+    <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
     <?php
-    include(APPPATH . 'views/footer.php');
+    include(APPPATH . 'views/chat.php');
     

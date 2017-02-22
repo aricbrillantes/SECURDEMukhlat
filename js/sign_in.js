@@ -1,4 +1,5 @@
 function log_in() {
+    $("#sign-in-message").remove();
     $.ajax({
         type: "POST",
         url: "signin/login",
@@ -7,7 +8,7 @@ function log_in() {
             if (data === '1') {
                 window.location.href = "home";
             } else {
-                $("<div class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-warning\"><i class = \"fa fa-warning\"></i> <i>Invalid username/password! Please try again.</i></span></div>").hide().appendTo("#sign-in-container").show("fast");
+                $("<div id = \"sign-in-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-warning\"><i class = \"fa fa-warning\"></i> <i>Invalid username/password! Please try again.</i></span></div>").hide().appendTo("#sign-in-container").show("fast");
             }
         }
     });
@@ -23,9 +24,7 @@ function sign_up() {
             url: "signin/signup",
             data: $("#sign-up-form").serialize(),
             success: function(data) {
-                $("<div id = \"sign-up-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-success\"><i class = \"fa fa-check\"></i> <i>Signing up successful! You can log in now</i></span></div>").hide().appendTo("#sign-up-container").show("fast");
-            }, error: function(data){
-                alert("error hehe " + data);
+                $("<div id = \"sign-up-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-success\"><i class = \"fa fa-check\"></i> <i>Signing up successful! Your account is pending activation from an Administrator</i></span></div>").hide().appendTo("#sign-up-container").show("fast");
             }
         });
     } else {
@@ -39,6 +38,5 @@ function check_values() {
     var pass = $("#sign-up-password");
     var retype = $("#sign-up-retype");
 
-    alert(pass.val() + " vs " + retype.val());
     return pass.val() === retype.val();
 }

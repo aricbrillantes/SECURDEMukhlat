@@ -11,17 +11,17 @@ $logged_user = $_SESSION['logged_user'];
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span> 
             </button>
-            <a class = "navbar-brand" href = "<?php echo base_url() ?>home"><i class = "fa fa-users"></i> <strong>GetTogether</strong></a>
+            <a class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/logo-blue.png');?>"/></a>
         </div>
         <div class = "collapse navbar-collapse" id = "nav-collapse">
             <ul class = "nav navbar-nav">
-                <li class="active"><a href="<?php echo base_url() ?>home"><strong>Home</strong></a></li>
-                <li><a href="<?php echo base_url() ?>topic"><strong>Topics</strong></a></li>
+                <li><a href="<?php echo base_url('home') ?>"><strong>Home</strong></a></li>
+                <li><a href="<?php echo base_url('topic') ?>"><strong>Topics</strong></a></li>
             </ul>
             <div class = "search-div nav-right-end">
-                <form class="navbar-form navbar-left" role = "search">
+                <form action = "<?php echo base_url('search');?>" class="navbar-form navbar-left" role = "search" method = "POST">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input required type="text" name = "search-key" class="form-control" placeholder="Search">
                         <div class="input-group-btn">
                             <button class="btn btn-default search-btn" type="submit">
                                 <i class="glyphicon glyphicon-search"></i>
@@ -36,8 +36,8 @@ $logged_user = $_SESSION['logged_user'];
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url('user'); ?>">My Profile</a></li>
-                            <li><a href="#nav-modal" data-toggle = "modal"><i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications</a></li>
+                            <li><a href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">My Profile</a></li>
+                            <li><a href="#nav-modal" data-toggle = "modal"><i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications <span class = "badge">10</span></a></li>
                             <li><a href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a></li>
                         </ul>
                     </li>
@@ -66,4 +66,8 @@ $logged_user = $_SESSION['logged_user'];
         </div>
     </div>
 </div>
+
+<!-- Nav Bar Script -->
+<script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
+
 <!-- End Nav Bar -->

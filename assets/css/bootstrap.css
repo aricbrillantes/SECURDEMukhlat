@@ -1351,7 +1351,7 @@ a.text-success:focus {
   color: #2b542c;
 }
 .text-info {
-  color: #31708f;
+  color: #009688;
 }
 a.text-info:hover,
 a.text-info:focus {
@@ -4872,7 +4872,7 @@ a.label:focus {
   background-color: #449d44;
 }
 .label-info {
-  background-color: #5bc0de;
+  background-color: #80CBC4;
 }
 .label-info[href]:hover,
 .label-info[href]:focus {
