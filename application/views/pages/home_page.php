@@ -51,14 +51,14 @@ include(APPPATH . 'views/header.php');
                                     <div class = "col-xs-12 user-post-content no-padding">
                                         <!-- Left -->
                                         <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                            <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id);?>">
+                                            <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                 <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                             </a>
                                             <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>?>"><i class = "fa fa-chevron-up vote-text"></i></button>
                                             <br>
-                                            <span class = "text-muted" style = "margin-left: 3px;">3</span>
+                                            <span class = "vote-count text-muted" style = "margin-left: 3px;">3</span>
                                             <br>
-                                            <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id;?>"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                            <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-chevron-down vote-text"></i></button>
                                         </div>
 
                                         <!-- Right -->
@@ -88,7 +88,9 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
-
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="<?php echo base_url("/js/vote.js"); ?>"></script>
+    <!-- END SCRIPTS -->
     <?php
     include(APPPATH . 'views/chat.php');
     

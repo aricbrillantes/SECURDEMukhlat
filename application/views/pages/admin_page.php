@@ -46,7 +46,7 @@ $logged_user = $_SESSION['logged_user'];
                                 endif;
                                 ?>
                             </li>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -56,5 +56,5 @@ $logged_user = $_SESSION['logged_user'];
     <!-- SCRIPTS -->
     <script type="text/javascript" src="<?php echo base_url("/js/admin.js"); ?>"></script>
     <!-- END SCRIPTS -->
-    </body>
-    </html>
+</body>
+</html>
