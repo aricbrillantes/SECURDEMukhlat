@@ -54,11 +54,11 @@ include(APPPATH . 'views/header.php');
                                             <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id);?>">
                                                 <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                             </a>
-                                            <button class = "btn btn-link btn-xs" style = "margin-left: 3px;"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                            <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>?>"><i class = "fa fa-chevron-up vote-text"></i></button>
                                             <br>
                                             <span class = "text-muted" style = "margin-left: 3px;">3</span>
                                             <br>
-                                            <button class = "btn btn-link btn-xs disabled"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                            <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id;?>"><i class = "fa fa-chevron-down vote-text"></i></button>
                                         </div>
 
                                         <!-- Right -->

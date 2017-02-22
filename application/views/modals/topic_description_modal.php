@@ -11,15 +11,12 @@
                 <h4 class="modal-title text-center"><?php echo $topic->topic_name ?></h4>
             </div>
             <div class="modal-body">
-                <p>
+                <p class = "wrap" align = "center">
                     <?php echo $topic->topic_description ?>
                 </p>
-                <p>
-                    Created by Juan Dela Cruz on Jan 2, 2017
+                <p class = "text-muted" align = "center">
+                    <small><i>Created by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $topic->user->user_id);?>"><?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></a> on <?php echo date("M-d-y", strtotime($topic->date_created)); ?></i></small>
                 </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

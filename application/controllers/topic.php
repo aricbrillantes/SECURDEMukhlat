@@ -172,6 +172,8 @@ class topic extends CI_Controller {
         $logged_user = $_SESSION['logged_user'];
         
         $post_id = $this->uri->segment(3);
+        $vote_type = $this->input->post("vote_type");
         $this->load->model("post_model", "posts");
+        $this->posts->vote_post($logged_user->user_id, $post_id, $vote_type);
     }
 }

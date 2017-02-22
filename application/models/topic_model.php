@@ -24,10 +24,13 @@ class topic_model extends CI_Model {
             //get posts
             $this->load->model('post_model', 'posts');
             $topic->posts = $this->posts->get_topic_posts($topic->topic_id);
-            
+
             $this->load->model('user_model', 'users');
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
         }
+
+        $this->load->model('user_model', 'users');
+        $topic->user = $this->users->get_user(false, array('user_id' => $topic->creator_id));
         return $topic;
     }
 
@@ -47,13 +50,13 @@ class topic_model extends CI_Model {
 
     public function get_user_topics($user_id) {
         $topics = $this->db->order_by('topic_name', 'ASC')->get_where('tbl_topics', array('creator_id' => $user_id))->result();
-        
+
         $this->load->model('user_model', 'users');
-        
-        foreach ($topics as $topic){
+
+        foreach ($topics as $topic) {
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
         }
-        
+
         return $topics;
     }
 
@@ -62,15 +65,15 @@ class topic_model extends CI_Model {
         $this->db->from('tbl_topics');
         $this->db->join('tbl_topic_follower', 'tbl_topic_follower.topic_id = tbl_topics.topic_id');
         $this->db->where(array('tbl_topic_follower.user_id' => $user_id));
-     //   $this->db->where();
+        //   $this->db->where();
         $topics = $this->db->order_by('tbl_topics.topic_name', 'ASC')->get()->result();
-        
+
         $this->load->model('user_model', 'users');
-        
-        foreach ($topics as $topic){
+
+        foreach ($topics as $topic) {
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
         }
-        
+
         return $topics;
     }
 
@@ -79,17 +82,17 @@ class topic_model extends CI_Model {
 
         return $is_followed;
     }
-    
-    public function search_topics($keyword){
+
+    public function search_topics($keyword) {
         $this->db->like("topic_name", $keyword, "both");
         $topics = $this->db->get("tbl_topics")->result();
-        
+
         $this->load->model("user_model", "users");
         foreach ($topics as $topic) {
             $topic->user = $this->users->get_user(false, array('user_id' => $topic->creator_id));
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
         }
-        
+
         return $topics;
     }
 
