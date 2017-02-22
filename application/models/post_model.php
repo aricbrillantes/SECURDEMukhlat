@@ -50,6 +50,10 @@ class post_model extends CI_Model {
         return $home_posts;
     }
     
+    public function get_post_votes($post_id){
+        $this->db->select('SUM(vote_type) as vote_count', FALSE);
+    }
+    
     public function vote_post($user_id, $post_id, $vote_type){
         //delete existing votes of user to post
         $this->db->delete('tbl_post_vote', array('post_id' => $post_id, 'user_id' => $user_id));
