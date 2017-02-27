@@ -8,17 +8,17 @@
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Post to <?php echo $topic->topic_name;?></strong></h4>
+                <h4 id = "reply-user" class="modal-title"></h4>
             </div>
-            <form action = "<?php echo base_url('topic/post');?>" id = "create-reply-form" method = "POST">
+            <form id = "create-reply-form" action = "<?php echo base_url('topic/reply');?>" method = "POST">
                 <div class="modal-body">
-                    <div class="form-group"><!-- check if title is already taken -->
-                        <label for = "title">Enter a title for your post:</label>
-                        <input type="text" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
+                    <div class="form-group">
+                        <label for = "title">Enter a title for your reply (Optional):</label>
+                        <input type="text" class="form-control" name = "reply_title" id = "reply-title" placeholder = "Title of your post"/>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
-                        <label for = "content">Enter the content of your post:</label>
-                        <textarea class = "form-control" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
+                        <label for = "content">Enter the content of your reply:</label>
+                        <textarea class = "form-control" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
                     <div class = "form-group">
                         Attach files: 
@@ -29,22 +29,22 @@
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
-                    <a id = "create-post-btn" class ="btn btn-primary" data-toggle = "modal">Post</a>
+                    <a id = "create-reply-btn" class ="btn btn-primary" data-toggle = "modal">Reply</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<div id="post-confirmation-modal" tabindex="-1" class="modal fade" role="dialog" style = "margin-top: 50px; margin-right: 15px;">
+<div id="reply-confirmation-modal" tabindex="-1" class="modal fade" role="dialog" style = "margin-top: 50px; margin-right: 15px;">
     <div class="modal-dialog">
         <div class="modal-content text-center">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Publish post to <?php echo $topic->topic_name;?></strong></h4>
+                <h4 id = "send-reply-user" class="modal-title"><strong>Send reply to <?php echo $post->user->first_name;?></strong></h4>
             </div>
             <div class="modal-body">
-                <button id = "create-post-proceed" type = "submit" class = "btn btn-success">Proceed</button>
+                <button id = "create-reply-proceed" type = "submit" class = "btn btn-success">Proceed</button>
                 <button class = "btn btn-Danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>

@@ -54,20 +54,28 @@ include(APPPATH . 'views/header.php');
                                             <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                 <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                             </a>
-                                            <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>?>"><i class = "fa fa-chevron-up vote-text"></i></button>
+                                            <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
+                                                <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
+                                            </button>
                                             <br>
-                                            <span class = "vote-count text-muted" style = "margin-left: 3px;">3</span>
+                                            <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
                                             <br>
-                                            <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-chevron-down vote-text"></i></button>
+                                            <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
+                                                <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
+                                            </button>
                                         </div>
 
                                         <!-- Right -->
                                         <div class = "col-xs-11" style = "margin-top: 5px;">
-                                            <a class = "btn btn-lg btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                <strong><?php echo $post->first_name . " " . $post->last_name ?></strong>
-                                            </a>
-                                            <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                             <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h4>
+                                            <i class = "text-muted">
+                                                <small>by 
+                                                    <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                        <?php echo $post->first_name . " " . $post->last_name ?>
+                                                    </a>
+                                                </small>
+                                            </i>
+                                            <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                             <p class = "home-content-body" style = "border-right: none;"><?php echo $post->post_content ?></p>
                                         </div>
                                     </div>
@@ -84,7 +92,6 @@ include(APPPATH . 'views/header.php');
             <?php
             include(APPPATH . 'views/topic_side_bar.php');
             include(APPPATH . 'views/modals/create_topic_modal.php');
-            include(APPPATH . 'views/modals/topic_description_modal.php');
             ?>
         </div>
     </div>

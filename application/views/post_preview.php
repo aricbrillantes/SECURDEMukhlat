@@ -2,6 +2,17 @@
     <div class = "col-md-12 content-container" style = "height: 430px; overflow-y: auto;">
         <div class = "col-sm-2 no-padding">
             <img class = "pull-left img-circle" width = "85px" src = "<?php echo $post->user->profile_url ? base_url($post->user->profile_url) : base_url('images/default.jpg') ?>">
+            <div class = "text-center">
+                <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
+                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
+                </button>
+                <br>
+                <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
+                <br>
+                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
+                    <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
+                </button>
+            </div>
         </div>
         <div class = "col-sm-10" style = "text-overflow: ellipsis;">
             <h4 class = "text-muted no-margin wrap"><strong><?php echo $post->post_title ?></strong></h4>
@@ -15,3 +26,7 @@
         <button type = "submit" class = "btn btn-block btn-primary"> View Post Thread </button>
     </form>
 </div>
+
+<!-- SCRIPTS -->
+<script type="text/javascript" src="<?php echo base_url("/js/vote.js"); ?>"></script>
+<!-- END SCRIPTS -->

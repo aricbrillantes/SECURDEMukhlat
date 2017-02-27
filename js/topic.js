@@ -29,6 +29,10 @@ $(document).ready(function() {
         }
     });
 
+    $("#create-topic-proceed").on("click", function() {
+        $("#create-topic-form").submit();
+    });
+
     $("#create-post-btn").on("click", function() {
         if ($("#post-title").val() && $("#post-content").val()) {
             $("#post-confirmation-modal").modal('show');
@@ -45,10 +49,6 @@ $(document).ready(function() {
             else
                 $("#post-content").parent().removeClass("has-error");
         }
-    });
-
-    $("#create-topic-proceed").on("click", function() {
-        $("#create-topic-form").submit();
     });
 
     $("#create-post-proceed").on("click", function() {
@@ -97,5 +97,38 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+
+
+    $(".reply-btn").on("click", function() {
+        var post_id = $(this).val();
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/topic/load_post/",
+            type: "POST",
+            dataType: "json",
+            data: {post_id: post_id},
+            success: function(data) {
+                $("#reply-user").html("<strong>Reply to " + data.first_name + "</strong>");
+                $("#send-reply-user").html("<strong>Send reply to " + data.first_name + "</strong>");
+                $("#create-reply-form").attr("action", window.location.origin + "/GetTogetherBeta/topic/reply/" + data.post_id);
+                $("#create-reply-modal").modal("show");
+            }
+        });
+    });
+
+    $("#create-reply-btn").on("click", function() {
+        if ($("#reply-content").val()) {
+            $("#reply-confirmation-modal").modal('show');
+            $("#reply-content").parent().removeClass("has-error");
+        } else {
+            if (!$("#reply-content").val())
+                $("#reply-content").parent().addClass("has-error");
+            else
+                $("#reply-content").parent().removeClass("has-error");
+        }
+    });
+
+    $("#create-reply-proceed").on("click", function() {
+        $("#create-reply-form").submit();
     });
 });

@@ -29,9 +29,9 @@ $topic = $_SESSION['current_topic'];
                             <i class = "fa fa-minus-circle"></i> Unfollow Topic
                         <?php endif; ?>
                     </button>
-                    <button class = "btn btn-success pull-right btn-md" style = "margin: 5px; width: 20%">
+                    <a class = "btn btn-success pull-right btn-md" style = "margin: 5px; width: 20%" href = "#topic-members-modal" data-toggle = "modal">
                         <i class = "fa fa-user"></i> Members
-                    </button>
+                    </a>
             </div>
         </div>
         <div class = "row">
@@ -51,15 +51,24 @@ $topic = $_SESSION['current_topic'];
                     <div class = "col-xs-12 topic-post-list">
                         <div class = "list-group" style = "padding-top: 15px;">
                             <!-- List Entry -->
-                            <?php foreach ($topic->posts as $post): ?>
-                                <a href = "javascript: void(0);"class = "btn btn-link list-group-item list-entry no-up-down-pad topic-post-entry" data-value = "<?php echo $post->post_id; ?>">
+                            <?php
+                            foreach ($topic->posts as $post):
+                                $text_class = '';
+                                if ($post->vote_count > 0) {
+                                    $text_class = 'text-success';
+                                } else if ($post->vote_count < 0) {
+                                    $text_class = 'text-danger';
+                                }
+                                ?>
+                                <a href = "javascript: void(0);" class = "btn btn-link list-group-item list-entry no-up-down-pad topic-post-entry" data-value = "<?php echo $post->post_id; ?>">
                                     <div class = "row">
                                         <div class = "col-xs-10">
-                                            <h4 style = "overflow: hidden;text-overflow: ellipsis;"><?php echo $post->post_title; ?> <small><i><?php echo $post->user->first_name . " " . $post->user->last_name; ?></i></small></h4>
-                                            <p style = "overflow: hidden;text-overflow: ellipsis;"><?php echo $post->post_content; ?></p>
+                                            <h4 class = "ellipsis"><strong><?php echo $post->post_title; ?></strong> <small><i><?php echo $post->user->first_name . " " . $post->user->last_name; ?></i></small></h4>
+                                            <p class = "ellipsis"><?php echo $post->post_content; ?></p>
                                         </div>
-                                        <div class = "col-xs-2" style = "padding: 0px;">
-                                            <p style = "padding-top: 20px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></p>
+                                        <div class = "col-xs-2 text-center" style = "padding: 0px;">
+                                            <p style = "padding-top: 10px; font-size: 11px;"><i><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></p>
+                                            <span class = "vote-count <?php echo $text_class ?>"><?php echo $post->vote_count ? $post->vote_count : '0'; ?> <i class = "fa fa-trophy"></i></span>
                                         </div>
                                     </div>
                                 </a>
@@ -73,5 +82,6 @@ $topic = $_SESSION['current_topic'];
     <?php
     include(APPPATH . 'views/modals/create_post_modal.php');
     include(APPPATH . 'views/modals/topic_description_modal.php');
+    include(APPPATH . 'views/modals/topic_members_modal.php');
     include(APPPATH . 'views/chat.php');
     

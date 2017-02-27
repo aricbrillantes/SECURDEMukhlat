@@ -32,7 +32,7 @@ class signin extends CI_Controller {
             'password' => $this->input->post('log_in_password'),
             'is_enabled' => true);
         
-        $user = $this->user->get_user(true, $fields);
+        $user = $this->user->get_user(true, false, $fields);
 
         if ($user) {
             $_SESSION['logged_user'] = $user;

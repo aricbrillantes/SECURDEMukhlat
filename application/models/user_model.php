@@ -11,7 +11,8 @@ class user_model extends CI_Model {
         return $query->result();
     }
 
-    public function get_user($load_topics, $fields = array()) {
+    public function get_user($load_topics, $load_activities, $fields = array()) {
+        $logged_user = $_SESSION['logged_user'];
         $query = $this->db->get_where('tbl_users', $fields);
 
         $user = $query->row();
@@ -19,8 +20,12 @@ class user_model extends CI_Model {
         if ($load_topics) {
             $this->load->model('topic_model', 'topics');
             $user->topics = $this->topics->get_user_topics($user->user_id);
-
             $user->followed_topics = $this->topics->get_followed_topics($user->user_id);
+        }
+        
+        if($load_activities){
+            $this->load->model('post_model', 'posts');
+            $user->activities = $this->posts->get_user_activities($user->user_id, $logged_user->user_id);
         }
 
         return $user;
@@ -44,6 +49,7 @@ class user_model extends CI_Model {
     
     public function search_users($keyword){
         $this->db->where("CONCAT(first_name, ' ', last_name) LIKE '%" . $keyword . "%'", NULL, FALSE);
+        $this->db->where("role_id = ", 2);
         $users = $this->db->get("tbl_users")->result();
         
         return $users;

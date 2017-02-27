@@ -11,7 +11,7 @@
                 <h4 class="modal-title text-center"><?php echo $topic->topic_name ?></h4>
             </div>
             <div class="modal-body">
-                <p class = "wrap" align = "center">
+                <p class = "wrap text-center" align = "center">
                     <?php echo $topic->topic_description ?>
                 </p>
                 <p class = "text-muted" align = "center">

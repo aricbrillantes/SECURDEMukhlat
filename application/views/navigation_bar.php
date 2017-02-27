@@ -32,7 +32,7 @@ $logged_user = $_SESSION['logged_user'];
                 <ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img class = "img-rounded nav-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>"/> <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
+                            <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -69,5 +69,4 @@ $logged_user = $_SESSION['logged_user'];
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
-
 <!-- End Nav Bar -->

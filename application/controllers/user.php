@@ -12,7 +12,7 @@ class user extends CI_Controller {
         if ($user_id) {
             $this->load->model("user_model", "users");
 
-            $data['user'] = $this->users->get_user(true, array('user_id' => $user_id));
+            $data['user'] = $this->users->get_user(true, true, array('user_id' => $user_id));
 
             $this->load->view('pages/user_page', $data);
         } else{

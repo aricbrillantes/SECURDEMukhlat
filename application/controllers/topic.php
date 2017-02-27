@@ -52,11 +52,13 @@ class topic extends CI_Controller {
         $post_id = $this->uri->segment(3);
         if ($post_id) {
             $this->load->model('post_model', 'posts');
-            $post = $this->posts->get_post($post_id);
+            $post = $this->posts->get_post(true, $post_id);
 
             if ($post) {
                 //check if user is following topic then pass
                 $data['post'] = $post;
+                $data['replies'] = $this->load->view('post_replies', $data, TRUE);
+                $_SESSION['current_topic'] = $post->topic;
                 $this->load->view('pages/thread_page', $data);
             } else {
                 $this->load->view('errors/error_404');
@@ -113,10 +115,10 @@ class topic extends CI_Controller {
             $topic = $this->topics->get_topic(true, $topic_id);
 
             if (!$is_followed) {
-                //add topic to followed topics of logged user
+            //add topic to followed topics of logged user
                 $logged_user->followed_topics[] = $topic;
             } else {
-                //if user is following the topic, remove from list
+            //if user is following the topic, remove from list
                 foreach ($logged_user->followed_topics as $key => $topic) {
                     if ($topic->topic_id == $topic_id) {
                         unset($logged_user->followed_topics[$key]);
@@ -160,20 +162,56 @@ class topic extends CI_Controller {
 
     public function preview() {
         $this->load->model('post_model', 'posts');
-        
+
         //check referer
         $post_id = $this->uri->segment(3);
-        $data['post'] = $this->posts->get_post($post_id);
+        $data['post'] = $this->posts->get_post(false, $post_id);
 
         $this->load->view('post_preview', $data);
     }
 
     public function vote() {
         $logged_user = $_SESSION['logged_user'];
-        
+
         $post_id = $this->uri->segment(3);
         $vote_type = $this->input->post("vote_type");
         $this->load->model("post_model", "posts");
         $this->posts->vote_post($logged_user->user_id, $post_id, $vote_type);
+
+        echo $this->posts->get_vote_count($post_id);
+    }
+
+    public function load_post() {
+        $post_id = $this->input->post("post_id");
+        $this->load->model("post_model", "posts");
+        $post = $this->posts->get_post(false, $post_id);
+
+        $data = array("first_name" => $post->user->first_name, "post_id" => $post_id);
+        $this->output->set_content_type('application/json');
+        echo json_encode($data);
+    }
+
+    public function reply() {
+        $post_id = $this->uri->segment(3);
+        $input = $this->input;
+        $logged_user = $_SESSION['logged_user'];
+        $topic = $_SESSION['current_topic'];
+
+        //get parent
+        $this->load->model("post_model", "posts");
+        $parent_post = $this->posts->get_post(false, $post_id);
+        $data = array(
+            'parent_id' => $parent_post->post_id,
+            'user_id' => $logged_user->user_id,
+            'root_id' => $parent_post->post_id,
+            'topic_id' => $topic->topic_id,
+            'post_title' => htmlspecialchars($input->post('reply_title', TRUE)),
+            'post_content' => htmlspecialchars($input->post('reply_content', TRUE)),
+            'date_posted' => date('Y-m-d H:i:s')
+        );
+
+        $this->db->insert('tbl_posts', $data);
+        
+        redirect(base_url('topic/thread/' . $parent_post->root_id));
     }
 }

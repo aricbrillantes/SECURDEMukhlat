@@ -30,7 +30,7 @@ class topic_model extends CI_Model {
         }
 
         $this->load->model('user_model', 'users');
-        $topic->user = $this->users->get_user(false, array('user_id' => $topic->creator_id));
+        $topic->user = $this->users->get_user(false, false, array('user_id' => $topic->creator_id));
         return $topic;
     }
 
@@ -41,7 +41,7 @@ class topic_model extends CI_Model {
         $this->load->model('user_model', 'users');
 
         foreach ($topics as $topic) {
-            $topic->user = $this->users->get_user(false, array('user_id' => $topic->creator_id));
+            $topic->user = $this->users->get_user(false, false, array('user_id' => $topic->creator_id));
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
         }
 
@@ -89,7 +89,7 @@ class topic_model extends CI_Model {
 
         $this->load->model("user_model", "users");
         foreach ($topics as $topic) {
-            $topic->user = $this->users->get_user(false, array('user_id' => $topic->creator_id));
+            $topic->user = $this->users->get_user(false, false, array('user_id' => $topic->creator_id));
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
         }
 

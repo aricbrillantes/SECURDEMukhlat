@@ -632,5 +632,23 @@ END CHAT
 }
 
 .btn:focus,.btn:active {
-   outline: none !important;
+    outline: none !important;
+}
+
+.upvote-text{
+    color: #81C784;   
+}
+
+.downvote-text{
+    color: #E57373;   
+}
+
+.ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.user-list-entry{
+    height: 55px;
 }
