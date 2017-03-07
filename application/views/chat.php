@@ -1,8 +1,8 @@
 <!-- Chat (Module from GetBetter)-->
 <div id="chat-area" class="row">
     <div id="contacts" class="dropup">
-        <button class="btn btn-default" data-toggle="dropdown">
-            Talk to others! <span class="badge"></span>
+        <button class="btn btn-default disabled" data-toggle="dropdown">
+            Talk to others! [Not Available]<span class="badge"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li class="chat-contact" user-id="1" user-session="">

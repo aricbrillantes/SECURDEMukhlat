@@ -13,7 +13,7 @@ class signin extends CI_Controller {
 
     public function signup() {
         $input = $this->input;
-        
+
         $data = array(
             'first_name' => htmlspecialchars($input->post('first_name', TRUE)),
             'last_name' => htmlspecialchars($input->post('last_name', TRUE)),
@@ -31,8 +31,20 @@ class signin extends CI_Controller {
         $fields = array('email' => $this->input->post('log_in_email'),
             'password' => $this->input->post('log_in_password'),
             'is_enabled' => true);
-        
+
         $user = $this->user->get_user(true, false, $fields);
+
+        $this->load->model("notification_model", "notifs");
+
+        //get notifs of user
+        $user->notifications = $this->notifs->get_user_notifications($user->user_id);
+
+        //get shared of user
+        $user->shared_topics = $this->notifs->get_user_shared($user->user_id);
+
+        //return unread count
+        $user->unread_notifs = $this->notifs->get_unread_count($user->user_id);
+
 
         if ($user) {
             $_SESSION['logged_user'] = $user;

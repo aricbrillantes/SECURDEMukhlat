@@ -1,6 +1,6 @@
 <?php
 include(APPPATH . 'views/header.php');
-$topic = $_SESSION['current_topic'];
+$c_topic = $_SESSION['current_topic'];
 ?>
 <body>
     <?php
@@ -19,13 +19,13 @@ $topic = $_SESSION['current_topic'];
                     </h4>
                 </a>
                 <button class = "btn btn-link" data-toggle = "modal" data-target = "#topic-modal" style = "padding: 10px 0px;">
-                    <i class = "fa fa-question-circle-o"></i><b> About <?php echo $topic->topic_name ?></b>
+                    <i class = "fa fa-question-circle-o"></i><b> About <?php echo $c_topic->topic_name ?></b>
                 </button>
                 <?php if (!$is_followed): ?>
-                    <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $topic->topic_id ?>">
+                    <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $c_topic->topic_id ?>">
                         <i class = "fa fa-plus-circle"></i> Follow Topic
                     <?php else: ?>
-                        <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-danger" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $topic->topic_id ?>">
+                        <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-danger" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $c_topic->topic_id ?>">
                             <i class = "fa fa-minus-circle"></i> Unfollow Topic
                         <?php endif; ?>
                     </button>
@@ -46,13 +46,13 @@ $topic = $_SESSION['current_topic'];
                 <!-- Topic Post List -->
                 <div class = "col-sm-6 topic-preview-div">
                     <div class = "col-xs-12">
-                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to <?php echo $topic->topic_name ?></button>
+                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to <?php echo $c_topic->topic_name ?></button>
                     </div>
                     <div class = "col-xs-12 topic-post-list">
                         <div class = "list-group" style = "padding-top: 15px;">
                             <!-- List Entry -->
                             <?php
-                            foreach ($topic->posts as $post):
+                            foreach ($c_topic->posts as $post):
                                 $text_class = '';
                                 if ($post->vote_count > 0) {
                                     $text_class = 'text-success';

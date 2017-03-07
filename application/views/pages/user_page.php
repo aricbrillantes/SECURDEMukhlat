@@ -150,7 +150,7 @@ include(APPPATH . 'views/header.php');
                                         </div>
                                     </div>
                                     <div class = "user-post-footer no-margin text-right">
-                                        <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->topic_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
+                                        <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->root_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>

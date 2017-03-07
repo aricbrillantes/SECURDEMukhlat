@@ -23,8 +23,7 @@ class post_model extends CI_Model {
         return $posts;
     }
 
-    public function get_post($get_descendants, $post_id) {
-        $user = $_SESSION['logged_user'];
+    public function get_post($get_descendants, $get_votes, $post_id) {
         $post = $this->db->get_where('tbl_posts', array('post_id' => $post_id))->row();
 
         //load user of post
@@ -35,10 +34,15 @@ class post_model extends CI_Model {
         $this->load->model('topic_model', 'topics');
         $post->topic = $this->topics->get_topic(false, $post->topic_id);
 
-        //get votes of post
-        $post->vote_count = $this->get_vote_count($post->post_id);
-        $post->vote_type = $this->get_vote_type($post->post_id, $user->user_id);
 
+        if ($get_votes) {
+            //get votes of post
+            $post->vote_count = $this->get_vote_count($post->post_id);
+
+            $user = $_SESSION['logged_user'];
+            $post->vote_type = $this->get_vote_type($post->post_id, $user->user_id);
+        }
+        
         if ($get_descendants) {
             //get replies of post
             $post->replies = $this->get_replies($post->post_id);
@@ -47,7 +51,7 @@ class post_model extends CI_Model {
     }
 
     public function get_user_activities($user_id, $logged_user_id) {
-        $this->db->select('p.post_id, p.post_title, p.post_content, p.date_posted, p.parent_id, t.topic_id, t.topic_name, u1.user_id, '
+        $this->db->select('p.post_id, p.post_title, p.post_content, p.date_posted, p.root_id, p.parent_id, t.topic_id, t.topic_name, u1.user_id, '
                 . 'u1.first_name, u1.last_name, u1.profile_url');
         $this->db->from('tbl_posts as p');
         $this->db->join('tbl_users as u1', 'p.user_id = u1.user_id');
@@ -62,7 +66,7 @@ class post_model extends CI_Model {
 
         foreach ($user_activities as $post) {
             if ($post->parent_id !== '0') {
-                $post->parent = $this->get_post(false, $post->parent_id);
+                $post->parent = $this->get_post(false, true, $post->parent_id);
             }
 
             $post->vote_count = $this->get_vote_count($post->post_id);

@@ -52,12 +52,15 @@ class topic extends CI_Controller {
         $post_id = $this->uri->segment(3);
         if ($post_id) {
             $this->load->model('post_model', 'posts');
-            $post = $this->posts->get_post(true, $post_id);
+            $post = $this->posts->get_post(true, true, $post_id);
 
             if ($post) {
                 //check if user is following topic then pass
                 $data['post'] = $post;
-                $data['replies'] = $this->load->view('post_replies', $data, TRUE);
+
+                if ($post->replies) {
+                    $data['replies'] = $this->load->view('post_replies', $data, TRUE);
+                }
                 $_SESSION['current_topic'] = $post->topic;
                 $this->load->view('pages/thread_page', $data);
             } else {
@@ -76,8 +79,9 @@ class topic extends CI_Controller {
             'creator_id' => $logged_user->user_id,
             'topic_name' => htmlspecialchars($input->post('topic_name', TRUE)),
             'topic_description' => htmlspecialchars($input->post('topic_description', TRUE)),
-            'date_created' => date('Y-m-d H:i:s')
         );
+
+        $this->db->set('date_created', 'NOW()', FALSE);
         $this->db->insert('tbl_topics', $data);
         $topic_id = $this->db->insert_id();
 
@@ -107,7 +111,7 @@ class topic extends CI_Controller {
                 //if user is not yet following the topic, insert to db
                 $this->db->insert("tbl_topic_follower", $data);
             } else {
-                //if user is not yet following the topic, insert to db
+                //if user is following the topic, delete from db
                 $this->db->delete("tbl_topic_follower", $data);
             }
 
@@ -115,20 +119,24 @@ class topic extends CI_Controller {
             $topic = $this->topics->get_topic(true, $topic_id);
 
             if (!$is_followed) {
-            //add topic to followed topics of logged user
+                //add topic to followed topics of logged user
                 $logged_user->followed_topics[] = $topic;
+
+                //notify user if owner is not logged user
+                if ($logged_user->user_id !== $topic->creator_id) {
+                    $this->load->model("notification_model", "notifs");
+                    $this->notifs->notify_user($topic->creator_id, $topic->topic_id, 2);
+                }
             } else {
-            //if user is following the topic, remove from list
+                //if user is following the topic, remove from list
                 foreach ($logged_user->followed_topics as $key => $topic) {
                     if ($topic->topic_id == $topic_id) {
                         unset($logged_user->followed_topics[$key]);
                     }
                 }
             }
-
-            echo $topic->topic_name;
         } else {
-            echo 'hehe no follow for u';
+            echo 'error';
         }
     }
 
@@ -146,9 +154,9 @@ class topic extends CI_Controller {
             'topic_id' => $topic->topic_id,
             'post_title' => htmlspecialchars($input->post('post_title', TRUE)),
             'post_content' => htmlspecialchars($input->post('post_content', TRUE)),
-            'date_posted' => date('Y-m-d H:i:s')
         );
 
+        $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
         $post_id = $this->db->insert_id();
 
@@ -165,7 +173,7 @@ class topic extends CI_Controller {
 
         //check referer
         $post_id = $this->uri->segment(3);
-        $data['post'] = $this->posts->get_post(false, $post_id);
+        $data['post'] = $this->posts->get_post(false, true, $post_id);
 
         $this->load->view('post_preview', $data);
     }
@@ -176,7 +184,16 @@ class topic extends CI_Controller {
         $post_id = $this->uri->segment(3);
         $vote_type = $this->input->post("vote_type");
         $this->load->model("post_model", "posts");
+
+        //if upvote
+        $has_vote = $this->posts->get_vote_type($post_id, $logged_user->user_id);
         $this->posts->vote_post($logged_user->user_id, $post_id, $vote_type);
+
+        $post = $this->posts->get_post(false, true, $post_id);
+        if ($vote_type === '1' && $has_vote !== "1") {
+            $this->load->model("notification_model", "notifs");
+            $this->notifs->notify_user($post->user->user_id, $post_id, 3);
+        }
 
         echo $this->posts->get_vote_count($post_id);
     }
@@ -184,7 +201,7 @@ class topic extends CI_Controller {
     public function load_post() {
         $post_id = $this->input->post("post_id");
         $this->load->model("post_model", "posts");
-        $post = $this->posts->get_post(false, $post_id);
+        $post = $this->posts->get_post(false, true, $post_id);
 
         $data = array("first_name" => $post->user->first_name, "post_id" => $post_id);
         $this->output->set_content_type('application/json');
@@ -197,21 +214,23 @@ class topic extends CI_Controller {
         $logged_user = $_SESSION['logged_user'];
         $topic = $_SESSION['current_topic'];
 
-        //get parent
+        //get parent then reply
         $this->load->model("post_model", "posts");
-        $parent_post = $this->posts->get_post(false, $post_id);
+        $parent_post = $this->posts->get_post(false, false, $post_id);
         $data = array(
             'parent_id' => $parent_post->post_id,
             'user_id' => $logged_user->user_id,
-            'root_id' => $parent_post->post_id,
+            'root_id' => $parent_post->root_id,
             'topic_id' => $topic->topic_id,
             'post_title' => htmlspecialchars($input->post('reply_title', TRUE)),
             'post_content' => htmlspecialchars($input->post('reply_content', TRUE)),
-            'date_posted' => date('Y-m-d H:i:s')
         );
-
+        $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
-        
+
+        //insert to notifs
+        $this->load->model("notification_model", "notifs");
+        $this->notifs->notify_user($parent_post->user_id, $parent_post->post_id, 1);
         redirect(base_url('topic/thread/' . $parent_post->root_id));
     }
 }

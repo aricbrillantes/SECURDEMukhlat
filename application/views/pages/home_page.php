@@ -36,54 +36,62 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-sm-12 content-container">
                         <div class = "col-sm-12">
                             <!-- POST PREVIEW -->
-                            <?php foreach ($posts as $post): ?>
-                                <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                    <div class = "user-post-heading no-margin">
-                                        <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                            <strong><?php echo $post->first_name . " " . $post->last_name; ?></strong>
-                                        </a> 
-                                        <span>posted in</span> 
-                                        <a class = "btn btn-link no-padding" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
-                                            <strong><?php echo $post->topic_name; ?></strong>
-                                        </a>:
-                                    </div>
-
-                                    <div class = "col-xs-12 user-post-content no-padding">
-                                        <!-- Left -->
-                                        <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                            <?php
+                            if (!empty($posts)):
+                                foreach ($posts as $post):
+                                    ?>
+                                    <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
+                                        <div class = "user-post-heading no-margin">
                                             <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
-                                            </a>
-                                            <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                                <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
-                                            </button>
-                                            <br>
-                                            <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
-                                            <br>
-                                            <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
-                                                <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
-                                            </button>
+                                                <strong><?php echo $post->first_name . " " . $post->last_name; ?></strong>
+                                            </a> 
+                                            <span>posted in</span> 
+                                            <a class = "btn btn-link no-padding" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
+                                                <strong><?php echo $post->topic_name; ?></strong>
+                                            </a>:
                                         </div>
 
-                                        <!-- Right -->
-                                        <div class = "col-xs-11" style = "margin-top: 5px;">
-                                            <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h4>
-                                            <i class = "text-muted">
-                                                <small>by 
-                                                    <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                        <?php echo $post->first_name . " " . $post->last_name ?>
-                                                    </a>
-                                                </small>
-                                            </i>
-                                            <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
-                                            <p class = "home-content-body" style = "border-right: none;"><?php echo $post->post_content ?></p>
+                                        <div class = "col-xs-12 user-post-content no-padding">
+                                            <!-- Left -->
+                                            <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
+                                                <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                    <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
+                                                </a>
+                                                <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
+                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
+                                                </button>
+                                                <br>
+                                                <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
+                                                <br>
+                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
+                                                    <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Right -->
+                                            <div class = "col-xs-11" style = "margin-top: 5px;">
+                                                <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h4>
+                                                <i class = "text-muted">
+                                                    <small>by 
+                                                        <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+        <?php echo $post->first_name . " " . $post->last_name ?>
+                                                        </a>
+                                                    </small>
+                                                </i>
+                                                <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                                <p class = "home-content-body" style = "border-right: none;"><?php echo $post->post_content ?></p>
+                                            </div>
+                                        </div>
+                                        <div class = "user-post-footer no-margin text-right">
+                                            <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class = "user-post-footer no-margin text-right">
-                                        <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php
+                                endforeach;
+                            else:
+                                ?>
+                            <h4 class = "text-center text-warning">Your home page looks empty. Try following more topics!</h4>
+<?php endif; ?>
                         </div>
                     </div>
                 </div>

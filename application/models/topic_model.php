@@ -27,6 +27,8 @@ class topic_model extends CI_Model {
 
             $this->load->model('user_model', 'users');
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
+            
+            $topic->nonfollowers = $this->users->get_nonfollowers($topic->topic_id);
         }
 
         $this->load->model('user_model', 'users');
@@ -65,7 +67,6 @@ class topic_model extends CI_Model {
         $this->db->from('tbl_topics');
         $this->db->join('tbl_topic_follower', 'tbl_topic_follower.topic_id = tbl_topics.topic_id');
         $this->db->where(array('tbl_topic_follower.user_id' => $user_id));
-        //   $this->db->where();
         $topics = $this->db->order_by('tbl_topics.topic_name', 'ASC')->get()->result();
 
         $this->load->model('user_model', 'users');
@@ -95,5 +96,4 @@ class topic_model extends CI_Model {
 
         return $topics;
     }
-
 }

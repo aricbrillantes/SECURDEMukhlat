@@ -76,24 +76,21 @@ $(document).ready(function() {
     $("#topic-follow-btn").on("click", function() {
         var follow_btn = $(this);
         var topic_id = follow_btn.val();
+        $(".follow-label").remove();
         $.ajax({
             url: window.location.origin + "/GetTogetherBeta/topic/follow/" + topic_id,
             type: "POST",
-            success: function(name) {
+            success: function() {
                 if (follow_btn.hasClass("btn-primary")) {
                     //follow
                     follow_btn.removeClass("btn-primary");
                     follow_btn.addClass("btn-danger");
                     follow_btn.html("<i class = \"fa fa-minus-circle\"></i> Unfollow Topic");
-                    $("<span class = \"pull-right label label-info\" style = \"margin-top: 10px; font-size: 16px;\"><i>You have followed "
-                            + name + "!</i></span>").hide().appendTo("#topic-heading").fadeIn('slow').delay(2000).fadeOut('slow');
                 } else if (follow_btn.hasClass("btn-danger")) {
                     //unfollow
                     follow_btn.addClass("btn-primary");
                     follow_btn.removeClass("btn-danger");
                     follow_btn.html("<i class = \"fa fa-plus-circle\"></i> Follow Topic");
-                    $("<span class = \"pull-right label label-danger\" style = \"margin-top: 10px; font-size: 16px;\"><i>You have unfollowed "
-                            + name + "!</i></span>").hide().appendTo("#topic-heading").fadeIn('slow').delay(2000).fadeOut('slow');
                 }
             }
         });
@@ -130,5 +127,17 @@ $(document).ready(function() {
 
     $("#create-reply-proceed").on("click", function() {
         $("#create-reply-form").submit();
+    });
+
+    $("#topic-share-btn").on("click", function() {
+        $("#invitation-modal").modal("show");
+    });
+
+    $('input[type="checkbox"]').on('click', function() {
+        $("#user-count").html($('.name-check:checked').length);
+    });
+    
+    $('#share-btn').on('click', function(){
+        $("#share-form").submit();
     });
 });

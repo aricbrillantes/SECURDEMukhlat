@@ -12,7 +12,6 @@ class user_model extends CI_Model {
     }
 
     public function get_user($load_topics, $load_activities, $fields = array()) {
-        $logged_user = $_SESSION['logged_user'];
         $query = $this->db->get_where('tbl_users', $fields);
 
         $user = $query->row();
@@ -22,8 +21,9 @@ class user_model extends CI_Model {
             $user->topics = $this->topics->get_user_topics($user->user_id);
             $user->followed_topics = $this->topics->get_followed_topics($user->user_id);
         }
-        
-        if($load_activities){
+
+        if ($load_activities) {
+            $logged_user = $_SESSION['logged_user'];
             $this->load->model('post_model', 'posts');
             $user->activities = $this->posts->get_user_activities($user->user_id, $logged_user->user_id);
         }
@@ -46,12 +46,31 @@ class user_model extends CI_Model {
         $this->db->where("user_id", $user_id);
         $this->db->update("tbl_users");
     }
-    
-    public function search_users($keyword){
+
+    public function search_users($keyword) {
         $this->db->where("CONCAT(first_name, ' ', last_name) LIKE '%" . $keyword . "%'", NULL, FALSE);
         $this->db->where("role_id = ", 2);
         $users = $this->db->get("tbl_users")->result();
-        
+
         return $users;
+    }
+    
+    
+    public function get_nonfollowers($topic_id){
+        //subquery
+        $this->db->select("tf.user_id")
+                ->from("tbl_topic_follower tf")
+                ->join("tbl_topics t", "tf.topic_id = t.topic_id")
+                ->where("tf.topic_id = ", $topic_id);
+        $subjoin = $this->db->get_compiled_select();
+        
+        //main
+        $this->db->select("u.user_id, u.first_name, u.last_name")
+                ->from("tbl_users u")
+                ->join("($subjoin) sub", "u.user_id = sub.user_id", "left outer")
+                ->where("sub.user_id is null");
+        
+        $non_followers = $this->db->get()->result();
+        return $non_followers;
     }
 }

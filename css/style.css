@@ -652,3 +652,43 @@ END CHAT
 .user-list-entry{
     height: 55px;
 }
+
+.reply-header{
+    font-weight: bolder; 
+    background-color: #CFD8DC; 
+    color: #455A64; 
+    padding: 5px; 
+    font-size: 15px; 
+    margin-top: 10px; 
+    margin-bottom: 4px; 
+    border-radius: 4px;
+}
+
+.label-badge{
+    border-radius: 1em;
+}
+
+.post-header-title{
+    display: inline-block; 
+    margin-top: 10px; 
+    padding: 2px; 
+    color: #757575;
+    word-wrap: break-word;
+}
+
+.topic-members-container{
+    height: 270px; 
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.topic-member-name{
+    width: 150px; 
+    text-align: left;
+}
+
+.notif-modal-overflow{
+    height: 300px; 
+    overflow-y: auto;
+}
