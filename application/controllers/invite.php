@@ -17,18 +17,18 @@ class invite extends CI_Controller {
         echo "invite for moderator";
     }
 
-    public function share(){
+    public function share() {
         $topic = $_SESSION['current_topic'];
         $user_ids = $this->input->post('invite-checkbox');
         $this->load->model("notification_model", "notifs");
         foreach ($user_ids as $id) {
             $this->notifs->notify_user($id, $topic->topic_id, 4);
         }
-        echo "success???? change this";
+        //change
+        redirect(base_url('topic/view/' . $topic->topic_id));
     }
-    
+
     public function accept() {
         echo "accept";
     }
-
 }

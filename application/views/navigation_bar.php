@@ -41,7 +41,7 @@ $logged_user = $_SESSION['logged_user'];
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><i class = "fa fa-user"></i> My Profile</a></li>
-                            <li><a href="#notif-modal" data-toggle = "modal">
+                            <li><a href="#invites-modal" data-toggle = "modal">
                                     <i class = "fa fa-users"></i> Invites <span class = "badge">10</span></a>
                             </li>
                             <li><a id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
@@ -65,3 +65,4 @@ $logged_user = $_SESSION['logged_user'];
 <!-- End Nav Bar -->
 
 <?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>
+<?php include(APPPATH . 'views/modals/invites_modal.php'); ?>

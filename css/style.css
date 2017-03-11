@@ -692,3 +692,8 @@ END CHAT
     height: 300px; 
     overflow-y: auto;
 }
+
+.notif-btn{
+    padding-bottom: 3px;
+    font-size: 12px;
+}

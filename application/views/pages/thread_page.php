@@ -47,6 +47,13 @@ $user = $post->user;
                         <div class="media-body">
                             <!-- Reply Button -->
                             <button class = "reply-btn pull-right btn btn-sm btn-gray" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i></button>
+                            
+                            <?php if($post->user->user_id === $logged_user->user_id): ?>
+                            <!-- Edit Button -->
+                            <button class = "reply-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i></button>
+                            <?php endif; ?>
+                            
+                            <!-- Attachment -->
                             <a class = "btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px; font-size: 12px;"><strong><i class = "fa fa-paperclip"></i> 5</strong></a>
                             <!-- Post Heading -->
                             <div class="media-heading">

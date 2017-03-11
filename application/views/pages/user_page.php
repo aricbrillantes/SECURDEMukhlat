@@ -26,7 +26,7 @@ include(APPPATH . 'views/header.php');
                             </div>
                             <?php if ($logged_user->user_id === $user->user_id): ?>
                                 <div class = "col-xs-2 no-padding" style = "margin-top: 20px;">
-                                    <a class = "pull-right btn btn-gray btn-sm" href = "#edit-profile-modal" data-toggle = "modal"><i class = "fa fa-gear"></i></a>
+                                    <a class = "pull-right btn btn-gray btn-sm" href = "#edit-profile-modal" data-toggle = "modal"><i class = "fa fa-pencil"></i> Edit Profile</a>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -36,12 +36,32 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-md-12 user-topic-container">
                         <h3 class = "text-info text-center user-topic-header"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
-                            <li class="active"><a data-toggle="pill" href="#user-topic-moderated">Moderated Topics</a></li>
+                            <li class="active"><a data-toggle="pill" href="#user-topic-created">Created Topics</a></li>
+                            <li><a data-toggle="pill" href="#user-topic-moderated">Moderated Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-followed">Followed Topics</a></li>
                         </ul>
                         <br>
                         <div class="tab-content">
-                            <div id="user-topic-moderated" class="tab-pane fade in active">
+                            <div id="user-topic-created" class="tab-pane fade in active">
+                                <div class = "col-sm-12 no-padding">
+                                    <div class = "user-header">
+                                        <h4 class = "text-center"><strong>Topics Created by <?php echo $user->first_name; ?></strong></h4>
+                                    </div>
+                                    <div class = "user-topic-div">
+                                        <ul class="nav">
+                                            <?php foreach ($user->topics as $topic): ?>
+                                                <li>
+                                                    <a class = "user-topic-item" href="<?php echo base_url('topic/view/' . $topic->topic_id); ?>" style = "padding: 5px 30px;">
+                                                        <h4 class = "no-padding no-margin" style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
+                                                        <span class = "pull-right label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0' ?></span>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="user-topic-moderated" class="tab-pane fade">
                                 <div class = "user-header">
                                     <h4 class = "text-center"><strong>Topics Moderated by <?php echo $user->first_name; ?></strong></h4>
                                 </div>
@@ -84,7 +104,7 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-md-12" style = "padding: 40px 30px; height: 160px;">
                         <div class = "col-sm-4 no-left-right-pad">
                             <div class = "col-xs-12 text-center no-left-right-pad">
-                                <h2 class = "text-info no-margin"><strong><?php echo count($logged_user->topics); ?></strong></h2>
+                                <h2 class = "text-info no-margin"><strong><?php echo count($user->topics); ?></strong></h2>
                                 <p>Topics</p>
                             </div>
                         </div>
@@ -104,7 +124,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Activities -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-activities-header"><strong>Activities of Juan</strong></h3>
+                        <h3 class = "text-info text-center user-activities-header"><strong>Activities of <?php echo $user->first_name; ?></strong></h3>
                         <div class = "col-sm-12 user-activities-div">
                             <!-- POST PREVIEW -->
                             <?php foreach ($user->activities as $post): ?> 

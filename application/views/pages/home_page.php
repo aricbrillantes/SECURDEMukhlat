@@ -90,7 +90,7 @@ include(APPPATH . 'views/header.php');
                                 endforeach;
                             else:
                                 ?>
-                            <h4 class = "text-center text-warning">Your home page looks empty. Try following more topics!</h4>
+                            <h4 class = "text-center text-warning">Your home page looks empty. Try following or creating more topics!</h4>
 <?php endif; ?>
                         </div>
                     </div>

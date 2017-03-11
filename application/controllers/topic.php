@@ -165,6 +165,11 @@ class topic extends CI_Controller {
         $this->db->where("post_id", $post_id);
         $this->db->update("tbl_posts");
 
+        if($logged_user->user_id !== $topic->user->user_id) {
+            //notify owner of topic if logged user != owner
+            $this->load->model("notification_model", "notifs");
+            $this->notifs->notify_user($topic->user->user_id, $post_id, 5);
+        }
         redirect(base_url('topic/view/' . $topic->topic_id));
     }
 
@@ -233,4 +238,5 @@ class topic extends CI_Controller {
         $this->notifs->notify_user($parent_post->user_id, $parent_post->post_id, 1);
         redirect(base_url('topic/thread/' . $parent_post->root_id));
     }
+
 }

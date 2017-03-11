@@ -13,7 +13,7 @@ $logged_user = $_SESSION['logged_user'];
                 <?php foreach ($logged_user->topics as $topic): ?>
                 <li>
                     <a href="topic/view/<?php echo $topic->topic_id; ?>"><span class = "text-muted"><?php echo $topic->topic_name; ?></span>
-                        <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
+                        <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo !empty($topic->followers) ? count($topic->followers) : '0'; ?></span>
                     </a>
                 </li>
                 <?php endforeach; ?>

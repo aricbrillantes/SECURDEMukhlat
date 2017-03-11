@@ -68,7 +68,9 @@ class user_model extends CI_Model {
         $this->db->select("u.user_id, u.first_name, u.last_name")
                 ->from("tbl_users u")
                 ->join("($subjoin) sub", "u.user_id = sub.user_id", "left outer")
-                ->where("sub.user_id is null");
+                ->where("sub.user_id is null")
+                ->where("u.is_enabled = ", true)
+                ->where("u.role_id = ", 2);
         
         $non_followers = $this->db->get()->result();
         return $non_followers;

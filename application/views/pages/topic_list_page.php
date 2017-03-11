@@ -13,10 +13,10 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
-                        <a href = "user"><img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/pic.jpg') ?>"></a>
+                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id);?>"><img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/default.jpg') ?>"></a>
 
                         <div class = "col-sm-4 home-user-text">
-                            <a href = "user" class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name; ?></strong></a>
+                            <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id);?>" class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
                                 <button class="btn btn-link dropdown-toggle home-username" type="button" data-toggle="dropdown"><strong>Topic</strong>

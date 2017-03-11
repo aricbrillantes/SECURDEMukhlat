@@ -1,5 +1,6 @@
 <?php
 $user = $post->user;
+$logged_user = $_SESSION['logged_user'];
 if ($post->parent_id !== '0'):
     ?>
     <div class = "media" style = "border-left: 1px solid gray;">
@@ -10,6 +11,10 @@ if ($post->parent_id !== '0'):
             <button class = "reply-btn pull-right btn btn-sm btn-gray" value = "<?php echo $post->post_id; ?>">
                 <i class = "fa fa-reply"></i>
             </button>
+            <?php if ($post->user->user_id === $logged_user->user_id): ?>
+                <!-- Edit Button -->
+                <button class = "reply-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i></button>
+            <?php endif; ?>
             <a class = "btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px;">
                 <strong><i class = "fa fa-paperclip" style = "font-size: 15px;"></i> 5</strong>
             </a>
