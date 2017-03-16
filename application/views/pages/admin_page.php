@@ -14,9 +14,9 @@ $logged_user = $_SESSION['logged_user'];
             <!-- Admin Content -->
             <div class = "col-md-8 col-md-offset-2 content-container">
                 <div class = "col-md-12">
-                    <form role="search">
-                        <div class="input-group" style = "width: 100%;">
-                            <input type="text" class="form-control search-text" placeholder="&#xF002; Search for a user" name="srch-term" id="srch-term">
+                    <form action = "javascript:void(0);" role="search">
+                        <div class="input-group" style = "width: 100%">
+                            <input type="text" class="form-control search-text" placeholder="&#xF002; Search for a user" id = "search-topic-list">
                         </div>
                     </form>
                 </div>
@@ -25,7 +25,7 @@ $logged_user = $_SESSION['logged_user'];
                         <?php foreach ($users as $user): ?>
                             <li class = "list-group-item admin-list-item">
                                 <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding pull-left img-circle" width = "45px"/> 
-                                <h4 class = "no-padding admin-list-name"><?php echo $user->first_name . " " . $user->last_name ?> 
+                                <h4 class = "no-padding admin-list-name"><?php echo htmlspecialchars_decode($user->first_name) . " " . $user->last_name ?> 
                                     <!-- ADMIN -->
                                     <?php if ($user->role_id === '1'): ?>
                                         <i class = "text-muted btn-sm no-padding">Administrator <?php echo ($logged_user->user_id === $user->user_id) ? '(You)' : '' ?></i>

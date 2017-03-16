@@ -10,13 +10,22 @@ $logged_user = $_SESSION['logged_user'];
         </a>
         <div id = "side-topics-created" class = "sidebar-topic-div">
             <ul class="nav">
-                <?php foreach ($logged_user->topics as $topic): ?>
+                <?php
+                if(!empty($logged_user->topics)):
+                foreach ($logged_user->topics as $topic):
+                ?>
                 <li>
-                    <a href="topic/view/<?php echo $topic->topic_id; ?>"><span class = "text-muted"><?php echo $topic->topic_name; ?></span>
-                        <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo !empty($topic->followers) ? count($topic->followers) : '0'; ?></span>
+                    <a href="topic/view/<?php echo $topic->topic_id; ?>">
+                        <span class = "text-muted"><?php echo $topic->topic_name; ?></span>
+                        <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
                     </a>
                 </li>
-                <?php endforeach; ?>
+                <?php
+                endforeach;
+                else:
+                ?>
+                <li>No Topics</li>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -25,20 +34,22 @@ $logged_user = $_SESSION['logged_user'];
         </a>
         <div id = "side-topics-moderated" class = "sidebar-topic-div">
             <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 1</a></li>
+                <?php
+                if(!empty($logged_user->moderated_topics)):
+                foreach ($logged_user->moderated_topics as $topic):
+                ?>
+                <li>
+                    <a href="topic/view/<?php echo $topic->topic_id; ?>">
+                        <span class = "text-muted"><?php echo $topic->topic_name; ?></span>
+                        <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
+                    </a>
+                </li>
+                <?php
+                endforeach;
+                else:
+                ?>
+                <li>No Topics</li>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -47,7 +58,8 @@ $logged_user = $_SESSION['logged_user'];
         </a>
         <div id = "side-topics-followed" class = "sidebar-topic-div">
             <ul class="nav">
-                <?php if(!empty($logged_user->followed_topics)):
+                <?php
+                if(!empty($logged_user->followed_topics)):
                 foreach ($logged_user->followed_topics as $topic):
                 ?>
                 <li>
@@ -56,7 +68,8 @@ $logged_user = $_SESSION['logged_user'];
                         <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
                     </a>
                 </li>
-                <?php endforeach;
+                <?php
+                endforeach;
                 else:
                 ?>
                 <li>No Topics</li>

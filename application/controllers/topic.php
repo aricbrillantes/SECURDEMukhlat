@@ -31,6 +31,7 @@ class topic extends CI_Controller {
 
         if ($topic_id) {
             $this->load->model('topic_model', 'topics');
+            $this->load->model('notification_model', 'notifs');
             $topic = $this->topics->get_topic(true, $topic_id);
 
             if ($topic) {
@@ -39,6 +40,8 @@ class topic extends CI_Controller {
 
                 //check if user is following topic then pass
                 $data['is_followed'] = $this->topics->check_follow($topic->topic_id, $logged_user->user_id);
+                $data['is_moderated'] = $this->topics->check_moderated($topic->topic_id, $logged_user->user_id);
+                $data['has_requested'] = $this->notifs->check_request($logged_user->user_id, $topic->topic_id);
                 $this->load->view('pages/topic_page', $data);
             } else {
                 $this->load->view('errors/error_404');
@@ -85,9 +88,19 @@ class topic extends CI_Controller {
         $this->db->insert('tbl_topics', $data);
         $topic_id = $this->db->insert_id();
 
+        //follow topic
+        $follow_data = array(
+            'user_id' => $logged_user->user_id,
+            'topic_id' => $topic_id
+        );
+
+        //moderate topic
+        $this->db->insert("tbl_topic_follower", $follow_data);
+        $this->db->insert("tbl_topic_moderator", $follow_data);
+
         //return topic
         $this->load->model("topic_model", "topics");
-        $topic = $this->topics->get_topic(false, $topic_id);
+        $topic = $this->topics->get_topic(true, $topic_id);
 
         //add topic to topics of logged user
         $logged_user->topics[] = $topic;
@@ -165,7 +178,7 @@ class topic extends CI_Controller {
         $this->db->where("post_id", $post_id);
         $this->db->update("tbl_posts");
 
-        if($logged_user->user_id !== $topic->user->user_id) {
+        if ($logged_user->user_id !== $topic->user->user_id) {
             //notify owner of topic if logged user != owner
             $this->load->model("notification_model", "notifs");
             $this->notifs->notify_user($topic->user->user_id, $post_id, 5);
@@ -204,11 +217,17 @@ class topic extends CI_Controller {
     }
 
     public function load_post() {
+        $type = $this->uri->segment(3);
         $post_id = $this->input->post("post_id");
         $this->load->model("post_model", "posts");
         $post = $this->posts->get_post(false, true, $post_id);
 
-        $data = array("first_name" => $post->user->first_name, "post_id" => $post_id);
+        if ($type === "reply") {
+            $data = array("first_name" => $post->user->first_name, "post_id" => $post_id);
+        } else if ($type === "edit") {
+            $data = array("topic_name" => $post->topic->topic_name, "post_id" => $post_id, "post_content" => $post->post_content, "post_title" => $post->post_title);
+        }
+
         $this->output->set_content_type('application/json');
         echo json_encode($data);
     }
@@ -237,6 +256,71 @@ class topic extends CI_Controller {
         $this->load->model("notification_model", "notifs");
         $this->notifs->notify_user($parent_post->user_id, $parent_post->post_id, 1);
         redirect(base_url('topic/thread/' . $parent_post->root_id));
+    }
+
+    public function edit_post() {
+        $post_id = $this->uri->segment(3);
+        $input = $this->input;
+
+        //get parent then reply
+        $this->load->model("post_model", "posts");
+        $data = array(
+            'post_title' => htmlspecialchars($input->post('post_title', TRUE)),
+            'post_content' => htmlspecialchars($input->post('post_content', TRUE)),
+        );
+
+        $this->posts->update_post($post_id, $data);
+
+        $post = $this->posts->get_post(false, false, $post_id);
+        redirect(base_url('topic/thread/' . $post->root_id));
+    }
+
+    public function delete_post() {
+        $post_id = $this->uri->segment(3);
+
+        $this->load->model("post_model", "posts");
+
+        $data = array(
+            'is_deleted' => 1
+        );
+
+        $this->posts->update_post($post_id, $data);
+        $post = $this->posts->get_post(false, false, $post_id);
+        redirect(base_url('topic/thread/' . $post->root_id));
+    }
+
+    public function edit_topic() {
+        $topic_id = $this->uri->segment(3);
+        $description = $this->input->post('topic_description', TRUE);
+
+        $this->load->model("topic_model", "topics");
+
+        $data = array('topic_description' => htmlspecialchars($description));
+
+        $this->topics->update_topic($topic_id, $data);
+
+        echo $description;
+    }
+
+    public function cancel_topic() {
+        $topic_id = $this->uri->segment(3);
+
+        $this->load->model("topic_model", "topics");
+
+        $data = array('is_cancelled' => 1);
+
+        $this->topics->update_topic($topic_id, $data);
+
+        redirect(base_url('topic'));
+    }
+
+    public function apply() {
+        $user = $_SESSION['logged_user'];
+        $topic = $_SESSION['current_topic'];
+
+        $this->load->model("notification_model", "notifs");
+
+        $this->notifs->apply_moderator($user->user_id, $topic->topic_id);
     }
 
 }

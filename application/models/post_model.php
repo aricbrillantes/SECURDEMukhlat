@@ -142,5 +142,9 @@ class post_model extends CI_Model {
         }
         return $replies;
     }
-
+    
+    public function update_post($post_id, $data = array()){
+        $this->db->where('post_id', $post_id);
+        $this->db->update('tbl_posts', $data);
+    }
 }

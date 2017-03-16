@@ -3,7 +3,7 @@ $(document).ready(function() {
         url: window.location.origin + "/GetTogetherBeta/notifications",
         context: document.body
     });
-    
+
     $("#nav-logo").on("mouseover", function() {
         $(this).attr('src', window.location.origin + '/GetTogetherBeta/images/logo/logo-blue-hover.png');
     });
@@ -27,6 +27,44 @@ $(document).ready(function() {
             }
         });
     });
-    
-    //invite btn
+
+    $(".invite-accept").on("click", function() {
+        var id = $(this).val();
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/invite/accept/invite/" + id,
+            success: function() {
+                alert("invite accept done");
+            }
+        });
+    });
+
+    $(".invite-decline").on("click", function() {
+        var id = $(this).val();
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/invite/decline/invite/" + id,
+            success: function() {
+                alert("invite decline done");
+            }
+        });
+    });
+
+    $(".request-accept").on("click", function() {
+        var id = $(this).val();
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/invite/accept/request/" + id,
+            success: function() {
+                alert("request accept done");
+            }
+        });
+    });
+
+    $(".request-decline").on("click", function() {
+        var id = $(this).val();
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/invite/decline/request/" + id,
+            success: function() {
+                alert("request decline done");
+            }
+        });
+    });
 });

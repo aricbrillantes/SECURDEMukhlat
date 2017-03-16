@@ -14,12 +14,20 @@
 class invite extends CI_Controller {
 
     public function index() {
-        echo "invite for moderator";
+        $topic = $_SESSION['current_topic'];
+        $user_ids = $this->input->post('invite-checkbox');
+        $this->load->model("notification_model", "notifs");
+        foreach ($user_ids as $id) {
+            //invite
+            $this->notifs->invite_user($id, $topic->topic_id);
+        }
+        //change
+        redirect(base_url('topic/view/' . $topic->topic_id));
     }
 
     public function share() {
         $topic = $_SESSION['current_topic'];
-        $user_ids = $this->input->post('invite-checkbox');
+        $user_ids = $this->input->post('share-checkbox');
         $this->load->model("notification_model", "notifs");
         foreach ($user_ids as $id) {
             $this->notifs->notify_user($id, $topic->topic_id, 4);
@@ -29,6 +37,31 @@ class invite extends CI_Controller {
     }
 
     public function accept() {
-        echo "accept";
+        $type = $this->uri->segment(3);
+        $id = $this->uri->segment(4);
+        $this->load->model("notification_model", "notifs");
+
+        if ($type === "request") {
+            //REQUEST
+            $this->notifs->respond_request($id, 1);
+        } else if ($type === "invite"){
+            //INVITE
+            $this->notifs->respond_request($id, 1);
+        }
     }
+
+    public function decline() {
+        $type = $this->uri->segment(3);
+        $id = $this->uri->segment(4);
+        $this->load->model("notification_model", "notifs");
+
+        if ($type === "request") {
+            //REQUEST
+            $this->notifs->respond_invite($id, -1);
+        } else if ($type === "invite") {
+            //INVITE
+            $this->notifs->respond_invite($id, -1);
+        }
+    }
+
 }

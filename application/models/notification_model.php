@@ -18,6 +18,7 @@ class notification_model extends CI_Model {
     }
 
     /* NOTIFY */
+
     public function notify_user($user_id, $source_id, $type) {
         $logged_user = $_SESSION['logged_user'];
 
@@ -42,7 +43,31 @@ class notification_model extends CI_Model {
         }
     }
 
+    public function invite_user($user_id, $topic_id) {
+        $logged_user = $_SESSION['logged_user'];
+
+        $data = array('inviter_id' => $logged_user->user_id,
+            'invited_id' => $user_id,
+            'topic_id' => $topic_id,
+            'status' => 0);
+
+        $this->db->insert('tbl_moderator_invite', $data);
+    }
+
+    public function apply_moderator($user_id, $topic_id) {
+        $data = array('user_id' => $user_id,
+            'topic_id' => $topic_id,
+            'status' => 0);
+
+        if ($this->check_request($user_id, $topic_id)) {
+            $this->db->delete('tbl_moderator_request', $data);
+        } else {
+            $this->db->insert('tbl_moderator_request', $data);
+        }
+    }
+
     /* GET */
+
     public function get_user_notifications($user_id) {
         $this->db->select("u.first_name, u.last_name, n.doer_id, n.notification_type_id, n.source_id");
         $this->db->from("tbl_notifications as n");
@@ -86,8 +111,36 @@ class notification_model extends CI_Model {
 
         return $shared;
     }
-    
+
+    public function get_user_invites($user_id) {
+        $this->db->select("u.first_name, u.last_name, u.user_id, t.topic_name, t.topic_id, mi.invite_id");
+        $this->db->from("tbl_topics as t");
+        $this->db->join("tbl_moderator_invite as mi", "t.topic_id = mi.topic_id");
+        $this->db->join("tbl_users as u", "mi.inviter_id = u.user_id");
+        $this->db->where("mi.status = 0");
+        $this->db->where("mi.invited_id = ", $user_id);
+
+        $invites = $this->db->get()->result();
+
+        return $invites;
+    }
+
+    public function get_user_requests($user_id) {
+        $this->db->select("u.first_name, u.last_name, u.user_id, t.topic_name, t.topic_id, mr.request_id");
+        $this->db->from("tbl_topics as t");
+        $this->db->join("tbl_topic_moderator as tm", "t.topic_id = tm.topic_id");
+        $this->db->join("tbl_moderator_request as mr", "t.topic_id = mr.topic_id");
+        $this->db->join("tbl_users as u", "mr.user_id = u.user_id");
+        $this->db->where("mr.status = 0");
+        $this->db->where("tm.user_id = ", $user_id);
+
+        $requests = $this->db->get()->result();
+
+        return $requests;
+    }
+
     /* GET COUNT */
+
     public function get_unread_count($user_id) {
         $this->db->select("COUNT(*) AS unread_count");
         $this->db->where("user_id = ", $user_id);
@@ -101,10 +154,52 @@ class notification_model extends CI_Model {
             return 0;
         }
     }
-    
+
     /* READ NOTIFS */
+
     public function read_user_notifications($user_id) {
         $this->db->where("user_id = ", $user_id);
         $this->db->update("tbl_notifications", array("is_read" => 1));
     }
+
+    public function check_request($user_id, $topic_id) {
+        $has_requested = $this->db->get_where('tbl_moderator_request', array('user_id' => $user_id,
+                    'topic_id' => $topic_id, 'status' => 0))->row();
+
+        return $has_requested;
+    }
+
+    /* UPDATE User Model */
+
+    public function update_user_notifs($user) {
+        //get notifs of user
+        $user->notifications = $this->notifs->get_user_notifications($user->user_id);
+
+        //get shared of user
+        $user->shared_topics = $this->notifs->get_user_shared($user->user_id);
+
+        //return unread count
+        $user->unread_notifs = $this->notifs->get_unread_count($user->user_id);
+
+        //update requests to topics
+        $user->moderator_requests = $this->notifs->get_user_requests($user->user_id);
+
+        //update requests to topics
+        $user->moderator_invites = $this->notifs->get_user_invites($user->user_id);
+    }
+
+    /* RESPOND */
+
+    public function respond_request($request_id, $response) {
+        $this->db->where("request_id = ", $request_id);
+        $this->db->update("tbl_moderator_request", array("status" => $response));
+        
+        //if response == 1 -> add as mod
+    }
+
+    public function respond_invite($invite_id, $response) {
+        $this->db->where("invite_id = ", $invite_id);
+        $this->db->update("tbl_moderator_invite", array("status" => $response));
+    }
+
 }

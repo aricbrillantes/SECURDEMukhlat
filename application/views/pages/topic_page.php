@@ -79,9 +79,11 @@ $c_topic = $_SESSION['current_topic'];
             </div>
         </div>
     </div>
+    
     <?php
     include(APPPATH . 'views/modals/create_post_modal.php');
     include(APPPATH . 'views/modals/topic_description_modal.php');
     include(APPPATH . 'views/modals/topic_members_modal.php');
+    include(APPPATH . 'views/modals/cancel_topic_modal.php');
     include(APPPATH . 'views/chat.php');
     

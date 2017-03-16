@@ -27,8 +27,10 @@ class topic_model extends CI_Model {
 
             $this->load->model('user_model', 'users');
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
+            $topic->moderators = $this->users->get_topic_moderators($topic->topic_id);
             
             $topic->nonfollowers = $this->users->get_nonfollowers($topic->topic_id);
+            $topic->nonmoderators = $this->users->get_nonmoderators($topic->topic_id);
         }
 
         $this->load->model('user_model', 'users');
@@ -77,13 +79,35 @@ class topic_model extends CI_Model {
 
         return $topics;
     }
+    
+    public function get_moderated_topics($user_id) {
+        $this->db->select('*');
+        $this->db->from('tbl_topics t');
+        $this->db->join('tbl_topic_moderator tm', 'tm.topic_id = t.topic_id');
+        $this->db->where(array('tm.user_id' => $user_id));
+        $topics = $this->db->order_by('t.topic_name', 'ASC')->get()->result();
+
+        $this->load->model('user_model', 'users');
+
+        foreach ($topics as $topic) {
+            $topic->followers = $this->users->get_topic_followers($topic->topic_id);
+        }
+
+        return $topics;
+    }
 
     public function check_follow($topic_id, $user_id) {
         $is_followed = $this->db->get_where('tbl_topic_follower', array('topic_id' => $topic_id, 'user_id' => $user_id))->row();
 
         return $is_followed;
     }
+    
+    public function check_moderated($topic_id, $user_id) {
+        $is_moderated = $this->db->get_where('tbl_topic_moderator', array('topic_id' => $topic_id, 'user_id' => $user_id))->row();
 
+        return $is_moderated;
+    }
+    
     public function search_topics($keyword) {
         $this->db->like("topic_name", $keyword, "both");
         $topics = $this->db->get("tbl_topics")->result();
@@ -95,5 +119,10 @@ class topic_model extends CI_Model {
         }
 
         return $topics;
+    }
+    
+    public function update_topic($topic_id, $data = array()){
+        $this->db->where('topic_id', $topic_id);
+        $this->db->update('tbl_topics', $data);
     }
 }

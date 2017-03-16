@@ -35,19 +35,12 @@ class signin extends CI_Controller {
         $user = $this->user->get_user(true, false, $fields);
 
         $this->load->model("notification_model", "notifs");
-
-        //get notifs of user
-        $user->notifications = $this->notifs->get_user_notifications($user->user_id);
-
-        //get shared of user
-        $user->shared_topics = $this->notifs->get_user_shared($user->user_id);
-
-        //return unread count
-        $user->unread_notifs = $this->notifs->get_unread_count($user->user_id);
-
-
+        
+        $this->notifs->update_user_notifs($user);
+        
         if ($user) {
             $_SESSION['logged_user'] = $user;
+            
             echo 1;
         } else {
             echo 0;

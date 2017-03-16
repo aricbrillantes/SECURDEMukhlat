@@ -20,6 +20,7 @@ class user_model extends CI_Model {
             $this->load->model('topic_model', 'topics');
             $user->topics = $this->topics->get_user_topics($user->user_id);
             $user->followed_topics = $this->topics->get_followed_topics($user->user_id);
+            $user->moderated_topics = $this->topics->get_moderated_topics($user->user_id);
         }
 
         if ($load_activities) {
@@ -41,6 +42,16 @@ class user_model extends CI_Model {
         return $query->result();
     }
 
+    public function get_topic_moderators($topic_id) {
+        $this->db->select('*');
+        $this->db->from('tbl_users u');
+        $this->db->join('tbl_topic_moderator tm', 'tm.user_id = u.user_id');
+        $this->db->where(array('tm.topic_id' => $topic_id));
+        $query = $this->db->order_by('u.first_name', 'ASC')->get();
+
+        return $query->result();
+    }
+    
     public function toggle_account($user_id) {
         $this->db->set("is_enabled", "1 - is_enabled", FALSE);
         $this->db->where("user_id", $user_id);
@@ -74,5 +85,25 @@ class user_model extends CI_Model {
         
         $non_followers = $this->db->get()->result();
         return $non_followers;
+    }
+    
+    public function get_nonmoderators($topic_id){
+        //subquery
+        $this->db->select("tm.user_id")
+                ->from("tbl_topic_moderator tm")
+                ->join("tbl_topics t", "tm.topic_id = t.topic_id")
+                ->where("tm.topic_id = ", $topic_id);
+        $subjoin = $this->db->get_compiled_select();
+        
+        //main
+        $this->db->select("u.user_id, u.first_name, u.last_name")
+                ->from("tbl_users u")
+                ->join("($subjoin) sub", "u.user_id = sub.user_id", "left outer")
+                ->where("sub.user_id is null")
+                ->where("u.is_enabled = ", true)
+                ->where("u.role_id = ", 2);
+        
+        $non_moderators = $this->db->get()->result();
+        return $non_moderators;
     }
 }

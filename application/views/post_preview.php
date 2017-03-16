@@ -28,5 +28,5 @@
 </div>
 
 <!-- SCRIPTS -->
-<script type="text/javascript" src="<?php echo base_url("/js/vote.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
 <!-- END SCRIPTS -->

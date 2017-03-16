@@ -104,7 +104,7 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
     <!-- SCRIPTS -->
-    <script type="text/javascript" src="<?php echo base_url("/js/vote.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <!-- END SCRIPTS -->
     <?php
     include(APPPATH . 'views/chat.php');
