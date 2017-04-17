@@ -1,5 +1,7 @@
 <?php
 $logged_user = $_SESSION['logged_user'];
+$unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
+echo $logged_user->unanswered_invites . " vs " . $logged_user->unanswered_requests;
 ?>
 
 <!-- Nav Bar -->
@@ -34,15 +36,19 @@ $logged_user = $_SESSION['logged_user'];
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                             <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
-                            <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                                <span id = "notif-label" class = "label label-info label-badge"><?php echo $logged_user->unread_notifs ?></span>
+                            <?php if ((int) $logged_user->unread_notifs + $unanswered > 0): ?>
+                                <span id = "notif-label" class = "label label-info label-badge"><?php echo $logged_user->unread_notifs + $unanswered ?></span>
                             <?php endif; ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><i class = "fa fa-user"></i> My Profile</a></li>
                             <li><a href="#invites-modal" data-toggle = "modal">
-                                    <i class = "fa fa-users"></i> Invites <span class = "badge">10</span></a>
+                                    <i class = "fa fa-users"></i> Invites 
+                                    <?php if ((int) $unanswered > 0): ?>
+                                        <span class = "badge"><?php echo $unanswered ?></span>
+                                    <?php endif; ?>
+                                </a>
                             </li>
                             <li><a id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
                                     <i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications 

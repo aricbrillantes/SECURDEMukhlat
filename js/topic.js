@@ -55,6 +55,24 @@ $(document).ready(function() {
         $("#create-post-form").submit();
     });
 
+    $("#edit-post-btn").on("click", function() {
+        if ($("#post-content").val()) {
+            $("#post-edit-confirm").modal('show');
+            $("#post-title").parent().removeClass("has-error");
+            $("#post-content").parent().removeClass("has-error");
+        } else {
+            if (!$("#post-content").val())
+                $("#post-content").parent().addClass("has-error");
+            else
+                $("#post-content").parent().removeClass("has-error");
+        }
+    });
+
+    $("#edit-post-proceed").on("click", function() {
+        $("#edit-post-form").submit();
+    });
+
+
     $(".topic-post-entry").on("click", function() {
         var post_id = $(this).data("value")
         //remove div
@@ -226,5 +244,65 @@ $(document).ready(function() {
             $(this).addClass("btn-gray");
             $(this).html("Pending Moderator Request");
         }
+    });
+
+    $(".remove-follower-btn").on("click", function() {
+        var val = $(this).val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/load_remove/' + val + "/1",
+            success: function(html) {
+                $('#remove-member-confirm').remove();
+                $('#topic-page').append(html);
+                $('#remove-member-confirm').modal('show');
+            }
+        });
+    });
+
+    $(".remove-mod-btn").on("click", function() {
+        var val = $(this).val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/load_remove/' + val + "/2",
+            success: function(html) {
+                $('#remove-member-confirm').remove();
+                $('#topic-page').append(html);
+                $('#remove-member-confirm').modal('show');
+            }
+        });
+    });
+
+    $(".remove-creator-btn").on("click", function() {
+        var val = $(this).val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/load_remove/' + val + "/3",
+            success: function(html) {
+                $('#remove-member-confirm').remove();
+                $('#topic-page').append(html);
+                $('#remove-member-confirm').modal('show');
+            }
+        });
+    });
+
+    $(document).on('click', '#remove-follower-proceed', function() {
+        var val = $('#remove-follower-proceed').val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/remove_member/' + val + "/1",
+        });
+    });
+
+    $(document).on('click', '#remove-moderator-proceed', function() {
+        var val = $('#remove-moderator-proceed').val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/remove_member/' + val + "/2",
+        });
+    });
+
+    $(document).on('click', '#remove-creator-proceed', function() {
+        var val = $('#remove-creator-proceed').val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/remove_member/' + val + "/3",
+            success: function(){
+                window.location = window.location.origin + '/GetTogetherBeta/topic/';
+            }
+        });
     });
 });

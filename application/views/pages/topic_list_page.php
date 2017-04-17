@@ -13,7 +13,9 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
-                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id);?>"><img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo base_url('images/default.jpg') ?>"></a>
+                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id);?>">
+                            <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
+                        </a>
 
                         <div class = "col-sm-4 home-user-text">
                             <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id);?>" class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name; ?></strong></a>
@@ -42,7 +44,7 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-md-12 content-container">
                     <div id = "topic-list" class = "list-group">
                         <?php foreach ($topics as $topic): ?>
-                            <a class = "list-group-item btn btn-link list-entry" href = "topic/view/<?php echo $topic->topic_id; ?>">
+                            <a class = "list-group-item btn btn-link list-entry" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
                                 <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
                                 <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
                                 <div class = "pull-right">
@@ -60,8 +62,7 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
 
-    <!-- Search Script -->
     <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
     <?php
-    include(APPPATH . 'views/chat.php');
+    include(APPPATH . 'views/chat/chat.php');
     

@@ -23,7 +23,7 @@ class post_model extends CI_Model {
         return $posts;
     }
 
-    public function get_post($get_descendants, $get_votes, $post_id) {
+    public function get_post($get_descendants, $get_votes, $get_attachments, $post_id) {
         $post = $this->db->get_where('tbl_posts', array('post_id' => $post_id))->row();
 
         //load user of post
@@ -34,7 +34,6 @@ class post_model extends CI_Model {
         $this->load->model('topic_model', 'topics');
         $post->topic = $this->topics->get_topic(false, $post->topic_id);
 
-
         if ($get_votes) {
             //get votes of post
             $post->vote_count = $this->get_vote_count($post->post_id);
@@ -42,10 +41,19 @@ class post_model extends CI_Model {
             $user = $_SESSION['logged_user'];
             $post->vote_type = $this->get_vote_type($post->post_id, $user->user_id);
         }
-        
+
         if ($get_descendants) {
             //get replies of post
             $post->replies = $this->get_replies($post->post_id);
+        }
+
+        if ($get_attachments) {
+            $this->load->model('attachment_model', 'attachments');
+            $post->attachments = $this->attachments->get_post_attachments($post->post_id);
+
+            if ($post->post_id === $post->root_id) {
+                $post->thread_attachments = $this->attachments->get_thread_attachments($post->post_id);
+            }
         }
         return $post;
     }
@@ -60,13 +68,14 @@ class post_model extends CI_Model {
         $this->db->join('tbl_users as u2', 'tf.user_id = u2.user_id');
         $this->db->where('u1.user_id =', $user_id);
         $this->db->where('u2.user_id =', $logged_user_id);
+        $this->db->where('t.is_cancelled =', '0');
         $this->db->order_by('p.date_posted', 'DESC');
 
         $user_activities = $this->db->get()->result();
 
         foreach ($user_activities as $post) {
             if ($post->parent_id !== '0') {
-                $post->parent = $this->get_post(false, true, $post->parent_id);
+                $post->parent = $this->get_post(false, true, false, $post->parent_id);
             }
 
             $post->vote_count = $this->get_vote_count($post->post_id);
@@ -85,6 +94,7 @@ class post_model extends CI_Model {
         $this->db->join('tbl_users as u2', 'tf.user_id = u2.user_id');
         $this->db->where('u2.user_id =', $user_id);
         $this->db->where('p.parent_id =', '0');
+        $this->db->where('t.is_cancelled =', '0');
         $this->db->order_by('p.date_posted', 'DESC');
 
         $home_posts = $this->db->get()->result();
@@ -131,20 +141,100 @@ class post_model extends CI_Model {
         if ($replies) {
             //load user of post
             $this->load->model('user_model', 'users');
+            $this->load->model('attachment_model', 'attachments');
 
+            //load attachments of post
             foreach ($replies as $reply) {
                 $reply->user = $this->users->get_user(false, false, array('user_id' => $reply->user_id));
                 $reply->vote_count = $this->get_vote_count($reply->post_id);
                 $reply->vote_type = $this->get_vote_type($reply->post_id, $reply->user_id);
+                $reply->attachments = $this->attachments->get_post_attachments($reply->post_id);
 
                 $reply->replies = $this->get_replies($reply->post_id);
             }
         }
         return $replies;
     }
-    
-    public function update_post($post_id, $data = array()){
+
+    public function update_post($post_id, $data = array()) {
         $this->db->where('post_id', $post_id);
         $this->db->update('tbl_posts', $data);
     }
+
+    /* REPORTS */
+
+    public function get_post_count($user_id) {
+        $this->db->select('COUNT(*) as post_count');
+        $this->db->from('tbl_posts');
+        $this->db->where('user_id = ', $user_id);
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->post_count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function get_root_post_count($user_id) {
+        $this->db->select('COUNT(*) as post_count');
+        $this->db->from('tbl_posts');
+        $this->db->where('user_id = ', $user_id);
+        $this->db->where('post_id = root_id');
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->post_count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function get_reply_count($user_id) {
+        $this->db->select('COUNT(*) as post_count');
+        $this->db->from('tbl_posts');
+        $this->db->where('user_id = ', $user_id);
+        $this->db->where('post_id != root_id');
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->post_count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function get_vote_points($user_id) {
+        $this->db->select('SUM(pv.vote_type) as vote_points');
+        $this->db->from('tbl_post_vote as pv');
+        $this->db->join('tbl_posts as p', 'p.post_id = pv.post_id');
+        $this->db->where('p.user_id = ', $user_id);
+
+        $count = $this->db->get()->row();
+
+        if ($count->vote_points > 0) {
+            return $count->vote_points;
+        } else {
+            return 0;
+        }
+    }
+
+    public function get_vote_type_count($user_id, $type) {
+        $this->db->select('COUNT(*) as vote_count');
+        $this->db->from('tbl_post_vote');
+        $this->db->where('user_id = ', $user_id);
+        $this->db->where('vote_type = ', $type);
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->vote_count;
+        } else {
+            return 0;
+        }
+    }
+
 }

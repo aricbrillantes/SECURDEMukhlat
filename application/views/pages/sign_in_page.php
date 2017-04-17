@@ -9,7 +9,7 @@ include(APPPATH . 'views/header.php');
         <!-- Content -->
         <div class = "row sign-in-content">
             <!--Sign In-->
-            <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 10px;">
+            <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 30px;">
                 <div id = "sign-in-container" class = "col-md-12 content-container no-padding">
                     <form class = "form-inline" id = "log-in-form" onsubmit = "return log_in()" method = "post">
                         <div class ="form-group">
@@ -77,10 +77,8 @@ include(APPPATH . 'views/header.php');
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
-    <!-- SCRIPTS -->
     <script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
-    <!-- END SCRIPTS -->
 </body>
 </html>

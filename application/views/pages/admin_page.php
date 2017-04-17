@@ -3,7 +3,7 @@ include(APPPATH . 'views/header.php');
 $logged_user = $_SESSION['logged_user'];
 ?>
 <body class = "sign-in">
-    <div class = "container" style = "margin-top: 30px;">
+    <div id = "admin-page" class = "container" style = "margin-top: 30px;">
         <div class = "row">
             <!-- Admin Header -->
             <div class = "col-md-8 col-md-offset-2 content-container" style = "margin-bottom: 5px;">
@@ -24,14 +24,14 @@ $logged_user = $_SESSION['logged_user'];
                     <ul class = "list-group">
                         <?php foreach ($users as $user): ?>
                             <li class = "list-group-item admin-list-item">
-                                <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding pull-left img-circle" width = "45px"/> 
+                                <img src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg') ?>" class = "no-padding pull-left img-circle" width = "45px" height = "45px"/> 
                                 <h4 class = "no-padding admin-list-name"><?php echo htmlspecialchars_decode($user->first_name) . " " . $user->last_name ?> 
                                     <!-- ADMIN -->
                                     <?php if ($user->role_id === '1'): ?>
                                         <i class = "text-muted btn-sm no-padding">Administrator <?php echo ($logged_user->user_id === $user->user_id) ? '(You)' : '' ?></i>
                                         <!-- USERS //put modal -->
                                     <?php elseif ($user->role_id === '2'): ?>
-                                        <a class = "btn btn-link btn-xs"><i class = "fa fa-question-circle-o"></i> <i>Record of <?php echo $user->first_name ?></i></a>
+                                        <button value = "<?php echo $user->user_id ?>" class = "record-view-btn btn btn-link btn-xs"><i class = "fa fa-question-circle-o"></i> <i>Record of <?php echo $user->first_name ?></i></button>
                                     <?php endif ?>
                                 </h4>
                                 <?php
@@ -53,8 +53,9 @@ $logged_user = $_SESSION['logged_user'];
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script type="text/javascript" src="<?php echo base_url("/js/admin.js"); ?>"></script>
-    <!-- END SCRIPTS -->
+    
+    <?php
+//include(APPPATH . "views/modals/user_record_modal.php");?>
 </body>
 </html>

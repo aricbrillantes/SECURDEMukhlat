@@ -7,7 +7,7 @@ $c_topic = $_SESSION['current_topic'];
     include(APPPATH . 'views/navigation_bar.php');
     ?>
 
-    <div class = "container page" style = "min-height: 100%; height: 100%;">
+    <div id = "topic-page" class = "container page" style = "min-height: 100%; height: 100%;">
         <!-- Topic Page Header -->
         <div class = "row">
             <div id = "topic-heading" class = "col-md-12 content-container no-padding">
@@ -85,5 +85,5 @@ $c_topic = $_SESSION['current_topic'];
     include(APPPATH . 'views/modals/topic_description_modal.php');
     include(APPPATH . 'views/modals/topic_members_modal.php');
     include(APPPATH . 'views/modals/cancel_topic_modal.php');
-    include(APPPATH . 'views/chat.php');
+    include(APPPATH . 'views/chat/chat.php');
     

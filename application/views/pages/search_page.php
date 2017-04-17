@@ -25,7 +25,7 @@ include(APPPATH . 'views/header.php');
                                 foreach ($users as $user):
                                     ?>
                                     <a class = "list-group-item btn btn-link list-entry" href = "user/profile/<?php echo $user->user_id; ?>">
-                                        <img class = "img-circle" width = "45px" src = "<?php echo base_url('images/default.jpg') ?>"/>
+                                        <img class = "img-circle" width = "45px" height = "45px" src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg') ?>"/>
                                         <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo $user->first_name . " " . $user->last_name ?></h4>
                                     </a>
                                     <?php
@@ -69,5 +69,5 @@ include(APPPATH . 'views/header.php');
     </div>
 
     <?php
-    include(APPPATH . 'views/chat.php');
+    include(APPPATH . 'views/chat/chat.php');
     

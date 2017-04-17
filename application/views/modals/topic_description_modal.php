@@ -11,9 +11,11 @@ $topic = $_SESSION['current_topic'];
                 <h4 class="modal-title"style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
             </div>
             <div class="modal-body">
-                <?php if ($topic->creator_id === $logged_user->user_id): ?>
+                <?php if ($is_moderated): ?>
                     <div class = "col-md-12" style = "margin-bottom: 5px;">
-                        <button type = "button" id = "cancel-topic-btn" class = "pull-right btn btn-xs btn-danger" style = "margin-left: 5px;"><i class = "fa fa-trash"></i> Cancel Topic</button>
+                        <?php if ($topic->creator_id === $logged_user->user_id): ?>
+                            <button type = "button" id = "cancel-topic-btn" class = "pull-right btn btn-xs btn-danger" style = "margin-left: 5px;"><i class = "fa fa-trash"></i> Cancel Topic</button>
+                        <?php endif; ?>
                         <button id = "edit-topic-btn" class = "pull-right btn btn-gray btn-xs"><i class = "fa fa-pencil"></i> Edit Description</button>
                     </div>
 

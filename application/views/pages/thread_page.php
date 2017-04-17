@@ -8,7 +8,7 @@ $user = $post->user;
     include(APPPATH . 'views/navigation_bar.php');
     ?>
 
-    <div class = "container page">
+    <div id = "thread-page" class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">
                 <a class = "pull-left btn btn-topic-header" style = "display: inline-block; margin-right: 5px;" href="<?php echo base_url('topic/view/' . $topic->topic_id) ?>">
@@ -26,7 +26,10 @@ $user = $post->user;
                         </i>
                     </small>
                 </h3>
-                <button class = "pull-right btn btn-primary" style = "margin-top: 10px; margin-right: 20px;"><strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong></button>
+                <?php if (!empty($post->thread_attachments)): ?>
+                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary" style = "margin-top: 10px; margin-right: 20px;">
+                        <strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong></button>
+                <?php endif; ?>
             </div>
             <div class = "col-md-12 content-container">
                 <!-- POST -->
@@ -34,7 +37,7 @@ $user = $post->user;
                     <div class="media">
                         <div class="media-left text-center">
                             <?php if (!$post->is_deleted): ?>
-                                <img src="<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" class="media-object img-circle post-pic"/>
+                                <img src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" class="media-object img-circle post-pic"/>
                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
                                     <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
                                 </button>
@@ -48,7 +51,7 @@ $user = $post->user;
                         </div>
                         <div class="media-body">
                             <?php if (!$post->is_deleted): ?>
-                                <?php if ($user->user_id === $logged_user->user_id): ?>
+                                <?php if ($user->user_id === $logged_user->user_id || $is_moderated): ?>
                                     <!-- Delete Button -->
                                     <button value = "<?php echo $post->post_id ?>" class = "delete-btn pull-right btn btn-sm btn-danger"><i class = "fa fa-trash"></i></button>
                                 <?php endif; ?>
@@ -62,7 +65,12 @@ $user = $post->user;
                                 <?php endif; ?>
 
                                 <!-- Attachment -->
-                                <a class = "btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px; font-size: 12px;"><strong><i class = "fa fa-paperclip"></i> 5</strong></a>
+
+                                <?php if (!empty($post->attachments)): ?>
+                                    <button value = "<?php echo $post->post_id ?>" class = "attachment-btn btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px; font-size: 12px;">
+                                        <strong><i class = "fa fa-paperclip"></i> <?php echo count($post->attachments); ?></strong></button>
+                                <?php endif; ?>
+
                                 <!-- Post Heading -->
                                 <div class="media-heading">
                                     <?php if ($post->post_title): ?>
@@ -103,13 +111,12 @@ $user = $post->user;
             </div>
         </div>
     </div>
-    <!-- SCRIPTS -->
-    <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
-    <!-- END SCRIPTS -->
 
+    <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
+    
     <?php
-    include(APPPATH . 'views/chat.php');
+    include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');
     include(APPPATH . 'views/modals/edit_post_modal.php');
     include(APPPATH . 'views/modals/delete_post_modal.php');
-    

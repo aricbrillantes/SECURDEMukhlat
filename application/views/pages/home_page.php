@@ -15,7 +15,7 @@ include(APPPATH . 'views/header.php');
                     <div class = "clearfix content-container">
 
                         <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
-                            <img alt = "" class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
+                            <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
                         </a>
                         <div class = "col-sm-4 home-user-text">
                             <a class = "btn btn-link home-username" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><strong><?php echo $logged_user->first_name; ?></strong></a>
@@ -55,7 +55,7 @@ include(APPPATH . 'views/header.php');
                                             <!-- Left -->
                                             <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
                                                 <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                    <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
+                                                    <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                                 </a>
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
                                                     <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
@@ -74,7 +74,7 @@ include(APPPATH . 'views/header.php');
                                                 <i class = "text-muted">
                                                     <small>by 
                                                         <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-        <?php echo $post->first_name . " " . $post->last_name ?>
+                                                            <?php echo $post->first_name . " " . $post->last_name ?>
                                                         </a>
                                                     </small>
                                                 </i>
@@ -86,12 +86,12 @@ include(APPPATH . 'views/header.php');
                                             <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
-                                <?php
+                                    <?php
                                 endforeach;
                             else:
                                 ?>
-                            <h4 class = "text-center text-warning">Your home page looks empty. Try following or creating more topics!</h4>
-<?php endif; ?>
+                                <h4 class = "text-center text-warning">Your home page looks empty. Try following or creating more topics!</h4>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -103,9 +103,9 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
-    <!-- SCRIPTS -->
+
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
-    <!-- END SCRIPTS -->
+
     <?php
-    include(APPPATH . 'views/chat.php');
+    include(APPPATH . 'views/chat/chat.php');
     

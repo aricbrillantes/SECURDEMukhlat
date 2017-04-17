@@ -28,7 +28,7 @@ class topic_model extends CI_Model {
             $this->load->model('user_model', 'users');
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
             $topic->moderators = $this->users->get_topic_moderators($topic->topic_id);
-            
+
             $topic->nonfollowers = $this->users->get_nonfollowers($topic->topic_id);
             $topic->nonmoderators = $this->users->get_nonmoderators($topic->topic_id);
         }
@@ -39,7 +39,7 @@ class topic_model extends CI_Model {
     }
 
     public function get_topics() {
-        $topics = $this->db->order_by('date_created', 'DESC')->get('tbl_topics')->result();
+        $topics = $this->db->where('is_cancelled = 0')->order_by('date_created', 'DESC')->get('tbl_topics')->result();
 
         //load user of topic
         $this->load->model('user_model', 'users');
@@ -53,7 +53,7 @@ class topic_model extends CI_Model {
     }
 
     public function get_user_topics($user_id) {
-        $topics = $this->db->order_by('topic_name', 'ASC')->get_where('tbl_topics', array('creator_id' => $user_id))->result();
+        $topics = $this->db->order_by('topic_name', 'ASC')->get_where('tbl_topics', array('creator_id' => $user_id, 'is_cancelled' => 0))->result();
 
         $this->load->model('user_model', 'users');
 
@@ -68,7 +68,7 @@ class topic_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('tbl_topics');
         $this->db->join('tbl_topic_follower', 'tbl_topic_follower.topic_id = tbl_topics.topic_id');
-        $this->db->where(array('tbl_topic_follower.user_id' => $user_id));
+        $this->db->where(array('tbl_topic_follower.user_id' => $user_id, 'tbl_topics.is_cancelled' => 0));
         $topics = $this->db->order_by('tbl_topics.topic_name', 'ASC')->get()->result();
 
         $this->load->model('user_model', 'users');
@@ -79,12 +79,12 @@ class topic_model extends CI_Model {
 
         return $topics;
     }
-    
+
     public function get_moderated_topics($user_id) {
         $this->db->select('*');
         $this->db->from('tbl_topics t');
         $this->db->join('tbl_topic_moderator tm', 'tm.topic_id = t.topic_id');
-        $this->db->where(array('tm.user_id' => $user_id));
+        $this->db->where(array('tm.user_id' => $user_id, 't.is_cancelled' => 0));
         $topics = $this->db->order_by('t.topic_name', 'ASC')->get()->result();
 
         $this->load->model('user_model', 'users');
@@ -101,15 +101,16 @@ class topic_model extends CI_Model {
 
         return $is_followed;
     }
-    
+
     public function check_moderated($topic_id, $user_id) {
         $is_moderated = $this->db->get_where('tbl_topic_moderator', array('topic_id' => $topic_id, 'user_id' => $user_id))->row();
 
         return $is_moderated;
     }
-    
+
     public function search_topics($keyword) {
         $this->db->like("topic_name", $keyword, "both");
+        $this->db->where("is_cancelled = 0");
         $topics = $this->db->get("tbl_topics")->result();
 
         $this->load->model("user_model", "users");
@@ -120,9 +121,62 @@ class topic_model extends CI_Model {
 
         return $topics;
     }
-    
-    public function update_topic($topic_id, $data = array()){
+
+    public function update_topic($topic_id, $data = array()) {
         $this->db->where('topic_id', $topic_id);
         $this->db->update('tbl_topics', $data);
     }
+
+    public function remove_member($user_id, $topic_id, $type) {
+        if ($type === 1) {
+            $this->db->delete('tbl_topic_follower', array('user_id' => $user_id, 'topic_id' => $topic_id));
+        } else if ($type === 2) {
+            $this->db->delete('tbl_topic_moderator', array('user_id' => $user_id, 'topic_id' => $topic_id));
+        } else if ($type === 3) {
+            $this->update_topic($topic_id, array('is_cancelled' => 1));
+        }
+    }
+
+    public function get_topic_count($user_id) {
+        $this->db->select('COUNT(*) as topic_count');
+        $this->db->from('tbl_topics');
+        $this->db->where('creator_id = ', $user_id);
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->topic_count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function get_followed_topic_count($user_id) {
+        $this->db->select('COUNT(*) as topic_count');
+        $this->db->from('tbl_topic_follower');
+        $this->db->where('user_id = ', $user_id);
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->topic_count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function get_moderated_topic_count($user_id) {
+        $this->db->select('COUNT(*) as topic_count');
+        $this->db->from('tbl_topic_moderator');
+        $this->db->where('user_id = ', $user_id);
+
+        $count = $this->db->get()->row();
+
+        if ($count) {
+            return $count->topic_count;
+        } else {
+            return 0;
+        }
+    }
+
 }

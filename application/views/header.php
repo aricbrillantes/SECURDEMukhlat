@@ -6,7 +6,6 @@ and open the template in the editor.
 -->
 <html>
     <head>
-
         <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url("/icons/apple-touch-icon.png"); ?>">
         <link rel="icon" type="image/png" href="<?php echo base_url("/icons/favicon-32x32.png");?>" sizes="32x32">
         <link rel="icon" type="image/png" href="<?php echo base_url("/icons/favicon-16x16.png"); ?>" sizes="16x16">

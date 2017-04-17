@@ -1,5 +1,5 @@
 <?php
-    $topic = $_SESSION['current_topic'];
+$topic = $_SESSION['current_topic'];
 ?>
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
@@ -8,9 +8,9 @@
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Post to <?php echo $topic->topic_name;?></strong></h4>
+                <h4 class="modal-title"><strong>Post to <?php echo $topic->topic_name; ?></strong></h4>
             </div>
-            <form action = "<?php echo base_url('topic/post');?>" id = "create-post-form" method = "POST">
+            <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/post'); ?>" id = "create-post-form" method = "POST">
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
@@ -22,10 +22,29 @@
                     </div>
                     <div class = "form-group">
                         Attach files: 
-                        <button class = "btn btn-primary"><i class = "fa fa-file-image-o"></i></button>
-                        <button class = "btn btn-primary"><i class = "fa fa-file-audio-o"></i></button>
-                        <button class = "btn btn-primary"><i class = "fa fa-file-video-o"></i></button>
-                        <button class = "btn btn-primary"><i class = "fa fa-file"></i></button>
+                        <!--IMAGE-->
+                        <label class="btn btn-primary">
+                            <input accept = "image/*" type="file" name = "post_image" style = "display: none;">
+                            <i class = "fa fa-file-image-o"></i>
+                        </label>
+
+                        <!--AUDIO-->
+                        <label class="btn btn-primary">
+                            <input accept = "audio/*" type="file" name = "post_audio" style = "display: none;">
+                            <i class = "fa fa-file-audio-o"></i>
+                        </label>
+
+                        <!--VIDEO-->
+                        <label class="btn btn-primary">
+                            <input accept = "video/*" type="file" name = "post_video" style = "display: none;">
+                            <i class = "fa fa-file-video-o"></i>
+                        </label>
+
+                        <!--FILE-->
+                        <label class="btn btn-primary">
+                            <input type="file" name = "post_file" style = "display: none;">
+                            <i class = "fa fa-file"></i>
+                        </label>
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
@@ -41,7 +60,7 @@
         <div class="modal-content text-center">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Publish post to <?php echo $topic->topic_name;?></strong></h4>
+                <h4 class="modal-title"><strong>Publish post to <?php echo $topic->topic_name; ?></strong></h4>
             </div>
             <div class="modal-body">
                 <button id = "create-post-proceed" type = "submit" class = "btn btn-success">Proceed</button>

@@ -42,6 +42,9 @@ class topic extends CI_Controller {
                 $data['is_followed'] = $this->topics->check_follow($topic->topic_id, $logged_user->user_id);
                 $data['is_moderated'] = $this->topics->check_moderated($topic->topic_id, $logged_user->user_id);
                 $data['has_requested'] = $this->notifs->check_request($logged_user->user_id, $topic->topic_id);
+
+                //check if user is a moderator or the creator
+
                 $this->load->view('pages/topic_page', $data);
             } else {
                 $this->load->view('errors/error_404');
@@ -55,16 +58,18 @@ class topic extends CI_Controller {
         $post_id = $this->uri->segment(3);
         if ($post_id) {
             $this->load->model('post_model', 'posts');
-            $post = $this->posts->get_post(true, true, $post_id);
+            $post = $this->posts->get_post(true, true, true, $post_id);
 
             if ($post) {
                 //check if user is following topic then pass
                 $data['post'] = $post;
+                $data['is_moderated'] = $this->topics->check_moderated($post->topic->topic_id, $_SESSION['logged_user']->user_id);
 
                 if ($post->replies) {
                     $data['replies'] = $this->load->view('post_replies', $data, TRUE);
                 }
                 $_SESSION['current_topic'] = $post->topic;
+
                 $this->load->view('pages/thread_page', $data);
             } else {
                 $this->load->view('errors/error_404');
@@ -94,8 +99,9 @@ class topic extends CI_Controller {
             'topic_id' => $topic_id
         );
 
-        //moderate topic
         $this->db->insert("tbl_topic_follower", $follow_data);
+
+        //moderate topic
         $this->db->insert("tbl_topic_moderator", $follow_data);
 
         //return topic
@@ -171,7 +177,81 @@ class topic extends CI_Controller {
 
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
+
         $post_id = $this->db->insert_id();
+
+        // ATTACHMENTS
+        if (!file_exists('./uploads/_' . $post_id . '/')) {
+            mkdir('./uploads/_' . $post_id . '/', 0777, true);
+        }
+        $config['upload_path'] = './uploads/_' . $post_id . '/';
+        $config['encrypt_name'] = TRUE;
+        $config['allowed_types'] = '*';
+
+        $this->load->library('upload', $config);
+
+        //image
+        if ($_FILES['post_image']['name']) {
+            if (!$this->upload->do_upload('post_image')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 1);
+                echo 'done!';
+            }
+        }
+
+        //audio
+        if ($_FILES AND $_FILES['post_audio']['name']) {
+
+            if (!$this->upload->do_upload('post_audio')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 2);
+            }
+        }
+
+        //video
+        if ($_FILES AND $_FILES['post_video']['name']) {
+
+            if (!$this->upload->do_upload('post_video')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 3);
+            }
+        }
+
+        //file
+        if ($_FILES AND $_FILES['post_file']['name']) {
+            if (!$this->upload->do_upload('post_file')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 4);
+            }
+        }
 
         //set post id as root id of post
         $this->db->set("root_id", $post_id);
@@ -191,7 +271,7 @@ class topic extends CI_Controller {
 
         //check referer
         $post_id = $this->uri->segment(3);
-        $data['post'] = $this->posts->get_post(false, true, $post_id);
+        $data['post'] = $this->posts->get_post(false, true, false, $post_id);
 
         $this->load->view('post_preview', $data);
     }
@@ -207,7 +287,7 @@ class topic extends CI_Controller {
         $has_vote = $this->posts->get_vote_type($post_id, $logged_user->user_id);
         $this->posts->vote_post($logged_user->user_id, $post_id, $vote_type);
 
-        $post = $this->posts->get_post(false, true, $post_id);
+        $post = $this->posts->get_post(false, true, false, $post_id);
         if ($vote_type === '1' && $has_vote !== "1") {
             $this->load->model("notification_model", "notifs");
             $this->notifs->notify_user($post->user->user_id, $post_id, 3);
@@ -220,7 +300,7 @@ class topic extends CI_Controller {
         $type = $this->uri->segment(3);
         $post_id = $this->input->post("post_id");
         $this->load->model("post_model", "posts");
-        $post = $this->posts->get_post(false, true, $post_id);
+        $post = $this->posts->get_post(false, true, false, $post_id);
 
         if ($type === "reply") {
             $data = array("first_name" => $post->user->first_name, "post_id" => $post_id);
@@ -233,14 +313,14 @@ class topic extends CI_Controller {
     }
 
     public function reply() {
-        $post_id = $this->uri->segment(3);
+        $id = $this->uri->segment(3);
         $input = $this->input;
         $logged_user = $_SESSION['logged_user'];
         $topic = $_SESSION['current_topic'];
 
         //get parent then reply
         $this->load->model("post_model", "posts");
-        $parent_post = $this->posts->get_post(false, false, $post_id);
+        $parent_post = $this->posts->get_post(false, false, false, $id);
         $data = array(
             'parent_id' => $parent_post->post_id,
             'user_id' => $logged_user->user_id,
@@ -251,6 +331,81 @@ class topic extends CI_Controller {
         );
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
+
+        $post_id = $this->db->insert_id();
+
+        // ATTACHMENTS
+        if (!file_exists('./uploads/_' . $parent_post->root_id . '/')) {
+            mkdir('./uploads/_' . $parent_post->root_id . '/', 0777, true);
+        }
+
+        $config['upload_path'] = './uploads/_' . $parent_post->root_id . '/';
+        $config['encrypt_name'] = TRUE;
+        $config['allowed_types'] = '*';
+
+        $this->load->library('upload', $config);
+
+        //image
+        if ($_FILES['post_image']['name']) {
+            if (!$this->upload->do_upload('post_image')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $parent_post->root_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 1);
+            }
+        }
+
+        //audio
+        if ($_FILES AND $_FILES['post_audio']['name']) {
+
+            if (!$this->upload->do_upload('post_audio')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $parent_post->root_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 2);
+            }
+        }
+
+        //video
+        if ($_FILES AND $_FILES['post_video']['name']) {
+
+            if (!$this->upload->do_upload('post_video')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $parent_post->root_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 3);
+            }
+        }
+
+        //file
+        if ($_FILES AND $_FILES['post_file']['name']) {
+            if (!$this->upload->do_upload('post_file')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $parent_post->root_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 4);
+            }
+        }
 
         //insert to notifs
         $this->load->model("notification_model", "notifs");
@@ -271,7 +426,80 @@ class topic extends CI_Controller {
 
         $this->posts->update_post($post_id, $data);
 
-        $post = $this->posts->get_post(false, false, $post_id);
+        // ATTACHMENTS
+        if (!file_exists('./uploads/_' . $post_id . '/')) {
+            mkdir('./uploads/_' . $post_id . '/', 0777, true);
+        }
+        $config['upload_path'] = './uploads/_' . $post_id . '/';
+        $config['encrypt_name'] = TRUE;
+        $config['allowed_types'] = '*';
+
+        $this->load->library('upload', $config);
+
+        //image
+        if ($_FILES['post_image']['name']) {
+            if (!$this->upload->do_upload('post_image')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 1);
+                echo 'done!';
+            }
+        }
+
+        //audio
+        if ($_FILES AND $_FILES['post_audio']['name']) {
+
+            if (!$this->upload->do_upload('post_audio')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 2);
+            }
+        }
+
+        //video
+        if ($_FILES AND $_FILES['post_video']['name']) {
+
+            if (!$this->upload->do_upload('post_video')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 3);
+            }
+        }
+
+        //file
+        if ($_FILES AND $_FILES['post_file']['name']) {
+            if (!$this->upload->do_upload('post_file')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_attachment($post_id, $path, 4);
+            }
+        }
+
+        $post = $this->posts->get_post(false, false, false, $post_id);
         redirect(base_url('topic/thread/' . $post->root_id));
     }
 
@@ -285,7 +513,7 @@ class topic extends CI_Controller {
         );
 
         $this->posts->update_post($post_id, $data);
-        $post = $this->posts->get_post(false, false, $post_id);
+        $post = $this->posts->get_post(false, false, false, $post_id);
         redirect(base_url('topic/thread/' . $post->root_id));
     }
 
@@ -322,5 +550,30 @@ class topic extends CI_Controller {
 
         $this->notifs->apply_moderator($user->user_id, $topic->topic_id);
     }
-
+    
+    public function load_remove(){
+        $user_id = $this->uri->segment(3);
+        $type = $this->uri->segment(4);
+        
+        $this->load->model('user_model', 'users');
+        $data['user'] = $this->users->get_user(false, false, array('user_id' => $user_id));
+        $data['type'] = $type;
+        
+        $this->load->view('modals/remove_member_modal', $data);
+    }
+    
+    public function remove_member(){
+        $user_id = $this->uri->segment(3);
+        $topic = $_SESSION['current_topic'];
+        $type = $this->uri->segment(4);
+        $this->load->model('topic_model', 'topics');
+        
+        if($type === '1'){ //1 => follower
+            $this->topics->remove_member($user_id, $topic->topic_id, 1);
+        } else if($type === '2'){ //2 => moderator
+            $this->topics->remove_member($user_id, $topic->topic_id, 2);
+        } else if($type === '3'){ //3 => creator
+            $this->topics->remove_member($user_id, $topic->topic_id, 3);
+        }
+    }
 }

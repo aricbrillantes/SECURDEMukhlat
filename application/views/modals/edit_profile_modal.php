@@ -7,13 +7,13 @@
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 id = "reply-user" class="modal-title"><strong>Edit Profile</strong></h4>
             </div>
-            <form id = "edit-profile-form" action = "<?php echo base_url('user/update/' . $logged_user->user_id); ?>" method = "POST">
-                <div class="modal-body">
+            <?php echo form_open_multipart('user/update/', array('id' => 'edit-profile-form')); ?>
+            <div class="modal-body">
                     <!-- profile picture -->
                     <div class = "col-sm-3 form-group no-padding text-center">
-                        <img class = "img-circle" width = "120px" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>" style = "margin-bottom: 5px;">
+                        <img id = "user-pic-display" class = "img-circle" width = "120px" height = "120px" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>" style = "margin-bottom: 5px;">
                         <label class="btn btn-primary btn-sm">
-                            <input type="file" style = "display: none;">
+                            <input id = "user-pic-input" accept = "image/*" type="file" name = "profile_picture" style = "display: none;">
                             Change Picture
                         </label>
                     </div>
@@ -24,12 +24,12 @@
                         <div class = "col-sm-12 no-padding" style = "margin-bottom: 10px;">
                             <div class = "col-xs-6 no-padding">
                                 <div class = "col-xs-12" style = "padding: 2px;">
-                                    <input type = "text" class = "form-control" placeholder = "First Name" value = "<?php echo $logged_user->first_name; ?>">
+                                    <input required type = "text" class = "form-control" name = "edit_first" placeholder = "First Name" value = "<?php echo $logged_user->first_name; ?>">
                                 </div>
                             </div>
                             <div class = "col-xs-6 no-padding">
                                 <div class = "col-xs-12" style = "padding: 2px;">
-                                    <input type = "text" class = "form-control" placeholder = "Last Name" value = "<?php echo $logged_user->last_name; ?>">
+                                    <input required type = "text" class = "form-control" name = "edit_last" placeholder = "Last Name" value = "<?php echo $logged_user->last_name; ?>">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class = "col-sm-12 no-padding" style = "margin-bottom: 10px;">
                             <div class = "col-xs-6 no-padding">
                                 <div class = "col-xs-12" style = "padding: 2px;">
-                                    <input type = "password" class = "form-control" placeholder = "Password">
+                                    <input type = "password" name = "edit_pass" class = "form-control" placeholder = "Password">
                                 </div>
                             </div>
                             <div class = "col-xs-6 no-padding">
@@ -53,7 +53,7 @@
                                 <span class = "text-muted"><strong>Email: </strong></span>
                             </div>
                             <div class = "col-xs-10 no-padding">    
-                                <input type = "email" class = "form-control" placeholder = "<?php echo $logged_user->email; ?>">
+                                <input required type = "email" name = "edit_email" class = "form-control" placeholder = "Email Address" value = "<?php echo $logged_user->email; ?>">
                             </div>
                         </div>
                         <div class = "col-sm-12 no-padding" style = "margin-bottom: 10px;">
@@ -61,13 +61,13 @@
                                 <span class = "text-muted"><strong>Description: </strong></span>
                             </div>
                             <div class = "col-xs-12 no-padding" style = "padding-top: 5px;">
-                                <textarea class = "text-muted form-control" placeholder = "Tell something about yourself"><?php echo $logged_user->description ?></textarea>
+                                <textarea class = "text-muted form-control" name = "edit_description" placeholder = "Tell something about yourself"><?php echo $logged_user->description ?></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
-                    <a id = "edit-profile-btn" class ="btn btn-primary" data-toggle = "modal">Save Changes</a>
+                    <button id = "save-profile-edit" class ="btn btn-primary" data-toggle = "modal">Save Changes</button>
                 </div>
             </form>
         </div>

@@ -18,4 +18,16 @@ $(document).ready(function() {
             }
         });
     });
+    
+    $(".record-view-btn").on("click", function(){
+        var val = $(this).val();
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/admin/view_user/' + val,
+            success: function(html){
+                $("#record-modal").remove();
+                $("#admin-page").append(html);
+                $("#record-modal").modal("show");
+            }
+        });
+    });
 });

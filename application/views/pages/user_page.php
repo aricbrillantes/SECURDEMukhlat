@@ -15,7 +15,7 @@ include(APPPATH . 'views/header.php');
                     <div class = "col-md-12" style = "height: 160px;">
                         <div class = "user-profile-info">
                             <div class = "col-xs-3 no-padding" style = "margin-top: 20px;">
-                                <img class = "pull-left img-circle user-profile-img"src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" width = "100px"/>
+                                <img class = "pull-left img-circle user-profile-img" src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" width = "100px" height = "100px"/>
                             </div>
                             <div class = "col-xs-6 no-padding no-margin">
                                 <h3 class = "no-padding text-info" style = "margin-bottom: 0px;"><strong><?php echo $user->first_name . " " . $user->last_name ?></strong></h3>
@@ -67,12 +67,14 @@ include(APPPATH . 'views/header.php');
                                 </div>
                                 <div class = "user-topic-div">
                                     <ul class="nav">
-                                        <li class="active"><a href="#">Home</a></li>
-                                        <li><a href="#">Link 1</a></li>
-                                        <li><a href="#">Link 2</a></li>
-                                        <li><a href="#">Link 3</a></li>
-                                        <li><a href="#">Link 1</a></li>
-                                        <li><a href="#">Link 2</a></li>
+                                        <?php foreach ($user->moderated_topics as $topic): ?>
+                                            <li>
+                                                <a class = "user-topic-item" href="<?php echo base_url('topic/view/' . $topic->topic_id); ?>" style = "padding: 5px 30px;">
+                                                    <h4 class = "no-padding no-margin" style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
+                                                    <span class = "pull-right label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0' ?></span>
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
@@ -110,13 +112,13 @@ include(APPPATH . 'views/header.php');
                         </div>
                         <div class = "col-sm-4 no-left-right-pad"style = "border-right: 1px solid #E0E0E0; border-left: 1px solid #E0E0E0;">
                             <div class = "col-xs-12 text-center no-left-right-pad">
-                                <h2 class = "text-info no-margin"><strong>3,005</strong></h2>
+                                <h2 class = "text-info no-margin"><strong><?php echo $user->vote_points; ?></strong></h2>
                                 <p>Points</p>
                             </div>
                         </div>
                         <div class = "col-sm-4 no-left-right-pad">
                             <div class = "col-xs-12 text-center no-left-right-pad">
-                                <h2 class = "text-info no-margin"><strong>35</strong></h2>
+                                <h2 class = "text-info no-margin"><strong><?php echo $user->post_count; ?></strong></h2>
                                 <p>Posts</p>
                             </div>
                         </div>
@@ -148,22 +150,22 @@ include(APPPATH . 'views/header.php');
                                     </div>
                                     <div class = "col-xs-12 user-post-content no-padding">
                                         <div class = "col-xs-2 text-center no-padding" style = "padding-left: 10px;">
-                                            <img width = "60px" class = "img-circle" style = "margin: 10px 5px;" src = "<?php echo base_url('images/default.jpg'); ?>"/>
+                                            <img width = "60px" height = "60px" class = "img-circle" style = "margin: 10px 5px;" src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>"/>
                                         </div>
                                         <div class = "col-xs-10 no-padding">
-                                            <?php if(!empty($post->post_title)): ?>
-                                            <h5 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h5>
-                                            <i class = "text-muted">
-                                                <small>by 
-                                                    <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                        <?php echo $post->first_name . " " . $post->last_name ?>
-                                                    </a>
-                                                </small>
-                                            </i>
-                                            <?php else:?>
-                                            <h5 class = "no-padding no-margin text-muted wrap"><a class = "btn btn-link no-padding no-margin"><strong><?php echo $post->first_name . " " . $post->last_name; ?></strong></a></h5>
-                                            
-                                            <?php endif;?>
+                                            <?php if (!empty($post->post_title)): ?>
+                                                <h5 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h5>
+                                                <i class = "text-muted">
+                                                    <small>by 
+                                                        <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                            <?php echo $post->first_name . " " . $post->last_name ?>
+                                                        </a>
+                                                    </small>
+                                                </i>
+                                            <?php else: ?>
+                                                <h5 class = "no-padding no-margin text-muted wrap"><a class = "btn btn-link no-padding no-margin"><strong><?php echo $post->first_name . " " . $post->last_name; ?></strong></a></h5>
+
+                                            <?php endif; ?>
                                             <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                             <p class = "home-content-body" style = "border-right: none;"><?php echo $post->post_content ?></p>
 
@@ -180,8 +182,8 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
-
+    <script type="text/javascript" src="<?php echo base_url("/js/user.js"); ?>"></script>
     <?php
-    include(APPPATH . 'views/chat.php');
+    include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/edit_profile_modal.php');
     

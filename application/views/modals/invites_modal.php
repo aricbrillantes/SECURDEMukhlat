@@ -19,21 +19,20 @@
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
-                                <?php
-                                if (!empty($logged_user->moderator_requests)): ?>
+                                <?php if (!empty($logged_user->moderator_requests)): ?>
                                     <ul class = "list-group notif-modal-overflow">
-                                        <?php foreach ($logged_user->moderator_requests as $request): ?> 
-                                            <li class = "list-group-item" style = "padding: 5px 10px; height: 60px; text-align: left;">
+                                        <?php foreach ($logged_user->moderator_requests as $request): ?>
+                                            <li class = "list-group-item notif-item" value = "<?php echo $request->request_id ?>">
                                                 <div class = "col-xs-1 no-padding no-margin">
                                                     <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" style = "width: 40px; margin-right: 10px;"/>
                                                 </div>
-                                                <div class = "col-xs-9 wrap no-margin" style = "padding: 10px 10px;">
+                                                <div class = "col-xs-9 wrap no-margin" style = "padding: 10px;">
                                                     <span class = "text-muted" style = "font-size: 12px;">
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $request->user_id);?>">
+                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $request->user_id); ?>">
                                                             <strong><?php echo $request->first_name . " " . $request->last_name ?></strong>
                                                         </a>
                                                         wants to apply as a moderator in 
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $request->topic_id);?>">
+                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $request->topic_id); ?>">
                                                             <strong><?php echo $request->topic_name ?></strong>
                                                         </a>
                                                         !
@@ -44,7 +43,7 @@
                                                     <button value = "<?php echo $request->request_id ?>" class = "request-decline btn btn-danger btn-xs btn-block"><i class = "fa fa-close"></i> Decline</button>
                                                 </div>
                                             </li>
-                                        <?php endforeach; ?>                                    
+                                        <?php endforeach; ?>
                                     </ul>
                                 <?php else: ?>
                                     <div class = "content-container"><h4 class = "text-center text-warning">Your topics don't have any moderator requests!</h4></div>
@@ -55,15 +54,15 @@
                                 <?php if (!empty($logged_user->moderator_invites)): ?>
                                     <ul class = "list-group notif-modal-overflow">
                                         <?php foreach ($logged_user->moderator_invites as $invite): ?> 
-                                            <li class = "list-group-item" style = "padding: 5px 10px; height: 60px; text-align: left;">
+                                            <li class = "list-group-item notif-item" value = "<?php echo $invite->invite_id ?>">
                                                 <div class = "col-xs-1 no-padding no-margin">
                                                     <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" style = "width: 40px; margin-right: 10px;"/>
                                                 </div>
-                                                <div class = "col-xs-9 wrap no-margin" style = "padding: 10px 10px;">
+                                                <div class = "col-xs-9 wrap no-margin" style = "padding: 10px;">
                                                     <span class = "text-muted" style = "font-size: 12px;">
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $invite->user_id);?>"><strong><?php echo $invite->first_name . " " . $invite->last_name ?></strong></a>
+                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $invite->user_id); ?>"><strong><?php echo $invite->first_name . " " . $invite->last_name ?></strong></a>
                                                         invited you to be a moderator of the topic 
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $invite->topic_id);?>"><strong><?php echo $invite->topic_name ?></strong></a> 
+                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $invite->topic_id); ?>"><strong><?php echo $invite->topic_name ?></strong></a> 
                                                     </span>
                                                 </div>
                                                 <div class = "col-xs-2 no-padding no-margin">

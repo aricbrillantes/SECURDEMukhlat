@@ -29,7 +29,7 @@ class home extends CI_Controller {
             if ($logged_user->role_id === '1') { //Admin Login
                 $this->users->toggle_account($this->input->post("user_id"));
             } else if ($logged_user->role_id === '2') {
-                echo "Restricted Access thingy";
+                echo "Restricted Access!";
             }
         } else {
             //change error - not logged in

@@ -67,6 +67,7 @@ body.sign-in{
     bottom: 5px;
     margin-right: 5px;
     height: 30px;
+    width: 30px;
 }
 
 .nav-left-end{
@@ -115,7 +116,15 @@ body.sign-in{
 
 .post-pic{
     width: 75px;
+    height: 75px;
     margin-bottom: 10px;
+}
+
+.reply-pic{
+    width: 45px; 
+    height: 45px; 
+    margin-left: 10px; 
+    margin-top: 10px;
 }
 
 .comment-pic{
@@ -697,4 +706,48 @@ END CHAT
 .notif-btn{
     padding-bottom: 3px;
     font-size: 12px;
+}
+
+.notif-item{
+    padding: 5px 10px; 
+    height: 60px;
+    text-align: left;
+}
+
+.image-display-container{
+    height: 250px;
+    vertical-align: middle;
+    background-color: #FAFAFA;
+    width: 100%;
+}
+
+.image-attach-display{
+    max-height: 100%;  
+    max-width: 100%; 
+    position: absolute;  
+    top: 0;
+    bottom: 0;  
+    padding: 10px;
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+
+.image-attach-grid{
+    width: 70px;
+    height: 70px;
+}
+
+.image-attach-container{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: auto;
+    white-space: nowrap;
+    height: 100px;
+}
+
+.notif-pic{
+    width: 40px; 
+    height: 40px; 
+    margin-right: 10px;
 }

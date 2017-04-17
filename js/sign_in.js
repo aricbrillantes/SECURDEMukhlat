@@ -23,9 +23,9 @@ function sign_up() {
             type: "POST",
             url: "signin/signup",
             data: $("#sign-up-form").serialize(),
-            success: function(data) {
-                alert(data);
+            success: function() {
                 $("<div id = \"sign-up-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-success\"><i class = \"fa fa-check\"></i> <i>Signing up successful! Your account is pending activation from an Administrator</i></span></div>").hide().appendTo("#sign-up-container").show("fast");
+                $("#sign-up-form").trigger("reset");
             }
         });
     } else {

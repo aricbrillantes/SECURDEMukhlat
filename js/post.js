@@ -51,8 +51,84 @@ $(document).ready(function() {
     $(".delete-btn").on("click", function() {
         var val = $(this).val();
         $("#delete-post-form").attr("action", window.location.origin + "/GetTogetherBeta/topic/delete_post/" + val);
-                
+
         $("#post-delete-confirm").modal("show");
+    });
+
+    $("#thread-attachment-btn").on("click", function() {
+        $("#attachment-modal").modal("show");
+    });
+
+    $(".attachment-btn").on("click", function() {
+        var val = $(this).val();
+
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/upload/load_post_attachments/" + val + "/1",
+            type: "POST",
+            success: function(html) {
+                $("#attachment-modal-container").remove();
+                $(".modal-backdrop").remove();
+                $("#thread-page").append(html);
+                $("#attachment-modal").modal("show");
+            }
+        });
+    });
+
+    $("#thread-attachment-btn").on("click", function() {
+        var val = $(this).val();
+
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/upload/load_post_attachments/" + val + "/0",
+            type: "POST",
+            success: function(html) {
+                $("#attachment-modal-container").remove();
+                $(".modal-backdrop").remove();
+                $("#thread-page").append(html);
+                $("#attachment-modal").modal("show");
+            }
+        });
+    });
+
+    $(document).on('click', ".image-attach-view", function() {
+        var val = $(this).val();
+
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/upload/get_attachment_url/" + val,
+            type: "POST",
+            dataType: "json",
+            success: function(data) {
+                $("#image-attachment").attr('src', window.location.origin + "/GetTogetherBeta/" + data.url);
+                $("#image-modal").modal("show");
+            }
+        });
+    });
+
+    $(document).on('click', ".audio-attach-view", function() {
+        var val = $(this).val();
+
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/upload/get_attachment_url/" + val,
+            type: "POST",
+            dataType: "json",
+            success: function(data) {
+                $("#audio-attachment").attr('src', window.location.origin + "/GetTogetherBeta/" + data.url);
+                $("#audio-modal").modal("show");
+            }
+        });
+    });
+
+    $(document).on('click', ".video-attach-view", function() {
+        var val = $(this).val();
+
+        $.ajax({
+            url: window.location.origin + "/GetTogetherBeta/upload/get_attachment_url/" + val,
+            type: "POST",
+            dataType: "json",
+            success: function(data) {
+                $("#video-attachment").attr('src', window.location.origin + "/GetTogetherBeta/" + data.url);
+                $("#video-modal").modal("show");
+            }
+        });
     });
 });
 

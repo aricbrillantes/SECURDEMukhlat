@@ -23,7 +23,7 @@
                                     <ul class = "list-group notif-modal-overflow">
                                         <?php foreach ($logged_user->notifications as $notif): ?> 
                                             <li class = "list-group-item" style = "text-align: left;">
-                                                <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" style = "width: 40px; margin-right: 10px;"/>
+                                                <img src = "<?php echo $notif->profile_url ? base_url($notif->profile_url) : base_url('images/default.jpg') ?>" class = "no-padding no-margin pull-left img-circle notif-pic"/>
                                                 <div class = "wrap"style = "margin-top: 6px; margin-bottom: 6px;">
                                                     <span class = "text-muted" style = "font-size: 12px;">
                                                         <a class = "btn btn-link no-padding no-margin notif-btn"><strong><?php echo $notif->first_name . " " . $notif->last_name; ?></strong></a>
@@ -69,7 +69,7 @@
                                     <ul class = "list-group notif-modal-overflow">
                                         <?php foreach ($logged_user->shared_topics as $notif): ?> 
                                             <li class = "list-group-item" style = "height: 60px; text-align: left;">
-                                                <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" style = "width: 40px; margin-right: 10px;"/>
+                                                <img src = "<?php echo $notif->profile_url ? base_url($notif->profile_url) : base_url('images/default.jpg') ?>" class = "no-padding no-margin pull-left img-circle notif-pic"/>
                                                 <div class = "wrap"style = "margin-top: 6px; margin-bottom: 6px;">
                                                     <span class = "text-muted" style = "font-size: 12px;">
                                                         <a class = "btn btn-link no-padding no-margin notif-btn"><strong><?php echo $notif->first_name . " " . $notif->last_name ?></strong></a>

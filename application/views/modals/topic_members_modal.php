@@ -25,14 +25,21 @@ $topic = $_SESSION['current_topic'];
                                                 <strong><?php echo $follower->first_name . " " . $follower->last_name ?></strong>
                                             </a>
                                         </h5>
-                                        <button class = "pull-right btn btn-danger btn-xs" style = "margin-top: 10px;"><i class = "fa fa-ambulance"></i></button>
+
+                                        <?php if ($is_moderated || $follower->user_id === $logged_user->user_id): ?>
+                                            <button value = "<?php echo $follower->user_id; ?>" class = "remove-follower-btn pull-right btn btn-danger btn-xs" style = "margin-top: 10px;">
+                                                <i class = "fa fa-close"></i>
+                                            </button>
+                                        <?php endif; ?>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                        <div class = "col-xs-12" style = "padding: 0px 10px;">
-                            <button id = "topic-share-btn" class = "btn btn-primary btn-block" value = "<?php echo $topic->topic_id ?>">Share Topic to Others!</button>
-                        </div>
+                        <?php if ($is_moderated): ?>
+                            <div class = "col-xs-12" style = "padding: 0px 10px;">
+                                <button id = "topic-share-btn" class = "btn btn-primary btn-block" value = "<?php echo $topic->topic_id ?>">Share Topic to Others!</button>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -46,11 +53,27 @@ $topic = $_SESSION['current_topic'];
                                     <li class = "no-up-down-pad list-group-item">
                                         <img src = "<?php echo base_url('images/default.jpg'); ?>" width = "30px" class = "img-circle pull-left" style = "margin-top: 5px; margin-right: 5px;">
                                         <h5 style = "display: inline-block;">
-                                            <a class = "btn btn-link btn-sm no-padding no-margin ellipsis topic-member-name">
+                                            <a class = "btn btn-link btn-sm no-padding no-margin ellipsis topic-member-name" href = "<?php echo base_url('user/profile/' . $moderator->user_id); ?>">
                                                 <strong><?php echo $moderator->first_name . " " . $moderator->last_name ?></strong>
                                             </a>
                                         </h5>
-                                        <button class = "pull-right btn btn-danger btn-xs" style = "margin-top: 10px;"><i class = "fa fa-ambulance"></i></button>
+                                        <?php
+                                        if ($is_moderated):
+                                            if ($moderator->user_id !== $topic->creator_id):
+                                                ?>
+                                                <button value = "<?php echo $moderator->user_id; ?>" class = "remove-mod-btn pull-right btn btn-danger btn-xs" style = "margin-top: 10px;">
+                                                    <i class = "fa fa-close"></i>
+                                                </button>
+                                                <?php
+                                            elseif ($logged_user->user_id === $topic->creator_id):
+                                                ?>
+                                                <button value = "<?php echo $moderator->user_id; ?>" class = "pull-right btn btn-danger btn-xs remove-creator-btn" style = "margin-top: 10px;">
+                                                    <i class = "fa fa-close"></i>
+                                                </button>
+                                                <?php
+                                            endif;
+                                        endif;
+                                        ?>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
