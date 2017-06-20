@@ -3,7 +3,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Signin extends CI_Controller {
-
     public function index() {
         //load roles
         $this->load->model('role_model', 'roles');
@@ -43,7 +42,7 @@ class Signin extends CI_Controller {
 
             echo 1;
         } else {
-            echo hash('sha256', $this->input->post('log_in_password', TRUE));
+            echo 0;
         }
     }
 
@@ -51,5 +50,4 @@ class Signin extends CI_Controller {
         $this->session->sess_destroy();
         redirect('signin', 'refresh');
     }
-
 }
