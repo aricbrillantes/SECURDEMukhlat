@@ -11,12 +11,12 @@
  *
  * @author Arces
  */
-class Search extends CI_Controller {
+class search extends CI_Controller {
 
     public function index() {
         $this->load->model("user_model", "users");
         $this->load->model("topic_model", "topics");
-        $keyword = htmlspecialchars($this->input->get("search-key"));
+        $keyword = htmlspecialchars($this->input->post("search-key"));
         $data['keyword'] = $keyword;
         $data['users'] = $this->users->search_users($keyword);
         $data['topics'] = $this->topics->search_topics($keyword);
