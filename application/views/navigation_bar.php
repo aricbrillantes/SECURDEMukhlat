@@ -21,7 +21,7 @@ echo $logged_user->unanswered_invites . " vs " . $logged_user->unanswered_reques
                 <li><a href="<?php echo base_url('topic') ?>"><strong>Topics</strong></a></li>
             </ul>
             <div class = "search-div nav-right-end">
-                <form action = "<?php echo base_url('search'); ?>" class="navbar-form navbar-left" role = "search" method = "POST">
+                <form action = "<?php echo base_url('search'); ?>" class="navbar-form navbar-left" role = "search" method = "GET">
                     <div class="input-group">
                         <input required type="text" name = "search-key" class="form-control" placeholder="Search">
                         <div class="input-group-btn">
