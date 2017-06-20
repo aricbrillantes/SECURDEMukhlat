@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class admin extends CI_Controller{
+class Admin extends CI_Controller{
     public function view_user(){
         $user_id = $this->uri->segment(3);
         

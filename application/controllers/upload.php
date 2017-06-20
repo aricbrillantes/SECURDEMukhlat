@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class upload extends CI_Controller {
+class Upload extends CI_Controller {
 
     public function index() {
         //something

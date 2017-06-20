@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class signin extends CI_Controller {
+class Signin extends CI_Controller {
 
     public function index() {
         //load roles
@@ -18,7 +18,7 @@ class signin extends CI_Controller {
             'first_name' => htmlspecialchars($input->post('first_name', TRUE)),
             'last_name' => htmlspecialchars($input->post('last_name', TRUE)),
             'email' => htmlspecialchars($input->post('sign_up_email', TRUE)),
-            'password' => htmlspecialchars($input->post('sign_up_password', TRUE)),
+            'password' => hash('sha256', htmlspecialchars($input->post('sign_up_password', TRUE))),
             'birthdate' => htmlspecialchars($input->post('sign_up_birthday', TRUE)),
             'role_id' => htmlspecialchars($input->post('sign_up_role', TRUE)),
             'is_enabled' => false,
@@ -29,21 +29,21 @@ class signin extends CI_Controller {
     public function login() {
         $this->load->model('user_model', 'user');
         $fields = array('email' => $this->input->post('log_in_email'),
-            'password' => $this->input->post('log_in_password'),
+            'password' => hash('sha256', $this->input->post('log_in_password', TRUE)),
             'is_enabled' => true);
 
         $user = $this->user->get_user(true, false, $fields);
 
-        $this->load->model("notification_model", "notifs");
-        
-        $this->notifs->update_user_notifs($user);
-        
         if ($user) {
+            $this->load->model("notification_model", "notifs");
+
+            $this->notifs->update_user_notifs($user);
+
             $_SESSION['logged_user'] = $user;
-            
+
             echo 1;
         } else {
-            echo 0;
+            echo hash('sha256', $this->input->post('log_in_password', TRUE));
         }
     }
 

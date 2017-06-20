@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class invite extends CI_Controller {
+class Invite extends CI_Controller {
 
     public function index() {
         $topic = $_SESSION['current_topic'];

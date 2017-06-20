@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class topic_model extends CI_Model {
+class Topic_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();

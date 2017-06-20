@@ -1,6 +1,6 @@
 <?php
 
-class user_model extends CI_Model {
+class User_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -16,22 +16,23 @@ class user_model extends CI_Model {
 
         $user = $query->row();
 
-        if ($load_topics) {
-            $this->load->model('topic_model', 'topics');
-            $user->topics = $this->topics->get_user_topics($user->user_id);
-            $user->followed_topics = $this->topics->get_followed_topics($user->user_id);
-            $user->moderated_topics = $this->topics->get_moderated_topics($user->user_id);
+        if ($user) {
+            if ($load_topics) {
+                $this->load->model('topic_model', 'topics');
+                $user->topics = $this->topics->get_user_topics($user->user_id);
+                $user->followed_topics = $this->topics->get_followed_topics($user->user_id);
+                $user->moderated_topics = $this->topics->get_moderated_topics($user->user_id);
+            }
+
+            if ($load_activities) {
+                $logged_user = $_SESSION['logged_user'];
+                $this->load->model('post_model', 'posts');
+                $user->activities = $this->posts->get_user_activities($user->user_id, $logged_user->user_id);
+
+                $user->post_count = $this->posts->get_post_count($user->user_id);
+                $user->vote_points = $this->posts->get_vote_points($user->user_id);
+            }
         }
-
-        if ($load_activities) {
-            $logged_user = $_SESSION['logged_user'];
-            $this->load->model('post_model', 'posts');
-            $user->activities = $this->posts->get_user_activities($user->user_id, $logged_user->user_id);
-
-            $user->post_count = $this->posts->get_post_count($user->user_id);
-            $user->vote_points = $this->posts->get_vote_points($user->user_id);
-        }
-
         return $user;
     }
 
@@ -121,7 +122,7 @@ class user_model extends CI_Model {
         $record = new stdClass();
 //        number of topics /
         $record->topic_count = $this->topics->get_topic_count($user_id);
-        
+
 //        number of topics followed
         $record->followed_topic_count = $this->topics->get_followed_topic_count($user_id);
 

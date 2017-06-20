@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class attachment_model extends CI_Model {
+class Attachment_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();

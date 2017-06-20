@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class topic extends CI_Controller {
+class Topic extends CI_Controller {
 
     public function index() {
         $logged_user = $_SESSION['logged_user'];

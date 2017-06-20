@@ -11,7 +11,7 @@
  *
  * @author Arces
  */
-class notifications extends CI_Controller {
+class Notifications extends CI_Controller {
 
     public function index() {
         $logged_user = $_SESSION['logged_user'];
