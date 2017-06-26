@@ -751,3 +751,7 @@ END CHAT
     height: 40px; 
     margin-right: 10px;
 }
+
+.record-tab{
+    padding: 20px;
+}

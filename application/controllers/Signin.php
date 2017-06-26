@@ -3,6 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Signin extends CI_Controller {
+
     public function index() {
         //load roles
         $this->load->model('role_model', 'roles');
@@ -12,17 +13,26 @@ class Signin extends CI_Controller {
 
     public function signup() {
         $input = $this->input;
+        $this->load->model('user_model', 'user');
 
-        $data = array(
-            'first_name' => htmlspecialchars($input->post('first_name', TRUE)),
-            'last_name' => htmlspecialchars($input->post('last_name', TRUE)),
-            'email' => htmlspecialchars($input->post('sign_up_email', TRUE)),
-            'password' => hash('sha256', htmlspecialchars($input->post('sign_up_password', TRUE))),
-            'birthdate' => htmlspecialchars($input->post('sign_up_birthday', TRUE)),
-            'role_id' => htmlspecialchars($input->post('sign_up_role', TRUE)),
-            'is_enabled' => false,
-        );
-        $this->db->insert('tbl_users', $data);
+        $fields = array('email' => $input->post('sign_up_email'));
+        $user = $this->user->get_user(false, false, $fields);
+        if (!$user) {
+            $data = array(
+                'first_name' => htmlspecialchars($input->post('first_name', TRUE)),
+                'last_name' => htmlspecialchars($input->post('last_name', TRUE)),
+                'email' => htmlspecialchars($input->post('sign_up_email', TRUE)),
+                'password' => hash('sha256', htmlspecialchars($input->post('sign_up_password', TRUE))),
+                'birthdate' => htmlspecialchars($input->post('sign_up_birthday', TRUE)),
+                'role_id' => htmlspecialchars($input->post('sign_up_role', TRUE)),
+                'is_enabled' => false,
+            );
+            $this->db->insert('tbl_users', $data);
+            
+            echo 1;
+        } else{
+            echo 0;
+        }
     }
 
     public function login() {
@@ -50,4 +60,5 @@ class Signin extends CI_Controller {
         $this->session->sess_destroy();
         redirect('signin', 'refresh');
     }
+
 }

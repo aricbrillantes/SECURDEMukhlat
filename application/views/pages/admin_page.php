@@ -25,7 +25,7 @@ $logged_user = $_SESSION['logged_user'];
                         <?php foreach ($users as $user): ?>
                             <li class = "list-group-item admin-list-item">
                                 <img src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg') ?>" class = "no-padding pull-left img-circle" width = "45px" height = "45px"/> 
-                                <h4 class = "no-padding admin-list-name"><?php echo htmlspecialchars_decode($user->first_name) . " " . $user->last_name ?> 
+                                <h4 class = "no-padding admin-list-name"><?php echo $user->first_name . " " . $user->last_name ?> 
                                     <!-- ADMIN -->
                                     <?php if ($user->role_id === '1'): ?>
                                         <i class = "text-muted btn-sm no-padding">Administrator <?php echo ($logged_user->user_id === $user->user_id) ? '(You)' : '' ?></i>

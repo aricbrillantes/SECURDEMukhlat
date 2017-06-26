@@ -4,7 +4,7 @@ function log_in() {
         type: "POST",
         url: "signin/login",
         data: $("#log-in-form").serialize(),
-        success: function(data) {
+        success: function (data) {
             if (data === '1') {
                 window.location.href = "home";
             } else {
@@ -23,9 +23,14 @@ function sign_up() {
             type: "POST",
             url: "signin/signup",
             data: $("#sign-up-form").serialize(),
-            success: function() {
-                $("<div id = \"sign-up-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-success\"><i class = \"fa fa-check\"></i> <i>Signing up successful! Your account is pending activation from an Administrator</i></span></div>").hide().appendTo("#sign-up-container").show("fast");
-                $("#sign-up-form").trigger("reset");
+            success: function (data) {
+                if (data === '1') {
+                    $("<div id = \"sign-up-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-success\"><i class = \"fa fa-check\"></i> <i>Signing up successful! Your account is pending activation from an Administrator</i></span></div>").hide().appendTo("#sign-up-container").show("fast");
+                    $("#sign-up-form").trigger("reset");
+                } else{
+                    $("<div id = \"sign-up-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-warning\"><i class = \"fa fa-warning\"></i> <i>Oops! The e-mail address you entered is already taken!</i></span></div>").hide()
+                            .appendTo("#sign-up-container").show("fast");
+                }
             }
         });
     } else {
