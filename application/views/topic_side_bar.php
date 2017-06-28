@@ -24,7 +24,7 @@ $logged_user = $_SESSION['logged_user'];
                 endforeach;
                 else:
                 ?>
-                <li>No Topics</li>
+                <li><h5 class = "text-center text-warning">No Topics here!</h5></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -48,7 +48,7 @@ $logged_user = $_SESSION['logged_user'];
                 endforeach;
                 else:
                 ?>
-                <li>No Topics</li>
+                <li><h5 class = "text-center text-warning">No Topics here!</h5></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -72,7 +72,7 @@ $logged_user = $_SESSION['logged_user'];
                 endforeach;
                 else:
                 ?>
-                <li>No Topics</li>
+                <li><h5 class = "text-center text-warning">No Topics here!</h5></li>
                 <?php endif; ?>
             </ul>
         </div>

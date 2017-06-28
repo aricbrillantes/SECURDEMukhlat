@@ -168,6 +168,15 @@ body.sign-in{
     border: 1px solid #CFD8DC;
 }
 
+.post-preview{
+     height: 230px; 
+     overflow-y: auto;
+}
+
+#edit-topic-btn, #cancel-topic-btn{
+    margin-top: 5px;
+}
+
 .home-content-header{
     background-color: #F5F5F5;
     border-top-left-radius: 3px;
@@ -250,7 +259,13 @@ body.sign-in{
 }
 
 .topic-preview-div{
-    height: 500px;
+    height: 300px;
+}
+
+.topic-description-div{
+    height: 195px;
+    padding: 5px;
+    margin-bottom: 0px;
 }
 
 .topic-no-preview{
@@ -263,7 +278,7 @@ body.sign-in{
 }
 
 .topic-no-preview span > h3{
-    line-height: 400px;
+    line-height: 300px;
     text-align: center;
     color: #90A4AE;
 }
@@ -291,6 +306,26 @@ body.sign-in{
     color: white;
     margin-top: 0px;
     padding: 5px;
+}
+
+.topic-intro-header{
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.topic-intro-content{
+    height: 65%;
+    border-top-left-radius: 0px;
+    margin-bottom: 5px;
+    border-top-right-radius: 0px;
+}
+
+#edit-topic-text{
+    font-size: 12px;
+}
+
+#desc-edit{
+    margin-top: 5px;
 }
 
 .user-topic-container{

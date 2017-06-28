@@ -35,11 +35,9 @@ $topic = $_SESSION['current_topic'];
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                        <?php if ($is_moderated): ?>
-                            <div class = "col-xs-12" style = "padding: 0px 10px;">
-                                <button id = "topic-share-btn" class = "btn btn-primary btn-block" value = "<?php echo $topic->topic_id ?>">Share Topic to Others!</button>
-                            </div>
-                        <?php endif; ?>
+                        <div class = "col-xs-12" style = "padding: 0px 10px;">
+                            <button id = "topic-share-btn" class = "btn btn-primary btn-block" value = "<?php echo $topic->topic_id ?>">Share Topic to Others!</button>
+                        </div>
                     </div>
                 </div>
 

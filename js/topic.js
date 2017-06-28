@@ -1,17 +1,17 @@
 //from stackoverflow
-$(document).on('show.bs.modal', '.modal', function() {
+$(document).on('show.bs.modal', '.modal', function () {
     var zIndex = 1040 + (10 * $('.modal:visible').length);
     $(this).css('z-index', zIndex);
-    setTimeout(function() {
+    setTimeout(function () {
         $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
     }, 0);
 });
-$(document).on('hidden.bs.modal', '.modal', function() {
+$(document).on('hidden.bs.modal', '.modal', function () {
     $('.modal:visible').length && $(document.body).addClass('modal-open');
 });
 
-$(document).ready(function() {
-    $("#create-topic-btn").on("click", function() {
+$(document).ready(function () {
+    $("#create-topic-btn").on("click", function () {
         if ($("#topic-title").val() && $("#topic-description").val()) {
             $("#create-confirmation-modal").modal('show');
             $("#topic-title").parent().removeClass("has-error");
@@ -29,11 +29,11 @@ $(document).ready(function() {
         }
     });
 
-    $("#create-topic-proceed").on("click", function() {
+    $("#create-topic-proceed").on("click", function () {
         $("#create-topic-form").submit();
     });
 
-    $("#create-post-btn").on("click", function() {
+    $("#create-post-btn").on("click", function () {
         if ($("#post-title").val() && $("#post-content").val()) {
             $("#post-confirmation-modal").modal('show');
             $("#post-title").parent().removeClass("has-error");
@@ -51,11 +51,11 @@ $(document).ready(function() {
         }
     });
 
-    $("#create-post-proceed").on("click", function() {
+    $("#create-post-proceed").on("click", function () {
         $("#create-post-form").submit();
     });
 
-    $("#edit-post-btn").on("click", function() {
+    $("#edit-post-btn").on("click", function () {
         if ($("#post-content").val()) {
             $("#post-edit-confirm").modal('show');
             $("#post-title").parent().removeClass("has-error");
@@ -68,37 +68,37 @@ $(document).ready(function() {
         }
     });
 
-    $("#edit-post-proceed").on("click", function() {
+    $("#edit-post-proceed").on("click", function () {
         $("#edit-post-form").submit();
     });
 
 
-    $(".topic-post-entry").on("click", function() {
+    $(".topic-post-entry").on("click", function () {
         var post_id = $(this).data("value")
         //remove div
         $("#post-preview").remove();
 
-        $("#no-preview").hide('slow', function() {
+        $("#no-preview").hide('slow', function () {
             $(this).remove();
         });
 
         //get post preview
         $.post(window.location.origin + "/GetTogetherBeta/topic/preview/" + post_id,
-                function(html) {
+                function (html) {
                     $(html).hide().prependTo("#preview-div").show("slow");
                 }
         );
 
     });
 
-    $("#topic-follow-btn").on("click", function() {
+    $("#topic-follow-btn").on("click", function () {
         var follow_btn = $(this);
         var topic_id = follow_btn.val();
         $(".follow-label").remove();
         $.ajax({
             url: window.location.origin + "/GetTogetherBeta/topic/follow/" + topic_id,
             type: "POST",
-            success: function() {
+            success: function () {
                 if (follow_btn.hasClass("btn-primary")) {
                     //follow
                     follow_btn.removeClass("btn-primary");
@@ -115,14 +115,14 @@ $(document).ready(function() {
     });
 
 
-    $(".reply-btn").on("click", function() {
+    $(".reply-btn").on("click", function () {
         var post_id = $(this).val();
         $.ajax({
             url: window.location.origin + "/GetTogetherBeta/topic/load_post/reply",
             type: "POST",
             dataType: "json",
             data: {post_id: post_id},
-            success: function(data) {
+            success: function (data) {
                 $("#reply-user").html("<strong>Reply to " + data.first_name + "</strong>");
                 $("#send-reply-user").html("<strong>Send reply to " + data.first_name + "</strong>");
                 $("#create-reply-form").attr("action", window.location.origin + "/GetTogetherBeta/topic/reply/" + data.post_id);
@@ -131,7 +131,7 @@ $(document).ready(function() {
         });
     });
 
-    $("#create-reply-btn").on("click", function() {
+    $("#create-reply-btn").on("click", function () {
         if ($("#reply-content").val()) {
             $("#reply-confirmation-modal").modal('show');
             $("#reply-content").parent().removeClass("has-error");
@@ -143,53 +143,56 @@ $(document).ready(function() {
         }
     });
 
-    $("#create-reply-proceed").on("click", function() {
+    $("#create-reply-proceed").on("click", function () {
         $("#create-reply-form").submit();
     });
 
-    $("#topic-share-btn").on("click", function() {
+    $("#topic-share-btn").on("click", function () {
         $("#share-modal").modal("show");
     });
 
-    $("#topic-invite-btn").on("click", function() {
+    $("#topic-invite-btn").on("click", function () {
         $("#invitation-modal").modal("show");
     });
 
-    $('.name-share').on('click', function() {
+    $('.name-share').on('click', function () {
         $("#user-share-count").html($('.name-share:checked').length);
     });
 
-    $('.name-invite').on('click', function() {
+    $('.name-invite').on('click', function () {
         $("#user-invite-count").html($('.name-invite:checked').length);
     });
 
-    $('#share-btn').on('click', function() {
+    $('#share-btn').on('click', function () {
         $("#share-form").submit();
     });
 
-    $('#invite-btn').on('click', function() {
+    $('#invite-btn').on('click', function () {
         $("#invite-form").submit();
     })
 
-    $('#edit-topic-btn').on('click', function() {
+    $('#edit-topic-btn').on('click', function () {
         $("#desc-edit").toggleClass("hidden");
         $("#desc-container").toggleClass("hidden");
+        $("#desc-creator").toggleClass("hidden");
     });
 
-    $('#edit-topic-cancel').on('click', function() {
+    $('#edit-topic-cancel').on('click', function () {
         $("#desc-edit").addClass("hidden");
         $("#desc-container").removeClass("hidden");
+        $("#desc-creator").removeClass("hidden");
     });
 
-    $('#edit-topic-save').on('click', function() {
+    $('#edit-topic-save').on('click', function () {
         var id = $(this).val();
         var desc = $("#edit-topic-text").val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/edit_topic/' + id,
             type: 'POST',
             data: {topic_description: desc},
-            success: function(data) {
+            success: function (data) {
                 $("#desc-edit").addClass("hidden");
+                $("#desc-creator").removeClass("hidden");
                 $("#desc-container").removeClass("hidden");
                 $("#desc-container").html(data);
                 $("#edit-topic-text").val(data);
@@ -197,21 +200,21 @@ $(document).ready(function() {
         });
     });
 
-    $('#cancel-topic-btn').on('click', function() {
+    $('#cancel-topic-btn').on('click', function () {
         $("#cancel-topic-modal").modal("show");
     });
 
-    $("#topic-invite-btn").on("click", function() {
+    $("#topic-invite-btn").on("click", function () {
         $("#invitation-modal").modal("show");
     });
 
-    $("#topic-apply-btn").on("click", function() {
+    $("#topic-apply-btn").on("click", function () {
         var apply_btn = $(this);
 
         if (apply_btn.hasClass("btn-primary")) {
             $.ajax({
                 url: window.location.origin + '/GetTogetherBeta/topic/apply',
-                success: function() {
+                success: function () {
                     apply_btn.removeClass("btn-primary");
                     apply_btn.addClass("btn-gray");
                     apply_btn.html("Pending Moderator Request");
@@ -220,7 +223,7 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 url: window.location.origin + '/GetTogetherBeta/topic/apply',
-                success: function() {
+                success: function () {
                     apply_btn.removeClass("btn-danger");
                     apply_btn.removeClass("btn-gray");
                     apply_btn.addClass("btn-primary");
@@ -230,7 +233,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#topic-apply-btn").on("mouseover", function() {
+    $("#topic-apply-btn").on("mouseover", function () {
         if ($(this).hasClass("btn-gray")) {
             $(this).removeClass("btn-gray");
             $(this).html("Cancel Moderator Request");
@@ -238,7 +241,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#topic-apply-btn").on("mouseout", function() {
+    $("#topic-apply-btn").on("mouseout", function () {
         if ($(this).hasClass("btn-danger")) {
             $(this).removeClass("btn-danger");
             $(this).addClass("btn-gray");
@@ -246,11 +249,11 @@ $(document).ready(function() {
         }
     });
 
-    $(".remove-follower-btn").on("click", function() {
+    $(".remove-follower-btn").on("click", function () {
         var val = $(this).val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/load_remove/' + val + "/1",
-            success: function(html) {
+            success: function (html) {
                 $('#remove-member-confirm').remove();
                 $('#topic-page').append(html);
                 $('#remove-member-confirm').modal('show');
@@ -258,11 +261,11 @@ $(document).ready(function() {
         });
     });
 
-    $(".remove-mod-btn").on("click", function() {
+    $(".remove-mod-btn").on("click", function () {
         var val = $(this).val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/load_remove/' + val + "/2",
-            success: function(html) {
+            success: function (html) {
                 $('#remove-member-confirm').remove();
                 $('#topic-page').append(html);
                 $('#remove-member-confirm').modal('show');
@@ -270,11 +273,11 @@ $(document).ready(function() {
         });
     });
 
-    $(".remove-creator-btn").on("click", function() {
+    $(".remove-creator-btn").on("click", function () {
         var val = $(this).val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/load_remove/' + val + "/3",
-            success: function(html) {
+            success: function (html) {
                 $('#remove-member-confirm').remove();
                 $('#topic-page').append(html);
                 $('#remove-member-confirm').modal('show');
@@ -282,25 +285,25 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click', '#remove-follower-proceed', function() {
+    $(document).on('click', '#remove-follower-proceed', function () {
         var val = $('#remove-follower-proceed').val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/remove_member/' + val + "/1",
         });
     });
 
-    $(document).on('click', '#remove-moderator-proceed', function() {
+    $(document).on('click', '#remove-moderator-proceed', function () {
         var val = $('#remove-moderator-proceed').val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/remove_member/' + val + "/2",
         });
     });
 
-    $(document).on('click', '#remove-creator-proceed', function() {
+    $(document).on('click', '#remove-creator-proceed', function () {
         var val = $('#remove-creator-proceed').val();
         $.ajax({
             url: window.location.origin + '/GetTogetherBeta/topic/remove_member/' + val + "/3",
-            success: function(){
+            success: function () {
                 window.location = window.location.origin + '/GetTogetherBeta/topic/';
             }
         });

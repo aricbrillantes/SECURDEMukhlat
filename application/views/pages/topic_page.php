@@ -18,9 +18,9 @@ $c_topic = $_SESSION['current_topic'];
                         </strong>
                     </h4>
                 </a>
-                <button class = "btn btn-link" data-toggle = "modal" data-target = "#topic-modal" style = "padding: 10px 0px;">
+<!--                <button class = "btn btn-link" data-toggle = "modal" data-target = "#topic-modal" style = "padding: 10px 0px;">
                     <i class = "fa fa-question-circle-o"></i><b> About <?php echo $c_topic->topic_name ?></b>
-                </button>
+                </button>-->
                 <?php if (!$is_followed): ?>
                     <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $c_topic->topic_id ?>">
                         <i class = "fa fa-plus-circle"></i> Follow Topic
@@ -38,9 +38,44 @@ $c_topic = $_SESSION['current_topic'];
             <!-- Topic Page Content -->
             <div class = "col-md-12 content-container">
                 <!-- Topic Post Preview -->
-                <div id = "preview-div" class = "col-sm-6 well topic-preview-div">
-                    <div id = "no-preview"class = "topic-no-preview text-center">
-                        <span><h3>Click a post to preview</h3></span>
+                <div class = "col-sm-6">
+                    <div class = "col-sm-12 topic-description-div no-padding">
+                        <h4 class = "no-margin text-center user-topic-header topic-intro-header">
+                            <strong><?php echo $c_topic->topic_name ?></strong>
+                            
+                            <?php if ($is_moderated): ?>
+                            <br>
+                            <button id = "edit-topic-btn" class = "btn btn-default btn-xs"><i class = "fa fa-pencil"></i> Edit Description</button>
+
+                            <?php if ($c_topic->creator_id === $logged_user->user_id): ?>
+                                <button type = "button" id = "cancel-topic-btn" class = "btn btn-xs btn-danger" style = "margin-left: 5px;"><i class = "fa fa-trash"></i> Cancel Topic</button>
+                            <?php endif; 
+                            endif;?>
+                        </h4>
+                        <div class = "content-container topic-intro-content">
+                            <p id = "desc-creator" class = "no-margin text-muted" align = "center">
+                                <small><i>by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $c_topic->user->user_id); ?>"><?php echo $c_topic->user->first_name . " " . $c_topic->user->last_name; ?></a></i></small>
+                            </p>
+                            <?php if ($is_moderated): ?>
+                                <div id = "desc-edit" class = "col-md-12 hidden">
+                                    <div class = "form-group" style = "margin-bottom: 5px;">
+                                        <textarea id = "edit-topic-text" maxlength = "256" class = "form-control"><?php echo $c_topic->topic_description ?></textarea>
+                                    </div>
+                                    <div class = "form-group pull-right" style = "margin-top: 0px;">
+                                        <button value = "<?php echo $c_topic->topic_id ?>" id = "edit-topic-save" class = "btn btn-primary btn-sm">Save</button>
+                                        <button id = "edit-topic-cancel" type = "button" class = "btn btn-gray btn-sm">Cancel</button>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <p id = "desc-container" class = "no-margin wrap text-center">
+                                <?php echo $c_topic->topic_description ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div id = "preview-div" class = "col-sm-12 well topic-preview-div">
+                        <div id = "no-preview"class = "topic-no-preview text-center">
+                            <span><h3>Click a post to preview</h3></span>
+                        </div>
                     </div>
                 </div>
                 <!-- Topic Post List -->
@@ -79,7 +114,7 @@ $c_topic = $_SESSION['current_topic'];
             </div>
         </div>
     </div>
-    
+
     <?php
     include(APPPATH . 'views/modals/create_post_modal.php');
     include(APPPATH . 'views/modals/topic_description_modal.php');

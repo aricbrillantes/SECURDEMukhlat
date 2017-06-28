@@ -31,7 +31,7 @@ $logged_user = $_SESSION['logged_user'];
                                         <i class = "text-muted btn-sm no-padding">Administrator <?php echo ($logged_user->user_id === $user->user_id) ? '(You)' : '' ?></i>
                                         <!-- USERS //put modal -->
                                     <?php elseif ($user->role_id === '2'): ?>
-                                        <button value = "<?php echo $user->user_id ?>" class = "record-view-btn btn btn-link btn-xs"><i class = "fa fa-question-circle-o"></i> <i>Record of <?php echo $user->first_name ?></i></button>
+                                        <button value = "<?php echo $user->user_id ?>" class = "disabled record-view-btn btn btn-link btn-xs"><i class = "fa fa-question-circle-o"></i> <i>Record of <?php echo $user->first_name ?></i></button>
                                     <?php endif ?>
                                 </h4>
                                 <?php

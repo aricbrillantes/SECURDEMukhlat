@@ -1,5 +1,5 @@
 <div id = "post-preview">
-    <div class = "col-md-12 content-container" style = "height: 430px; overflow-y: auto;">
+    <div class = "col-md-12 content-container post-preview">
         <div class = "col-sm-2 no-padding">
             <img class = "pull-left img-circle" width = "85px" height = "85px" src = "<?php echo $post->user->profile_url ? base_url($post->user->profile_url) : base_url('images/default.jpg') ?>">
             <div class = "text-center">

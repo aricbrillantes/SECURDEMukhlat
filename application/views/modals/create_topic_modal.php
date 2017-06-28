@@ -11,11 +11,11 @@
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your topic:</label>
-                        <input type="text" required class="form-control" name = "topic_name" id = "topic-title" placeholder = "Title of your topic"/>
+                        <input type="text" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic"/>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "description">Enter a description for your topic:</label>
-                        <textarea class = "form-control" required name = "topic_description" id = "topic-description" placeholder = "Tell something about your topic!"></textarea>
+                        <textarea class = "form-control" required name = "topic_description" maxlength="256" id = "topic-description" placeholder = "Tell something about your topic!"></textarea>
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
