@@ -166,8 +166,8 @@ class Post_model extends CI_Model {
     public function get_post_count($user_id) {
         $this->db->select('COUNT(*) as post_count');
         $this->db->from('tbl_posts');
-        $this->db->where('user_id = ', $user_id);
-
+        $this->db->where(array('user_id' => $user_id, 'is_deleted' => '0'));
+        
         $count = $this->db->get()->row();
 
         if ($count) {
@@ -182,6 +182,7 @@ class Post_model extends CI_Model {
         $this->db->from('tbl_posts');
         $this->db->where('user_id = ', $user_id);
         $this->db->where('post_id = root_id');
+        $this->db->where('is_deleted = 0');
 
         $count = $this->db->get()->row();
 

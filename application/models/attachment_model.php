@@ -17,9 +17,10 @@ class Attachment_model extends CI_Model {
         parent::__construct();
     }
 
-    public function insert_attachment($post_id, $file_url, $type){
+    public function insert_attachment($post_id, $file_url, $caption, $type){
         $data = array('post_id' => $post_id,
             'file_url' => $file_url,
+            'caption' => $caption,
             'attachment_type_id' => $type);
         
         $this->db->set('date_uploaded', 'NOW()', FALSE);
@@ -33,7 +34,7 @@ class Attachment_model extends CI_Model {
     }
     
     public function get_thread_attachments($post_id){
-        $this->db->select('a.attachment_id, p.post_id, a.attachment_type_id, a.date_uploaded, a.file_url');
+        $this->db->select('a.attachment_id, p.post_id, a.attachment_type_id, a.caption, a.date_uploaded, a.file_url');
         $this->db->from('tbl_attachments as a');
         $this->db->join('tbl_posts as p', 'p.post_id = a.post_id');
         $this->db->where('p.root_id = ', $post_id);
