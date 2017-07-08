@@ -85,8 +85,8 @@ class Topic extends CI_Controller {
 
         $data = array(
             'creator_id' => $logged_user->user_id,
-            'topic_name' => htmlspecialchars($input->post('topic_name', TRUE)),
-            'topic_description' => htmlspecialchars($input->post('topic_description', TRUE)),
+            'topic_name' => htmlspecialchars($input->post('topic_name')),
+            'topic_description' => htmlspecialchars($input->post('topic_description')),
         );
 
         $this->db->set('date_created', 'NOW()', FALSE);
@@ -110,6 +110,12 @@ class Topic extends CI_Controller {
 
         //add topic to topics of logged user
         $logged_user->topics[] = $topic;
+
+        //add topic to followed topics of logged user
+        $logged_user->followed_topics[] = $topic;
+
+        //add topic to moderated topics of logged user
+        $logged_user->moderated_topics[] = $topic;
         redirect('topic/view/' . $topic_id);
     }
 
@@ -171,10 +177,11 @@ class Topic extends CI_Controller {
             'user_id' => $logged_user->user_id,
             'root_id' => 0,
             'topic_id' => $topic->topic_id,
-            'post_title' => htmlspecialchars($input->post('post_title', TRUE)),
-            'post_content' => htmlspecialchars($input->post('post_content', TRUE)),
+            'post_title' => htmlspecialchars($input->post('post_title')),
+            'post_content' => htmlspecialchars($input->post('post_content')),
         );
 
+        $caption = $input->post('attachment_caption');
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
 
@@ -191,7 +198,7 @@ class Topic extends CI_Controller {
         $this->load->library('upload', $config);
 
         //image
-        if ($_FILES['post_image']['name']) {
+        if (isset($_FILES['post_image']['name'])) {
             if (!$this->upload->do_upload('post_image')) {
                 echo $this->upload->display_errors();
             } else {
@@ -201,14 +208,12 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 1);
-                echo 'done!';
+                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
             }
         }
 
         //audio
-        if ($_FILES AND $_FILES['post_audio']['name']) {
-
+        if (isset($_FILES['post_audio']['name'])) {
             if (!$this->upload->do_upload('post_audio')) {
                 echo $this->upload->display_errors();
             } else {
@@ -218,12 +223,12 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 2);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
             }
         }
 
         //video
-        if ($_FILES AND $_FILES['post_video']['name']) {
+        if (isset($_FILES['post_video']['name'])) {
 
             if (!$this->upload->do_upload('post_video')) {
                 echo $this->upload->display_errors();
@@ -234,12 +239,12 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 3);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
             }
         }
 
         //file
-        if ($_FILES AND $_FILES['post_file']['name']) {
+        if (isset($_FILES['post_file']['name'])) {
             if (!$this->upload->do_upload('post_file')) {
                 echo $this->upload->display_errors();
             } else {
@@ -249,7 +254,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 4);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
             }
         }
 
@@ -317,7 +322,8 @@ class Topic extends CI_Controller {
         $input = $this->input;
         $logged_user = $_SESSION['logged_user'];
         $topic = $_SESSION['current_topic'];
-
+        
+        $caption = $input->post('attachment_caption');
         //get parent then reply
         $this->load->model("post_model", "posts");
         $parent_post = $this->posts->get_post(false, false, false, $id);
@@ -326,8 +332,8 @@ class Topic extends CI_Controller {
             'user_id' => $logged_user->user_id,
             'root_id' => $parent_post->root_id,
             'topic_id' => $topic->topic_id,
-            'post_title' => htmlspecialchars($input->post('reply_title', TRUE)),
-            'post_content' => htmlspecialchars($input->post('reply_content', TRUE)),
+            'post_title' => htmlspecialchars($input->post('reply_title')),
+            'post_content' => htmlspecialchars($input->post('reply_content')),
         );
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
@@ -356,7 +362,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 1);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
             }
         }
 
@@ -372,7 +378,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 2);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
             }
         }
 
@@ -388,7 +394,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 3);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
             }
         }
 
@@ -403,7 +409,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, 4);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
             }
         }
 
@@ -420,8 +426,8 @@ class Topic extends CI_Controller {
         //get parent then reply
         $this->load->model("post_model", "posts");
         $data = array(
-            'post_title' => htmlspecialchars($input->post('post_title', TRUE)),
-            'post_content' => htmlspecialchars($input->post('post_content', TRUE)),
+            'post_title' => htmlspecialchars($input->post('post_title')),
+            'post_content' => htmlspecialchars($input->post('post_content')),
         );
 
         $this->posts->update_post($post_id, $data);
@@ -539,6 +545,32 @@ class Topic extends CI_Controller {
 
         $this->topics->update_topic($topic_id, $data);
 
+        //remove topic from logged user
+        $logged_user = $_SESSION['logged_user'];
+
+        $topic_index = -1;
+        foreach ($logged_user->topics as $key => $topic) {
+            if ($topic->topic_id === $topic_id) {
+                $topic_index = $key;
+            }
+        }
+        unset($logged_user->topics[$topic_index]);
+
+        //remove also from followed topics
+        foreach ($logged_user->followed_topics as $key => $topic) {
+            if ($topic->topic_id === $topic_id) {
+                $topic_index = $key;
+            }
+        }
+        unset($logged_user->followed_topics[$topic_index]);
+
+        //remove also from moderated topics
+        foreach ($logged_user->moderated_topics as $key => $topic) {
+            if ($topic->topic_id === $topic_id) {
+                $topic_index = $key;
+            }
+        }
+        unset($logged_user->moderated_topics[$topic_index]);
         redirect(base_url('topic'));
     }
 
@@ -550,30 +582,31 @@ class Topic extends CI_Controller {
 
         $this->notifs->apply_moderator($user->user_id, $topic->topic_id);
     }
-    
-    public function load_remove(){
+
+    public function load_remove() {
         $user_id = $this->uri->segment(3);
         $type = $this->uri->segment(4);
-        
+
         $this->load->model('user_model', 'users');
         $data['user'] = $this->users->get_user(false, false, array('user_id' => $user_id));
         $data['type'] = $type;
-        
+
         $this->load->view('modals/remove_member_modal', $data);
     }
-    
-    public function remove_member(){
+
+    public function remove_member() {
         $user_id = $this->uri->segment(3);
         $topic = $_SESSION['current_topic'];
         $type = $this->uri->segment(4);
         $this->load->model('topic_model', 'topics');
-        
-        if($type === '1'){ //1 => follower
+
+        if ($type === '1') { //1 => follower
             $this->topics->remove_member($user_id, $topic->topic_id, 1);
-        } else if($type === '2'){ //2 => moderator
+        } else if ($type === '2') { //2 => moderator
             $this->topics->remove_member($user_id, $topic->topic_id, 2);
-        } else if($type === '3'){ //3 => creator
+        } else if ($type === '3') { //3 => creator
             $this->topics->remove_member($user_id, $topic->topic_id, 3);
         }
     }
+
 }

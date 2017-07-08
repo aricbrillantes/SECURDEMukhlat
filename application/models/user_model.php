@@ -119,6 +119,7 @@ class User_model extends CI_Model {
     public function get_user_records($user_id) {
         $this->load->model('topic_model', 'topics');
         $this->load->model('post_model', 'posts');
+        $this->load->model('record_model', 'records');
         $record = new stdClass();
 //        number of topics /
         $record->topic_count = $this->topics->get_topic_count($user_id);
@@ -144,6 +145,20 @@ class User_model extends CI_Model {
 //        number of replies / 
         $record->reply_count = $this->posts->get_reply_count($user_id);
 
+        //upvotes
+        $record->upvotes = $this->records->get_user_upvotes($user_id);
+
+        //downvotes
+        $record->downvotes = $this->records->get_user_downvotes($user_id);
+        
+        //posts started
+        $record->post_start = $this->records->get_post_start($user_id);
+        
+        //posts published
+        $record->post_published = $this->records->get_post_published($user_id);
+        
+        //replies
+        $record->replies = $this->records->get_user_replies($user_id);
         return $record;
     }
 

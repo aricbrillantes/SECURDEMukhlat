@@ -1,3 +1,6 @@
+<?php
+$topic = $_SESSION['current_topic'];
+?>
 <!-- Create Post Modal -->
 <div id="edit-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -5,7 +8,7 @@
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Edit your post in <?php echo "topic name" ?></strong></h4>
+                <h4 class="modal-title"><strong>Edit your post in <?php echo $topic->topic_name ?></strong></h4>
             </div>
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/edit_post'); ?>" id = "edit-post-form" method = "POST">
                 <div class="col-md-12 modal-body">

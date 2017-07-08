@@ -790,3 +790,18 @@ END CHAT
 .record-tab{
     padding: 20px;
 }
+
+#thread-attachment-btn{
+    margin-top: 10px; 
+    margin-right: 20px;
+}
+
+.attach-btn-text{
+    padding: 0px;
+    margin: 0px;
+    font-size: 12px;
+}
+
+#attachment-preview{
+    height: 60px;
+}

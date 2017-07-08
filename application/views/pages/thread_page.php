@@ -27,8 +27,9 @@ $user = $post->user;
                     </small>
                 </h3>
                 <?php if (!empty($post->thread_attachments)): ?>
-                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary" style = "margin-top: 10px; margin-right: 20px;">
-                        <strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong></button>
+                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary">
+                        <strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong>
+                    </button>
                 <?php endif; ?>
             </div>
             <div class = "col-md-12 content-container">
@@ -64,13 +65,6 @@ $user = $post->user;
                                     <button value = "<?php echo $post->post_id ?>" class = "edit-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i></button>
                                 <?php endif; ?>
 
-                                <!-- Attachment -->
-
-                                <?php if (!empty($post->attachments)): ?>
-                                    <button value = "<?php echo $post->post_id ?>" class = "attachment-btn btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px; font-size: 12px;">
-                                        <strong><i class = "fa fa-paperclip"></i> <?php echo count($post->attachments); ?></strong></button>
-                                <?php endif; ?>
-
                                 <!-- Post Heading -->
                                 <div class="media-heading">
                                     <?php if ($post->post_title): ?>
@@ -84,13 +78,39 @@ $user = $post->user;
                                         <br><span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                     <?php endif; ?>
                                 </div>
+                                <!-- Attachment -->
+                                <?php if (!empty($post->attachments)): ?>
+                            <!--                                    <button value = "<?php echo $post->post_id ?>" class = "attachment-btn btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px; font-size: 12px;">
+                                        <strong><i class = "fa fa-paperclip"></i> <?php echo count($post->attachments); ?></strong>
+                                    </button>-->
+                                    <?php
+                                    foreach ($post->attachments as $attachment):
+                                        if ($attachment->attachment_type_id === '1'):
+                                            ?>
+                                            <img src = "<?= base_url($attachment->file_url); ?>" width = "300px"/>
+                                        <?php elseif ($attachment->attachment_type_id === '2'): ?>
+                                            <audio src = "<?= base_url($attachment->file_url); ?>" controls></audio>
+                                        <?php elseif ($attachment->attachment_type_id === '3'): ?>
+                                            <video src = "<?= base_url($attachment->file_url); ?>" width = "300px" controls/></video>
+                                        <?php elseif ($attachment->attachment_type_id === '4'): ?>
+                                            <a href = "<?= base_url($attachment->file_url); ?>" download><i class = "fa fa-file-o"></i> <i class = "text" style = "font-size: 12px;"><?= $attachment->caption; ?></i></a>
+                                            <?php
+                                        endif;
+                                    endforeach;
+                                    if ($attachment->attachment_type_id !== '4'):
+                                        ?>
+                                        <p><i class = "text-muted bg-info"><?= $attachment->caption; ?></i></p>
+                                    <?php
+                                    endif;
+                                endif;
+                                ?>
                                 <p class = "post-content" style = "margin-top: 15px;"><?php echo $post->post_content ?></p>
-                            <?php else: ?>
+<?php else: ?>
                                 <div class="media-heading">
                                     <h4 class = "no-padding no-margin text-danger">Deleted Post</h4>
                                 </div>
                                 <p class = "post-content" style = "margin-top: 15px"><i>This post has been deleted.</i></p>
-                            <?php endif; ?>
+<?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -106,7 +126,7 @@ $user = $post->user;
                     else:
                         ?>
                         <h4 class = "text-center text-warning no-padding no-margin"><strong>This post has no replies yet!</strong></h4>
-                    <?php endif; ?>
+<?php endif; ?>
                 </div>
             </div>
         </div>
@@ -114,9 +134,10 @@ $user = $post->user;
 
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
-    
+
     <?php
     include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');
     include(APPPATH . 'views/modals/edit_post_modal.php');
     include(APPPATH . 'views/modals/delete_post_modal.php');
+    

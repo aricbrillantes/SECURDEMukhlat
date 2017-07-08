@@ -67,36 +67,18 @@ include(APPPATH . 'third_party/fusioncharts.php');
                                     <!--THREAD GRAPH-->
                                     <div id = "post-thread" class = "tab-pane fade">
                                         <?php
-                                        $threadChart = new FusionCharts("column2d", "ex1", "80%", 300, "thread-chart", "json", '{  
+                                        $start_string = "";
+                                        foreach ($record->post_start as $start):
+                                            $start_string .= '{ "label":"' . $start->topic_name . '",'
+                                                    . '"value":"' . $start->post_count . '"},';
+                                        endforeach;
+                                        $threadChart = new FusionCharts("column2d", "threadChart", "80%", 300, "thread-chart", "json", '{  
                 "chart":{  
                   "caption":"Post Threads Started by ' . $user->first_name . '",
                   "subCaption":"Top topics posted in by ' . $user->first_name . '",
                   "theme":"fint",
                   "baseFont":"Muli"
-                },
-                "data":[  
-                  {  
-                     "label":"Bakersfield Central",
-                     "value":"880000"
-                  },
-                  {  
-                     "label":"Garden Groove harbour",
-                     "value":"730000"
-                  },
-                  {  
-                     "label":"Los Angeles Topanga",
-                     "value":"590000"
-                  },
-                  {  
-                     "label":"Compton-Rancho Dom",
-                     "value":"520000"
-                  },
-                  {  
-                     "label":"Daly City Serramonte",
-                     "value":"330000"
-                  }
-                ]
-            }');
+                }, "data":[' . $start_string . ']}');
 
                                         $threadChart->render();
                                         ?>
@@ -106,75 +88,38 @@ include(APPPATH . 'third_party/fusioncharts.php');
                                     <!--POSTS PUBLISHED-->
                                     <div id = "post-topic" class = "tab-pane fade">
                                         <?php
-                                        $postTopicChart = new FusionCharts("column2d", "ex2", "80%", 300, "post-topic-chart", "json", '{  
+                                        $publish_string = "";
+                                        foreach ($record->post_published as $publish):
+                                            $publish_string .= '{ "label":"' . $publish->topic_name . '",'
+                                                    . '"value":"' . $publish->post_count . '"},';
+                                        endforeach;
+                                        $postTopicChart = new FusionCharts("column2d", "postTopicChart", "80%", 300, "post-topic-chart", "json", '{  
                 "chart":{  
                   "caption":"Posts in Topics Published by ' . $user->first_name . '",
                   "subCaption":"Top topics posted in by ' . $user->first_name . '",
                   "theme":"fint",
                   "baseFont":"Muli"
-                },
-                "data":[  
-                  {  
-                     "label":"Bakersfield Central",
-                     "value":"880000"
-                  },
-                  {  
-                     "label":"Garden Groove harbour",
-                     "value":"730000"
-                  },
-                  {  
-                     "label":"Los Angeles Topanga",
-                     "value":"590000"
-                  },
-                  {  
-                     "label":"Compton-Rancho Dom",
-                     "value":"520000"
-                  },
-                  {  
-                     "label":"Daly City Serramonte",
-                     "value":"330000"
-                  }
-                ]
-            }');
+                }, "data":[' . $publish_string . ']}');
                                         $postTopicChart->render();
                                         ?>
                                         <div id="post-topic-chart"></div>
                                     </div>
 
-                                    <!--POSTS PUBLISHED-->
+                                    <!--REPLIES MADE-->
                                     <div id = "post-reply" class = "tab-pane fade">
                                         <?php
-                                        $postReplyChart = new FusionCharts("column2d", "ex3", "80%", 300, "post-reply-chart", "json", '{  
+                                        $reply_string = "";
+                                        foreach ($record->replies as $reply):
+                                            $reply_string .= '{ "label":"' . $reply->first_name . " " . $reply->last_name . '",'
+                                                    . '"value":"' . $reply->reply_count . '"},';
+                                        endforeach;
+                                        $postReplyChart = new FusionCharts("column2d", "postReplyChart", "80%", 300, "post-reply-chart", "json", '{  
                 "chart":{  
                   "caption":"Replies Made by ' . $user->first_name . '",
                   "subCaption":"Top users replied to by ' . $user->first_name . '",
                   "theme":"fint",
                   "baseFont":"Muli"
-                },
-                "data":[  
-                  {  
-                     "label":"Bakersfield Central",
-                     "value":"880000"
-                  },
-                  {  
-                     "label":"Garden Groove harbour",
-                     "value":"730000"
-                  },
-                  {  
-                     "label":"Los Angeles Topanga",
-                     "value":"590000"
-                  },
-                  {  
-                     "label":"Compton-Rancho Dom",
-                     "value":"520000"
-                  },
-                  {  
-                     "label":"Daly City Serramonte",
-                     "value":"330000"
-                  }
-                ]
-            }');
-
+                }, "data":[' . $reply_string . ']}');
                                         $postReplyChart->render();
                                         ?>
                                         <div id="post-reply-chart"></div>
@@ -207,74 +152,38 @@ include(APPPATH . 'third_party/fusioncharts.php');
                                     </div>
                                     <div id = "upvote-users" class = "tab-pane fade">
                                         <?php
-                                        $upvoteChart = new FusionCharts("column2d", "ex4", "80%", 300, "upvote-chart", "json", '{  
+                                        $upvote_string = "";
+                                        foreach ($record->upvotes as $upvote):
+                                            $upvote_string .= '{ "label":"' . $upvote->first_name . " " . $upvote->last_name . '",'
+                                                    . '"value":"' . $upvote->vote_count . '"},';
+                                        endforeach;
+                                        $upvote_string = rtrim($upvote_string, ",");
+                                        $upvoteChart = new FusionCharts("column2d", "upvoteChart", "80%", 300, "upvote-chart", "json", '{  
                 "chart":{  
-                  "caption":"Post Threads Started by ' . $user->first_name . '",
-                  "subCaption":"Top topics posted in by ' . $user->first_name . '",
+                  "caption":"Upvotes Given by ' . $user->first_name . '",
+                  "subCaption":"Top users given an upvote by ' . $user->first_name . '",
                   "theme":"fint",
                   "baseFont":"Muli"
-                },
-                "data":[  
-                  {  
-                     "label":"Bakersfield Central",
-                     "value":"880000"
-                  },
-                  {  
-                     "label":"Garden Groove harbour",
-                     "value":"730000"
-                  },
-                  {  
-                     "label":"Los Angeles Topanga",
-                     "value":"590000"
-                  },
-                  {  
-                     "label":"Compton-Rancho Dom",
-                     "value":"520000"
-                  },
-                  {  
-                     "label":"Daly City Serramonte",
-                     "value":"330000"
-                  }
-                ]
-            }');
-
+                }, "data":[' . $upvote_string . ']}');
                                         $upvoteChart->render();
                                         ?>
                                         <div id="upvote-chart"></div>
                                     </div>
                                     <div id = "downvote-users" class = "tab-pane fade">
                                         <?php
-                                        $downvoteChart = new FusionCharts("column2d", "ex5", "80%", 300, "downvote-chart", "json", '{  
+                                        $downvote_string = "";
+                                        foreach ($record->downvotes as $downvote):
+                                            $downvote_string .= '{ "label":"' . $downvote->first_name . " " . $downvote->last_name . '",'
+                                                    . '"value":"' . $downvote->vote_count . '"},';
+                                        endforeach;
+                                        $downvote_string = rtrim($downvote_string, ",");
+                                        $downvoteChart = new FusionCharts("column2d", "downvoteChart", "80%", 300, "downvote-chart", "json", '{  
                 "chart":{  
-                  "caption":"Post Threads Started by ' . $user->first_name . '",
-                  "subCaption":"Top topics posted in by ' . $user->first_name . '",
+                  "caption":"Downvotes Given by ' . $user->first_name . '",
+                  "subCaption":"Top users given a downvote by ' . $user->first_name . '",
                   "theme":"fint",
                   "baseFont":"Muli"
-                },
-                "data":[  
-                  {  
-                     "label":"Bakersfield Central",
-                     "value":"880000"
-                  },
-                  {  
-                     "label":"Garden Groove harbour",
-                     "value":"730000"
-                  },
-                  {  
-                     "label":"Los Angeles Topanga",
-                     "value":"590000"
-                  },
-                  {  
-                     "label":"Compton-Rancho Dom",
-                     "value":"520000"
-                  },
-                  {  
-                     "label":"Daly City Serramonte",
-                     "value":"330000"
-                  }
-                ]
-            }');
-
+                }, "data":[' . $downvote_string . ']}');
                                         $downvoteChart->render();
                                         ?>
                                         <div id="downvote-chart"></div>

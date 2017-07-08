@@ -20,31 +20,34 @@
                         <label for = "content">Enter the content of your reply:</label>
                         <textarea class = "form-control" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
-                    <div class = "form-group">
-                        Attach files: 
+                    <div id = "attachment-buttons" class = "form-group">
+                        Attach a file:
                         <!--IMAGE-->
-                        <label class="btn btn-primary">
-                            <input accept = "image/*" type="file" name = "post_image" style = "display: none;">
-                            <i class = "fa fa-file-image-o"></i>
+                        <label id = "img-label" class="btn btn-primary">
+                            <input id = "attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
+                            <p class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Image</p>
                         </label>
 
                         <!--AUDIO-->
-                        <label class="btn btn-primary">
-                            <input accept = "audio/*" type="file" name = "post_audio" style = "display: none;">
-                            <i class = "fa fa-file-audio-o"></i>
+                        <label id = "audio-label" class="btn btn-primary">
+                            <input id = "attach-audio" accept = "audio/*" type="file" name = "post_audio" style = "display: none;">
+                            <p class = "attach-btn-text"><i class = "fa fa-file-audio-o"></i> Add Audio</p>
                         </label>
 
                         <!--VIDEO-->
-                        <label class="btn btn-primary">
-                            <input accept = "video/*" type="file" name = "post_video" style = "display: none;">
-                            <i class = "fa fa-file-video-o"></i>
+                        <label id = "video-label" class="btn btn-primary">
+                            <input id = "attach-video" accept = "video/*" type="file" name = "post_video" style = "display: none;">
+                            <p class = "attach-btn-text"><i class = "fa fa-file-video-o"></i> Add Video</p>
                         </label>
 
                         <!--FILE-->
-                        <label class="btn btn-primary">
-                            <input type="file" name = "post_file" style = "display: none;">
-                            <i class = "fa fa-file"></i>
+                        <label id = "file-label" class="btn btn-primary">
+                            <input id = "attach-file" type="file" name = "post_file" style = "display: none;">
+                            <p class = "attach-btn-text"><i class = "fa fa-file-o"></i> Add File</p>
                         </label>
+                    </div>
+                    <div id = "attachment-preview" class = "content-container">
+                        <h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">

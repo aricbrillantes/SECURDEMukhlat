@@ -308,4 +308,96 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '#attachment-remove', function () {
+        $("#attachment-details").remove();
+        $("#attachment-preview").append('<h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>');
+        //reset all attachments
+        $("#attach-img").wrap('<form>').closest('form').get(0).reset();
+        $("#attach-img").unwrap();
+        $("#attach-audio").wrap('<form>').closest('form').get(0).reset();
+        $("#attach-audio").unwrap();
+        $("#attach-video").wrap('<form>').closest('form').get(0).reset();
+        $("#attach-video").unwrap();
+        $("#attach-file").wrap('<form>').closest('form').get(0).reset();
+        $("#attach-file").unwrap();
+
+        //enable attachment buttons
+        $("#attach-img").removeAttr('disabled');
+        $("#img-label").removeClass('disabled');
+
+        $("#attach-audio").removeAttr('disabled');
+        $("#audio-label").removeClass('disabled');
+
+        $("#attach-video").removeAttr('disabled');
+        $("#video-label").removeClass('disabled');
+
+        $("#attach-file").removeAttr('disabled');
+        $("#file-label").removeClass('disabled');
+    });
+
+    function changeAttachment() {
+        $("#attachment-message").remove();
+        $("#attachment-preview").append('<div id = "attachment-details" class = "form-group" style = "padding:3px">' +
+                '<label for="attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
+                'Add a caption!' +
+                '</label>' +
+                '<div class = "col-sm-8 no-padding">' +
+                '<input type="text" class="form-control" name = "attachment_caption" id = "attachment-caption" ' +
+                'placeholder = "Enter a caption"/>' +
+                '</div>' +
+                '<div class ="col-sm-1">' +
+                '<button id = "attachment-remove" type = "button" class = "delete-btn btn btn-sm btn-danger">' +
+                '<i class = "fa fa-trash"></i>' +
+                '</button>' +
+                '</div>' +
+                '</div>');
+    }
+
+    $(document).on('change', '#attach-img', function () {
+        //disable attachment buttons
+        $("#attach-audio").attr('disabled', 'true');
+        $("#audio-label").addClass('disabled');
+        $("#attach-video").attr('disabled', 'true');
+        $("#video-label").addClass('disabled');
+        $("#attach-file").attr('disabled', 'true');
+        $("#file-label").addClass('disabled');
+        changeAttachment();
+    });
+
+    $(document).on('change', '#attach-audio', function () {
+        //disable attachment buttons
+        $("#attach-img").attr('disabled', 'true');
+        $("#img-label").addClass('disabled');
+        $("#attach-video").attr('disabled', 'true');
+        $("#video-label").addClass('disabled');
+        $("#attach-file").attr('disabled', 'true');
+        $("#file-label").addClass('disabled');
+        
+        changeAttachment();
+    });
+
+    $(document).on('change', '#attach-video', function () {
+        //disable attachment buttons
+        $("#attach-img").attr('disabled', 'true');
+        $("#img-label").addClass('disabled');
+        $("#attach-audio").attr('disabled', 'true');
+        $("#audio-label").addClass('disabled');
+        $("#attach-file").attr('disabled', 'true');
+        $("#file-label").addClass('disabled');
+        
+        changeAttachment();
+    });
+
+    $(document).on('change', '#attach-file', function () {
+        //disable attachment buttons
+        $("#attach-img").attr('disabled', 'true');
+        $("#img-label").addClass('disabled');
+        $("#attach-audio").attr('disabled', 'true');
+        $("#audio-label").addClass('disabled');
+        $("#attach-video").attr('disabled', 'true');
+        $("#video-label").addClass('disabled');
+        
+        changeAttachment();
+    });
 });
