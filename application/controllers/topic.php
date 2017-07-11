@@ -208,7 +208,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 1);
             }
         }
 
@@ -223,7 +223,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 2);
             }
         }
 
@@ -239,7 +239,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 3);
             }
         }
 
@@ -254,7 +254,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 4);
             }
         }
 
@@ -297,20 +297,25 @@ class Topic extends CI_Controller {
             $this->load->model("notification_model", "notifs");
             $this->notifs->notify_user($post->user->user_id, $post_id, 3);
         }
+        if ($vote_type == '1' && $has_vote == '1' || $vote_type == '-1' && $has_vote == '-1') {
+            $this->posts->remove_vote($post_id, $logged_user->user_id);
+        }
 
-        echo $this->posts->get_vote_count($post_id);
+        echo ($this->posts->get_vote_count($post_id) ? $this->posts->get_vote_count($post_id) : '0' );
     }
 
     public function load_post() {
         $type = $this->uri->segment(3);
         $post_id = $this->input->post("post_id");
         $this->load->model("post_model", "posts");
-        $post = $this->posts->get_post(false, true, false, $post_id);
 
         if ($type === "reply") {
+            $post = $this->posts->get_post(false, true, false, $post_id);
             $data = array("first_name" => $post->user->first_name, "post_id" => $post_id);
         } else if ($type === "edit") {
-            $data = array("topic_name" => $post->topic->topic_name, "post_id" => $post_id, "post_content" => $post->post_content, "post_title" => $post->post_title);
+            $post = $this->posts->get_post(false, true, true, $post_id);
+
+            $data = array("edit_post" => $post);
         }
 
         $this->output->set_content_type('application/json');
@@ -322,7 +327,7 @@ class Topic extends CI_Controller {
         $input = $this->input;
         $logged_user = $_SESSION['logged_user'];
         $topic = $_SESSION['current_topic'];
-        
+
         $caption = $input->post('attachment_caption');
         //get parent then reply
         $this->load->model("post_model", "posts");
@@ -352,8 +357,8 @@ class Topic extends CI_Controller {
         $this->load->library('upload', $config);
 
         //image
-        if ($_FILES['post_image']['name']) {
-            if (!$this->upload->do_upload('post_image')) {
+        if ($_FILES['reply_image']['name']) {
+            if (!$this->upload->do_upload('reply_image')) {
                 echo $this->upload->display_errors();
             } else {
                 //upload success
@@ -362,14 +367,14 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 1);
             }
         }
 
         //audio
-        if ($_FILES AND $_FILES['post_audio']['name']) {
+        if ($_FILES AND $_FILES['reply_audio']['name']) {
 
-            if (!$this->upload->do_upload('post_audio')) {
+            if (!$this->upload->do_upload('reply_audio')) {
                 echo $this->upload->display_errors();
             } else {
                 //upload success
@@ -378,14 +383,14 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 2);
             }
         }
 
         //video
-        if ($_FILES AND $_FILES['post_video']['name']) {
+        if ($_FILES AND $_FILES['reply_video']['name']) {
 
-            if (!$this->upload->do_upload('post_video')) {
+            if (!$this->upload->do_upload('reply_video')) {
                 echo $this->upload->display_errors();
             } else {
                 //upload success
@@ -394,13 +399,13 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 3);
             }
         }
 
         //file
-        if ($_FILES AND $_FILES['post_file']['name']) {
-            if (!$this->upload->do_upload('post_file')) {
+        if ($_FILES AND $_FILES['reply_file']['name']) {
+            if (!$this->upload->do_upload('reply_file')) {
                 echo $this->upload->display_errors();
             } else {
                 //upload success
@@ -409,7 +414,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 4);
             }
         }
 
@@ -425,6 +430,8 @@ class Topic extends CI_Controller {
 
         //get parent then reply
         $this->load->model("post_model", "posts");
+        $this->load->model('attachment_model', 'attachments');
+
         $data = array(
             'post_title' => htmlspecialchars($input->post('post_title')),
             'post_content' => htmlspecialchars($input->post('post_content')),
@@ -432,16 +439,29 @@ class Topic extends CI_Controller {
 
         $this->posts->update_post($post_id, $data);
 
+        $post = $this->posts->get_post(false, false, false, $post_id);
+
         // ATTACHMENTS
-        if (!file_exists('./uploads/_' . $post_id . '/')) {
-            mkdir('./uploads/_' . $post_id . '/', 0777, true);
+        if (!file_exists('./uploads/_' . $post->root_id . '/')) {
+            mkdir('./uploads/_' . $post->root_id . '/', 0777, true);
         }
-        $config['upload_path'] = './uploads/_' . $post_id . '/';
+        $config['upload_path'] = './uploads/_' . $post->root_id . '/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = '*';
 
         $this->load->library('upload', $config);
 
+        //remove existing attachment if set
+        if (isset($_POST['upload_attachment'])) {
+            $this->attachments->remove_attachment(array('attachment_id' => $input->post('upload_attachment')));
+        } elseif (isset($_POST['upload_post'])) {
+            $this->attachments->remove_attachment(array('post_id' => $post_id));
+        }
+        
+        if(isset($_POST['current_attachment'])){
+            $this->attachments->change_caption($input->post('current_attachment'), $input->post('edit_attachment_caption'));
+        }
+        
         //image
         if ($_FILES['post_image']['name']) {
             if (!$this->upload->do_upload('post_image')) {
@@ -449,12 +469,9 @@ class Topic extends CI_Controller {
             } else {
                 //upload success
                 $upload_data = $this->upload->data();
-                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+                $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->load->model('attachment_model', 'attachments');
-
-                $this->attachments->insert_attachment($post_id, $path, 1);
-                echo 'done!';
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 1);
             }
         }
 
@@ -466,27 +483,22 @@ class Topic extends CI_Controller {
             } else {
                 //upload success
                 $upload_data = $this->upload->data();
-                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+                $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->load->model('attachment_model', 'attachments');
-
-                $this->attachments->insert_attachment($post_id, $path, 2);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 2);
             }
         }
 
         //video
         if ($_FILES AND $_FILES['post_video']['name']) {
-
             if (!$this->upload->do_upload('post_video')) {
                 echo $this->upload->display_errors();
             } else {
                 //upload success
                 $upload_data = $this->upload->data();
-                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+                $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->load->model('attachment_model', 'attachments');
-
-                $this->attachments->insert_attachment($post_id, $path, 3);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 3);
             }
         }
 
@@ -497,15 +509,12 @@ class Topic extends CI_Controller {
             } else {
                 //upload success
                 $upload_data = $this->upload->data();
-                $path = './uploads/_' . $post_id . '/' . $upload_data['file_name'];
+                $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->load->model('attachment_model', 'attachments');
-
-                $this->attachments->insert_attachment($post_id, $path, 4);
+                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 4);
             }
         }
 
-        $post = $this->posts->get_post(false, false, false, $post_id);
         redirect(base_url('topic/thread/' . $post->root_id));
     }
 

@@ -38,6 +38,7 @@ class Attachment_model extends CI_Model {
         $this->db->from('tbl_attachments as a');
         $this->db->join('tbl_posts as p', 'p.post_id = a.post_id');
         $this->db->where('p.root_id = ', $post_id);
+        $this->db->where('p.is_deleted = 0');
         
         $attachments = $this->db->get()->result();
         
@@ -46,5 +47,16 @@ class Attachment_model extends CI_Model {
     
     public function get_attachment($attachment_id){
         return $this->db->get_where('tbl_attachments', array('attachment_id' => $attachment_id))->row();
+    }
+    
+    public function remove_attachment($fields){
+        $this->db->where($fields);
+        $this->db->delete('tbl_attachments');
+    }
+    
+    public function change_caption($attachment_id, $caption){
+        $data = array('caption' => $caption);
+        $this->db->where(array('attachment_id' => $attachment_id));
+        $this->db->update('tbl_attachments', $data);
     }
 }
