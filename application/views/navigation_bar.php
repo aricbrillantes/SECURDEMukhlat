@@ -1,7 +1,6 @@
 <?php
 $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
-echo $logged_user->unanswered_invites . " vs " . $logged_user->unanswered_requests;
 ?>
 
 <!-- Nav Bar -->

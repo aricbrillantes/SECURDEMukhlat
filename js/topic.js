@@ -6,6 +6,7 @@ $(document).on('show.bs.modal', '.modal', function () {
         $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
     }, 0);
 });
+
 $(document).on('hidden.bs.modal', '.modal', function () {
     $('.modal:visible').length && $(document.body).addClass('modal-open');
 });
@@ -35,7 +36,7 @@ $(document).ready(function () {
 
     $("#create-post-btn").on("click", function () {
         if ($("#post-title").val() && $("#post-content").val()) {
-            $("#post-confirmation-modal").modal('show');
+            $("#create-post-form").submit();
             $("#post-title").parent().removeClass("has-error");
             $("#post-content").parent().removeClass("has-error");
         } else {
@@ -49,10 +50,6 @@ $(document).ready(function () {
             else
                 $("#post-content").parent().removeClass("has-error");
         }
-    });
-
-    $("#create-post-proceed").on("click", function () {
-        $("#create-post-form").submit();
     });
 
     $("#edit-post-btn").on("click", function () {
@@ -133,7 +130,7 @@ $(document).ready(function () {
 
     $("#create-reply-btn").on("click", function () {
         if ($("#reply-content").val()) {
-            $("#reply-confirmation-modal").modal('show');
+            $("#create-reply-form").submit();
             $("#reply-content").parent().removeClass("has-error");
         } else {
             if (!$("#reply-content").val())
@@ -141,10 +138,6 @@ $(document).ready(function () {
             else
                 $("#reply-content").parent().removeClass("has-error");
         }
-    });
-
-    $("#create-reply-proceed").on("click", function () {
-        $("#create-reply-form").submit();
     });
 
     $("#topic-share-btn").on("click", function () {
@@ -309,6 +302,15 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '#edit-upload-remove', function () {
+        $("#edit-attachment-preview").append("<input id = 'remove_upload' type = 'hidden' name = 'upload_attachment' value = '" + $(this).val() + "'/>")
+        editAttachmentRemove();
+    });
+
+    $(document).on('click', '#edit-attachment-remove', function () {
+        editAttachmentRemove();
+    });
+
     $(document).on('click', '#attachment-remove', function () {
         $("#attachment-details").remove();
         $("#attachment-preview").append('<h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>');
@@ -325,19 +327,131 @@ $(document).ready(function () {
         //enable attachment buttons
         $("#attach-img").removeAttr('disabled');
         $("#img-label").removeClass('disabled');
+        $("#image-text").html('<i class = "fa fa-file-image-o"></i> Add Image');
 
         $("#attach-audio").removeAttr('disabled');
         $("#audio-label").removeClass('disabled');
+        $("#audio-text").html('<i class = "fa fa-file-audio-o"></i> Add Audio');
 
         $("#attach-video").removeAttr('disabled');
         $("#video-label").removeClass('disabled');
+        $("#video-text").html('<i class = "fa fa-file-image-o"></i> Add Video');
 
         $("#attach-file").removeAttr('disabled');
         $("#file-label").removeClass('disabled');
+        $("#file-text").html('<i class = "fa fa-file-o"></i> Add File');
+    });
+
+    $(document).on('change', '#edit-attach-img', function () {
+        //disable attachment buttons
+        $("#edit-attach-audio").attr('disabled', 'true');
+        $("#edit-audio-label").addClass('disabled');
+        $("#edit-attach-video").attr('disabled', 'true');
+        $("#edit-video-label").addClass('disabled');
+        $("#edit-attach-file").attr('disabled', 'true');
+        $("#edit-file-label").addClass('disabled');
+        $("#remove_upload").remove();
+        $("#edit-attachment-preview").append("<input id = 'remove_upload' type = 'hidden' name = 'upload_post' value = '1'/>")
+
+        changeEditAttachment();
+    });
+
+    $(document).on('change', '#edit-attach-audio', function () {
+        //disable attachment buttons
+        $("#edit-attach-img").attr('disabled', 'true');
+        $("#edit-img-label").addClass('disabled');
+        $("#edit-attach-video").attr('disabled', 'true');
+        $("#edit-video-label").addClass('disabled');
+        $("#edit-attach-file").attr('disabled', 'true');
+        $("#edit-file-label").addClass('disabled');
+        $("#remove_upload").remove();
+        $("#edit-attachment-preview").append("<input id = 'remove_upload' type = 'hidden' name = 'upload_post' value = '1'/>")
+
+        changeEditAttachment();
+    });
+
+    $(document).on('change', '#edit-attach-video', function () {
+        //disable attachment buttons
+        $("#edit-attach-img").attr('disabled', 'true');
+        $("#edit-img-label").addClass('disabled');
+        $("#edit-attach-audio").attr('disabled', 'true');
+        $("#edit-audio-label").addClass('disabled');
+        $("#edit-attach-file").attr('disabled', 'true');
+        $("#edit-file-label").addClass('disabled');
+        $("#remove_upload").remove();
+        $("#edit-attachment-preview").append("<input id = 'remove_upload' type = 'hidden' name = 'upload_post' value = '1'/>")
+
+        changeEditAttachment();
+    });
+
+    $(document).on('change', '#edit-attach-file', function () {
+        //disable attachment buttons
+        $("#edit-attach-img").attr('disabled', 'true');
+        $("#edit-img-label").addClass('disabled');
+        $("#edit-attach-audio").attr('disabled', 'true');
+        $("#edit-audio-label").addClass('disabled');
+        $("#edit-attach-video").attr('disabled', 'true');
+        $("#edit-video-label").addClass('disabled');
+        $("#remove_upload").remove();
+        $("#edit-attachment-preview").append("<input id = 'remove_upload' type = 'hidden' name = 'upload_post' value = '1'/>")
+
+        changeEditAttachment();
+    });
+
+    $(document).on('change', '#attach-img', function () {
+        //disable attachment buttons
+        $("#image-text").html('<i class = "fa fa-file-image-o"></i> Change Image');
+        $("#attach-audio").attr('disabled', 'true');
+        $("#audio-label").addClass('disabled');
+        $("#attach-video").attr('disabled', 'true');
+        $("#video-label").addClass('disabled');
+        $("#attach-file").attr('disabled', 'true');
+        $("#file-label").addClass('disabled');
+        changeAttachment();
+    });
+
+    $(document).on('change', '#attach-audio', function () {
+        //disable attachment buttons
+        $("#audio-text").html('<i class = "fa fa-file-audio-o"></i> Change Audio');
+        $("#attach-img").attr('disabled', 'true');
+        $("#img-label").addClass('disabled');
+        $("#attach-video").attr('disabled', 'true');
+        $("#video-label").addClass('disabled');
+        $("#attach-file").attr('disabled', 'true');
+        $("#file-label").addClass('disabled');
+
+        changeAttachment();
+    });
+
+    $(document).on('change', '#attach-video', function () {
+        //disable attachment buttons
+        $("#video-text").html('<i class = "fa fa-file-video-o"></i> Change Video');
+        $("#attach-img").attr('disabled', 'true');
+        $("#img-label").addClass('disabled');
+        $("#attach-audio").attr('disabled', 'true');
+        $("#audio-label").addClass('disabled');
+        $("#attach-file").attr('disabled', 'true');
+        $("#file-label").addClass('disabled');
+
+        changeAttachment();
+    });
+
+    $(document).on('change', '#attach-file', function () {
+        //disable attachment buttons
+        $("#file-text").html('<i class = "fa fa-file-o"></i> Change File');
+        $("#attach-img").attr('disabled', 'true');
+        $("#img-label").addClass('disabled');
+        $("#attach-audio").attr('disabled', 'true');
+        $("#audio-label").addClass('disabled');
+        $("#attach-video").attr('disabled', 'true');
+        $("#video-label").addClass('disabled');
+
+        changeAttachment();
     });
 
     function changeAttachment() {
         $("#attachment-message").remove();
+        $("#attachment-details").remove();
         $("#attachment-preview").append('<div id = "attachment-details" class = "form-group" style = "padding:3px">' +
                 '<label for="attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
                 'Add a caption!' +
@@ -354,50 +468,54 @@ $(document).ready(function () {
                 '</div>');
     }
 
-    $(document).on('change', '#attach-img', function () {
-        //disable attachment buttons
-        $("#attach-audio").attr('disabled', 'true');
-        $("#audio-label").addClass('disabled');
-        $("#attach-video").attr('disabled', 'true');
-        $("#video-label").addClass('disabled');
-        $("#attach-file").attr('disabled', 'true');
-        $("#file-label").addClass('disabled');
-        changeAttachment();
-    });
+    function changeEditAttachment() {
+        $("#edit-attachment-message").remove();
+        $("#edit-attachment-details").remove();
+        $("#edit-attachment-preview").append('<div id = "edit-attachment-details" class = "form-group" style = "padding:3px">' +
+                '<label for="edit-attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
+                'Add a caption!' +
+                '</label>' +
+                '<div class = "col-sm-8 no-padding">' +
+                '<input type="text" class="form-control" name = "edit_attachment_caption" id = "edit-attachment-caption" ' +
+                'placeholder = "Enter a caption"/>' +
+                '</div>' +
+                '<div class ="col-sm-1">' +
+                '<button id = "edit-attachment-remove" type = "button" class = "delete-btn btn btn-sm btn-danger">' +
+                '<i class = "fa fa-trash"></i>' +
+                '</button>' +
+                '</div>' +
+                '</div>');
+    }
 
-    $(document).on('change', '#attach-audio', function () {
-        //disable attachment buttons
-        $("#attach-img").attr('disabled', 'true');
-        $("#img-label").addClass('disabled');
-        $("#attach-video").attr('disabled', 'true');
-        $("#video-label").addClass('disabled');
-        $("#attach-file").attr('disabled', 'true');
-        $("#file-label").addClass('disabled');
-        
-        changeAttachment();
-    });
+    function editAttachmentRemove() {
+        $("#edit-attachment-details").remove();
+        $("#edit-attachment-preview").append('<h5 id = "edit-attachment-message" class = "text-warning text-center">No attachment yet.</h5>');
+        //reset all attachments
+        $("#edit-attach-img").wrap('<form>').closest('form').get(0).reset();
+        $("#edit-attach-img").unwrap();
+        $("#edit-attach-audio").wrap('<form>').closest('form').get(0).reset();
+        $("#edit-attach-audio").unwrap();
+        $("#edit-attach-video").wrap('<form>').closest('form').get(0).reset();
+        $("#edit-attach-video").unwrap();
+        $("#edit-attach-file").wrap('<form>').closest('form').get(0).reset();
+        $("#edit-attach-file").unwrap();
 
-    $(document).on('change', '#attach-video', function () {
-        //disable attachment buttons
-        $("#attach-img").attr('disabled', 'true');
-        $("#img-label").addClass('disabled');
-        $("#attach-audio").attr('disabled', 'true');
-        $("#audio-label").addClass('disabled');
-        $("#attach-file").attr('disabled', 'true');
-        $("#file-label").addClass('disabled');
-        
-        changeAttachment();
-    });
+        //enable attachment buttons
+        $("#edit-attach-img").removeAttr('disabled');
+        $("#edit-img-label").removeClass('disabled');
+        $("#edit-image-text").html('<i class = "fa fa-file-image-o"></i> Add Image');
 
-    $(document).on('change', '#attach-file', function () {
-        //disable attachment buttons
-        $("#attach-img").attr('disabled', 'true');
-        $("#img-label").addClass('disabled');
-        $("#attach-audio").attr('disabled', 'true');
-        $("#audio-label").addClass('disabled');
-        $("#attach-video").attr('disabled', 'true');
-        $("#video-label").addClass('disabled');
-        
-        changeAttachment();
-    });
+        $("#edit-attach-audio").removeAttr('disabled');
+        $("#edit-audio-label").removeClass('disabled');
+        $("#edit-audio-text").html('<i class = "fa fa-file-audio-o"></i> Add Audio');
+
+        $("#edit-attach-video").removeAttr('disabled');
+        $("#edit-video-label").removeClass('disabled');
+        $("#edit-video-text").html('<i class = "fa fa-file-image-o"></i> Add Video');
+
+        $("#edit-attach-file").removeAttr('disabled');
+        $("#edit-file-label").removeClass('disabled');
+        $("#edit-file-text").html('<i class = "fa fa-file-o"></i> Add File');
+    }
+
 });

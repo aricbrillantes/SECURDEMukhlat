@@ -802,6 +802,6 @@ END CHAT
     font-size: 12px;
 }
 
-#attachment-preview{
+#attachment-preview, #edit-attachment-preview{
     height: 60px;
 }

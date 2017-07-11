@@ -21,7 +21,7 @@ $topic = $_SESSION['current_topic'];
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" class = "name-invite"  name = "invite-checkbox[]" value="<?php echo $nonmoderator->user_id ?>">
-                                        <img src = "<?php echo base_url("images/default.jpg") ?>" class = "img-circle" style = "width: 25px;"/>
+                                        <img src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>" class = "img-circle" style = "width: 25px;"/>
                                         <?php echo $nonmoderator->first_name . " " . $nonmoderator->last_name ?>
                                     </label>
                                 </div>

@@ -15,18 +15,19 @@
                                 if ($attachment->attachment_type_id === '1'):
                                     ?>
                                     <button value = "<?php echo $attachment->attachment_id; ?>" class = "image-attach-view list-group-item">
-                                        <i class = "fa fa-file-image-o"></i> <?=$attachment->caption;?>
+                                        <i class = "fa fa-file-image-o"></i> <?= $attachment->caption === '' ? 'Untitled Image' : $attachment->caption; ?>
                                     </button>
                                 <?php elseif ($attachment->attachment_type_id === '2'): ?>
                                     <button value = "<?php echo $attachment->attachment_id; ?>" class = "audio-attach-view list-group-item">
-                                        <i class = "fa fa-file-audio-o"></i> <?=$attachment->caption;?>
+                                        <i class = "fa fa-file-audio-o"></i> <?= $attachment->caption === '' ? 'Untitled Audio' : $attachment->caption; ?>
                                     </button>
                                 <?php elseif ($attachment->attachment_type_id === '3'): ?>
                                     <button value = "<?php echo $attachment->attachment_id; ?>" class = "video-attach-view list-group-item">
-                                        <i class = "fa fa-file-video-o"></i> <?=$attachment->caption;?>
+                                        <i class = "fa fa-file-video-o"></i> <?= $attachment->caption === '' ? 'Untitled Video' : $attachment->caption; ?>
                                     </button>
                                 <?php elseif ($attachment->attachment_type_id === '4'): ?>
-                                    <a class = "list-group-item" href = "<?php echo base_url($attachment->file_url); ?>" download><i class = "fa fa-file-o"></i> <?=$attachment->caption;?></a>
+                                    <a class = "list-group-item" href = "<?php echo base_url($attachment->file_url); ?>" download><i class = "fa fa-file-o"></i> 
+                                    <?= $attachment->caption === '' ? 'Untitled File' : $attachment->caption; ?></a>
                                     <?php
                                 endif;
                             endforeach;

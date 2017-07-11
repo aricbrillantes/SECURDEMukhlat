@@ -21,7 +21,7 @@ $topic = $_SESSION['current_topic'];
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" class = "name-share"  name = "share-checkbox[]" value="<?php echo $nonfollower->user_id ?>">
-                                        <img src = "<?php echo base_url("images/default.jpg") ?>" class = "img-circle" style = "width: 25px;"/>
+                                        <img src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>" class = "img-circle" style = "width: 25px;"/>
                                         <?php echo $nonfollower->first_name . " " . $nonfollower->last_name ?>
                                     </label>
                                 </div>

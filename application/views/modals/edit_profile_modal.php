@@ -24,12 +24,12 @@
                         <div class = "col-sm-12 no-padding" style = "margin-bottom: 10px;">
                             <div class = "col-xs-6 no-padding">
                                 <div class = "col-xs-12" style = "padding: 2px;">
-                                    <input required type = "text" class = "form-control" name = "edit_first" placeholder = "First Name" value = "<?php echo $logged_user->first_name; ?>">
+                                    <input required type = "text" class = "form-control" maxlength = "25" name = "edit_first" placeholder = "First Name" value = "<?php echo $logged_user->first_name; ?>">
                                 </div>
                             </div>
                             <div class = "col-xs-6 no-padding">
                                 <div class = "col-xs-12" style = "padding: 2px;">
-                                    <input required type = "text" class = "form-control" name = "edit_last" placeholder = "Last Name" value = "<?php echo $logged_user->last_name; ?>">
+                                    <input required type = "text" class = "form-control" maxlength = "25" name = "edit_last" placeholder = "Last Name" value = "<?php echo $logged_user->last_name; ?>">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 <span class = "text-muted"><strong>Email: </strong></span>
                             </div>
                             <div class = "col-xs-10 no-padding">    
-                                <input required type = "email" name = "edit_email" class = "form-control" placeholder = "Email Address" value = "<?php echo $logged_user->email; ?>">
+                                <input required type = "email" name = "edit_email" maxlength = "45" class = "form-control" placeholder = "Email Address" value = "<?php echo $logged_user->email; ?>">
                             </div>
                         </div>
                         <div class = "col-sm-12 no-padding" style = "margin-bottom: 10px;">
@@ -61,7 +61,7 @@
                                 <span class = "text-muted"><strong>Description: </strong></span>
                             </div>
                             <div class = "col-xs-12 no-padding" style = "padding-top: 5px;">
-                                <textarea class = "text-muted form-control" name = "edit_description" placeholder = "Tell something about yourself"><?php echo $logged_user->description ?></textarea>
+                                <textarea class = "text-muted form-control" name = "edit_description" maxlength = "75" placeholder = "Tell something about yourself"><?php echo $logged_user->description ?></textarea>
                             </div>
                         </div>
                     </div>

@@ -38,13 +38,13 @@ include(APPPATH . 'views/header.php');
                         <div class = "sign-in-form">
                             <form id = "sign-up-form" onsubmit = "return sign_up()" method = "post">
                                 <div class = "col-xs-6 form-group register-field">
-                                    <input type = "text" required name = "first_name" class = "form-control sign-in-field" placeholder = "First Name">
+                                    <input type = "text" required name = "first_name" class = "form-control sign-in-field" placeholder = "First Name" maxlength = "25">
                                 </div>
                                 <div class = "col-xs-6 form-group register-field">
-                                    <input type = "text" required name = "last_name" class = "form-control sign-in-field" placeholder = "Last Name">
+                                    <input type = "text" required name = "last_name" class = "form-control sign-in-field" placeholder = "Last Name" maxlength = "25">
                                 </div>
                                 <div class = "col-xs-12 form-group register-field">
-                                    <input type = "email" required name = "sign_up_email" class = "form-control sign-in-field" placeholder = "Email Address">
+                                    <input type = "email" required name = "sign_up_email" class = "form-control sign-in-field" placeholder = "Email Address" maxlength = "45">
                                 </div>
                                 <div class = "col-xs-2 text-center register-field">
                                     <h5 class = "text-muted"><strong>Birthday: </strong></h5>
