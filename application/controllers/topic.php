@@ -17,7 +17,8 @@ class Topic extends CI_Controller {
         $logged_user = $_SESSION['logged_user'];
         if (!empty($logged_user)) {
             $this->load->model('topic_model', 'topics');
-            $data['topics'] = $this->topics->get_topics();
+            $_SESSION['sort_type'] = 1;
+            $data['topics'] = $this->topics->search_topics('', 1);
             $this->load->view('pages/topic_list_page', $data);
         } else {
             echo 'ERROR!';
@@ -85,8 +86,8 @@ class Topic extends CI_Controller {
 
         $data = array(
             'creator_id' => $logged_user->user_id,
-            'topic_name' => htmlspecialchars($input->post('topic_name')),
-            'topic_description' => htmlspecialchars($input->post('topic_description')),
+            'topic_name' => utf8_encode(htmlspecialchars($input->post('topic_name'))),
+            'topic_description' => utf8_encode(htmlspecialchars($input->post('topic_description'))),
         );
 
         $this->db->set('date_created', 'NOW()', FALSE);
@@ -177,11 +178,11 @@ class Topic extends CI_Controller {
             'user_id' => $logged_user->user_id,
             'root_id' => 0,
             'topic_id' => $topic->topic_id,
-            'post_title' => htmlspecialchars($input->post('post_title')),
-            'post_content' => htmlspecialchars($input->post('post_content')),
+            'post_title' => utf8_encode(htmlspecialchars($input->post('post_title'))),
+            'post_content' => utf8_encode(htmlspecialchars($input->post('post_content'))),
         );
 
-        $caption = $input->post('attachment_caption');
+        $caption = utf8_encode(htmlspecialchars($input->post('attachment_caption')));
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
 
@@ -194,6 +195,7 @@ class Topic extends CI_Controller {
         $config['upload_path'] = './uploads/_' . $post_id . '/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = '*';
+        $config['maxsize'] = '0';
 
         $this->load->library('upload', $config);
 
@@ -208,7 +210,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 1);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
             }
         }
 
@@ -223,7 +225,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 2);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
             }
         }
 
@@ -239,7 +241,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 3);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
             }
         }
 
@@ -254,7 +256,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 4);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
             }
         }
 
@@ -328,7 +330,7 @@ class Topic extends CI_Controller {
         $logged_user = $_SESSION['logged_user'];
         $topic = $_SESSION['current_topic'];
 
-        $caption = $input->post('attachment_caption');
+        $caption = $input->post(utf8_encode(htmlspecialchars('attachment_caption')));
         //get parent then reply
         $this->load->model("post_model", "posts");
         $parent_post = $this->posts->get_post(false, false, false, $id);
@@ -337,8 +339,8 @@ class Topic extends CI_Controller {
             'user_id' => $logged_user->user_id,
             'root_id' => $parent_post->root_id,
             'topic_id' => $topic->topic_id,
-            'post_title' => htmlspecialchars($input->post('reply_title')),
-            'post_content' => htmlspecialchars($input->post('reply_content')),
+            'post_title' => utf8_encode(htmlspecialchars($input->post('reply_title'))),
+            'post_content' => utf8_encode(htmlspecialchars($input->post('reply_content'))),
         );
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);
@@ -353,6 +355,7 @@ class Topic extends CI_Controller {
         $config['upload_path'] = './uploads/_' . $parent_post->root_id . '/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = '*';
+        $config['maxsize'] = '0';
 
         $this->load->library('upload', $config);
 
@@ -367,7 +370,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 1);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
             }
         }
 
@@ -383,7 +386,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 2);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
             }
         }
 
@@ -399,7 +402,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 3);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
             }
         }
 
@@ -414,7 +417,7 @@ class Topic extends CI_Controller {
 
                 $this->load->model('attachment_model', 'attachments');
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($caption), 4);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
             }
         }
 
@@ -433,8 +436,8 @@ class Topic extends CI_Controller {
         $this->load->model('attachment_model', 'attachments');
 
         $data = array(
-            'post_title' => htmlspecialchars($input->post('post_title')),
-            'post_content' => htmlspecialchars($input->post('post_content')),
+            'post_title' => utf8_encode(htmlspecialchars($input->post('post_title'))),
+            'post_content' => utf8_encode(htmlspecialchars($input->post('post_content'))),
         );
 
         $this->posts->update_post($post_id, $data);
@@ -448,6 +451,7 @@ class Topic extends CI_Controller {
         $config['upload_path'] = './uploads/_' . $post->root_id . '/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = '*';
+        $config['maxsize'] = '0';
 
         $this->load->library('upload', $config);
 
@@ -457,11 +461,12 @@ class Topic extends CI_Controller {
         } elseif (isset($_POST['upload_post'])) {
             $this->attachments->remove_attachment(array('post_id' => $post_id));
         }
-        
-        if(isset($_POST['current_attachment'])){
+
+        if (isset($_POST['current_attachment'])) {
             $this->attachments->change_caption($input->post('current_attachment'), $input->post('edit_attachment_caption'));
         }
-        
+
+        $caption = utf8_encode(htmlspecialchars($input->post('edit_attachment_caption')));
         //image
         if ($_FILES['post_image']['name']) {
             if (!$this->upload->do_upload('post_image')) {
@@ -471,7 +476,7 @@ class Topic extends CI_Controller {
                 $upload_data = $this->upload->data();
                 $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 1);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 1);
             }
         }
 
@@ -485,7 +490,7 @@ class Topic extends CI_Controller {
                 $upload_data = $this->upload->data();
                 $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 2);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 2);
             }
         }
 
@@ -498,7 +503,7 @@ class Topic extends CI_Controller {
                 $upload_data = $this->upload->data();
                 $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 3);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 3);
             }
         }
 
@@ -511,7 +516,7 @@ class Topic extends CI_Controller {
                 $upload_data = $this->upload->data();
                 $path = './uploads/_' . $post->root_id . '/' . $upload_data['file_name'];
 
-                $this->attachments->insert_attachment($post_id, $path, htmlspecialchars($input->post('edit_attachment_caption')), 4);
+                $this->attachments->insert_attachment($post_id, $path, $caption, 4);
             }
         }
 
@@ -538,7 +543,7 @@ class Topic extends CI_Controller {
 
         $this->load->model("topic_model", "topics");
 
-        $data = array('topic_description' => htmlspecialchars($description));
+        $data = array('topic_description' => utf8_encode(htmlspecialchars($description)));
 
         $this->topics->update_topic($topic_id, $data);
 
@@ -616,6 +621,41 @@ class Topic extends CI_Controller {
         } else if ($type === '3') { //3 => creator
             $this->topics->remove_member($user_id, $topic->topic_id, 3);
         }
+    }
+
+    //refreshes the user's list of topics
+    public function refresh() {
+        $logged_user = $_SESSION['logged_user'];
+
+        if ($logged_user) {
+            $this->load->model("topic_model", "topics");
+
+            $this->topics->update_user_topics($logged_user);
+        }
+    }
+
+    public function sort() {
+        $this->load->model("topic_model", "topics");
+        $sort_type = $this->input->post('sort_type');
+        $keyword = $this->input->post('keyword');
+
+        $_SESSION['sort_type'] = $sort_type;
+
+        $topics = $this->topics->search_topics(utf8_encode(htmlspecialchars($keyword)), $sort_type);
+        $html = "";
+        foreach ($topics as $topic) {
+            $user = $topic->user;
+            $html = $html . "<a class = \"list-group-item btn btn-link list-entry\" href = \"topic/view/" . $topic->topic_id . "\">\n"
+                    . "<h4 class = \"text-info no-padding no-margin\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4>\n"
+                    . "<small><i>by " . $user->first_name . " " . $user->last_name . " </i></small>\n"
+                    . "<div class = \"pull-right\">\n"
+                    . "<span class = \"label label-info follower-label\"><i class = \"fa fa-group\"></i> " . ($topic->followers ? count($topic->followers) : '0')
+                    . " <i class = \"fa fa-comments\"></i> " . $topic->post_count . "</span>\n"
+                    . "</div>\n"
+                    . "</a>\n";
+        }
+
+        echo $html;
     }
 
 }

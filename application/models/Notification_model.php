@@ -113,7 +113,7 @@ class Notification_model extends CI_Model {
     }
 
     public function get_user_invites($user_id) {
-        $this->db->select("u.first_name, u.last_name, u.user_id, t.topic_name, t.topic_id, mi.invite_id");
+        $this->db->select("u.first_name, u.last_name, u.user_id, u.profile_url, t.topic_name, t.topic_id, mi.invite_id");
         $this->db->from("tbl_topics as t");
         $this->db->join("tbl_moderator_invite as mi", "t.topic_id = mi.topic_id");
         $this->db->join("tbl_users as u", "mi.inviter_id = u.user_id");
@@ -126,7 +126,7 @@ class Notification_model extends CI_Model {
     }
 
     public function get_user_requests($user_id) {
-        $this->db->select("u.first_name, u.last_name, u.user_id, t.topic_name, t.topic_id, mr.request_id");
+        $this->db->select("u.first_name, u.last_name, u.user_id, u.profile_url, t.topic_name, t.topic_id, mr.request_id");
         $this->db->from("tbl_topics as t");
         $this->db->join("tbl_topic_moderator as tm", "t.topic_id = tm.topic_id");
         $this->db->join("tbl_moderator_request as mr", "t.topic_id = mr.topic_id");

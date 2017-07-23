@@ -123,8 +123,8 @@ class Post_model extends CI_Model {
             return null;
         }
     }
-    
-    public function remove_vote($post_id, $user_id){
+
+    public function remove_vote($post_id, $user_id) {
         $this->db->where(array('post_id' => $post_id, 'user_id' => $user_id));
         $this->db->delete('tbl_post_vote');
     }
@@ -168,11 +168,25 @@ class Post_model extends CI_Model {
 
     /* REPORTS */
 
+    public function get_topic_post_count($topic_id) {
+        $this->db->select('COUNT(*) as post_count');
+        $this->db->from('tbl_posts');
+        $this->db->where(array('topic_id' => $topic_id, 'is_deleted' => '0'));
+        $this->db->group_by('topic_id');
+        
+        $count = $this->db->get()->row();
+        if ($count) {
+            return $count->post_count;
+        } else {
+            return 0;
+        }
+    }
+
     public function get_post_count($user_id) {
         $this->db->select('COUNT(*) as post_count');
         $this->db->from('tbl_posts');
         $this->db->where(array('user_id' => $user_id, 'is_deleted' => '0'));
-        
+
         $count = $this->db->get()->row();
 
         if ($count) {
