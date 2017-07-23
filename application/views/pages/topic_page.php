@@ -18,9 +18,6 @@ $c_topic = $_SESSION['current_topic'];
                         </strong>
                     </h4>
                 </a>
-<!--                <button class = "btn btn-link" data-toggle = "modal" data-target = "#topic-modal" style = "padding: 10px 0px;">
-                    <i class = "fa fa-question-circle-o"></i><b> About <?php echo $c_topic->topic_name ?></b>
-                </button>-->
                 <?php if (!$is_followed): ?>
                     <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $c_topic->topic_id ?>">
                         <i class = "fa fa-plus-circle"></i> Follow Topic
@@ -41,7 +38,7 @@ $c_topic = $_SESSION['current_topic'];
                 <div class = "col-sm-6">
                     <div class = "col-sm-12 topic-description-div no-padding">
                         <h4 class = "no-margin text-center user-topic-header topic-intro-header">
-                            <strong><?php echo $c_topic->topic_name ?></strong>
+                            <strong><?php echo utf8_decode($c_topic->topic_name); ?></strong>
                             
                             <?php if ($is_moderated): ?>
                             <br>
@@ -68,7 +65,7 @@ $c_topic = $_SESSION['current_topic'];
                                 </div>
                             <?php endif; ?>
                             <p id = "desc-container" class = "no-margin wrap text-center">
-                                <?php echo $c_topic->topic_description ?>
+                                <?php echo utf8_decode($c_topic->topic_description); ?>
                             </p>
                         </div>
                     </div>
@@ -81,7 +78,7 @@ $c_topic = $_SESSION['current_topic'];
                 <!-- Topic Post List -->
                 <div class = "col-sm-6 topic-preview-div">
                     <div class = "col-xs-12">
-                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to <?php echo $c_topic->topic_name ?></button>
+                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
                     </div>
                     <div class = "col-xs-12 topic-post-list">
                         <div class = "list-group" style = "padding-top: 15px;">
@@ -98,8 +95,8 @@ $c_topic = $_SESSION['current_topic'];
                                 <a href = "javascript: void(0);" class = "btn btn-link list-group-item list-entry no-up-down-pad topic-post-entry" data-value = "<?php echo $post->post_id; ?>">
                                     <div class = "row">
                                         <div class = "col-xs-10">
-                                            <h4 class = "ellipsis"><strong><?php echo $post->post_title; ?></strong> <small><i><?php echo $post->user->first_name . " " . $post->user->last_name; ?></i></small></h4>
-                                            <p class = "ellipsis"><?php echo $post->post_content; ?></p>
+                                            <h4 class = "ellipsis"><strong><?php echo utf8_decode($post->post_title); ?></strong> <small><i><?php echo $post->user->first_name . " " . $post->user->last_name; ?></i></small></h4>
+                                            <p class = "ellipsis"><?php echo utf8_decode($post->post_content); ?></p>
                                         </div>
                                         <div class = "col-xs-2 text-center" style = "padding: 0px;">
                                             <p style = "padding-top: 10px; font-size: 11px;"><i><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></p>
@@ -117,8 +114,7 @@ $c_topic = $_SESSION['current_topic'];
 
     <?php
     include(APPPATH . 'views/modals/create_post_modal.php');
-    include(APPPATH . 'views/modals/topic_description_modal.php');
     include(APPPATH . 'views/modals/topic_members_modal.php');
     include(APPPATH . 'views/modals/cancel_topic_modal.php');
-    include(APPPATH . 'views/chat/chat.php');
+ //   include(APPPATH . 'views/chat/chat.php');
     

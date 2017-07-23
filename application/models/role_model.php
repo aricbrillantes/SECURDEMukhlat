@@ -7,7 +7,7 @@ class Role_model extends CI_Model {
     }
 
     public function get_roles() {
-        $query = $this->db->get('tbl_roles');
+        $query = $this->db->order_by('role_id', 'desc')->get('tbl_roles');
         return $query->result();
     }
 }

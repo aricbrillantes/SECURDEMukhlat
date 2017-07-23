@@ -47,7 +47,7 @@ include(APPPATH . 'views/header.php');
                                             </a> 
                                             <span>posted in</span> 
                                             <a class = "btn btn-link no-padding" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
-                                                <strong><?php echo $post->topic_name; ?></strong>
+                                                <strong><?php echo utf8_decode($post->topic_name); ?></strong>
                                             </a>:
                                         </div>
 
@@ -70,7 +70,7 @@ include(APPPATH . 'views/header.php');
 
                                             <!-- Right -->
                                             <div class = "col-xs-11" style = "margin-top: 5px;">
-                                                <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo $post->post_title; ?></strong></h4>
+                                                <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
                                                 <i class = "text-muted">
                                                     <small>by 
                                                         <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
@@ -79,7 +79,7 @@ include(APPPATH . 'views/header.php');
                                                     </small>
                                                 </i>
                                                 <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
-                                                <p class = "home-content-body" style = "border-right: none;"><?php echo $post->post_content ?></p>
+                                                <p class = "home-content-body" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
                                             </div>
                                         </div>
                                         <div class = "user-post-footer no-margin text-right">
@@ -107,5 +107,5 @@ include(APPPATH . 'views/header.php');
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
 
     <?php
-    include(APPPATH . 'views/chat/chat.php');
+//    include(APPPATH . 'views/chat/chat.php');
     

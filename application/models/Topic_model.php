@@ -38,20 +38,6 @@ class Topic_model extends CI_Model {
         return $topic;
     }
 
-    public function get_topics() {
-        $topics = $this->db->where('is_cancelled = 0')->order_by('date_created', 'DESC')->get('tbl_topics')->result();
-
-        //load user of topic
-        $this->load->model('user_model', 'users');
-
-        foreach ($topics as $topic) {
-            $topic->user = $this->users->get_user(false, false, array('user_id' => $topic->creator_id));
-            $topic->followers = $this->users->get_topic_followers($topic->topic_id);
-        }
-
-        return $topics;
-    }
-
     public function get_user_topics($user_id) {
         $topics = $this->db->order_by('topic_name', 'ASC')->get_where('tbl_topics', array('creator_id' => $user_id, 'is_cancelled' => 0))->result();
 
@@ -108,17 +94,45 @@ class Topic_model extends CI_Model {
         return $is_moderated;
     }
 
-    public function search_topics($keyword) {
-        $this->db->like("topic_name", $keyword, "both");
-        $this->db->where("is_cancelled = 0");
-        $topics = $this->db->get("tbl_topics")->result();
-
+    public function search_topics($keyword, $sort_type) {
+        switch ($sort_type) {
+            case 0: $this->db->like("topic_name", $keyword, "both");
+                $this->db->where("is_cancelled = 0");
+                $topics = $this->db->get("tbl_topics")->result();
+                break;
+            case 1: $this->db->select("*");
+                $this->db->from("tbl_topics");
+                $this->db->like("topic_name", $keyword, "both");
+                $this->db->where("is_cancelled = 0");
+                $this->db->order_by('date_created', 'desc');
+                $topics = $this->db->get()->result();
+                break;
+            case 2: $this->db->select("t.topic_id, t.topic_name, t.creator_id, IFNULL(COUNT(*), 0) AS follower_count");
+                $this->db->from("tbl_topics t")->join("tbl_topic_follower tf", "t.topic_id = tf.topic_id", "left");
+                $this->db->like("topic_name", $keyword, "both");
+                $this->db->where("is_cancelled = 0");
+                $this->db->group_by('t.topic_id');
+                $this->db->order_by('follower_count', 'desc');
+                $topics = $this->db->get()->result();
+                break;
+            case 3: $this->db->select("t.topic_id, t.topic_name, t.creator_id, IFNULL(COUNT(*), 0) AS post_count");
+                $this->db->from("tbl_topics t")->join("tbl_posts p", "t.topic_id = p.topic_id", "left");
+                $this->db->like("topic_name", $keyword, "both");
+                $this->db->where("is_cancelled = 0");
+                $this->db->group_by('t.topic_id');
+                $this->db->order_by('post_count', 'desc');
+                $topics = $this->db->get()->result();
+                break;
+        }
+        
         $this->load->model("user_model", "users");
+        $this->load->model("post_model", "posts");
         foreach ($topics as $topic) {
             $topic->user = $this->users->get_user(false, false, array('user_id' => $topic->creator_id));
             $topic->followers = $this->users->get_topic_followers($topic->topic_id);
+            $topic->post_count = $this->posts->get_topic_post_count($topic->topic_id);
         }
-
+        
         return $topics;
     }
 
@@ -177,6 +191,12 @@ class Topic_model extends CI_Model {
         } else {
             return 0;
         }
+    }
+
+    public function update_user_topics($user) {
+        $user->topics = $this->get_user_topics($user->user_id);
+        $user->followed_topics = $this->get_followed_topics($user->user_id);
+        $user->moderated_topics = $this->get_moderated_topics($user->user_id);
     }
 
 }

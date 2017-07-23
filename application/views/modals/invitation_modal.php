@@ -8,7 +8,7 @@ $topic = $_SESSION['current_topic'];
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">Invite others to moderate <?php echo $topic->topic_name ?>!</h4>
+                <h4 class="modal-title text-center">Invite others to moderate <?php echo utf8_decode($topic->topic_name); ?>!</h4>
             </div>
             <div class="modal-body">
                 <h5 class ="text-muted text-right no-margin no-padding" style = "margin-bottom: 10px;">Users selected: 
@@ -21,7 +21,7 @@ $topic = $_SESSION['current_topic'];
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" class = "name-invite"  name = "invite-checkbox[]" value="<?php echo $nonmoderator->user_id ?>">
-                                        <img src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>" class = "img-circle" style = "width: 25px;"/>
+                                        <img src = "<?php echo $nonmoderator->profile_url ? base_url($nonmoderator->profile_url) : base_url('images/default.jpg') ?>" class = "img-circle" style = "width: 25px;"/>
                                         <?php echo $nonmoderator->first_name . " " . $nonmoderator->last_name ?>
                                     </label>
                                 </div>

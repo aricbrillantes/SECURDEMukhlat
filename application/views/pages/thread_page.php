@@ -18,7 +18,7 @@ $user = $post->user;
                         </strong>
                     </h3>
                 </a>
-                <h3 class = "wrap post-header-title"><strong><?php echo $post->topic->topic_name; ?>: </strong> 
+                <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
                         <i>Thread by 
                             <a class = "btn btn-link btn-md no-padding no-margin" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
@@ -68,7 +68,7 @@ $user = $post->user;
                                 <!-- Post Heading -->
                                 <div class="media-heading">
                                     <?php if ($post->post_title): ?>
-                                        <h4 class = "no-padding no-margin text-muted"><strong><?php echo $post->post_title; ?></strong></h4>
+                                    <h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
                                         <small>
                                             <i>by <a class = "btn btn-link btn-xs no-padding no-margin"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
                                             <span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
@@ -93,18 +93,18 @@ $user = $post->user;
                                         <?php elseif ($attachment->attachment_type_id === '3'): ?>
                                             <video src = "<?= base_url($attachment->file_url); ?>" width = "300px" controls/></video>
                                         <?php elseif ($attachment->attachment_type_id === '4'): ?>
-                                            <a href = "<?= base_url($attachment->file_url); ?>" download><i class = "fa fa-file-o"></i> <i class = "text" style = "font-size: 12px;"><?= $attachment->caption; ?></i></a>
+                                            <a href = "<?= base_url($attachment->file_url); ?>" download><i class = "fa fa-file-o"></i> <i class = "text" style = "font-size: 12px;"><?= utf8_decode($attachment->caption); ?></i></a>
                                             <?php
                                         endif;
                                     endforeach;
                                     if ($attachment->attachment_type_id !== '4'):
                                         ?>
-                                        <p><i class = "text-muted bg-info"><?= $attachment->caption; ?></i></p>
+                                        <p><i class = "text-muted bg-info"><?= utf8_decode($attachment->caption); ?></i></p>
                                     <?php
                                     endif;
                                 endif;
                                 ?>
-                                <p class = "post-content" style = "margin-top: 15px;"><?php echo $post->post_content ?></p>
+                                <p class = "post-content" style = "margin-top: 15px;"><?php echo utf8_decode($post->post_content) ?></p>
 <?php else: ?>
                                 <div class="media-heading">
                                     <h4 class = "no-padding no-margin text-danger">Deleted Post</h4>
@@ -136,7 +136,7 @@ $user = $post->user;
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 
     <?php
-    include(APPPATH . 'views/chat/chat.php');
+//    include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');
     include(APPPATH . 'views/modals/edit_post_modal.php');
     include(APPPATH . 'views/modals/delete_post_modal.php');

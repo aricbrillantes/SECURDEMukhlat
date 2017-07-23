@@ -8,7 +8,7 @@ $topic = $_SESSION['current_topic'];
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">Share <?php echo $topic->topic_name ?> to others!</h4>
+                <h4 class="modal-title text-center">Share <?php echo utf8_decode($topic->topic_name); ?> to others!</h4>
             </div>
             <div class="modal-body">
                 <h5 class ="text-muted text-right no-margin no-padding" style = "margin-bottom: 10px;">Users selected: 
@@ -21,7 +21,7 @@ $topic = $_SESSION['current_topic'];
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" class = "name-share"  name = "share-checkbox[]" value="<?php echo $nonfollower->user_id ?>">
-                                        <img src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>" class = "img-circle" style = "width: 25px;"/>
+                                        <img src = "<?php echo $nonfollower->profile_url ? base_url($nonfollower->profile_url) : base_url('images/default.jpg') ?>" class = "img-circle" width = "25px"/>
                                         <?php echo $nonfollower->first_name . " " . $nonfollower->last_name ?>
                                     </label>
                                 </div>

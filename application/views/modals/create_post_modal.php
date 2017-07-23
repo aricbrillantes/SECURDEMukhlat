@@ -8,7 +8,7 @@ $topic = $_SESSION['current_topic'];
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Post to <?php echo $topic->topic_name; ?></strong></h4>
+                <h4 class="modal-title"><strong>Post to <?php echo utf8_decode($topic->topic_name); ?></strong></h4>
             </div>
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/post'); ?>" id = "create-post-form" method = "POST">
                 <div class="modal-body">

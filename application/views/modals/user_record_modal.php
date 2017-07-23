@@ -69,7 +69,7 @@ include(APPPATH . 'third_party/fusioncharts.php');
                                         <?php
                                         $start_string = "";
                                         foreach ($record->post_start as $start):
-                                            $start_string .= '{ "label":"' . $start->topic_name . '",'
+                                            $start_string .= '{ "label":"' . utf8_decode($start->topic_name) . '",'
                                                     . '"value":"' . $start->post_count . '"},';
                                         endforeach;
                                         $threadChart = new FusionCharts("column2d", "threadChart", "80%", 300, "thread-chart", "json", '{  
@@ -90,7 +90,7 @@ include(APPPATH . 'third_party/fusioncharts.php');
                                         <?php
                                         $publish_string = "";
                                         foreach ($record->post_published as $publish):
-                                            $publish_string .= '{ "label":"' . $publish->topic_name . '",'
+                                            $publish_string .= '{ "label":"' . utf8_decode($publish->topic_name) . '",'
                                                     . '"value":"' . $publish->post_count . '"},';
                                         endforeach;
                                         $postTopicChart = new FusionCharts("column2d", "postTopicChart", "80%", 300, "post-topic-chart", "json", '{  

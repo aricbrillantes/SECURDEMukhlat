@@ -16,19 +16,20 @@ class Search extends CI_Controller {
     public function index() {
         $this->load->model("user_model", "users");
         $this->load->model("topic_model", "topics");
-        $keyword = htmlspecialchars($this->input->get("search-key"));
+        $keyword = utf8_encode(htmlspecialchars($this->input->get("search-key")));
         $data['keyword'] = $keyword;
         $data['users'] = $this->users->search_users($keyword);
-        $data['topics'] = $this->topics->search_topics($keyword);
+        $data['topics'] = $this->topics->search_topics($keyword, 0);
         $this->load->view('pages/search_page', $data);
     }
 
     public function topic() {
         $keyword = $this->input->post("keyword");
         $this->load->model("topic_model", "topics");
-        $topics = $this->topics->search_topics($keyword);
+        $sort_type = $_SESSION['sort_type'];
+        $topics = $this->topics->search_topics(utf8_encode(htmlspecialchars($keyword)), $sort_type);
         $html = "";
-
+        
         foreach ($topics as $topic) {
             $user = $topic->user;
             $html = $html . "<a class = \"list-group-item btn btn-link list-entry\" href = \"topic/view/" . $topic->topic_id . "\">\n"
@@ -39,7 +40,6 @@ class Search extends CI_Controller {
                     . "</div>\n"
                     . "</a>\n";
         }
-
         echo $html;
     }
 }

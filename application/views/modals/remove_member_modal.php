@@ -8,7 +8,7 @@ elseif ($type === '2'):
     $type = 'Remove ' . $user->first_name . ' from being a moderator?';
 elseif ($type === '3'):
     $btn_id = 'remove-creator-proceed';
-    $type = 'WARNING: Removing yourself, the creator of ' . $topic->topic_name . ', would also cancel the topic! Proceed?';
+    $type = 'WARNING: Removing yourself, the creator of ' . utf8_decode($topic->topic_name) . ', would also cancel the topic! Proceed?';
 endif;
 ?>
 

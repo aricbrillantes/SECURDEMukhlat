@@ -47,7 +47,7 @@ include(APPPATH . 'views/header.php');
                                 foreach ($topics as $topic):
                                     ?>
                                     <a class = "list-group-item btn btn-link list-entry" href = "topic/view/<?php echo $topic->topic_id; ?>">
-                                        <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo $topic->topic_name; ?></h4>
+                                        <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4>
                                         <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
                                         <div class = "pull-right">
                                             <span class = "label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
@@ -69,5 +69,5 @@ include(APPPATH . 'views/header.php');
     </div>
 
     <?php
-    include(APPPATH . 'views/chat/chat.php');
+  //  include(APPPATH . 'views/chat/chat.php');
     

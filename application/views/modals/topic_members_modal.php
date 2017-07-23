@@ -8,7 +8,7 @@ $topic = $_SESSION['current_topic'];
         <div class="modal-content">
             <div class="modal-header modal-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">Members of <?php echo $topic->topic_name ?></h4>
+                <h4 class="modal-title text-center">Members of <?php echo utf8_decode($topic->topic_name); ?></h4>
             </div>
             <div class="modal-body" style = "height: 400px;">
                 <!-- followers -->
@@ -19,7 +19,7 @@ $topic = $_SESSION['current_topic'];
                             <ul class = "list-group">
                                 <?php foreach ($topic->followers as $follower): ?>
                                     <li class = "no-up-down-pad list-group-item">
-                                        <img src = "<?php echo base_url('images/default.jpg'); ?>" width = "30px" class = "img-circle pull-left" style = "margin-top: 5px; margin-right: 5px;">
+                                        <img src = "<?php echo $follower->profile_url ? base_url($follower->profile_url) : base_url('images/default.jpg'); ?>" width = "30px" height = "30px" class = "img-circle pull-left" style = "margin-top: 5px; margin-right: 5px;">
                                         <h5 style = "display: inline-block;">
                                             <a class = "btn btn-link btn-sm no-padding no-margin ellipsis topic-member-name" href = "<?php echo base_url('user/profile/' . $follower->user_id); ?>">
                                                 <strong><?php echo $follower->first_name . " " . $follower->last_name ?></strong>
@@ -49,7 +49,7 @@ $topic = $_SESSION['current_topic'];
                             <ul class = "list-group">
                                 <?php foreach ($topic->moderators as $moderator): ?>
                                     <li class = "no-up-down-pad list-group-item">
-                                        <img src = "<?php echo base_url('images/default.jpg'); ?>" width = "30px" class = "img-circle pull-left" style = "margin-top: 5px; margin-right: 5px;">
+                                        <img src = "<?php echo $moderator->profile_url ? base_url($moderator->profile_url) : base_url('images/default.jpg'); ?>" width = "30px" height = "30px" class = "img-circle pull-left" style = "margin-top: 5px; margin-right: 5px;">
                                         <h5 style = "display: inline-block;">
                                             <a class = "btn btn-link btn-sm no-padding no-margin ellipsis topic-member-name" href = "<?php echo base_url('user/profile/' . $moderator->user_id); ?>">
                                                 <strong><?php echo $moderator->first_name . " " . $moderator->last_name ?></strong>

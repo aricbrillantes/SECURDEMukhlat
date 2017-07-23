@@ -8,6 +8,10 @@ body.sign-in{
     font-family: 'Cabin', 'Muli', sans-serif;
 }
 
+textarea{
+    resize: none;
+}
+
 .sign-in-logo{
     font-family: 'Oswald', sans-serif;
     color: white;
@@ -804,4 +808,8 @@ END CHAT
 
 #attachment-preview, #edit-attachment-preview{
     height: 60px;
+}
+
+#topic-list{
+    margin-top: 10px;
 }

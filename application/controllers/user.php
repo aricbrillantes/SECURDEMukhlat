@@ -29,6 +29,7 @@ class User extends CI_Controller {
         $config['upload_path'] = './uploads/user_profiles/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = '*';
+        $config['maxsize'] = '0';
         
         $this->load->library('upload', $config);
         $path = $user->profile_url ? $user->profile_url : null;
@@ -45,11 +46,11 @@ class User extends CI_Controller {
 
         $this->load->model('user_model', 'users');
         $input = $this->input;
-        $firstname = htmlspecialchars($input->post('edit_first'));
-        $lastname = htmlspecialchars($input->post('edit_last'));
+        $firstname = utf8_encode(htmlspecialchars($input->post('edit_first')));
+        $lastname = utf8_encode(htmlspecialchars($input->post('edit_last')));
         $password = $input->post('edit_pass');
-        $email = htmlspecialchars($input->post('edit_email'));
-        $description = htmlspecialchars($input->post('edit_description'));
+        $email = utf8_encode(htmlspecialchars($input->post('edit_email')));
+        $description = utf8_encode(htmlspecialchars($input->post('edit_description')));
 
         $edit_pass = (empty($password) ? $user->password : $password);
         $data = array('first_name' => $firstname,

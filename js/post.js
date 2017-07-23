@@ -16,8 +16,8 @@ $(document).ready(function () {
             dataType: "json",
             data: {post_id: post_id},
             success: function (data) {
-                $("#post-title").val(data.edit_post.post_title);
-                $("#post-content").val(data.edit_post.post_content);
+                $("#post-title").val($('<textarea/>').html(data.edit_post.post_title).text());
+                $("#post-content").val($('<textarea/>').html(data.edit_post.post_content).text());
                 $("#edit-post-topic").html("<strong>Edit your post in " + data.edit_post.topic_name + "</strong>");
                 $("#edit-confirm-topic").html("<strong>Save changes made to your post in " + data.edit_post.topic_name + "</strong>");
                 $("#edit-post-form").attr("action", window.location.origin + "/GetTogetherBeta/topic/edit_post/" + data.edit_post.post_id);

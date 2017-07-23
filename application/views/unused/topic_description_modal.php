@@ -8,7 +8,7 @@ $topic = $_SESSION['current_topic'];
         <div class="modal-content">
             <div class="modal-header modal-heading text-center">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"style = "display: inline-block;"><?php echo $topic->topic_name ?></h4>
+                <h4 class="modal-title"style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4>
             </div>
             <div class="modal-body">
                 <?php if ($is_moderated): ?>
@@ -21,7 +21,7 @@ $topic = $_SESSION['current_topic'];
 
                     <div id = "desc-edit" class = "col-md-12 hidden">
                         <div class = "form-group" style = "margin-bottom: 5px;">
-                            <textarea id = "edit-topic-text" class = "form-control"><?php echo $topic->topic_description ?></textarea>
+                            <textarea id = "edit-topic-text" class = "form-control"><?php echo utf8_decode($topic->topic_description); ?></textarea>
                         </div>
                         <div class = "form-group pull-right" style = "margin-top: 0px;">
                             <button value = "<?php echo $topic->topic_id ?>" id = "edit-topic-save" class = "btn btn-primary btn-sm">Save</button>
@@ -30,7 +30,7 @@ $topic = $_SESSION['current_topic'];
                     </div>
                 <?php endif; ?>
                 <p id = "desc-container" class = "wrap text-center">
-                    <?php echo $topic->topic_description ?>
+                    <?php echo utf8_decode($topic->topic_description); ?>
                 </p>
                 <p class = "text-muted" align = "center">
                     <small><i>Created by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $topic->user->user_id); ?>"><?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></a> on <?php echo date("M-d-y", strtotime($topic->date_created)); ?></i></small>

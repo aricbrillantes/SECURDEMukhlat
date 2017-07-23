@@ -449,73 +449,100 @@ $(document).ready(function () {
         changeAttachment();
     });
 
-    function changeAttachment() {
-        $("#attachment-message").remove();
-        $("#attachment-details").remove();
-        $("#attachment-preview").append('<div id = "attachment-details" class = "form-group" style = "padding:3px">' +
-                '<label for="attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
-                'Add a caption!' +
-                '</label>' +
-                '<div class = "col-sm-8 no-padding">' +
-                '<input type="text" class="form-control" name = "attachment_caption" id = "attachment-caption" ' +
-                'placeholder = "Enter a caption"/>' +
-                '</div>' +
-                '<div class ="col-sm-1">' +
-                '<button id = "attachment-remove" type = "button" class = "delete-btn btn btn-sm btn-danger">' +
-                '<i class = "fa fa-trash"></i>' +
-                '</button>' +
-                '</div>' +
-                '</div>');
-    }
+    $('#sort-dropdown li a').click(function () {
+        var sort_type = $(this).data('value');
+        $.ajax({
+            url: window.location.origin + '/GetTogetherBeta/topic/sort',
+            type: 'POST',
+            data: {sort_type: sort_type, keyword: $('#search-topic-list').val()},
+            success: function (html) {
+                $("#topic-list").empty();
+                $("#topic-list").append(html);
 
-    function changeEditAttachment() {
-        $("#edit-attachment-message").remove();
-        $("#edit-attachment-details").remove();
-        $("#edit-attachment-preview").append('<div id = "edit-attachment-details" class = "form-group" style = "padding:3px">' +
-                '<label for="edit-attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
-                'Add a caption!' +
-                '</label>' +
-                '<div class = "col-sm-8 no-padding">' +
-                '<input type="text" class="form-control" name = "edit_attachment_caption" id = "edit-attachment-caption" ' +
-                'placeholder = "Enter a caption"/>' +
-                '</div>' +
-                '<div class ="col-sm-1">' +
-                '<button id = "edit-attachment-remove" type = "button" class = "delete-btn btn btn-sm btn-danger">' +
-                '<i class = "fa fa-trash"></i>' +
-                '</button>' +
-                '</div>' +
-                '</div>');
-    }
-
-    function editAttachmentRemove() {
-        $("#edit-attachment-details").remove();
-        $("#edit-attachment-preview").append('<h5 id = "edit-attachment-message" class = "text-warning text-center">No attachment yet.</h5>');
-        //reset all attachments
-        $("#edit-attach-img").wrap('<form>').closest('form').get(0).reset();
-        $("#edit-attach-img").unwrap();
-        $("#edit-attach-audio").wrap('<form>').closest('form').get(0).reset();
-        $("#edit-attach-audio").unwrap();
-        $("#edit-attach-video").wrap('<form>').closest('form').get(0).reset();
-        $("#edit-attach-video").unwrap();
-        $("#edit-attach-file").wrap('<form>').closest('form').get(0).reset();
-        $("#edit-attach-file").unwrap();
-
-        //enable attachment buttons
-        $("#edit-attach-img").removeAttr('disabled');
-        $("#edit-img-label").removeClass('disabled');
-        $("#edit-image-text").html('<i class = "fa fa-file-image-o"></i> Add Image');
-
-        $("#edit-attach-audio").removeAttr('disabled');
-        $("#edit-audio-label").removeClass('disabled');
-        $("#edit-audio-text").html('<i class = "fa fa-file-audio-o"></i> Add Audio');
-
-        $("#edit-attach-video").removeAttr('disabled');
-        $("#edit-video-label").removeClass('disabled');
-        $("#edit-video-text").html('<i class = "fa fa-file-image-o"></i> Add Video');
-
-        $("#edit-attach-file").removeAttr('disabled');
-        $("#edit-file-label").removeClass('disabled');
-        $("#edit-file-text").html('<i class = "fa fa-file-o"></i> Add File');
-    }
-
+                switch (sort_type) {
+                    case 1:
+                        $("#chosen-sort").html('<strong><i class = "fa fa-clock-o"></i> Date Created </strong>' +
+                                '<i class="caret"></i>');
+                        break;
+                    case 2:
+                        $("#chosen-sort").html('<strong><i class = "fa fa-group"></i> Follower Count </strong>' +
+                                '<i class="caret"></i>');
+                        break;
+                    case 3:
+                        $("#chosen-sort").html('<strong><i class = "fa fa-comments"></i> Post Count </strong>' +
+                                '<i class="caret"></i>');
+                        break;
+                }
+            }
+        });
+    });
 });
+
+function changeAttachment() {
+    $("#attachment-message").remove();
+    $("#attachment-details").remove();
+    $("#attachment-preview").append('<div id = "attachment-details" class = "form-group" style = "padding:3px">' +
+            '<label for="attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
+            'Add a caption!' +
+            '</label>' +
+            '<div class = "col-sm-8 no-padding">' +
+            '<input type="text" class="form-control" name = "attachment_caption" id = "attachment-caption" ' +
+            'placeholder = "Enter a caption"/>' +
+            '</div>' +
+            '<div class ="col-sm-1">' +
+            '<button id = "attachment-remove" type = "button" class = "delete-btn btn btn-sm btn-danger">' +
+            '<i class = "fa fa-trash"></i>' +
+            '</button>' +
+            '</div>' +
+            '</div>');
+}
+
+function changeEditAttachment() {
+    $("#edit-attachment-message").remove();
+    $("#edit-attachment-details").remove();
+    $("#edit-attachment-preview").append('<div id = "edit-attachment-details" class = "form-group" style = "padding:3px">' +
+            '<label for="edit-attachment-caption" class="col-sm-3 no-padding" style = "padding-top: 5px;">' +
+            'Add a caption!' +
+            '</label>' +
+            '<div class = "col-sm-8 no-padding">' +
+            '<input type="text" class="form-control" name = "edit_attachment_caption" id = "edit-attachment-caption" ' +
+            'placeholder = "Enter a caption"/>' +
+            '</div>' +
+            '<div class ="col-sm-1">' +
+            '<button id = "edit-attachment-remove" type = "button" class = "delete-btn btn btn-sm btn-danger">' +
+            '<i class = "fa fa-trash"></i>' +
+            '</button>' +
+            '</div>' +
+            '</div>');
+}
+
+function editAttachmentRemove() {
+    $("#edit-attachment-details").remove();
+    $("#edit-attachment-preview").append('<h5 id = "edit-attachment-message" class = "text-warning text-center">No attachment yet.</h5>');
+    //reset all attachments
+    $("#edit-attach-img").wrap('<form>').closest('form').get(0).reset();
+    $("#edit-attach-img").unwrap();
+    $("#edit-attach-audio").wrap('<form>').closest('form').get(0).reset();
+    $("#edit-attach-audio").unwrap();
+    $("#edit-attach-video").wrap('<form>').closest('form').get(0).reset();
+    $("#edit-attach-video").unwrap();
+    $("#edit-attach-file").wrap('<form>').closest('form').get(0).reset();
+    $("#edit-attach-file").unwrap();
+
+    //enable attachment buttons
+    $("#edit-attach-img").removeAttr('disabled');
+    $("#edit-img-label").removeClass('disabled');
+    $("#edit-image-text").html('<i class = "fa fa-file-image-o"></i> Add Image');
+
+    $("#edit-attach-audio").removeAttr('disabled');
+    $("#edit-audio-label").removeClass('disabled');
+    $("#edit-audio-text").html('<i class = "fa fa-file-audio-o"></i> Add Audio');
+
+    $("#edit-attach-video").removeAttr('disabled');
+    $("#edit-video-label").removeClass('disabled');
+    $("#edit-video-text").html('<i class = "fa fa-file-image-o"></i> Add Video');
+
+    $("#edit-attach-file").removeAttr('disabled');
+    $("#edit-file-label").removeClass('disabled');
+    $("#edit-file-text").html('<i class = "fa fa-file-o"></i> Add File');
+}

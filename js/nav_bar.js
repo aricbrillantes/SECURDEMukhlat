@@ -4,6 +4,11 @@ $(document).ready(function() {
         context: document.body
     });
 
+    $.ajax({
+        url: window.location.origin + "/GetTogetherBeta/topic/refresh",
+        context: document.body
+    });
+    
     $("#nav-logo").on("mouseover", function() {
         $(this).attr('src', window.location.origin + '/GetTogetherBeta/images/logo/logo-blue-hover.png');
     });

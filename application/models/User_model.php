@@ -80,7 +80,7 @@ class User_model extends CI_Model {
         $subjoin = $this->db->get_compiled_select();
 
         //main
-        $this->db->select("u.user_id, u.first_name, u.last_name")
+        $this->db->select("u.user_id, u.first_name, u.last_name, u.profile_url")
                 ->from("tbl_users u")
                 ->join("($subjoin) sub", "u.user_id = sub.user_id", "left outer")
                 ->where("sub.user_id is null")
@@ -100,7 +100,7 @@ class User_model extends CI_Model {
         $subjoin = $this->db->get_compiled_select();
 
         //main
-        $this->db->select("u.user_id, u.first_name, u.last_name")
+        $this->db->select("u.user_id, u.first_name, u.last_name, u.profile_url")
                 ->from("tbl_users u")
                 ->join("($subjoin) sub", "u.user_id = sub.user_id", "left outer")
                 ->where("sub.user_id is null")
@@ -161,5 +161,5 @@ class User_model extends CI_Model {
         $record->replies = $this->records->get_user_replies($user_id);
         return $record;
     }
-
+    
 }

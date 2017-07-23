@@ -24,7 +24,7 @@
                                         <?php foreach ($logged_user->moderator_requests as $request): ?>
                                             <li class = "list-group-item notif-item" value = "<?php echo $request->request_id ?>">
                                                 <div class = "col-xs-1 no-padding no-margin">
-                                                    <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" style = "width: 40px; margin-right: 10px;"/>
+                                                    <img src = "<?php echo $request->profile_url ? base_url($request->profile_url) : base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" width = "40px" height = "40px" style = "margin-right: 10px;"/>
                                                 </div>
                                                 <div class = "col-xs-9 wrap no-margin" style = "padding: 10px;">
                                                     <span class = "text-muted" style = "font-size: 12px;">
@@ -33,7 +33,7 @@
                                                         </a>
                                                         wants to apply as a moderator in 
                                                         <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $request->topic_id); ?>">
-                                                            <strong><?php echo $request->topic_name ?></strong>
+                                                            <strong><?php echo utf8_decode($request->topic_name); ?></strong>
                                                         </a>
                                                         !
                                                     </span>
@@ -56,13 +56,13 @@
                                         <?php foreach ($logged_user->moderator_invites as $invite): ?> 
                                             <li class = "list-group-item notif-item" value = "<?php echo $invite->invite_id ?>">
                                                 <div class = "col-xs-1 no-padding no-margin">
-                                                    <img src = "<?php echo base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" style = "width: 40px; margin-right: 10px;"/>
+                                                    <img src = "<?php echo $invite->profile_url ? base_url($invite->profile_url) : base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" width = "40px" height = "40px" style = "margin-right: 10px;"/>
                                                 </div>
                                                 <div class = "col-xs-9 wrap no-margin" style = "padding: 10px;">
                                                     <span class = "text-muted" style = "font-size: 12px;">
                                                         <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $invite->user_id); ?>"><strong><?php echo $invite->first_name . " " . $invite->last_name ?></strong></a>
                                                         invited you to be a moderator of the topic 
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $invite->topic_id); ?>"><strong><?php echo $invite->topic_name ?></strong></a> 
+                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $invite->topic_id); ?>"><strong><?php echo utf8_decode($invite->topic_name); ?></strong></a> 
                                                     </span>
                                                 </div>
                                                 <div class = "col-xs-2 no-padding no-margin">

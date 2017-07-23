@@ -19,8 +19,8 @@ class Signin extends CI_Controller {
         $user = $this->user->get_user(false, false, $fields);
         if (!$user) {
             $data = array(
-                'first_name' => htmlspecialchars($input->post('first_name', TRUE)),
-                'last_name' => htmlspecialchars($input->post('last_name', TRUE)),
+                'first_name' => utf8_encode(htmlspecialchars($input->post('first_name', TRUE))),
+                'last_name' => utf8_encode(htmlspecialchars($input->post('last_name', TRUE))),
                 'email' => htmlspecialchars($input->post('sign_up_email', TRUE)),
                 'password' => hash('sha256', htmlspecialchars($input->post('sign_up_password', TRUE))),
                 'birthdate' => htmlspecialchars($input->post('sign_up_birthday', TRUE)),

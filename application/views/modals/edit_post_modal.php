@@ -7,8 +7,8 @@ $topic = $_SESSION['current_topic'];
         <!-- Create Topic Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading">
-                <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>Edit your post in <?php echo $topic->topic_name ?></strong></h4>
+                <button type="button" id="close-edit-post" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><strong>Edit your post in <?php echo utf8_decode($topic->topic_name); ?></strong></h4>
             </div>
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/edit_post'); ?>" id = "edit-post-form" method = "POST">
                 <div class="col-md-12 modal-body">
