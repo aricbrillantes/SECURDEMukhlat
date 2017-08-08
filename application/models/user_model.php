@@ -10,8 +10,8 @@ class User_model extends CI_Model {
         $query = $this->db->get('tbl_users');
         return $query->result();
     }
-    
-    public function get_ordinary_users(){
+
+    public function get_ordinary_users() {
         $query = $this->db->select('user_id, first_name, last_name')
                 ->from('tbl_users')
                 ->where('role_id = 2');
@@ -41,6 +41,19 @@ class User_model extends CI_Model {
             }
         }
         return $user;
+    }
+
+    public function get_topic_users($topic_id) {
+        $users = $this->db->query('SELECT result.user_id, result.first_name, result.last_name FROM (select u.user_id, '
+                        . 'u.first_name, u.last_name from tbl_posts p '
+                        . 'join tbl_users u on p.user_id = u.user_id '
+                        . 'where p.topic_id = ' . $topic_id . ' UNION ALL select u.user_id, '
+                        . 'u.first_name, u.last_name from tbl_post_vote pv '
+                        . 'join tbl_users u on pv.user_id = u.user_id join tbl_posts p on p.post_id '
+                        . '= pv.post_id where p.topic_id = ' . $topic_id . ' ) result '
+                        . 'group by result.user_id;')->result();
+        
+        return $users;
     }
 
     public function get_topic_followers($topic_id) {
@@ -170,4 +183,5 @@ class User_model extends CI_Model {
         $record->replies = $this->records->get_user_replies($user_id);
         return $record;
     }
+
 }

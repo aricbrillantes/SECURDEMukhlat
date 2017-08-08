@@ -18,10 +18,12 @@ $logged_user = $_SESSION['logged_user'];
             </div>
             <div class = "col-md-8 col-md-offset-2 content-container" style = "margin-bottom: 5px;">
                 <div class = "col-sm-12 text-center" style = "margin-bottom: 10px;"><h3 id = "network-header" class = "no-margin">Interaction Network Map within GetTogether</h3></div>
-                <div class = "col-sm-3">
-                    <button id = "reset-map" class = "btn btn-block btn-primary">Reset Interaction Map</button>
+                <div id = "network-tools" class = "col-sm-12" style = "margin-bottom: 10px;">
+                    <div class = "col-xs-8 col-md-offset-2">
+                        <button id = "reset-map" class = "btn btn-block btn-primary">Reset Interaction Map</button>
+                    </div>
                 </div>
-                <div class = "col-sm-9 content-container"><div id = "interaction-network"></div></div>
+                <div class = "col-sm-12 content-container"><div id = "interaction-network"></div></div>
             </div>
         </div>
     </div>

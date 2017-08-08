@@ -47,5 +47,16 @@ class Admin extends CI_Controller {
 
         echo json_encode($user);
     }
+    
+    public function within_topic(){
+        $topic_id = $this->uri->segment(3);
+        
+        $this->load->model('network_model', 'net');
+        $this->load->model('topic_model', 'topics');
+        
+        $topic = $this->topics->get_topic(false, $topic_id);
+        $topic->users = $this->net->get_within_topic($topic_id);
 
+        echo json_encode($topic);
+    }
 }
