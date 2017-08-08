@@ -1,7 +1,6 @@
 <?php
 
 class Home extends CI_Controller {
-
     public function index() {
         $logged_user = $_SESSION['logged_user'];
         if (!empty($logged_user)) {

@@ -6,6 +6,7 @@ body{
 body.sign-in{
     background-image: url(../images/wood_tile/blue.jpg);
     font-family: 'Cabin', 'Muli', sans-serif;
+    height: 500px;
 }
 
 textarea{
@@ -812,4 +813,9 @@ END CHAT
 
 #topic-list{
     margin-top: 10px;
+}
+
+#interaction-network{
+    height: 500px;
+    width: 100%;
 }

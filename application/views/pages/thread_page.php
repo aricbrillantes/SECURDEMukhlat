@@ -80,9 +80,6 @@ $user = $post->user;
                                 </div>
                                 <!-- Attachment -->
                                 <?php if (!empty($post->attachments)): ?>
-                            <!--                                    <button value = "<?php echo $post->post_id ?>" class = "attachment-btn btn btn-primary btn-sm text-left pull-right" style = "margin-right: 5px; font-size: 12px;">
-                                        <strong><i class = "fa fa-paperclip"></i> <?php echo count($post->attachments); ?></strong>
-                                    </button>-->
                                     <?php
                                     foreach ($post->attachments as $attachment):
                                         if ($attachment->attachment_type_id === '1'):

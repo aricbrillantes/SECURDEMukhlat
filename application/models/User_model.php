@@ -10,6 +10,13 @@ class User_model extends CI_Model {
         $query = $this->db->get('tbl_users');
         return $query->result();
     }
+    
+    public function get_ordinary_users(){
+        $query = $this->db->select('user_id, first_name, last_name')
+                ->from('tbl_users')
+                ->where('role_id = 2');
+        return $query->get()->result();
+    }
 
     public function get_user($load_topics, $load_activities, $fields = array()) {
         $query = $this->db->get_where('tbl_users', $fields);
@@ -62,10 +69,12 @@ class User_model extends CI_Model {
         $this->db->update("tbl_users");
     }
 
-    public function search_users($keyword) {
+    public function search_users($keyword, $get_admin) {
         $this->db->where("CONCAT(first_name, ' ', last_name) LIKE '%" . $keyword . "%'", NULL, FALSE);
-        $this->db->where("role_id = ", 2);
-        $this->db->where("is_enabled", true);
+        if (!$get_admin) {
+            $this->db->where("role_id = ", 2);
+            $this->db->where("is_enabled", true);
+        }
         $users = $this->db->get("tbl_users")->result();
 
         return $users;
@@ -150,16 +159,15 @@ class User_model extends CI_Model {
 
         //downvotes
         $record->downvotes = $this->records->get_user_downvotes($user_id);
-        
+
         //posts started
         $record->post_start = $this->records->get_post_start($user_id);
-        
+
         //posts published
         $record->post_published = $this->records->get_post_published($user_id);
-        
+
         //replies
         $record->replies = $this->records->get_user_replies($user_id);
         return $record;
     }
-    
 }

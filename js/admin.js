@@ -19,7 +19,7 @@ $(document).ready(function () {
         });
     });
 
-    $(".record-view-btn").on("click", function () {
+    $(document).on('click', ".record-view-btn", function () {
         //remove existing charts
         if (FusionCharts('threadChart')) {
             FusionCharts('threadChart').dispose();
