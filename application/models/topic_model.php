@@ -16,7 +16,13 @@ class Topic_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-
+    
+    public function get_topics(){
+        $query = $this->db->get('tbl_topics');
+        
+        return $query->result();
+    }
+    
     public function get_topic($load_posts, $id) {
         $topic = $this->db->get_where('tbl_topics', array('topic_id' => $id))->row();
 

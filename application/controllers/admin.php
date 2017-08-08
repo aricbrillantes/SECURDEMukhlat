@@ -11,13 +11,41 @@
  *
  * @author Arces
  */
-class Admin extends CI_Controller{
-    public function view_user(){
+class Admin extends CI_Controller {
+
+    public function view_user() {
         $user_id = $this->uri->segment(3);
-        
+
         $this->load->model('user_model', 'users');
         $data['user'] = $this->users->get_user(false, false, array('user_id' => $user_id));
         $data['record'] = $this->users->get_user_records($user_id);
         $this->load->view('modals/user_record_modal', $data);
     }
+
+    public function network() {
+        $this->load->view('pages/network_page');
+    }
+
+    public function load_network() {
+        $this->load->model('network_model', 'net');
+        $this->load->model('topic_model', 'topics');
+        $topics = $this->topics->get_topics();
+
+        $data = new stdClass();
+        $data->users = $this->net->get_general_network();
+        $data->topics = $topics;
+
+        echo json_encode($data);
+    }
+
+    public function user_network() {
+        $user_id = $this->uri->segment(3);
+        
+        $this->load->model('network_model', 'net');
+
+        $user = $this->net->get_user_network($user_id);
+
+        echo json_encode($user);
+    }
+
 }
