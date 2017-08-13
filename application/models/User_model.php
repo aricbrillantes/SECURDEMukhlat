@@ -12,7 +12,7 @@ class User_model extends CI_Model {
     }
 
     public function get_ordinary_users() {
-        $query = $this->db->select('user_id, first_name, last_name')
+        $query = $this->db->select('user_id, first_name, last_name, profile_url')
                 ->from('tbl_users')
                 ->where('role_id = 2');
         return $query->get()->result();
@@ -44,11 +44,11 @@ class User_model extends CI_Model {
     }
 
     public function get_topic_users($topic_id) {
-        $users = $this->db->query('SELECT result.user_id, result.first_name, result.last_name FROM (select u.user_id, '
-                        . 'u.first_name, u.last_name from tbl_posts p '
+        $users = $this->db->query('SELECT result.user_id, result.first_name, result.last_name, result.profile_url FROM (select u.user_id, '
+                        . 'u.first_name, u.last_name, u.profile_url from tbl_posts p '
                         . 'join tbl_users u on p.user_id = u.user_id '
                         . 'where p.topic_id = ' . $topic_id . ' UNION ALL select u.user_id, '
-                        . 'u.first_name, u.last_name from tbl_post_vote pv '
+                        . 'u.first_name, u.last_name, u.profile_url from tbl_post_vote pv '
                         . 'join tbl_users u on pv.user_id = u.user_id join tbl_posts p on p.post_id '
                         . '= pv.post_id where p.topic_id = ' . $topic_id . ' ) result '
                         . 'group by result.user_id;')->result();

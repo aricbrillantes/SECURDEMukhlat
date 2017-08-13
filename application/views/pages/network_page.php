@@ -31,5 +31,10 @@ $logged_user = $_SESSION['logged_user'];
     <script type="text/javascript" src="<?php echo base_url('assets/vis/vis.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('/js/network.js'); ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url("assets/vis/vis.css"); ?>" />
+
+    <?php
+    include(APPPATH . 'views/modals/network_view_modal.php');
+    ?>
+
 </body>
 </html>
