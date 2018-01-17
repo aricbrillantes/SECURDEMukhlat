@@ -12,7 +12,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span> 
             </button>
-            <a class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/logo-blue.png'); ?>"/></a>
+            <a class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
         </div>
         <div class = "collapse navbar-collapse" id = "nav-collapse">
             <ul class = "nav navbar-nav">

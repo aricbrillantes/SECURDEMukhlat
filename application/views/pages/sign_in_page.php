@@ -4,12 +4,12 @@ include(APPPATH . 'views/header.php');
 <body class = "sign-in">
     <div class = "container-fluid">
         <!-- Logo -->
-        <div class = "row sign-in-logo"><img src = "<?php echo base_url('images/logo/logo-white.png'); ?>"></div>
+        <div class = "row sign-in-logo"><img src = "<?php echo base_url('images/logo/mukhlatlogo2.gif'); ?>"></div>
 
         <!-- Content -->
         <div class = "row sign-in-content">
             <!--Sign In-->
-            <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 30px;">
+            <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 30px; ">
                 <div id = "sign-in-container" class = "col-md-12 content-container no-padding">
                     <form class = "form-inline" id = "log-in-form" onsubmit = "return log_in()" method = "post">
                         <div class ="form-group">
@@ -23,7 +23,7 @@ include(APPPATH . 'views/header.php');
                                 <input id = "log-in-password" type = "password" required name = "log_in_password"  class = "form-control sign-in-field" placeholder = "Password"/>
                             </div>
                             <div class = "form-group text-center">
-                                <button type="submit" class="btn btn-primary" style = "width: 100%;">Login</button>
+                                <button type="submit" class="btn btn-primary" style = "width: 100%;font-size:24px;">Login</button>
                             </div>
                         </div>
                     </form>
@@ -34,7 +34,7 @@ include(APPPATH . 'views/header.php');
             <div class = "col-md-10 col-md-offset-1">
                 <div id = "sign-up-container" class = "col-md-12 content-container no-padding">
                     <div class = "col-md-12 sign-in-div">
-                        <h3 class = "sign-in-header"><strong>Sign Up for GetTogether!</strong></h3>
+                        <h3 class = "sign-in-header"><strong>Sign Up for Mukhlat!</strong></h3>
                         <div class = "sign-in-form">
                             <form id = "sign-up-form" onsubmit = "return sign_up()" method = "post">
                                 <div class = "col-xs-6 form-group register-field">
@@ -47,18 +47,18 @@ include(APPPATH . 'views/header.php');
                                     <input type = "email" required name = "sign_up_email" class = "form-control sign-in-field" placeholder = "Email Address" maxlength = "45">
                                 </div>
                                 <div class = "col-xs-2 text-center register-field">
-                                    <h5 class = "text-muted"><strong>Birthday: </strong></h5>
+                                    <h5 class = "text-muted" style = "font-size:24px;"><strong>Birthday: </strong></h5>
                                 </div>
                                 <div class = "col-xs-4 form-group register-field">
                                     <input type = "date" required name = "sign_up_birthday" class = "form-control sign-in-field">
                                 </div>
                                 <div class = "col-xs-1 text-center register-field">
-                                    <h5 class = "text-muted"><strong>Role: </strong></h5>
+                                    <h5 class = "text-muted" style = "font-size:24px;"><strong>Role: </strong></h5>
                                 </div>
                                 <div class = "col-xs-5 form-group register-field">
                                     <select class = "form-control" name = "sign_up_role">
                                         <?php foreach ($roles as $role) : ?>
-                                            <option value="<?php echo $role->role_id; ?>"><?php echo $role->role_name; ?></option>
+                                            <option style = "font-size:24px;" value="<?php echo $role->role_id; ?>"><?php echo $role->role_name; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -69,7 +69,7 @@ include(APPPATH . 'views/header.php');
                                     <input id = "sign-up-retype" type = "password" required class = "form-control sign-in-field" placeholder = "Retype Password">
                                 </div>
                                 <div class = "text-center">
-                                    <button type = "submit" class = "btn btn-success" style="width:100%;">Register</button>
+                                    <button type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
                                 </div>
                             </form>
                         </div>

@@ -1,0 +1,69 @@
+<div>	
+     <div>
+
+	   <div class="text-center" style="height:305px;">
+			<div id="choose-col-content" class="fg-black text-center">
+       	         <div style="margin:20px;">
+           			<!--<span class="fg-creamy button-active" onClick="savecol()" >Save</span>
+             		-->
+                </div>
+          
+                <script>
+                    $cookie_name = "green";
+                    $cookie_value = "green";
+                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+                </script>
+                            
+                <div data-myName="red" id="block1"  data-myValue="red" class="blocks " style="background-color:red; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div data-myName="blue" id="block2" data-myValue="blue" class="blocks" style="background-color:blue;padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block3" data-myValue="green" class="blocks" style="background-color:green;padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block4" data-myValue="#1ABC9C" class="blocks" style="background-color:#1ABC9C; padding-left:10px; float:left;" onclick="changecolor(id);"></div>
+                <div id="block5" data-myValue="#16A085" class="blocks" style="background-color:#16A085; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block6" data-myValue="#2ECC71" class="blocks" style="background-color:#2ECC71; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block7" data-myValue="#27AE60" class="blocks" style="background-color:#27AE60; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block8" data-myValue="#3498DB" class="blocks" style="background-color:#3498DB; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+<!--                <div id="block9" data-myValue="" class="blocks" style="background-color:#2980B9; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block10" data-myValue="" class="blocks" style="background-color:#9B59B6; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block11" data-myValue="" class="blocks" style="background-color:#8E44AD; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block12" data-myValue="" class="blocks" style="background-color:#34495E; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block13" data-myValue="" class="blocks" style="background-color:#2C3E50; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block14" data-myValue="" class="blocks" style="background-color:#F1C40F; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block15" data-myValue="" class="blocks" style="background-color:#F39C12; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block16" data-myValue="" class="blocks" style="background-color:#E67E22; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block17" data-myValue="" class="blocks" style="background-color:#D35400; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block18" data-myValue="" class="blocks" style="background-color:#E74C3C; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block19" data-myValue="" class="blocks" style="background-color:#C0392B; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block20" data-myValue="" class="blocks" style="background-color:#999966; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block21" data-myValue="" class="blocks" style="background-color:#BDC3C7; padding-left:10px; float:left;" onclick="changecolor(id)"></div>  
+                <div id="block22" data-myValue="" class="blocks" style="background-color:#95A5A6; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block23" data-myValue="" class="blocks" style="background-color:#7F8C8D; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                <div id="block24" data-myValue="" class="blocks" style="background-color:#660000; padding-left:10px; float:left;" onclick="changecolor(id)"></div>-->
+
+            
+                
+                
+            </div>
+        	<div id="random-col-content" class="fg-black X-20 text-center">
+  
+  
+ </div>	<!-- tabs closed -->
+ </div>
+ 
+<div class="font-trial top10" style="position:fixed; width:660px; height:30px; left:22%;">
+ 	
+    <div>    
+        <span id="choose-col-click" class="fg-creamy bg-theme-col-3 button-active" onclick="savecol()" >Save</span>
+    	<span id="random-col-click" class="fg-creamy bg-theme-col-3 button-active">Save</span>
+        <span id="custom-col-click" class="fg-cream bg-theme-col-3 button-active" onclick="savecustom_col()">Save</span>
+        <span id="auto-col-click" class="fg-creamy bg-theme-col-3 button-active">Save</span>
+        <span id="block25" class="reset-col bg-theme-col-3 button-active" style="background-color:#D7eadd;" onclick="changecolor(id)">Reset</span>
+      	<span class="cursor-default fg-creamy bg-theme-col-3 button-active" onclick="Close()" style=" margin-left:410px;">Close</span>
+ 	</div>
+    
+    <div id="save-prompt" class="fg-black padding10 font-med text-center" style="width:100px; position:fixed; margin-left:300px; margin-top:-30px; z-index:9999; display:none;">
+    	Saved
+    </div>
+</div>
+    
+     </div>
+</div>

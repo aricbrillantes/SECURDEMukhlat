@@ -8,7 +8,7 @@ function log_in() {
             if (data === '1') {
                 window.location.href = "home";
             } else {
-                $("<div id = \"sign-in-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px;\"><span class = \"text-warning\"><i class = \"fa fa-warning\"></i> <i>Invalid username/password! Please try again.</i></span></div>").hide().appendTo("#sign-in-container").show("fast");
+                $("<div id = \"sign-in-message\" class = \"col-md-12 text-center\" style = \"padding-bottom: 10px; font-size:24px;\"><span class = \"text-warning\"><i class = \"fa fa-warning\"></i> <i>Invalid username/password! Please try again.</i></span></div>").hide().appendTo("#sign-in-container").show("fast");
             }
         }
     });

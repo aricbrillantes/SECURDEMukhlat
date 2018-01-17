@@ -10,11 +10,11 @@ $(document).ready(function() {
     });
     
     $("#nav-logo").on("mouseover", function() {
-        $(this).attr('src', window.location.origin + '/MukhlatBeta/images/logo/logo-blue-hover.png');
+        $(this).attr('src', window.location.origin + '/MukhlatBeta/images/logo/mukhlatlogo on the sideb.png');
     });
 
     $("#nav-logo").on("mouseout", function() {
-        $(this).attr('src', window.location.origin + '/MukhlatBeta/images/logo/logo-blue.png');
+        $(this).attr('src', window.location.origin + '/MukhlatBeta/images/logo/mukhlatlogo on the sideb.png');
     });
 
     $("#notif-btn").on("click", function() {

@@ -14,7 +14,7 @@ $c_topic = $_SESSION['current_topic'];
                 <a class = "btn btn-topic-header" href="<?php echo base_url('topic'); ?>">
                     <h4 class = "pull-left topic-header-title no-padding" style = "margin-top: 3px; margin-bottom: 0px;">
                         <strong class = "text-info"><i class = "fa fa-chevron-left"></i> 
-                            Change Topic
+                            Back to Topics List
                         </strong>
                     </h4>
                 </a>

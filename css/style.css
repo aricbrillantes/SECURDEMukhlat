@@ -1,14 +1,34 @@
 body{
-    background-color: #ECEFF1;
+    background-color: #D7eadd;
     font-family: 'Muli', 'Cabin', sans-serif;
 }
 
 body.sign-in{
-    background-image: url(../images/wood_tile/blue.jpg);
+    background-color: #d7eadd;
+    background: linear-gradient(to top, #d7eadd, white);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Cabin', 'Muli', sans-serif;
     height: 500px;
 }
+.topic-grid1{
+    background-color: whitesmoke;
+    margin:14px;
+    position:relative;
+    float:left;
+    width:30%;
+    padding:10px;
+    text-decoration:none;
+    height:150px;
+    border-radius:25px;
+    border:1px solid black;
+}
 
+.topic-grid-icons{
+    position:absolute;
+    bottom:10px;
+    right:10px
+}
 textarea{
     resize: none;
 }
@@ -24,7 +44,9 @@ textarea{
     font-weight: bolder;
     //text-shadow: 0px 0px 1px #5b7375;
 }
-
+.sign-in-meesage{
+    font-size:24px;
+}
 .sign-in-form{
     padding: 15px;
 }
@@ -32,6 +54,7 @@ textarea{
 .sign-in-field{
     text-align: center;
     background-color: whitesmoke;
+    font-size:24px;
 }
 
 .register-field{
@@ -46,19 +69,26 @@ textarea{
     padding: 0px;
 }
 
+@font-face{
+    font-family: "AsparagusSprouts";
+    src: url("../assets/fonts/AsparagusSprouts.ttf");
+}
+
 .sign-in-content{
     width: 60%;
     margin-right: auto;
     margin-left: auto;
+    font-family:'AsparagusSprouts';
 }
 
 .sign-in-header{
     text-align: center;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif; 
 }
 
 .navbar-font{
     font-family: 'Cabin', sans-serif;
+    background-color: green;
 }
 
 .search-div{

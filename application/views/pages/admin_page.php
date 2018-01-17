@@ -12,7 +12,7 @@ $logged_user = $_SESSION['logged_user'];
             </div>
             
             <div class = "col-md-8 col-md-offset-2 content-container">
-                <a href = "<?php echo base_url('admin/network'); ?>" class = "btn btn-primary btn-block"><i class = "fa fa-globe"></i> View Interaction Network of GetTogether</a>
+                <a href = "<?php echo base_url('admin/network'); ?>" class = "btn btn-primary btn-block"><i class = "fa fa-globe"></i> View Interaction Network of Mukhlat</a>
             </div>
             
             <!-- Admin Content -->
