@@ -44,7 +44,7 @@
 			
 
 			
-  		document.getElementById('random-col-demo').style.background = '#'+RND();	
+  		//document.getElementById('random-col-demo').style.background = '#'+RND();	
 		      
         
 	

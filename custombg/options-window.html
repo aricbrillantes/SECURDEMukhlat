@@ -9,13 +9,19 @@
                 </div>
           
                 <script>
-                    $cookie_name = "green";
-                    $cookie_value = "green";
-                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+                    function testcookie(value)
+                    {
+                        //alert(value);
+                        
+                        preferredbgcolor = value;
+                        document.cookie=preferredbgcolor;
+                        alert(document.cookie);
+                       
+                    }
                 </script>
-                            
-                <div data-myName="red" id="block1"  data-myValue="red" class="blocks " style="background-color:red; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
-                <div data-myName="blue" id="block2" data-myValue="blue" class="blocks" style="background-color:blue;padding-left:10px; float:left;" onclick="changecolor(id)"></div>
+                
+                <div data-myName="red" id="block1"  data-myValue="red" class="blocks " style="background-color:red; padding-left:10px; float:left;" onclick="changecolor(id);testcookie('red');"></div>
+                <div data-myName="blue" id="block2" data-myValue="blue" class="blocks" style="background-color:blue;padding-left:10px; float:left;" onclick="changecolor(id);testcookie('blue')"></div>
                 <div id="block3" data-myValue="green" class="blocks" style="background-color:green;padding-left:10px; float:left;" onclick="changecolor(id)"></div>
                 <div id="block4" data-myValue="#1ABC9C" class="blocks" style="background-color:#1ABC9C; padding-left:10px; float:left;" onclick="changecolor(id);"></div>
                 <div id="block5" data-myValue="#16A085" class="blocks" style="background-color:#16A085; padding-left:10px; float:left;" onclick="changecolor(id)"></div>
