@@ -109,6 +109,27 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
 
+     <script>
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("myBtn").style.display = "block";
+                } else {
+                    document.getElementById("myBtn").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function backToTop() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        
+        </script>
+        
+        <button id="backtotop" title="Go to top" onclick="backToTop()" style=" margin-left:410px;">Back to top</button>
+    
     <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
