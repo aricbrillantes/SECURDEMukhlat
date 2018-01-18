@@ -2,6 +2,8 @@
 include(APPPATH . 'views/header.php');
 ?>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
     <script>
     
         function getCookie(cname) {
@@ -109,27 +111,27 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
 
-     <script>
-            window.onscroll = function() {scrollFunction()};
+        <a href="#" class="sf-back-to-top"><span class="arrow"></span>Top</a>
 
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("myBtn").style.display = "block";
+        <script>
+            var amountScrolled = 50;
+
+            $(window).scroll(function() {
+                if ( $(window).scrollTop() > amountScrolled ) {
+                    $('a.sf-back-to-top').fadeIn('slow');
                 } else {
-                    document.getElementById("myBtn").style.display = "none";
+                    $('a.sf-back-to-top').fadeOut('slow');
                 }
-            }
+            });
 
-            // When the user clicks on the button, scroll to the top of the document
-            function backToTop() {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            }
-        
+            $('a.sf-back-to-top').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 700);
+                return false;
+            });
         </script>
-        
-        <button id="backtotop" title="Go to top" onclick="backToTop()" style=" margin-left:410px;">Back to top</button>
-    
+
     <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
