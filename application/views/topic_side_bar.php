@@ -76,6 +76,24 @@ $logged_user = $_SESSION['logged_user'];
                 <?php endif; ?>
             </ul>
         </div>
+        <center><h4 id="randtriv">Random Trivia</h4></center>
+        <div id="randtriv1">
+        <?php
+        $servername = "127.0.0.1";
+	$username = "root";
+	$password = "";
+	$dbname = "mukhlat";
+	$conn = @new mysqli($servername, $username, $password, $dbname);
+        
+        $count = rand(1, 4);;
+        $sql = "SELECT Tquestion, Tanswer, Tcategory FROM tbl_trivias WHERE TriviaID = '$count'";
+	$result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+        echo $row['Tcategory']."<br>Q: ";
+        echo $row['Tquestion']."<br><br>A: ";
+        echo $row['Tanswer'];
+        }?>
+        </div>
     </div>
 </div>
 

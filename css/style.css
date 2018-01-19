@@ -23,6 +23,15 @@ body.sign-in{
     border-radius:25px;
     border:1px solid black;
 }
+#randtriv{
+    background-color: #d7eadd;
+    border-radius: 4px;
+}
+#randtriv1{
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding:14px;
+}
 
 .topic-grid-icons{
     position:absolute;
