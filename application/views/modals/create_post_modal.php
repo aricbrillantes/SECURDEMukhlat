@@ -1,6 +1,8 @@
 <?php
 $topic = $_SESSION['current_topic'];
 ?>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -21,7 +23,25 @@ $topic = $_SESSION['current_topic'];
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+                       <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd;">Take Picture</button>
+                            <div id="camera" class="collapse">
+                                <div class="camera">
+                                    <video id="video"></video>
+                                </div>
+                                <canvas id="canvas"></canvas>
+                                <div class="output"></div>
+                                <div id = "img-label" class="btn btn-primary">
+                                    <input id = "attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
+                                    <p id="startbutton" class = "attach-btn-text"><i class = "fa fa-file-image-o" onclick="takepicture();"></i> Take Photo</p>
+                                </div>
+                            </div>
+                        </div>
+                         
+                         <br><br>
+                         
                     <div id = "attachment-buttons" class = "form-group">
                         Attach a file:
                         <!--IMAGE-->
