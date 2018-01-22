@@ -31,8 +31,8 @@ include(APPPATH . 'views/header.php');
     //            }
     //        }
     //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
+        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';}\n\
+                        #crettop {background-color: ' + getCookie("ButtonColor") + ';}<\/style>');
     
     </script>
 
@@ -41,7 +41,7 @@ include(APPPATH . 'views/header.php');
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
     ?>
-    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
+    
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -64,8 +64,8 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <a class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal" style="border-radius: 15px;">Create Topic</a>
-                        <input onclick='responsiveVoice.speak("okay");' type='button' value='🔊 Play' /><input type="button" value="Change Background" onclick="loadOptionsWindow('custombg/options-window.html')">
+                        <a id="crettop" class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
+                        <input onclick='responsiveVoice.speak("okay");' type='button' value='🔊 Play' />
                     </div>
 
                     <!-- CONTENT -->
@@ -142,6 +142,6 @@ include(APPPATH . 'views/header.php');
 
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-    <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
+    
     <?php
 //    include(APPPATH . 'views/chat/chat.php');
