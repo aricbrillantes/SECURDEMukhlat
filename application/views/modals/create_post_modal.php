@@ -17,14 +17,15 @@ $topic = $_SESSION['current_topic'];
                         <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
                     </div>
                     <div class="camera">
-    <video id="video">Video stream not available.</video>
-    <button id="startbutton">Take photo</button>
-</div>
-
-<canvas id="canvas"></canvas>
-<div class="output">
-    <img id="photo" alt="The screen capture will appear in this box.">
-</div>
+                        <video id="video"></video>
+                    </div>
+                    <canvas id="canvas"></canvas>
+                    <div class="output"></div>
+                    <div id = "img-label" class="btn btn-primary">
+                        <input id = "attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
+                        <p id="startbutton" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Take Photo</p>
+                    </div>
+                    <br><br>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
