@@ -18,20 +18,7 @@ include(APPPATH . 'views/header.php');
             }
             return "";
         }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
+        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';}<\/style>');
     
     </script>
 
@@ -40,7 +27,7 @@ include(APPPATH . 'views/header.php');
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
     ?>
-
+   
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container" style = "padding-top: 20px;">
@@ -217,7 +204,9 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
+    
     <script type="text/javascript" src="<?php echo base_url("/js/user.js"); ?>"></script>
+    <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/edit_profile_modal.php');

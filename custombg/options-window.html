@@ -9,25 +9,28 @@
                 </div>
           
                 <script>
-                    function changeBGColor(value)
+                    function changeBGColor(value, value2, value3)
                     {
                         //var d = new Date();
                         //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
                         //var expires = "expires="+d.toUTCString();
-                        document.cookie = "backgroundColor=" + value + ";" + ";path=/";               
+                        document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
+                        document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
+                        document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
+                        
                     }
                 </script>
                 
                 <!--red-->
-                <div id="red1" class="blocks" style="background-color:#962222; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#962222');"></div>
-                <div id="red2" class="blocks" style="background-color:#ba2a2a; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#ba2a2a');"></div>
-                <div id="red3" class="blocks" style="background-color:#d13030; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#d13030');"></div>
-                <div id="red4" class="blocks" style="background-color:#f96868; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#f96868');"></div>
-                <div id="red5" class="blocks" style="background-color:#ff8e8e; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#ff8e8e');"></div>
-                <div id="red6" class="blocks" style="background-color:#ffb2b2; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#ffb2b2');"></div>
+                <div id="red1" class="blocks" onClick="changeBGColor('linear-gradient(to top, #f96868, #ffe3e3);', 'green','#d13030');"></div>
+                <div id="red2" class="blocks" style="background-color:#ba2a2a; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#ba2a2a', '#ba2a2a','#d13030');"></div>
+                <div id="red3" class="blocks" style="background-color:#d13030; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#d13030', '#ba2a2a','#d13030');"></div>
+                <div id="red4" class="blocks" style="background-color:#f96868; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#f96868', '#ba2a2a','#d13030');"></div>
+                <div id="red5" class="blocks" style="background-color:#ff8e8e; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#ff8e8e', '#ba2a2a','#d13030');"></div>
+                <div id="red6" class="blocks" style="background-color:#ffb2b2; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#ffb2b2', '#ba2a2a','#d13030');"></div>
                 
                 <!--orange-->
-                <div id="orange1" class="blocks" style="background-color:#d66e00; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#d66e00');"></div>
+                <div id="orange1" class="blocks" style="background-color:#d66e00; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#d66e00', '#ba2a2a','#d13030');"></div>
                 <div id="orange2" class="blocks" style="background-color:#d87915; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#d87915');"></div>
                 <div id="orange3" class="blocks" style="background-color:#e58724; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#e59540');"></div>
                 <div id="orange4" class="blocks" style="background-color:#e29e56; padding-left:10px; float:left;" onclick="changecolor(id);changeBGColor('#e29e56');"></div>

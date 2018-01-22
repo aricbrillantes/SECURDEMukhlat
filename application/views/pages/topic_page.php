@@ -32,7 +32,7 @@ $c_topic = $_SESSION['current_topic'];
     //        }
     //    }
 
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
+        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}<\/style>');
     
     </script>
 
@@ -43,7 +43,7 @@ $c_topic = $_SESSION['current_topic'];
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
+    
     <div id = "topic-page" class = "container page" style = "min-height: 100%; height: 100%;">
         <!-- Topic Page Header -->
         <div class = "row">

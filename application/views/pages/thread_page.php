@@ -33,7 +33,7 @@ $user = $post->user;
     //        }
     //    }
 
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
+        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}<\/style>');
     
     </script>
 
@@ -41,7 +41,7 @@ $user = $post->user;
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
+    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
     <div id = "thread-page" class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">
@@ -165,7 +165,7 @@ $user = $post->user;
 
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
-
+    <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
     <?php
 //    include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');

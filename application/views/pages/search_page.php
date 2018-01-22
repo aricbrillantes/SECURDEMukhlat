@@ -31,7 +31,7 @@ include(APPPATH . 'views/header.php');
     //        }
     //    }
 
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
+        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';}<\/style>');
     
     </script>
 
@@ -39,7 +39,7 @@ include(APPPATH . 'views/header.php');
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
+<div id="options-window" class="fg-creamy bg-lightgrey"></div>
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-offset-2 col-md-8 content-container text-center">
@@ -102,7 +102,7 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>       
     </div>
-
+<script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
     

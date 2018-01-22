@@ -33,7 +33,7 @@ include(APPPATH . 'views/header.php');
     //        }
     //    }
 
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
+        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';}<\/style>');
     
     </script>
 
@@ -43,7 +43,7 @@ include(APPPATH . 'views/header.php');
     ?>
     
     <!-- CODE HERE -->
-    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
+    
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -112,7 +112,6 @@ include(APPPATH . 'views/header.php');
     </div>
 
         <a href="#" class="sf-back-to-top"><span class="arrow"></span>Top</a>
-
         <script>
             var amountScrolled = 50;
 
@@ -147,7 +146,7 @@ include(APPPATH . 'views/header.php');
                 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             }
         </script>
-
+        
         <!--<script type="text/javascript" src="<?//php echo base_url("/js/search.js"); ?>"></script>-->
         <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Top</button>
     <?php
