@@ -1,3 +1,5 @@
+
+
 body{
     background-color: #D7eadd;
     font-family: 'Muli', 'Cabin', sans-serif;
@@ -23,7 +25,19 @@ body.sign-in{
     border-radius:25px;
     border:1px solid black;
 }
-
+#randtriv{
+    background-color: #d7eadd;
+    border-radius: 4px;
+}
+#randtriv1{
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding:14px;
+}
+#crettop{
+    border-radius: 15px;
+    border:0px;
+}
 .topic-grid-icons{
     position:absolute;
     bottom:10px;

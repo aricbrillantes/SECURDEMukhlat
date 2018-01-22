@@ -40,7 +40,7 @@ include(APPPATH . 'views/header.php');
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
     ?>
-
+    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container" style = "padding-top: 20px;">
@@ -217,7 +217,9 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
+    
     <script type="text/javascript" src="<?php echo base_url("/js/user.js"); ?>"></script>
+    <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/edit_profile_modal.php');

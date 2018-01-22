@@ -35,7 +35,7 @@ $c_topic = $_SESSION['current_topic'];
         document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
     
     </script>
-
+<script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
 <body>
     
    
@@ -43,7 +43,7 @@ $c_topic = $_SESSION['current_topic'];
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
+    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
     <div id = "topic-page" class = "container page" style = "min-height: 100%; height: 100%;">
         <!-- Topic Page Header -->
         <div class = "row">

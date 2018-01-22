@@ -2,9 +2,42 @@
 $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
 ?>
+<script>
+    
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        
 
+    //    function checkCookie() {
+    //        var user = getCookie("username");
+    //        if (user != "") {
+    //            alert("Welcome again " + user);
+    //        } else {
+    //            user = prompt("Please enter your name:", "");
+    //            if (user != "" && user != null) {
+    //                setCookie("username", user, 365);
+    //            }
+    //        }
+    //    }
+
+        document.write('<style type="text/css">.navbar-font {background-color: ' + getCookie("NavbarColor") + ';}<\/style>');
+    
+    </script>
 <body>
 <!-- Nav Bar -->
+<div id="options-window" class="fg-creamy bg-lightgrey"></div>
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid">
             <div class = "navbar-header" style = "margin-left: 50px;">
@@ -56,6 +89,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                             <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
                                         <?php endif; ?>
                                     </a>
+                                    <li><a onclick="loadOptionsWindow('custombg/options-window.html')" style="cursor: pointer;">Customize Theme</a></li>
                                 </li>
                                 <li><a href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a></li>
                             </ul>
@@ -68,6 +102,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 </body>
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
+<script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
 <!-- End Nav Bar -->
 
 <?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>

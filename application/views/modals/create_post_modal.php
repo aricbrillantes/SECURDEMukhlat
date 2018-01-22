@@ -16,6 +16,15 @@ $topic = $_SESSION['current_topic'];
                         <label for = "title">Enter a title for your post:</label>
                         <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
                     </div>
+                    <div class="camera">
+    <video id="video">Video stream not available.</video>
+    <button id="startbutton">Take photo</button>
+</div>
+
+<canvas id="canvas"></canvas>
+<div class="output">
+    <img id="photo" alt="The screen capture will appear in this box.">
+</div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
