@@ -1,10 +1,8 @@
 <?php
 include(APPPATH . 'views/header.php');
 ?>
-<head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+<head><script src="http://code.jquery.com/jquery-1.9.0.min.js"></script></head>
 
 <body class = "sign-in">
     <section>
