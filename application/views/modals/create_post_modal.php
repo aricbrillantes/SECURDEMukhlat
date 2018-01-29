@@ -2,7 +2,9 @@
 $topic = $_SESSION['current_topic'];
 ?>
 <head>
-<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 </head>
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
@@ -24,9 +26,6 @@ $topic = $_SESSION['current_topic'];
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 
                     <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
@@ -69,23 +68,7 @@ $topic = $_SESSION['current_topic'];
                             <input id = "attach-file" type="file" name = "post_file" style = "display: none;">
                             <p id = "file-text" class = "attach-btn-text"><i class = "fa fa-file-o"></i> Add File</p>
                         </label>
-                        
-                        <script type="text/javascript">
-                        $('.form-control').keyup(function(event) {
-                          if(
-                                event.target.value.includes("fuck")||
-                                event.target.value.includes("shit")||
-                                event.target.value.includes("cunt")||
-                                event.target.value.includes("ass")||
-                                event.target.value.includes("dick")||
-                                event.target.value.includes("semen")||             
-                                event.target.value.includes("nigger")||
-                                event.target.value.includes("logan paul")||
-                                event.target.value.includes("jake paul")
-                            )
-                            alert('no swearing');;
-                        });  
-                    </script>
+            
                     </div>
                     <div id = "attachment-preview" class = "content-container">
                         <h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>
