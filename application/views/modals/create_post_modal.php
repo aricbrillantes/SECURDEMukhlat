@@ -24,6 +24,7 @@ $topic = $_SESSION['current_topic'];
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
+                    <div id="testdiv"></div><br>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
@@ -73,17 +74,25 @@ $topic = $_SESSION['current_topic'];
                         <script type="text/javascript">
                         $('.form-control').keyup(function(event) {
                           if(
-                                event.target.value.includes("fuck")||
-                                event.target.value.includes("shit")||
+                                event.target.value.includes(" fuck ")||
+                                event.target.value.includes(" shit ")||
                                 event.target.value.includes("cunt")||
-                                event.target.value.includes("ass")||
+                                event.target.value.includes("ass ")||
+                                event.target.value.includes(" ass")||
+                                event.target.value.includes(" ass ")||
                                 event.target.value.includes("dick")||
                                 event.target.value.includes("semen")||             
                                 event.target.value.includes("nigger")||
                                 event.target.value.includes("logan paul")||
                                 event.target.value.includes("jake paul")
                             )
-                            alert('no swearing');;
+                            {  
+//                                alert('no swearing');
+                                    document.getElementById("testdiv").innerText = 'NO SWEARING!';
+                            }   
+                            
+                        else
+                            document.getElementById("testdiv").innerText = '';
                         });  
                     </script>
                     </div>
