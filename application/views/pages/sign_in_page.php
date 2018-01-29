@@ -1,7 +1,17 @@
 <?php
 include(APPPATH . 'views/header.php');
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+<head><script src="http://code.jquery.com/jquery-1.9.0.min.js"></script></head>
+
 <body class = "sign-in">
+    <section>
+        <label for="password">Enter password</label>
+        <input type="password" name="password" id="password">
+
+        <meter max="4" id="password-strength-meter"></meter>
+        <p id="password-strength-text"></p>
+    </section>
     <div class = "container-fluid">
         <!-- Logo -->
         <div class = "row sign-in-logo"><img src = "<?php echo base_url('images/logo/mukhlatlogo2.gif'); ?>"></div>
@@ -63,11 +73,53 @@ include(APPPATH . 'views/header.php');
                                     </select>
                                 </div>
                                 <div class = "password-field col-xs-6 form-group register-field">
-                                    <input id = "sign-up-password" type = "password" required name = "sign_up_password" class = "form-control sign-in-field" placeholder = "Password">
+<!--                                    <input id = "sign-up-password" type = "password" required name = "sign_up_password" class = "form-control sign-in-field" placeholder = "Password">
+                                        <meter max="4" id="password-strength-meter"></meter>
+                                        <p id="password-strength-text"></p>-->
+                                        <section>
+                                            <label for="password">Enter password</label>
+                                            <input type="password" name="password" id="password">
+
+                                            <meter max="4" id="password-strength-meter"></meter>
+                                            <p id="password-strength-text"></p>
+                                        </section>    
+                                        
+                                <script type="text/javascript">
+                                    var strength = {
+                                            0: "Worst ☹",
+                                            1: "Bad ☹",
+                                            2: "Weak ☹",
+                                            3: "Good ☺",
+                                            4: "Strong ☻"
+                                    }
+
+                                    var password = document.getElementById('password');
+                                    var meter = document.getElementById('password-strength-meter');
+                                    var text = document.getElementById('password-strength-text');
+
+                                    password.addEventListener('input', function()
+                                    {
+                                        var val = password.value;
+                                        var result = zxcvbn(val);
+
+                                        // Update the password strength meter
+                                        meter.value = result.score;
+
+                                        // Update the text indicator
+                                        if(val !== "") {
+                                            text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<span class='feedback'>" + result.feedback.warning + " " + result.feedback.suggestions + "</span"; 
+                                        }
+                                        else {
+                                            text.innerHTML = "";
+                                        }
+                                    });
+                            </script>
                                 </div>
+                                
                                 <div class = "password-field col-xs-6 form-group register-field">
                                     <input id = "sign-up-retype" type = "password" required class = "form-control sign-in-field" placeholder = "Retype Password">
                                 </div>
+                                
                                 <div class = "text-center">
                                     <button type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
                                 </div>
