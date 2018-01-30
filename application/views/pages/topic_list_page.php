@@ -2,7 +2,12 @@
 include(APPPATH . 'views/header.php');
 ?>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+</head>
+    
 
     <script>
     
@@ -78,6 +83,26 @@ include(APPPATH . 'views/header.php');
                     </form>
                 </div>
 
+        <!--BACK TO TOP BUTTON-->
+        <script>
+            window.onscroll = function() {scrollFunction();};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("myBtn").style.display = "block";
+                } else {
+                    document.getElementById("myBtn").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+                
                 <div class = "col-md-12 content-container">
                     <div id = "sort-dropdown" class = "dropdown text-muted">
                         Sort Topics by: 
@@ -111,44 +136,7 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
 
-        <a href="#" class="sf-back-to-top"><span class="arrow"></span>Top</a>
-        <script>
-            var amountScrolled = 50;
-
-            $(window).scroll(function() {
-                if ( $(window).scrollTop() > amountScrolled ) {
-                    $('a.sf-back-to-top').fadeIn('slow');
-                } else {
-                    $('a.sf-back-to-top').fadeOut('slow');
-                }
-            });
-
-            $('a.sf-back-to-top').click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 700);
-                return false;
-            });
-            
-            window.onscroll = function() {scrollFunction();};
-
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("myBtn").style.display = "block";
-                } else {
-                    document.getElementById("myBtn").style.display = "none";
-                }
-            }
-
-            // When the user clicks on the button, scroll to the top of the document
-            function topFunction() {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            }
-        </script>
         
-        <!--<script type="text/javascript" src="<?//php echo base_url("/js/search.js"); ?>"></script>-->
-        <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Top</button>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
     
