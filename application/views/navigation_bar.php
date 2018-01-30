@@ -101,6 +101,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                         </div>
                     </form>
+                    
                     <ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
