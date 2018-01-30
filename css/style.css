@@ -877,27 +877,6 @@ END CHAT
     width: 100%;
 }
 
-/*.sf-back-to-top {
-    background-color: #50A1CB;  button color 
-    color: white;  text/arrow color  
-    display: none;
-    z-index: 999;
-     float in bottom right corner 
-     20 pixels from edge 
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-     size of button is 50 pixels
-    width: 50px;
-    height: 50px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; 
-     round button 
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}*/
-
 #myBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
