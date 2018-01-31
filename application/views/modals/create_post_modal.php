@@ -26,7 +26,7 @@ $topic = $_SESSION['current_topic'];
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
-                    <div id="testdiv"></div><br>
+                    <div id="profanityWarning"></div><br>
                     
 
                     <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
@@ -91,11 +91,11 @@ $topic = $_SESSION['current_topic'];
                             )
                             {  
 //                                alert('no swearing');
-                                    document.getElementById("testdiv").innerText = 'NO SWEARING!';
+                                    document.getElementById("profanityWarning").innerText = 'NO SWEARING!';
                             }   
                             
                         else
-                            document.getElementById("testdiv").innerText = '';
+                            document.getElementById("profanityWarning").innerText = '';
                         });  
                     </script>
                     </div>
