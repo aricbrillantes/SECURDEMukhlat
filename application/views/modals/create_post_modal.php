@@ -1,11 +1,7 @@
 <?php
 $topic = $_SESSION['current_topic'];
 ?>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-</head>
+
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -19,16 +15,17 @@ $topic = $_SESSION['current_topic'];
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
-                        <input type="text" maxlength = "100" required class="form-control"  name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
+                        <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
                     </div>
+                    
+                    <div id="profanityWarning"></div>
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
-                    <div id="profanityWarning"></div><br>
                     
-
+                    
                     <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
                                 <div class="camera">
@@ -70,8 +67,22 @@ $topic = $_SESSION['current_topic'];
                             <input id = "attach-file" type="file" name = "post_file" style = "display: none;">
                             <p id = "file-text" class = "attach-btn-text"><i class = "fa fa-file-o"></i> Add File</p>
                         </label>
-                        
-                        <!--PROFANITY FILTER-->
+
+                    </div>
+                    <div id = "attachment-preview" class = "content-container">
+                        <h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>
+                    </div>
+                </div>
+                <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
+                    <a id = "create-post-btn" class ="btn btn-primary" data-toggle = "modal">Post</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<!--PROFANITY FILTER-->
                         <script type="text/javascript">
                         $('.form-control').keyup(function(event) {
                           if(
@@ -98,19 +109,8 @@ $topic = $_SESSION['current_topic'];
                             document.getElementById("profanityWarning").innerText = '';
                         });  
                     </script>
-                    </div>
-                    <div id = "attachment-preview" class = "content-container">
-                        <h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>
-                    </div>
-                </div>
-                <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
-                    <a id = "create-post-btn" class ="btn btn-primary" data-toggle = "modal">Post</a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- SCRIPTS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 <!-- END SCRIPTS -->

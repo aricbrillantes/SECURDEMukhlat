@@ -1,9 +1,6 @@
-
-
 body{
     background-color: #D7eadd;
     font-family: 'Muli', 'Cabin', sans-serif;
-    
 }
 
 body.sign-in{
@@ -14,18 +11,54 @@ body.sign-in{
     font-family: 'Cabin', 'Muli', sans-serif;
     height: 500px;
 }
+.soundbg{
+    display:none;
+}
+
+#soundswitch{
+    display:none;
+}
+
 .topic-grid1{
     background-color: whitesmoke;
-    margin:14px;
+    margin:1.5%;
     position:relative;
     float:left;
     width:30%;
     padding:10px;
     text-decoration:none;
     height:150px;
-    border-radius:25px;
-    border:1px solid black;
+    border-radius:20px;
+    transition: transform 0.25s;
 }
+.topic-grid1:hover{
+    transform: rotate(8deg) scale(1.25);
+}
+.pinwheel{
+    height:3%;
+    width:3%;
+    transition: transform 5.5s;
+}
+
+.pinwheel:hover{
+    transform: rotate(10080deg) scale(1.3);
+}
+
+.pinwheel1{
+    height:3%;
+    width:3%;
+    position: absolute; 
+    z-index: 1; 
+    right:0;
+    bottom:0;
+    transition: transform 5.5s;
+}
+
+.pinwheel1:hover{
+    transform: rotate(10080deg) scale(13);
+}
+
+/*random trivia*/
 #randtriv{
     background-color: #d7eadd;
     border-radius: 4px;
@@ -35,10 +68,14 @@ body.sign-in{
     border-radius: 4px;
     padding:14px;
 }
+
+/*create topic*/
+
 #crettop{
     border-radius: 15px;
     border:0px;
 }
+
 .topic-grid-icons{
     position:absolute;
     bottom:10px;
@@ -50,12 +87,80 @@ body.sign-in{
     height:80px;
     width:80px;
     margin:10px;
+    transition: transform 0.25s;
 }
-#watermelon{
-    background:linear-gradient(to top, #f96868 20%, white, green);
-    
+.blocks:hover{
+    transform: rotate(8deg) scale(1.25);
 }
 
+#green{
+    background:linear-gradient(to bottom, green 0%,green 25%, #D7eadd 25%,#D7eadd 100%);
+    color:white;
+}
+#blue{
+    background:linear-gradient(to bottom, #5BC0EB 0%,#5BC0EB 25%, #CBF9F3 25%,#CBF9F3 100%);     
+}
+#pink{
+    background:linear-gradient(to bottom, #F6B8B8 0%,#F6B8B8 25%, #feecf2 25%,#feecf2 100%);
+}
+#orange{
+    background:linear-gradient(to bottom, #FF7F51 0%,#FF7F51 25%, #FCF7D1 25%,#FCF7D1 100%);
+}
+
+#violet{
+    background:linear-gradient(to bottom, #512da8 0%,#512da8 25%, #e6e6fa 25%, #e6e6fa 100%);
+    color:white;
+}
+
+#strawberry{
+    background:linear-gradient(to bottom, green 0%,green 25%, #d13030 25%,#d13030 100%);
+    color:white;
+}
+#sky{
+    background:linear-gradient(to bottom, white 0%, white 25%, #CBF9F3, #5BC0EB);
+}
+#watermelon{
+    background:linear-gradient(to top, #f96868 20%, white, green); 
+    color:white;
+}
+#chocoice{
+    background:linear-gradient(to bottom, #6b3e26 0%, #6b3e26 25%, #ffe3b9 25%, #ffe3b9 50%, #ffe3b9 100%);
+}
+
+#FB{
+    background:linear-gradient(to bottom, #4267b2 0%,#4267b2 25%, #e9ebee 25%,#e9ebee 100%);
+    color:white;
+}
+#rainbow{
+    background:linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    color:white;
+}
+#logom{
+    transition: transform 0.25s;
+}
+
+#logom:hover{
+    transform: scale(1.35);
+}
+
+.navbaricons{
+    margin-right:1.5%;
+    background-color: whitesmoke;
+    position:relative;
+    float:left;
+    width:5%;
+    padding:0.5%;
+    text-decoration:none;
+    border-radius:20px;
+    transition: transform 0.25s;
+}
+
+.navbaricons:hover{
+    transform: scale(1.35);
+}
+.navbaricons:focus{
+    outline:0;
+}
 textarea{
     resize: none;
 }
@@ -138,6 +243,7 @@ textarea{
 
 .nav-right-end{
     margin-right: 30px;
+
 }
 
 .page{
@@ -877,6 +983,27 @@ END CHAT
     width: 100%;
 }
 
+/*.sf-back-to-top {
+    background-color: #50A1CB;  button color 
+    color: white;  text/arrow color  
+    display: none;
+    z-index: 999;
+     float in bottom right corner 
+     20 pixels from edge 
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+     size of button is 50 pixels
+    width: 50px;
+    height: 50px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+     round button 
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}*/
+
 #myBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
@@ -890,46 +1017,9 @@ END CHAT
     cursor: pointer; /* Add a mouse pointer on hover */
     padding: 15px; /* Some padding */
     border-radius: 10px; /* Rounded corners */
+    
 }
 
 #myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
-}
-
-meter {
-    /* Reset the default appearance */
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-            
-    margin: 0 auto 1em;
-    width: 100%;
-    height: .5em;
-    
-    /* Applicable only to Firefox */
-    background: none;
-    background-color: rgba(0,0,0,0.1);
-}
-
-meter::-webkit-meter-bar {
-    background: none;
-    background-color: rgba(0,0,0,0.1);
-}
-
-meter[value="1"]::-webkit-meter-optimum-value { background: red; }
-meter[value="2"]::-webkit-meter-optimum-value { background: yellow; }
-meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
-meter[value="4"]::-webkit-meter-optimum-value { background: green; }
-
-meter[value="1"]::-moz-meter-bar { background: red; }
-meter[value="2"]::-moz-meter-bar { background: yellow; }
-meter[value="3"]::-moz-meter-bar { background: orange; }
-meter[value="4"]::-moz-meter-bar { background: green; }
-
-.feedback {
-    color: #9ab;
-    font-size: 90%;
-    padding: 0 .25em;
-    font-family: Courgette, cursive;
-    margin-top: 1em;
 }

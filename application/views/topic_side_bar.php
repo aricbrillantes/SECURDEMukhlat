@@ -127,8 +127,9 @@ $logged_user = $_SESSION['logged_user'];
         echo $row['Tcategory']."<br>Q: ";
         echo $row['Tquestion']."<br><br>A: ";
         echo $row['Tanswer'];
+        $conn->close();
         }?>
-        </div>
+        <img class = "pinwheel1" src = "<?php echo base_url('images/Picture1.png'); ?>"/></div>
     </div>
 </div>
 

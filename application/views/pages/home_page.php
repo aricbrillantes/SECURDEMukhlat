@@ -2,50 +2,13 @@
 <?php
 include(APPPATH . 'views/header.php');
 ?>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-</head>
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-        document.write('<style type="text/css">body {background: ' + getCookie("backgroundColor") + ';}\n\
-                        #crettop {background-color: ' + getCookie("ButtonColor") + ';}<\/style>');
-    
-    </script>
 
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
     ?>
-    
+
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -69,7 +32,34 @@ include(APPPATH . 'views/header.php');
                             </div>
                         </div>
                         <a id="crettop" class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <input onclick='responsiveVoice.speak("okay");' type='button' value='🔊 Play' />
+                        <input onclick='responsiveVoice.speak("okay");' type='button' value='🔊 Play' /><ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
+                                <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
+                                <?php if ((int) $logged_user->unread_notifs + $unanswered > 0): ?>
+                                    <span id = "notif-label" class = "label label-info label-badge"><?php echo $logged_user->unread_notifs + $unanswered ?></span>
+                                <?php endif; ?>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><i class = "fa fa-user"></i> My Profile</a></li>
+                                
+                                <li><a id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
+                                        <i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications 
+                                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
+                                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                </li>
+                                <li><a href="#customize-theme" data-toggle = "modal">
+                                        <i class = "fa fa-users"></i> Customize Theme
+                                    </a>
+                                </li>
+                                <li><a href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     </div>
 
                     <!-- CONTENT -->
@@ -133,84 +123,10 @@ include(APPPATH . 'views/header.php');
                                 <h4 class = "text-center text-warning">Your home page looks empty. Try following or creating more topics!</h4>
                             <?php endif; ?>
                         </div>
-                        
-                        <script type="text/javascript">
-                            var final_transcript = '';
-                            var recognizing = false;
-
-                            if ('webkitSpeechRecognition' in window) {
-
-                              var recognition = new webkitSpeechRecognition();
-
-                              recognition.continuous = true;
-                              recognition.interimResults = true;
-
-                              recognition.onstart = function() {
-                                recognizing = true;
-                                document.getElementById("recording").innerText = 'RECORDING';
-                              };
-
-                              recognition.onerror = function(event) {
-                                console.log(event.error);
-                              };
-
-                              recognition.onend = function() {
-                                recognizing = false;
-                            };
-
-                           recognition.onresult = function(event) {
-                                var interim_transcript = '';
-                                for (var i = event.resultIndex; i < event.results.length; ++i) {
-                                  if (event.results[i].isFinal) {
-                                    final_transcript += event.results[i][0].transcript;
-                                  } else {
-                                    interim_transcript += event.results[i][0].transcript;
-                                  }
-                                }
-                                final_transcript = capitalize(final_transcript);
-                                final_span.innerHTML = linebreak(final_transcript);
-                                interim_span.innerHTML = linebreak(interim_transcript);
-                                search.value = linebreak(interim_transcript);
-                              };
-                            }
-
-                            var two_line = /\n\n/g;
-                            var one_line = /\n/g;
-                            function linebreak(s) {
-                              return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-                            }
-
-                            function capitalize(s) {
-                              return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
-                            }
-
-                            function startDictation(event) {
-                                final_transcript = '';
-                                recognition.lang = 'en-US';
-                                recognition.start();
-                                final_span.innerHTML = '';
-                                interim_span.innerHTML = '';
-                            }
-                            
-                            function stopDictation(event) {
-                                recognition.stop();
-                            }
-                            
-                        </script>
-                        <div id="recording"></div><br>
-                        <div>
-                            <a href="#" id="start_button" onclick="startDictation(event)">START</a><br>
-                            <a href="#" id="start_button" onclick="stopDictation(event)">STOP</a><br>
-                        </div>
-
-                        <div id="results" border="1px">
-                            <span id="final_span" class="final"></span>
-                            <span id="interim_span" class="interim"></span>
-                        </div>
-
 
                     </div>
                 </div>
+                <!--<span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span>-->
             </div>
 
             <?php
@@ -219,8 +135,9 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
-
+    
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     
     <?php
 //    include(APPPATH . 'views/chat/chat.php');

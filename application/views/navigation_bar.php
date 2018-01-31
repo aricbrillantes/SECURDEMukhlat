@@ -2,9 +2,9 @@
 $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
 ?>
-<head>
 
-<script type="text/javascript" src="custombg/js/custombg-loader.js">
+
+<script type="text/javascript">
     
         function getCookie(cname) {
             var name = cname + "=";
@@ -21,60 +21,49 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             return "";
         }
 
-        document.write('<style type="text/css">.navbar-font {background-color: ' + getCookie("NavbarColor") + ';}<\/style>');
+        document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
+                        .soundbg {display:' + getCookie("soundbg1") + ';}\n\
+                        body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
+                        #crettop {background:' + getCookie("ButtonColor") + ';}<\/style>');
     
     </script>
-    
-<style>
-/* The Modal (background) */
-.customtheme {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    overflow-y: hidden;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+<head><style>
+svg{
+display: block;
+width: 100%;
+height: 100%;
+padding: 0;
+margin: 0;
+position: fixed;
 }
 
-/* Modal Content */
-.customtheme-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+path{
+stroke-linecap: square;
+stroke: white;
+stroke-width: 0.5px;
 }
-
-/* The Close Button */
-.close1 {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close1:hover,
-.close1:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.selected{ 
-   box-shadow:0px 12px 22px 1px #333;
-}
-</style>
-
-</head>
+    </style></head>
 <body>
 <!-- Nav Bar -->
-<div id="options-window" class="fg-creamy bg-lightgrey"></div>
+    <div class="soundbg">
+            <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <mask id="mask">
+                    <g id="maskGroup">
+                  </g>
+                </mask>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff0a0a;stop-opacity:1" />
+                    <stop offset="20%" style="stop-color:#f1ff0a;stop-opacity:1" />
+                    <stop offset="90%" style="stop-color:#d923b9;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#050d61;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+        </svg>
+        <h1>please allow the use of your microphone</h1>
+</div>
+
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid">
             <div class = "navbar-header" style = "margin-left: 50px;">
@@ -83,16 +72,25 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
+                <a id ="logom" class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
             </div>
             <div class = "collapse navbar-collapse" id = "nav-collapse">
                 <ul class = "nav navbar-nav">
                     <li><a href="<?php echo base_url('home') ?>"><strong>Home</strong></a></li>
                     <li><a href="<?php echo base_url('topic') ?>"><strong>Topics</strong></a></li>
                 </ul>
-                <div class = "search-div nav-right-end">
-                    <form action = "<?php echo base_url('search'); ?>" class="navbar-form navbar-left" role = "search" method = "GET">
+                <div class = "nav-left-end">
+                    <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <div class="input-group">
+                        <div>
+                            <a href="#" id="start_button" onclick="startDictation(event)">START</a><br>
+                            <a href="#" id="start_button" onclick="stopDictation(event)">STOP</a><br>
+                        </div>
+
+                        <div id="results" border="1px">
+                            <span id="final_span" class="final"></span>
+                            <span id="interim_span" class="interim"></span>
+                        </div>
                             <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search">
                             <div class="input-group-btn">
                                 <button class="btn btn-default search-btn" type="submit">
@@ -100,39 +98,24 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 </button>
                             </div>
                         </div>
-                    </form>
-                    
-                    <ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    </form></div>
+        <div style="margin:1%;">
+                            <a class="navbaricons" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                                 <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
-                                <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
-                                <?php if ((int) $logged_user->unread_notifs + $unanswered > 0): ?>
-                                    <span id = "notif-label" class = "label label-info label-badge"><?php echo $logged_user->unread_notifs + $unanswered ?></span>
-                                <?php endif; ?>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><i class = "fa fa-user"></i> My Profile</a></li>
-                                <li><a href="#invites-modal" data-toggle = "modal">
-                                        <i class = "fa fa-users"></i> Invites 
-                                        <?php if ((int) $unanswered > 0): ?>
-                                            <span class = "badge"><?php echo $unanswered ?></span>
-                                        <?php endif; ?>
-                                    </a>
-                                </li>
-                                <li><a id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
+                                <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?></a>
+
+                                <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
                                         <i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications 
                                         <?php if ((int) $logged_user->unread_notifs > 0): ?>
                                             <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
                                         <?php endif; ?>
+                                </a>
+                                <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
+                                        <i class = "fa fa-users"></i> Customize Theme
                                     </a>
-                                    <li><a id="customthemebtn" style="cursor: pointer;">Customize Theme</a></li>
-                                </li>
-                                <li><a href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                                <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
+
+
                 </div>
             </div>
         </div>
@@ -141,66 +124,133 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
+<script>window.onload = function () {
+    "use strict";
+    var paths = document.getElementsByTagName('path');
+    var visualizer = document.getElementById('visualizer');
+    var mask = visualizer.getElementById('mask');
+    var h = document.getElementsByTagName('h1')[0];
+    var path;
+    var report = 0;
+    
+    var soundAllowed = function (stream) {
+        //Audio stops listening in FF without // window.persistAudioStream = stream;
+        //https://bugzilla.mozilla.org/show_bug.cgi?id=965483
+        //https://support.mozilla.org/en-US/questions/984179
+        window.persistAudioStream = stream;
+        h.innerHTML = "Thanks";
+        h.setAttribute('style', 'opacity: 0;');
+        var audioContent = new AudioContext();
+        var audioStream = audioContent.createMediaStreamSource( stream );
+        var analyser = audioContent.createAnalyser();
+        audioStream.connect(analyser);
+        analyser.fftSize = 1024;
 
+        var frequencyArray = new Uint8Array(analyser.frequencyBinCount);
+        visualizer.setAttribute('viewBox', '0 0 255 255');
+      
+				//Through the frequencyArray has a length longer than 255, there seems to be no
+        //significant data after this point. Not worth visualizing.
+        for (var i = 0 ; i < 255; i++) {
+            path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-dasharray', '4,1');
+            mask.appendChild(path);
+        }
+        var doDraw = function () {
+            requestAnimationFrame(doDraw);
+            analyser.getByteFrequencyData(frequencyArray);
+          	var adjustedLength;
+            for (var i = 0 ; i < 255; i++) {
+              	adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
+                paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
+            }
+
+        }
+        doDraw();
+    }
+
+    var soundNotAllowed = function (error) {
+        h.innerHTML = "You must allow your microphone.";
+        console.log(error);
+    }
+
+    /*window.navigator = window.navigator || {};
+    /*navigator.getUserMedia =  navigator.getUserMedia       ||
+                              navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia    ||
+                              null;*/
+    navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
+
+};</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+                <script type="text/javascript">
+                            var final_transcript = '';
+                            var recognizing = false;
+
+                            if ('webkitSpeechRecognition' in window) {
+
+                              var recognition = new webkitSpeechRecognition();
+
+                              recognition.continuous = true;
+                              recognition.interimResults = true;
+
+                              recognition.onstart = function() {
+                                recognizing = true;
+                                document.getElementById("recording").innerText = 'RECORDING';
+                              };
+
+                              recognition.onerror = function(event) {
+                                console.log(event.error);
+                              };
+
+                              recognition.onend = function() {
+                                recognizing = false;
+                            };
+
+                           recognition.onresult = function(event) {
+                                var interim_transcript = '';
+                                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                                  if (event.results[i].isFinal) {
+                                    final_transcript += event.results[i][0].transcript;
+                                  } else {
+                                    interim_transcript += event.results[i][0].transcript;
+                                  }
+                                }
+                                final_transcript = capitalize(final_transcript);
+                                final_span.innerHTML = linebreak(final_transcript);
+                                interim_span.innerHTML = linebreak(interim_transcript);
+                                search.value = linebreak(interim_transcript);
+                              };
+                            }
+
+                            var two_line = /\n\n/g;
+                            var one_line = /\n/g;
+                            function linebreak(s) {
+                              return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+                            }
+
+                            function capitalize(s) {
+                              return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+                            }
+
+                            function startDictation(event) {
+                                final_transcript = '';
+                                recognition.lang = 'en-US';
+                                recognition.start();
+                                final_span.innerHTML = '';
+                                interim_span.innerHTML = '';
+                            }
+                            
+                            function stopDictation(event) {
+                                recognition.stop();
+                            }
+                            
+                        </script>
 <!-- End Nav Bar -->
-<div id="mycustomthemeModal" class="customtheme">
-
-  <!-- Modal content -->
-  <div class="customtheme-content">
-      <span class="close1">&times;</span><table><tr>
-              <td><div id="peach" class="blocks" onClick="changeBGColor('linear-gradient(to top, #f96868, #ffe3e3);', 'green','#d13030');">Peach</div></td>
-              <td><div id="watermelon" class="blocks" onClick="changeBGColor('linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>
-    </tr></table>
-  <input type="button" value="Refresh Page" onClick="window.location.reload()">
-
-  </div>
 
 </div>
-<script>
-   $('.blocks').click(function(){
-   $('.selected').removeClass('selected'); // removes the previous selected class
-   $(this).addClass('selected'); // adds the class to the clicked image
-});
-    
-                    function changeBGColor(value, value2, value3)
-                    {
-                        //var d = new Date();
-                        //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-                        //var expires = "expires="+d.toUTCString();
-                        document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
-                        document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
-                        document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
-                        
-                    }
-</script>
-
-<script>
-// Get the modal
-var modal = document.getElementById('mycustomthemeModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("customthemebtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close1")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
 
 <?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>
 <?php include(APPPATH . 'views/modals/invites_modal.php'); ?>

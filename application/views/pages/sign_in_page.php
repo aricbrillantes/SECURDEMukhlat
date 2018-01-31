@@ -2,16 +2,9 @@
 include(APPPATH . 'views/header.php');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
-<head><script src="http://code.jquery.com/jquery-1.9.0.min.js"></script></head>
+<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 
 <body class = "sign-in">
-    <section>
-        <label for="password">Enter password</label>
-        <input type="password" name="password" id="password">
-
-        <meter max="4" id="password-strength-meter"></meter>
-        <p id="password-strength-text"></p>
-    </section>
     <div class = "container-fluid">
         <!-- Logo -->
         <div class = "row sign-in-logo"><img src = "<?php echo base_url('images/logo/mukhlatlogo2.gif'); ?>"></div>
@@ -73,18 +66,24 @@ include(APPPATH . 'views/header.php');
                                     </select>
                                 </div>
                                 <div class = "password-field col-xs-6 form-group register-field">
-<!--                                    <input id = "sign-up-password" type = "password" required name = "sign_up_password" class = "form-control sign-in-field" placeholder = "Password">
+                                        <input id="password" type = "password" required name = "sign_up_password" class = "form-control sign-in-field sign-up-password" placeholder = "Password" >
                                         <meter max="4" id="password-strength-meter"></meter>
-                                        <p id="password-strength-text"></p>-->
-                                        <section>
-                                            <label for="password">Enter password</label>
-                                            <input type="password" name="password" id="password">
-
-                                            <meter max="4" id="password-strength-meter"></meter>
                                             <p id="password-strength-text"></p>
-                                        </section>    
-                                        
-                                <script type="text/javascript">
+ 
+                                <div class = "password-field col-xs-6 form-group register-field">
+                                    <input id = "sign-up-retype" type = "password" required class = "form-control sign-in-field" placeholder = "Retype Password">
+                                </div>
+                                <div class = "text-center">
+                                    <button type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
                                     var strength = {
                                             0: "Worst ☹",
                                             1: "Bad ☹",
@@ -114,23 +113,6 @@ include(APPPATH . 'views/header.php');
                                         }
                                     });
                             </script>
-                                </div>
-                                
-                                <div class = "password-field col-xs-6 form-group register-field">
-                                    <input id = "sign-up-retype" type = "password" required class = "form-control sign-in-field" placeholder = "Retype Password">
-                                </div>
-                                
-                                <div class = "text-center">
-                                    <button type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
 </body>
 </html>
