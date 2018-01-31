@@ -156,11 +156,7 @@ include(APPPATH . 'views/header.php');
 
                               recognition.onend = function() {
                                 recognizing = false;
-                                document.getElementById("recording").innerText = '';
-                                document.getElementById("search").innerText = 'NO SWEARING!';
-                                interim_span.innerHTML = linebreak(interim_transcript);
-                                search.value = linebreak(interim_transcript);
-                              };
+                            };
 
                            recognition.onresult = function(event) {
                                 var interim_transcript = '';
@@ -198,7 +194,6 @@ include(APPPATH . 'views/header.php');
                             
                             function stopDictation(event) {
                                 recognition.stop();
-                                search.value = linebreak(interim_transcript);
                             }
                             
                         </script>
