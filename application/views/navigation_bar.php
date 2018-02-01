@@ -49,6 +49,10 @@ stroke-width: 0.5px;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
     
+    +<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    
     <script type="text/javascript">
         var final_transcript = '';
         var recognizing = false;
@@ -161,22 +165,25 @@ stroke-width: 0.5px;
                 <div class = "nav-left-end">
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <div class="input-group">
-                        <div>
-                            <a href="#" id="start_button" onclick="startDictation(event)">START</a><br>
-                            <a href="#" id="start_button" onclick="stopDictation(event)">STOP</a><br>
-                            <a href="#" id="start_button" onclick="resetDictation(event)">RESET</a><br>
-                        </div>
-
-                        <div id="results" border="1px">
-                            <span id="final_span" class="final"></span>
-                            <span id="interim_span" class="interim"></span>
-                        </div>
+                            
+                            
                             <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search">
                             <div class="input-group-btn">
                                 <button class="btn btn-default search-btn" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </div>
+                                
+                            <div>
+                                <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>
+                                <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="STOP" src="images/microphone_stop.png"height="50" width="50"></a>
+                                <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="RESET" src="images/microphone_reset.png"height="50" width="50"</a>
+                            </div>
+                            <div id="results" border="1px">
+                                <span id="final_span" class="final"></span>
+                                <span id="interim_span" class="interim"></span>
+                            </div>
+                                
                         </div>
                     </form></div>
         <div style="margin:1%;">
