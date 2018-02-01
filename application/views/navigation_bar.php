@@ -42,11 +42,90 @@ stroke-linecap: square;
 stroke: white;
 stroke-width: 0.5px;
 }
-    </style></head>
+</style>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    
+    <script type="text/javascript">
+        var final_transcript = '';
+        var recognizing = false;
+
+        if ('webkitSpeechRecognition' in window) {
+
+          var recognition = new webkitSpeechRecognition();
+
+          recognition.continuous = true;
+          recognition.interimResults = true;
+
+          recognition.onstart = function() {
+            recognizing = true;
+            document.getElementById("recording").innerText = 'RECORDING';
+          };
+
+          recognition.onerror = function(event) {
+            console.log(event.error);
+          };
+
+          recognition.onend = function() {
+            recognizing = false;
+        };
+
+       recognition.onresult = function(event) {
+            var interim_transcript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+              } else {
+                interim_transcript += event.results[i][0].transcript;
+              }
+            }
+            final_transcript = capitalize(final_transcript);
+            final_span.innerHTML = linebreak(final_transcript);
+            interim_span.innerHTML = linebreak(interim_transcript);
+            search.value = linebreak(interim_transcript);
+          };
+        }
+
+        var two_line = /\n\n/g;
+        var one_line = /\n/g;
+        function linebreak(s) {
+          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+        }
+
+        function capitalize(s) {
+          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+        }
+
+        function startDictation(event) {
+            final_transcript = '';
+            recognition.lang = 'en-US';
+            final_span.innerHTML = '';
+            interim_span.innerHTML = '';
+            recognition.start();
+        }
+
+        function stopDictation(event) {
+            recognition.stop();
+            search.value = linebreak(interim_transcript);
+        }
+
+        function resetDictation(event) {
+            recognition.stop();
+            final_transcript = '';
+            recognition.lang = 'en-US';
+            final_span.innerHTML = '';
+            interim_span.innerHTML = '';
+            search.value = '';
+        }
+    </script>
+
 <body>
 <!-- Nav Bar -->
     <div class="soundbg">
-            <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <mask id="mask">
                     <g id="maskGroup">
@@ -62,7 +141,7 @@ stroke-width: 0.5px;
             <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
         </svg>
         <h1>please allow the use of your microphone</h1>
-</div>
+    </div>
 
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid">
@@ -85,6 +164,7 @@ stroke-width: 0.5px;
                         <div>
                             <a href="#" id="start_button" onclick="startDictation(event)">START</a><br>
                             <a href="#" id="start_button" onclick="stopDictation(event)">STOP</a><br>
+                            <a href="#" id="start_button" onclick="resetDictation(event)">RESET</a><br>
                         </div>
 
                         <div id="results" border="1px">
@@ -124,7 +204,8 @@ stroke-width: 0.5px;
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
-<script>window.onload = function () {
+<script>
+    window.onload = function () {
     "use strict";
     var paths = document.getElementsByTagName('path');
     var visualizer = document.getElementById('visualizer');
@@ -164,15 +245,14 @@ stroke-width: 0.5px;
               	adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
                 paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
             }
-
-        }
+        };
         doDraw();
-    }
+    };
 
     var soundNotAllowed = function (error) {
         h.innerHTML = "You must allow your microphone.";
         console.log(error);
-    }
+    };
 
     /*window.navigator = window.navigator || {};
     /*navigator.getUserMedia =  navigator.getUserMedia       ||
@@ -181,73 +261,9 @@ stroke-width: 0.5px;
                               null;*/
     navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
 
-};</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-                <script type="text/javascript">
-                            var final_transcript = '';
-                            var recognizing = false;
-
-                            if ('webkitSpeechRecognition' in window) {
-
-                              var recognition = new webkitSpeechRecognition();
-
-                              recognition.continuous = true;
-                              recognition.interimResults = true;
-
-                              recognition.onstart = function() {
-                                recognizing = true;
-                                document.getElementById("recording").innerText = 'RECORDING';
-                              };
-
-                              recognition.onerror = function(event) {
-                                console.log(event.error);
-                              };
-
-                              recognition.onend = function() {
-                                recognizing = false;
-                            };
-
-                           recognition.onresult = function(event) {
-                                var interim_transcript = '';
-                                for (var i = event.resultIndex; i < event.results.length; ++i) {
-                                  if (event.results[i].isFinal) {
-                                    final_transcript += event.results[i][0].transcript;
-                                  } else {
-                                    interim_transcript += event.results[i][0].transcript;
-                                  }
-                                }
-                                final_transcript = capitalize(final_transcript);
-                                final_span.innerHTML = linebreak(final_transcript);
-                                interim_span.innerHTML = linebreak(interim_transcript);
-                                search.value = linebreak(interim_transcript);
-                              };
-                            }
-
-                            var two_line = /\n\n/g;
-                            var one_line = /\n/g;
-                            function linebreak(s) {
-                              return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-                            }
-
-                            function capitalize(s) {
-                              return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
-                            }
-
-                            function startDictation(event) {
-                                final_transcript = '';
-                                recognition.lang = 'en-US';
-                                recognition.start();
-                                final_span.innerHTML = '';
-                                interim_span.innerHTML = '';
-                            }
-                            
-                            function stopDictation(event) {
-                                recognition.stop();
-                            }
-                            
-                        </script>
+};
+</script>
+    
 <!-- End Nav Bar -->
 
 </div>
