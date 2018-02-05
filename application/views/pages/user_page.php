@@ -185,7 +185,6 @@ include(APPPATH . 'views/header.php');
     </div>
     
     <script type="text/javascript" src="<?php echo base_url("/js/user.js"); ?>"></script>
-    <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/edit_profile_modal.php');
