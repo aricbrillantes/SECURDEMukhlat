@@ -45,14 +45,15 @@ stroke-width: 0.5px;
 </style>
 </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
     
-    +<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
     
+    <!--Voice Search Script-->
     <script type="text/javascript">
         var final_transcript = '';
         var recognizing = false;
@@ -75,6 +76,7 @@ stroke-width: 0.5px;
 
           recognition.onend = function() {
             recognizing = false;
+            search.value = final_span.innerHTML;
         };
 
        recognition.onresult = function(event) {
@@ -86,7 +88,6 @@ stroke-width: 0.5px;
                 interim_transcript += event.results[i][0].transcript;
               }
             }
-            final_transcript = capitalize(final_transcript);
             final_span.innerHTML = linebreak(final_transcript);
             interim_span.innerHTML = linebreak(interim_transcript);
             search.value = linebreak(interim_transcript);
@@ -113,7 +114,6 @@ stroke-width: 0.5px;
 
         function stopDictation(event) {
             recognition.stop();
-            search.value = linebreak(interim_transcript);
         }
 
         function resetDictation(event) {
@@ -174,12 +174,15 @@ stroke-width: 0.5px;
                                 </button>
                             </div>
                                 
+                            <!--Voice search buttons-->
                             <div>
                                 <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>
                                 <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="STOP" src="images/microphone_stop.png"height="50" width="50"></a>
                                 <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="RESET" src="images/microphone_reset.png"height="50" width="50"</a>
                             </div>
-                            <div id="results" border="1px">
+                                
+                            <!--Hidden DIV for voice search-->
+                            <div id="results" style="display: none" border="1px">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
