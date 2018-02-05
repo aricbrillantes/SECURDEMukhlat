@@ -1,6 +1,6 @@
 body{
     background-color: #D7eadd;
-    font-family: 'Muli', 'Cabin', sans-serif;
+    font-family: 'Sniglet-Regular', 'Sniglet-Regular', sans-serif;
 }
 
 body.sign-in{
@@ -8,7 +8,7 @@ body.sign-in{
     background: linear-gradient(to top, #d7eadd, white);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: 'Cabin', 'Muli', sans-serif;
+    font-family: 'Sniglet-Regular', 'Sniglet-Regular', sans-serif;
     height: 500px;
 }
 .soundbg{
@@ -143,6 +143,18 @@ body.sign-in{
     transform: scale(1.35);
 }
 
+.buttonsgo{
+    transition: transform 0.25s;
+}
+
+.buttonsgo:hover{
+    transform: scale(1.35);
+}
+
+.buttonsbgcolor{
+    
+}
+
 .navbaricons{
     margin-right:1.5%;
     background-color: whitesmoke;
@@ -166,7 +178,7 @@ textarea{
 }
 
 .sign-in-logo{
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Sniglet-Regular', sans-serif;
     color: white;
     font-size: 47px;
     text-align: center;
@@ -177,7 +189,7 @@ textarea{
     //text-shadow: 0px 0px 1px #5b7375;
 }
 .sign-in-meesage{
-    font-size:24px;
+    font-size:120%;
 }
 .sign-in-form{
     padding: 15px;
@@ -186,40 +198,41 @@ textarea{
 .sign-in-field{
     text-align: center;
     background-color: whitesmoke;
-    font-size:24px;
+    font-size:120%;
 }
 
 .register-field{
     padding-left: 3px;
     padding-right: 3px;
+    
 }
 
 .sign-in-div{
     background-color: white;
     border-radius: 2px;
-    //box-shadow: 0px 0px 50px black;
+    width: 100%;
     padding: 0px;
 }
 
 @font-face{
-    font-family: "AsparagusSprouts";
-    src: url("../assets/fonts/AsparagusSprouts.ttf");
+    font-family: "Sniglet-Regular";
+    src: url("../assets/fonts/Sniglet-Regular.otf");
 }
 
 .sign-in-content{
     width: 60%;
     margin-right: auto;
     margin-left: auto;
-    font-family:'AsparagusSprouts';
+    font-family:'Sniglet-Regular';
 }
 
 .sign-in-header{
     text-align: center;
-    font-family: 'Oswald', sans-serif; 
+    font-family: 'Sniglet-Regular', sans-serif; 
 }
 
 .navbar-font{
-    font-family: 'Cabin', sans-serif;
+    font-family: 'Sniglet-Regular', sans-serif;
     background-color: green;
 }
 

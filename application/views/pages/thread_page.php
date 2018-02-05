@@ -7,7 +7,6 @@ $user = $post->user;
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
     <div id = "thread-page" class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">
@@ -17,7 +16,12 @@ $user = $post->user;
                             Back
                         </strong>
                     </h3>
-                </a>
+    </a>
+                
+    <form  method="post">
+    <input value='Report' name='report' type="submit"> 
+    </form>
+                
                 <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
                         <i>Thread by 
@@ -128,7 +132,34 @@ $user = $post->user;
             </div>
         </div>
     </div>
+    
+<!--    report-->
+    <?php 
+    if(isset($_POST['report'])){
+     $servername = "127.0.0.1";
+	$username = "root";
+	$password = "";
+	$dbname = "mukhlat";
+	$conn = @new mysqli($servername, $username, $password, $dbname);
+        $logged_user->user_id;
 
+        // Create connection
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "INSERT INTO tbl_reports(ReporterId, ReportedId, TopicID, PostID, Reason, DateRP)
+        VALUES ('$logged_user->user_id', '$post->user_id', '$post->topic_id', '$post->post_id', 'test', CURRENT_TIMESTAMP )";
+
+        if (mysqli_query($conn, $sql)) {
+           ;
+        } else {
+            ;
+        }
+        mysqli_close($conn);
+    }
+    ?>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
     <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
