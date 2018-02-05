@@ -27,31 +27,29 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         #crettop {background:' + getCookie("ButtonColor") + ';}<\/style>');
     
     </script>
-<head><style>
-svg{
-display: block;
-width: 100%;
-height: 100%;
-padding: 0;
-margin: 0;
-position: fixed;
-}
+<head>
+    <style>
+        svg{
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+        }
 
-path{
-stroke-linecap: square;
-stroke: white;
-stroke-width: 0.5px;
-}
-</style>
+        path{
+            stroke-linecap: square;
+            stroke: white;
+            stroke-width: 0.5px;
+        }
+    </style>
 </head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>     
     
     <!--Voice Search Script-->
     <script type="text/javascript">
@@ -61,7 +59,7 @@ stroke-width: 0.5px;
         if ('webkitSpeechRecognition' in window) {
 
           var recognition = new webkitSpeechRecognition();
-
+          recognition.lang = 'en-US';
           recognition.continuous = true;
           recognition.interimResults = true;
 
@@ -105,8 +103,8 @@ stroke-width: 0.5px;
         }
 
         function startDictation(event) {
+            recognition.lang = languages[select_language.selectedIndex];
             final_transcript = '';
-            recognition.lang = 'en-US';
             final_span.innerHTML = '';
             interim_span.innerHTML = '';
             recognition.start();
@@ -118,13 +116,21 @@ stroke-width: 0.5px;
 
         function resetDictation(event) {
             recognition.stop();
+            recognition.lang = languages[select_language.selectedIndex];
             final_transcript = '';
-            recognition.lang = 'en-US';
             final_span.innerHTML = '';
             interim_span.innerHTML = '';
             search.value = '';
         }
-    </script>
+        
+        var languages = new Array(
+            'en-US',
+            'fil-PH',
+            'fr-FR',
+            'ko-KR'
+        );
+
+</script>
 
 <body>
 <!-- Nav Bar -->
@@ -186,9 +192,18 @@ stroke-width: 0.5px;
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
-                                
+                            <br>
+                            <div class="compact marquee" id="div_language">
+                                <select id="select_language">
+                                    <option value="0" onclick="resetDictation(event)">English</option>
+                                    <option value="1" onclick="resetDictation(event)">Filipino</option>
+                                    <option value="2" onclick="resetDictation(event)">French</option>
+                                    <option value="3" onclick="resetDictation(event)">Korean</option>
+                                </select>
+                            </div>
                         </div>
-                    </form></div>
+                    </form>
+                </div>
         <div style="margin:1%;">
                             <a class="navbaricons" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                                 <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
