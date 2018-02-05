@@ -123,6 +123,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             search.value = '';
         }
         
+//        array of languages
         var languages = new Array(
             'en-US',
             'fil-PH',
@@ -193,6 +194,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <span id="interim_span" class="interim"></span>
                             </div>
                             <br>
+                                
+                            <!--language options-->
                             <div class="compact marquee" id="div_language">
                                 <select id="select_language">
                                     <option value="0" onclick="resetDictation(event)">English</option>
@@ -219,8 +222,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                         <i class = "fa fa-users"></i> Customize Theme
                                     </a>
                                 <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
-
-
                 </div>
             </div>
         </div>
