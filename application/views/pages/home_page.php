@@ -31,10 +31,9 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' /><ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
-
-                            <li class="dropdown">
+                        <a id="crettop" class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
+                        <input onclick='responsiveVoice.speak("okay");' type='button' value='🔊 Play' /><ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
+                        <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                                 <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
@@ -136,6 +135,7 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
+    
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     

@@ -1,12 +1,46 @@
 <?php
 $logged_user = $_SESSION['logged_user'];
 ?>
+<script>
+    
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        
+
+    //    function checkCookie() {
+    //        var user = getCookie("username");
+    //        if (user != "") {
+    //            alert("Welcome again " + user);
+    //        } else {
+    //            user = prompt("Please enter your name:", "");
+    //            if (user != "" && user != null) {
+    //                setCookie("username", user, 365);
+    //            }
+    //        }
+    //    }
+
+        document.write('<style type="text/css"> #side-topics-created-btn {background-color: ' + getCookie("ButtonColor") + ';}\n\
+                        #side-topics-followed-btn {background-color: ' + getCookie("ButtonColor") + ';}<\/style>');
+    
+    </script>
     
 <!-- Sidebar -->
 <div class="col-md-3" style = "padding-left: 0px;">
     <div class = "col-xs-12 home-sidebar content-container">
         <h3 class = "text-center text-info no-padding no-margin" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>
-        <a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">
+        <a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn">
             <h4>Your topics</h4>
         </a>
         <div id = "side-topics-created" class = "sidebar-topic-div">
@@ -30,7 +64,7 @@ $logged_user = $_SESSION['logged_user'];
             </ul>
         </div>
 
-        <a id = "side-topics-moderated-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">
+        <a id = "side-topics-moderated-btn" class = "btn btn-block no-padding sidebar-header-btn">
             <h4>Topics you Moderate</h4>
         </a>
         <div id = "side-topics-moderated" class = "sidebar-topic-div">
@@ -54,7 +88,7 @@ $logged_user = $_SESSION['logged_user'];
             </ul>
         </div>
 
-        <a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">
+        <a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn">
             <h4>Topics you Follow</h4>
         </a>
         <div id = "side-topics-followed" class = "sidebar-topic-div">

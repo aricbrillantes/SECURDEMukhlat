@@ -12,7 +12,7 @@ include(APPPATH . 'views/header.php');
         <!-- Content -->
         <div class = "row sign-in-content">
             <!--Sign In-->
-            <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 2%; ">
+            <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 30px; ">
                 <div id = "sign-in-container" class = "col-md-12 content-container no-padding">
                     <form class = "form-inline" id = "log-in-form" onsubmit = "return log_in()" method = "post">
                         <div class ="form-group">
@@ -26,7 +26,7 @@ include(APPPATH . 'views/header.php');
                                 <input id = "log-in-password" type = "password" required name = "log_in_password"  class = "form-control sign-in-field" placeholder = "Password"/>
                             </div>
                             <div class = "form-group text-center">
-                                <button type="submit" class="btn btn-primary buttonsgo" style = "width: 100%;font-size:24px;">Login</button>
+                                <button type="submit" class="btn btn-primary" style = "width: 100%;font-size:24px;">Login</button>
                             </div>
                         </div>
                     </form>
@@ -66,18 +66,18 @@ include(APPPATH . 'views/header.php');
                                     </select>
                                 </div>
                                 <div class = "password-field col-xs-6 form-group register-field">
-                                        <input id="password1" type = "password" required name = "sign_up_password" class = "form-control sign-in-field sign-up-password" placeholder = "Password" >
-                                        <meter max="4" id="password-strength-meter" style="width:100%;"></meter>
+                                        <input id="password" type = "password" required name = "sign_up_password" class = "form-control sign-in-field sign-up-password" placeholder = "Password" >
+                                        <meter max="4" id="password-strength-meter"></meter>
                                             <p id="password-strength-text"></p>
-                                </div>
+ 
                                 <div class = "password-field col-xs-6 form-group register-field">
                                     <input id = "sign-up-retype" type = "password" required class = "form-control sign-in-field" placeholder = "Retype Password">
                                 </div>
                                 <div class = "text-center">
-                                    <button type = "submit" class = "btn btn-success buttonsgo" style="width:100%; font-size:24px;">Register</button>
+                                    <button type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
                                 </div>
-                                
                             </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@ include(APPPATH . 'views/header.php');
                                             4: "Strong ☻"
                                     }
 
-                                    var password = document.getElementById('password1');
+                                    var password = document.getElementById('password');
                                     var meter = document.getElementById('password-strength-meter');
                                     var text = document.getElementById('password-strength-text');
 

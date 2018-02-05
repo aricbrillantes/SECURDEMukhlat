@@ -3,7 +3,6 @@ include(APPPATH . 'views/header.php');
 ?>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
@@ -33,7 +32,7 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
+                        <a class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
                     </div>
                 </div>
 
@@ -114,15 +113,12 @@ include(APPPATH . 'views/header.php');
             }
         </script>
         
-        <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Back to Top</button>
-        
-        <!--
+        <!--<script type="text/javascript" src="<?//php echo base_url("/js/search.js"); ?>"></script>-->
+        <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Back to Top</button><!--
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture2.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture6.png'); ?>"/></span>
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture3.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture7.png'); ?>"/></span>
-        <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture4.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture8.png'); ?>"/></span>
--->   
- <?php
+        <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture4.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture8.png'); ?>"/></span>-->
+    <?php
   //  include(APPPATH . 'views/chat/chat.php');
     
