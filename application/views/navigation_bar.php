@@ -208,8 +208,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                         </div>
                         <div class="voice-dropdown">
-                            
-                            <div id="voicedropdown" class="voice-dropdown-content">
+                            <div id="voicedropdown" class="voice-dropdown-content" style="display: none;">
                                 <div class="compact marquee" id="div_language">
                                     <select id="select_language">
                                         <option value="0" onclick="resetDictation(event)">English</option>
