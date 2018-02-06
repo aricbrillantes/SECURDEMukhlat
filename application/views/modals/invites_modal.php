@@ -44,7 +44,7 @@
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
-                                <table><tr><td><div id="green" class="blocks" onClick="changeBGColor('#D7eadd', 'green','#d13030');">Green</div></td>
+                                <table><tr><td><div id="green" class="blocks" onClick="changeBGColor('#D7eadd', 'green','green');">Green</div></td>
                                 <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', '#5BC0EB','#d13030');">Blue</div></td>
                                 <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', '#F6B8B8','#d13030');">Pink</div></td>
                                 <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', '#FF7F51','#d13030');">Orange</div></td>
@@ -60,7 +60,7 @@
                                 </tr>
                                 <!-- image and more backgrounds-->
                                 <tr>
-                                <!--<td><div id="strawberry" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'green','#d13030');">Galaxy</div></td>-->
+                                <td><div id="galaxy" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'black','black');">Galaxy</div></td>
                                 <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', 'white','#5BC0EB');">Rainbow</div></td>
                                 <!--<td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>-->
                                 <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div>

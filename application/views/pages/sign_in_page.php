@@ -37,7 +37,8 @@ include(APPPATH . 'views/header.php');
             <div class = "col-md-10 col-md-offset-1">
                 <div id = "sign-up-container" class = "col-md-12 content-container no-padding">
                     <div class = "col-md-12 sign-in-div">
-                        <h3 class = "sign-in-header"><strong>Sign Up for Mukhlat!</strong></h3>
+                        <center style="padding-bottom: 2%"><a href="#regi" data-toggle="collapse" ><h3 class = "sign-in-header btn btn-success buttonsgo"><strong>Sign Up for Mukhlat!</strong></h3></a></center>
+                        <div id="regi" class="collapse">
                         <div class = "sign-in-form">
                             <form id = "sign-up-form" onsubmit = "return sign_up()" method = "post">
                                 <div class = "col-xs-6 form-group register-field">
@@ -79,7 +80,7 @@ include(APPPATH . 'views/header.php');
                                 
                             </form>
                     </div>
-                </div>
+                </div></div>
             </div>
         </div>
     </div>

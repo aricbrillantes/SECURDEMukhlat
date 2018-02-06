@@ -7,8 +7,39 @@ include(APPPATH . 'views/header.php');
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
-    ?>
+    $default_wall = ($logged_user->user_id)*100;
 
+    ?>
+  
+    <!--Create deafult wall-->
+    
+<?php 
+
+     $servername = "127.0.0.1";
+	$username = "root";
+	$password = "";
+	$dbname = "mukhlat";
+	$conn = @new mysqli($servername, $username, $password, $dbname);
+
+
+        // Create connection
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "INSERT INTO tbl_topics(topic_id, creator_id, topic_name, topic_description, date_created, is_cancelled)
+        VALUES ('$default_wall', '$logged_user->user_id', '$logged_user->first_name\'s wall', 'Welcome to my wall.', CURRENT_TIMESTAMP, '0' )";
+
+        if (mysqli_query($conn, $sql)) {
+           ;
+        } else {
+            ;
+        }
+        
+        mysqli_close($conn);
+    
+    ?>
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -31,36 +62,16 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
+                        
+                        <div class = "col-xs-12">
+                        
+                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to your wall</button>
+                        
+                        </div>
+                        
                         <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' /><ul class = "nav navbar-nav navbar-right" style = "margin-right: 5px;">
+                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />
 
-                            <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
-                                <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?>
-                                <?php if ((int) $logged_user->unread_notifs + $unanswered > 0): ?>
-                                    <span id = "notif-label" class = "label label-info label-badge"><?php echo $logged_user->unread_notifs + $unanswered ?></span>
-                                <?php endif; ?>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><i class = "fa fa-user"></i> My Profile</a></li>
-                                
-                                <li><a id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                                        <i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications 
-                                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
-                                        <?php endif; ?>
-                                    </a>
-                                </li>
-                                <li><a href="#customize-theme" data-toggle = "modal">
-                                        <i class = "fa fa-users"></i> Customize Theme
-                                    </a>
-                                </li>
-                                <li><a href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
                     </div>
 
                     <!-- CONTENT -->
@@ -131,6 +142,7 @@ include(APPPATH . 'views/header.php');
             </div>
 
             <?php
+            include(APPPATH . 'views/modals/create_post_modal.php');
             include(APPPATH . 'views/topic_side_bar.php');
             include(APPPATH . 'views/modals/create_topic_modal.php');
             ?>
