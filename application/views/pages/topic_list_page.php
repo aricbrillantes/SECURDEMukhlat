@@ -17,15 +17,15 @@ include(APPPATH . 'views/header.php');
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
-                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+                        <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
                         </a>
 
                         <div class = "col-sm-4 home-user-text">
-                            <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name; ?></strong></a>
+                            <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" class = "btn btn-link home-username text1color"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
-                                <button class="btn btn-link dropdown-toggle home-username" type="button" data-toggle="dropdown"><strong>Topic</strong>
+                                <button class="btn btn-link dropdown-toggle home-username text1color" type="button" data-toggle="dropdown"><strong>Topic</strong>
                                     <i class="caret"></i></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="home">Home</a></li>
@@ -59,7 +59,7 @@ include(APPPATH . 'views/header.php');
                     <div id = "topic-list" class = "list-group">
                         <?php foreach ($topics as $topic): ?>
                             <a class="topic-grid1" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
-                                <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
+                                <h4 class = "text-info no-padding no-margin text1color" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
                                 <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
                                 <div class="topic-grid-icons">
                                     <span class = "label label-info follower-label"><i class = "fa fa-group"></i> 

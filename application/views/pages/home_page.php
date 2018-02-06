@@ -8,7 +8,16 @@ include(APPPATH . 'views/header.php');
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
     $default_wall = ($logged_user->user_id)*100;
+    
+//    connects user to your default wall
+    
+    $topic1 = new \stdClass();
+    $topic1->topic_id = ($logged_user->user_id)*100;
+    $topic1->user = $logged_user;
+    $topic1->topic_name = 'your wall';
 
+    $_SESSION['current_topic'] = $topic1;
+    
     ?>
   
     <!--Create deafult wall-->
@@ -29,9 +38,15 @@ include(APPPATH . 'views/header.php');
         }
 
         $sql = "INSERT INTO tbl_topics(topic_id, creator_id, topic_name, topic_description, date_created, is_cancelled)
-        VALUES ('$default_wall', '$logged_user->user_id', '$logged_user->first_name\'s wall', 'Welcome to my wall.', CURRENT_TIMESTAMP, '0' )";
+        VALUES ('$default_wall', '$logged_user->user_id', '$logged_user->first_name\'s wall', 'Welcome to my wall.', CURRENT_TIMESTAMP, '0' );";
+        $sql1 = "INSERT INTO tbl_topic_follower(topic_id, user_id)
+        VALUES ('$default_wall', '$logged_user->user_id');";
+        $sql2 = "INSERT INTO tbl_topic_moderator(topic_id, user_id) 
+        VALUES ('$default_wall', '$logged_user->user_id');";
 
         if (mysqli_query($conn, $sql)) {
+            mysqli_query($conn, $sql1);
+            mysqli_query($conn, $sql2);
            ;
         } else {
             ;
@@ -47,14 +62,14 @@ include(APPPATH . 'views/header.php');
                     <!-- HEADER -->
                     <div class = "clearfix content-container">
 
-                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+                        <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
                         </a>
                         <div class = "col-sm-4 home-user-text">
-                            <a class = "btn btn-link home-username" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><strong><?php echo $logged_user->first_name; ?></strong></a>
+                            <a class = "btn btn-link home-username text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
-                                <button class="btn btn-link dropdown-toggle home-username" type="button" data-toggle="dropdown"><strong>Home</strong>
+                                <button class="btn btn-link dropdown-toggle home-username text1color" type="button" data-toggle="dropdown"><strong>Home</strong>
                                     <i class="caret"></i></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="home">Home</a></li>
@@ -65,7 +80,7 @@ include(APPPATH . 'views/header.php');
                         
                         <div class = "col-xs-12">
                         
-                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to your wall</button>
+                        <button id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</button>
                         
                         </div>
                         
@@ -84,11 +99,11 @@ include(APPPATH . 'views/header.php');
                                     ?>
                                     <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
                                         <div class = "user-post-heading no-margin">
-                                            <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                            <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                 <strong><?php echo $post->first_name . " " . $post->last_name; ?></strong>
                                             </a> 
                                             <span>posted in</span> 
-                                            <a class = "btn btn-link no-padding" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
+                                            <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
                                                 <strong><?php echo utf8_decode($post->topic_name); ?></strong>
                                             </a>:
                                         </div>
@@ -96,7 +111,7 @@ include(APPPATH . 'views/header.php');
                                         <div class = "col-xs-12 user-post-content no-padding">
                                             <!-- Left -->
                                             <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
-                                                <a class = "btn btn-link no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                     <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                                 </a>
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
@@ -115,7 +130,7 @@ include(APPPATH . 'views/header.php');
                                                 <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
                                                 <i class = "text-muted">
                                                     <small>by 
-                                                        <a class = "btn btn-link btn-xs no-padding" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                        <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                             <?php echo $post->first_name . " " . $post->last_name ?>
                                                         </a>
                                                     </small>

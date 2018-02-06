@@ -40,7 +40,7 @@ $c_topic = $_SESSION['current_topic'];
                 <!-- Topic Post Preview -->
                 <div class = "col-sm-6">
                     <div class = "col-sm-12 topic-description-div no-padding">
-                        <h4 class = "no-margin text-center user-topic-header topic-intro-header">
+                        <h4 class = "no-margin text-center user-topic-header topic-intro-header bar1color">
                             <strong><?php echo utf8_decode($c_topic->topic_name); ?></strong>
                             
                             <?php if ($is_moderated): ?>
@@ -81,7 +81,7 @@ $c_topic = $_SESSION['current_topic'];
                 <!-- Topic Post List -->
                 <div class = "col-sm-6 topic-preview-div">
                     <div class = "col-xs-12">
-                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
+                        <button id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
                     </div>
                     <div class = "col-xs-12 topic-post-list">
                         <div class = "list-group" style = "padding-top: 15px;">

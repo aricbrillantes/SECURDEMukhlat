@@ -23,7 +23,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
                     body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
-                    .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}<\/style>');
+                    .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}\n\
+                    .buttonsbgcolor:hover{background:' + getCookie("ButtonHColor") + ';}\n\
+                    .text1color{color:' + getCookie("ButtonColor") + ';}\n\
+                    .bar1color{background:' + getCookie("ButtonColor") + ';}<\/style>');
 </script>
 <head>
     <style>
@@ -208,7 +211,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                         </div>
                         <div class="voice-dropdown">
-                            <div id="voicedropdown" class="voice-dropdown-content" style="display: none;">
+                            
+                            <div id="voicedropdown" class="voice-dropdown-content" style="display:none;">
                                 <div class="compact marquee" id="div_language">
                                     <select id="select_language">
                                         <option value="0" onclick="resetDictation(event)">English</option>
@@ -238,7 +242,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                         <?php endif; ?>
                                 </a>
                                 <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
-                                        <i class = "fa fa-users"></i> Customize Theme
+                                        Customize Theme
                                     </a>
                                 <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
 

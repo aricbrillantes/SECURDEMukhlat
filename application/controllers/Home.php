@@ -35,4 +35,7 @@ class Home extends CI_Controller {
             $this->load->view('errors/html/error_general');
         }
     }
-}
+
+    
+    
+        }

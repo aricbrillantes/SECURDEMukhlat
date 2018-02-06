@@ -44,9 +44,9 @@
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
-                                <table><tr><td><div id="green" class="blocks" onClick="changeBGColor('#D7eadd', 'green','green');">Green</div></td>
-                                <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', '#5BC0EB','#d13030');">Blue</div></td>
-                                <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', '#F6B8B8','#d13030');">Pink</div></td>
+                                <table><tr><td><div id="green" class="blocks" onClick="changeBGColor('#D7eadd', 'green','#1d8f15', '#14620f');">Green</div></td>
+                                <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', '#5BC0EB','#3fa0e5', '#1b7ec5');">Blue</div></td>
+                                <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', '#F6B8B8','#f7aec4','#f07197');">Pink</div></td>
                                 <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', '#FF7F51','#d13030');">Orange</div></td>
                                 <td><div id="violet" class="blocks" onClick="changeBGColor(':#e6e6fa', '#512da8','#d13030');">Violet</div></td>
                                 </tr>
@@ -80,8 +80,9 @@
     
     document.cookie = "backgroundColor1=" + getCookie("backgroundColor") + ";" + ";path=/";  
     document.cookie = "NavbarColor1=" + getCookie("NavbarColor") + ";" + ";path=/";  
-    document.cookie = "ButtonColor1=" + getCookie("ButtonColor") + ";" + ";path=/";  
-    function changeBGColor(value, value2, value3)
+    document.cookie = "ButtonColor1=" + getCookie("ButtonColor") + ";" + ";path=/";
+    document.cookie = "ButtonHColor1=" + getCookie("ButtonColor") + ";" + ";path=/"; 
+    function changeBGColor(value, value2, value3, value4)
                     {
                         //var d = new Date();
                         //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
@@ -90,7 +91,7 @@
                         document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
                         document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
                         document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
-                        
+                        document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
                     }
 
     function addBGsound(value)
@@ -133,7 +134,8 @@ var modal = document.getElementById('customize-theme');
 span.onclick = function() {
     document.cookie = "backgroundColor=" + getCookie("backgroundColor1") + ";" + ";path=/";  
     document.cookie = "NavbarColor=" + getCookie("NavbarColor1") + ";" + ";path=/";  
-    document.cookie = "ButtonColor=" + getCookie("ButtonColor1") + ";" + ";path=/";  
+    document.cookie = "ButtonColor=" + getCookie("ButtonColor1") + ";" + ";path=/";
+    document.cookie = "ButtonHColor=" + getCookie("ButtonHColor1") + ";" + ";path=/";  
 };
 
 // When the user clicks anywhere outside of the modal, close it
@@ -141,7 +143,8 @@ window.onclick = function(event) {
     if (event.target === modal) {
         document.cookie = "backgroundColor=" + getCookie("backgroundColor1") + ";" + ";path=/";  
         document.cookie = "NavbarColor=" + getCookie("NavbarColor1") + ";" + ";path=/";  
-        document.cookie = "ButtonColor=" + getCookie("ButtonColor1") + ";" + ";path=/";  
+        document.cookie = "ButtonColor=" + getCookie("ButtonColor1") + ";" + ";path=/";
+        document.cookie = "ButtonHColor=" + getCookie("ButtonHColor1") + ";" + ";path=/"; 
     }
 };
 </script>
