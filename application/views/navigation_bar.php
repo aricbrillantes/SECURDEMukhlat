@@ -5,44 +5,44 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 
 <script type="text/javascript">
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
             }
-            return "";
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
+                    .soundbg {display:' + getCookie("soundbg1") + ';}\n\
+                    body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
+                    .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}<\/style>');
+</script>
+<head>
+    <style>
+        svg{
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        position: fixed;
         }
 
-        document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
-                        .soundbg {display:' + getCookie("soundbg1") + ';}\n\
-                        body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
-                        .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}<\/style>');
-    
-    </script>
-<head><style>
-svg{
-display: block;
-width: 100%;
-height: 100%;
-padding: 0;
-margin: 0;
-position: fixed;
-}
-
-path{
-stroke-linecap: square;
-stroke: white;
-stroke-width: 0.5px;
-}
-    </style></head>
+        path{
+        stroke-linecap: square;
+        stroke: white;
+        stroke-width: 0.5px;
+        }
+    </style>
+</head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
@@ -128,7 +128,31 @@ stroke-width: 0.5px;
             'ko-KR'
         );
 
-</script>
+        function voiceDropdown() {
+//            document.getElementById("voice-dropdown-content").classList.toggle("show");
+            var x = document.getElementById("voicedropdown");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+//        window.onclick = function(event) {
+//          if (!event.target.matches('.dropbtn')) {
+//            var dropdowns = document.getElementsByClassName("dropdown-content");
+//            var i;
+//            for (i = 0; i < dropdowns.length; i++) {
+//              var openDropdown = dropdowns[i];
+//              if (openDropdown.classList.contains('show')) {
+//                openDropdown.classList.remove('show');
+//              }
+//            }
+//          }
+//        }
+
+    </script>
 
 <body>
 <!-- Nav Bar -->
@@ -169,35 +193,36 @@ stroke-width: 0.5px;
                 <div class = "nav-left-end">
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <div class="input-group">
-                            
-                            
-                            <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search">
-                            <div class="input-group-btn">
+                            <div class="input-group-btn" style="display: inline-block;">
+                                <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 300px;">
                                 <button class="btn btn-default search-btn" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
+                                <span class="btn btn-default search-btn" onclick="voiceDropdown()" id="voice-search-button">Voice Search</span>
                             </div>
-                                
-                            <!--Voice search buttons-->
-                            <div>
-                                <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>
-                                <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="STOP" src="images/microphone_stop.png"height="50" width="50"></a>
-                                <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="RESET" src="images/microphone_reset.png"height="50" width="50"</a>
-                            </div>
-                                
+                            <br>
                             <!--Hidden DIV for voice search-->
                             <div id="results" style="display: none" border="1px">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
-                            <br>
-                            <div class="compact marquee" id="div_language">
-                                <select id="select_language">
-                                    <option value="0" onclick="resetDictation(event)">English</option>
-                                    <option value="1" onclick="resetDictation(event)">Filipino</option>
-                                    <option value="2" onclick="resetDictation(event)">French</option>
-                                    <option value="3" onclick="resetDictation(event)">Korean</option>
-                                </select>
+                        </div>
+                        <div class="voice-dropdown">
+                            
+                            <div id="voicedropdown" class="voice-dropdown-content">
+                                <div class="compact marquee" id="div_language">
+                                    <select id="select_language">
+                                        <option value="0" onclick="resetDictation(event)">English</option>
+                                        <option value="1" onclick="resetDictation(event)">Filipino</option>
+                                        <option value="2" onclick="resetDictation(event)">French</option>
+                                        <option value="3" onclick="resetDictation(event)">Korean</option>
+                                    </select>
+                                </div><br>                          
+                                <div style="display: inline-block;">
+                                    <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>
+                                    <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="STOP" src="images/microphone_stop.png"height="50" width="50"></a>
+                                    <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="RESET" src="images/microphone_reset.png"height="50" width="50"</a>
+                                </div>
                             </div>
                         </div>
                     </form>

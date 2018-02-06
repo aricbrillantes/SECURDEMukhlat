@@ -1036,3 +1036,30 @@ END CHAT
 #myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
 }
+
+.voice-dropdown-button {
+    /*background-color: #3498DB;*/
+    color: white;
+    padding: 10px;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+}
+
+.voice-dropdown {
+    /*position: relative;*/
+    display: inline-block;
+}
+
+.voice-dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+/*.voice-dropdown:hover .voice-dropdown-content {
+    display: block;
+}*/
