@@ -24,32 +24,30 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                         .soundbg {display:' + getCookie("soundbg1") + ';}\n\
                         body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
-                        #crettop {background:' + getCookie("ButtonColor") + ';}<\/style>');
+                        .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}<\/style>');
     
     </script>
-<head>
-    <style>
-        svg{
-            display: block;
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            position: fixed;
-        }
+<head><style>
+svg{
+display: block;
+width: 100%;
+height: 100%;
+padding: 0;
+margin: 0;
+position: fixed;
+}
 
-        path{
-            stroke-linecap: square;
-            stroke: white;
-            stroke-width: 0.5px;
-        }
-    </style>
-</head>
-
+path{
+stroke-linecap: square;
+stroke: white;
+stroke-width: 0.5px;
+}
+    </style></head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-    <script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>     
+    
+    <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
     <!--Voice Search Script-->
     <script type="text/javascript">
@@ -65,7 +63,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
           recognition.onstart = function() {
             recognizing = true;
-            document.getElementById("recording").innerText = 'RECORDING';
+//            document.getElementById("recording").innerText = 'RECORDING';
           };
 
           recognition.onerror = function(event) {
@@ -123,7 +121,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             search.value = '';
         }
         
-//        array of languages
         var languages = new Array(
             'en-US',
             'fil-PH',
@@ -194,8 +191,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <span id="interim_span" class="interim"></span>
                             </div>
                             <br>
-                                
-                            <!--language options-->
                             <div class="compact marquee" id="div_language">
                                 <select id="select_language">
                                     <option value="0" onclick="resetDictation(event)">English</option>
@@ -222,6 +217,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                         <i class = "fa fa-users"></i> Customize Theme
                                     </a>
                                 <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
+
+
                 </div>
             </div>
         </div>
@@ -230,8 +227,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
-<script>
-    window.onload = function () {
+<script>window.onload = function () {
     "use strict";
     var paths = document.getElementsByTagName('path');
     var visualizer = document.getElementById('visualizer');
@@ -271,14 +267,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
               	adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
                 paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
             }
-        };
+
+        }
         doDraw();
-    };
+    }
 
     var soundNotAllowed = function (error) {
         h.innerHTML = "You must allow your microphone.";
         console.log(error);
-    };
+    }
 
     /*window.navigator = window.navigator || {};
     /*navigator.getUserMedia =  navigator.getUserMedia       ||
@@ -287,9 +284,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                               null;*/
     navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
 
-};
-</script>
-    
+};</script>
+               
 <!-- End Nav Bar -->
 
 </div>

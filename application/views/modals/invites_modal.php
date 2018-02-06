@@ -60,9 +60,9 @@
                                 </tr>
                                 <!-- image and more backgrounds-->
                                 <tr>
-                                <td><div id="strawberry" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'green','#d13030');">Galaxy</div></td>
+                                <!--<td><div id="strawberry" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'green','#d13030');">Galaxy</div></td>-->
                                 <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', 'white','#5BC0EB');">Rainbow</div></td>
-                                <td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>
+                                <!--<td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>-->
                                 <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div>
                                 <div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>
                                 </td>
