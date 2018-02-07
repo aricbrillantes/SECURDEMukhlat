@@ -35,7 +35,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Topics -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-topic-header"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
+                        <h3 class = "text-info text-center user-topic-header modalbg"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a data-toggle="pill" href="#user-topic-created">Created Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-moderated">Moderated Topics</a></li>

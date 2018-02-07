@@ -1,8 +1,7 @@
 <?php
 $topic = $_SESSION['current_topic'];
 ?>
-
-    <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
+<!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     <!--Voice Search Script-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -70,7 +69,7 @@ $topic = $_SESSION['current_topic'];
     <div class="modal-dialog">
         <!-- Create Topic Modal Content-->
         <div class="modal-content">
-            <div class="modal-header modal-heading">
+            <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><strong>Post to <?php echo utf8_decode($topic->topic_name); ?></strong></h4>
             </div>
@@ -79,11 +78,12 @@ $topic = $_SESSION['current_topic'];
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
                         <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
-                            <span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>
+                    <span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>
                             <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
                             <!--<button onclick="startDictation2(event)">Try it</button>-->
                     </div>
-                            <div id="results" style="display: none" border="1px">
+                    
+                    <div id="results" style="display: none" border="1px">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
@@ -93,6 +93,7 @@ $topic = $_SESSION['current_topic'];
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
+                    
                     
                     <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
@@ -151,7 +152,7 @@ $topic = $_SESSION['current_topic'];
 
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
-                        <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+ <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
                         <script type="text/javascript">
                         $('.form-control').keydown(function(event) {
                             if(event.keyCode!==18||event.keyCode!==16)

@@ -1,11 +1,10 @@
 <?php
 include(APPPATH . 'views/header.php');
+  $logged_user = $_SESSION['logged_user'];  
 $c_topic = $_SESSION['current_topic'];
+
 ?>
 <body>
-    
-   
-    
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>

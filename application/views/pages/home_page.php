@@ -7,52 +7,53 @@ include(APPPATH . 'views/header.php');
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
-    $default_wall = ($logged_user->user_id)*100;
-    
-//    connects user to your default wall
-    
-    $topic1 = new \stdClass();
-    $topic1->topic_id = ($logged_user->user_id)*100;
-    $topic1->user = $logged_user;
-    $topic1->topic_name = 'your wall';
-
-    $_SESSION['current_topic'] = $topic1;
-    
-    ?>
+//    $default_wall = 0;
+//    $default_wall = ($logged_user->user_id)*100;
+//    
+////    connects user to your default wall
+//    
+//    $topic1 = new \stdClass();
+//    $topic1->topic_id = ($logged_user->user_id)*100;
+//    $topic1->user = $logged_user;
+//    $topic1->topic_name = 'your wall';
+//
+//    $_SESSION['current_topic'] = $topic1;
+//    
+//    ?>
   
     <!--Create deafult wall-->
     
-<?php 
-
-     $servername = "127.0.0.1";
-	$username = "root";
-	$password = "";
-	$dbname = "mukhlat";
-	$conn = @new mysqli($servername, $username, $password, $dbname);
-
-
-        // Create connection
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-
-        $sql = "INSERT INTO tbl_topics(topic_id, creator_id, topic_name, topic_description, date_created, is_cancelled)
-        VALUES ('$default_wall', '$logged_user->user_id', '$logged_user->first_name\'s wall', 'Welcome to my wall.', CURRENT_TIMESTAMP, '0' );";
-        $sql1 = "INSERT INTO tbl_topic_follower(topic_id, user_id)
-        VALUES ('$default_wall', '$logged_user->user_id');";
-        $sql2 = "INSERT INTO tbl_topic_moderator(topic_id, user_id) 
-        VALUES ('$default_wall', '$logged_user->user_id');";
-
-        if (mysqli_query($conn, $sql)) {
-            mysqli_query($conn, $sql1);
-            mysqli_query($conn, $sql2);
-           ;
-        } else {
-            ;
-        }
-        
-        mysqli_close($conn);
+// <?php 
+//
+//     $servername = "127.0.0.1";
+//	$username = "root";
+//	$password = "";
+//	$dbname = "mukhlat";
+//	$conn = @new mysqli($servername, $username, $password, $dbname);
+//
+//
+//        // Create connection
+//        // Check connection
+//        if (!$conn) {
+//            die("Connection failed: " . mysqli_connect_error());
+//        }
+//
+//        $sql = "INSERT INTO tbl_topics(topic_id, creator_id, topic_name, topic_description, date_created, is_cancelled)
+//        VALUES ('$default_wall', '$logged_user->user_id', '$logged_user->first_name\'s wall', 'Welcome to my wall.', CURRENT_TIMESTAMP, '0' );";
+//        $sql1 = "INSERT INTO tbl_topic_follower(topic_id, user_id)
+//        VALUES ('$default_wall', '$logged_user->user_id');";
+//        $sql2 = "INSERT INTO tbl_topic_moderator(topic_id, user_id) 
+//        VALUES ('$default_wall', '$logged_user->user_id');";
+//
+//        if (mysqli_query($conn, $sql)) {
+//            mysqli_query($conn, $sql1);
+//            mysqli_query($conn, $sql2);
+//           ;
+//        } else {
+//            ;
+//        }
+//        
+//        mysqli_close($conn);
     
     ?>
     <div class = "container page">
@@ -60,7 +61,7 @@ include(APPPATH . 'views/header.php');
             <div class = "col-md-9 home-container">
                 <div class = "col-sm-12 home-container">
                     <!-- HEADER -->
-                    <div class = "clearfix content-container">
+                    <div class = "clearfix content-container" style="border-radius:20px;">
 
                         <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
@@ -78,27 +79,27 @@ include(APPPATH . 'views/header.php');
                             </div>
                         </div>
                         
-                        <div class = "col-xs-12">
+<!--                        <div class = "col-xs-12">
                         
                         <button id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</button>
                         
-                        </div>
-                        
+                        </div>-->
+<!--                        
                         <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <!--<input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />-->
+                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />-->
 
                     </div>
 
                     <!-- CONTENT -->
-                    <div class = "col-sm-12 content-container">
+                    <div class = "col-sm-12 content-container" style="border-radius:20px;">
                         <div class = "col-sm-12">
                             <!-- POST PREVIEW -->
                             <?php
                             if (!empty($posts)):
                                 foreach ($posts as $post):
                                     ?>
-                                    <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;">
-                                        <div class = "user-post-heading no-margin">
+                                    <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;border-radius:20px;">
+                                        <div class = "user-post-heading no-margin" style="border-radius:20px;">
                                             <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                 <strong><?php echo $post->first_name . " " . $post->last_name; ?></strong>
                                             </a> 
@@ -139,7 +140,7 @@ include(APPPATH . 'views/header.php');
                                                 <p class = "home-content-body" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
                                             </div>
                                         </div>
-                                        <div class = "user-post-footer no-margin text-right">
+                                        <div class = "user-post-footer no-margin text-right" style="border-radius:20px;">
                                             <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>

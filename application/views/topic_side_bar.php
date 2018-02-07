@@ -4,8 +4,8 @@ $logged_user = $_SESSION['logged_user'];
     
 <!-- Sidebar -->
 <div class="col-md-3" style = "padding-left: 0px;">
-    <div class = "col-xs-12 home-sidebar content-container">
-        <h3 class = "text-center text-info no-padding no-margin" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>
+    <div class = "col-xs-12 home-sidebar content-container" style="border-radius:20px;">
+        <h3 class = "text-center text-info no-padding no-margin text1color" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>
         <a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">
             <h4>Your topics</h4>
         </a>
@@ -86,7 +86,7 @@ $logged_user = $_SESSION['logged_user'];
 	$dbname = "mukhlat";
 	$conn = @new mysqli($servername, $username, $password, $dbname);
         
-        $count = rand(1, 4);;
+        $count = rand(1, 4);
         $sql = "SELECT Tquestion, Tanswer, Tcategory FROM tbl_trivias WHERE TriviaID = '$count'";
 	$result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {

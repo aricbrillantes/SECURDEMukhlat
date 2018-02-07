@@ -22,11 +22,22 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
-                    body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
+                     body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
                     .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}\n\
                     .buttonsbgcolor:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .text1color{color:' + getCookie("ButtonColor") + ';}\n\
-                    .bar1color{background:' + getCookie("ButtonColor") + ';}<\/style>');
+                    .bar1color{background:' + getCookie("ButtonColor") + ';}\n\
+                    .text1color:hover{color:' + getCookie("ButtonHColor") + ';}\n\
+                    .buttonsbgcolor:focus{background:' + getCookie("ButtonColor") + ';outline:0;}\n\
+                    .modalbg{background:' + getCookie("NavbarColor") + ';}\n\
+                    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: ' + getCookie("NavbarColor") + ';}\n\
+                    .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
+                    .sparklesbg{display:' + getCookie("sparklebg1") + ';}<\/style>');
+    
+    if(getCookie("sparklebg1")=="block"){
+        document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
+        
+    }
 </script>
 <head>
     <style>
@@ -44,7 +55,59 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         stroke: white;
         stroke-width: 0.5px;
         }
+        
+        #world{
+            position: fixed;
+        }
     </style>
+    
+<div class="snowflakebg">    
+    <style>
+/* customizable snowflake styling */
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+  
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+</style>
+<div class="snowflakes" aria-hidden="true">
+  <div class="snowflake" style="font-size: 30px">
+  ❄
+  </div>
+  <div class="snowflake" style="font-size: 25px">
+  ❅
+  </div>
+  <div class="snowflake" style="font-size: 31px">
+  ❆
+  </div>
+  <div class="snowflake" style="font-size: 26px">
+  ❄
+  </div>
+  <div class="snowflake" style="font-size: 27px">
+  ❅
+  </div>
+  <div class="snowflake" style="font-size: 28px">
+  ❆
+  </div>
+  <div class="snowflake" style="font-size: 29px">
+  ❄
+  </div>
+  <div class="snowflake" style="font-size: 24px">
+  ❅
+  </div>
+  <div class="snowflake" style="font-size: 32px">
+  ❆
+  </div>
+  <div class="snowflake" style="font-size: 23px">
+  ❄
+  </div>
+</div>
+</div>    
+    
 </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -197,7 +260,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <div class="input-group">
                             <div class="input-group-btn" style="display: inline-block;">
-                                <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 300px;">
+                                <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 400px;">
                                 <button class="btn btn-default search-btn" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
@@ -205,7 +268,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                             <br>
                             <!--Hidden DIV for voice search-->
-                            <div id="results"  border="1px">
+                            <div id="results" border="1px">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
@@ -225,14 +288,14 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>
                                     <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="STOP" src="images/microphone_stop.png"height="50" width="50"></a>
                                     <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="RESET" src="images/microphone_reset.png"height="50" width="50"</a>
-                                    <span onclick='responsiveVoice.speak(search.value,"Japanese Female",{rate: 0.9, pitch: 1});' />Play<span>
+                                 <span onclick='responsiveVoice.speak(search.value,"Japanese Female",{rate: 0.9, pitch: 1});' >Play</span>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
         <div style="margin:1%;">
-                            <a class="navbaricons" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+                            <a class="navbaricons" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" style="margin-left:9%;">
                                 <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                                 <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?></a>
 
@@ -314,7 +377,121 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
 
 };</script>
-               
+<script>(function() {
+  var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
+
+  NUM_CONFETTI = 350;
+
+  COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
+
+  PI_2 = 2 * Math.PI;
+
+  canvas = document.getElementById("world");
+
+  context = canvas.getContext("2d");
+
+  window.w = 0;
+
+  window.h = 0;
+
+  resizeWindow = function() {
+    window.w = canvas.width = window.innerWidth;
+    return window.h = canvas.height = window.innerHeight;
+  };
+
+  window.addEventListener('resize', resizeWindow, false);
+
+  window.onload = function() {
+    return setTimeout(resizeWindow, 0);
+  };
+
+  range = function(a, b) {
+    return (b - a) * Math.random() + a;
+  };
+
+  drawCircle = function(x, y, r, style) {
+    context.beginPath();
+    context.arc(x, y, r, 0, PI_2, false);
+    context.fillStyle = style;
+    return context.fill();
+  };
+
+  xpos = 0.5;
+
+  document.onmousemove = function(e) {
+    return xpos = e.pageX / w;
+  };
+
+  window.requestAnimationFrame = (function() {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+      return window.setTimeout(callback, 1000 / 60);
+    };
+  })();
+
+  Confetti = class Confetti {
+    constructor() {
+      this.style = COLORS[~~range(0, 5)];
+      this.rgb = `rgba(${this.style[0]},${this.style[1]},${this.style[2]}`;
+      this.r = ~~range(2, 6);
+      this.r2 = 2 * this.r;
+      this.replace();
+    }
+
+    replace() {
+      this.opacity = 0;
+      this.dop = 0.03 * range(1, 4);
+      this.x = range(-this.r2, w - this.r2);
+      this.y = range(-20, h - this.r2);
+      this.xmax = w - this.r;
+      this.ymax = h - this.r;
+      this.vx = range(0, 2) + 8 * xpos - 5;
+      return this.vy = 0.7 * this.r + range(-1, 1);
+    }
+
+    draw() {
+      var ref;
+      this.x += this.vx;
+      this.y += this.vy;
+      this.opacity += this.dop;
+      if (this.opacity > 1) {
+        this.opacity = 1;
+        this.dop *= -1;
+      }
+      if (this.opacity < 0 || this.y > this.ymax) {
+        this.replace();
+      }
+      if (!((0 < (ref = this.x) && ref < this.xmax))) {
+        this.x = (this.x + this.xmax) % this.xmax;
+      }
+      return drawCircle(~~this.x, ~~this.y, this.r, `${this.rgb},${this.opacity})`);
+    }
+
+  };
+
+  confetti = (function() {
+    var j, ref, results;
+    results = [];
+    for (i = j = 1, ref = NUM_CONFETTI; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
+      results.push(new Confetti);
+    }
+    return results;
+  })();
+
+  window.step = function() {
+    var c, j, len, results;
+    requestAnimationFrame(step);
+    context.clearRect(0, 0, w, h);
+    results = [];
+    for (j = 0, len = confetti.length; j < len; j++) {
+      c = confetti[j];
+      results.push(c.draw());
+    }
+    return results;
+  };
+
+  step();
+
+}).call(this);</script>             
 <!-- End Nav Bar -->
 
 </div>
