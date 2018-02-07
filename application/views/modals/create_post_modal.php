@@ -2,6 +2,69 @@
 $topic = $_SESSION['current_topic'];
 ?>
 
+    <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
+    <!--Voice Search Script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript">
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = 'fil-PH';
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        recognition.onstart = function() {
+            recognizing = true;
+//            document.getElementById("recording").innerText = 'RECORDING';
+          };
+
+          recognition.onerror = function(event) {
+            console.log(event.error);
+          };
+
+          recognition.onend = function() {
+            recognizing = false;
+            document.getElementById("post-title").value=final_span.innerHTML;
+        };
+//
+        recognition.onresult = function(event) {
+            var interim_transcript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+              } else {
+                  
+                if(interim_span.innerHTML.includes("stop"))
+                {  
+                    recognition.stop();
+//                    document.getElementById("post-title").value=final_span.innerHTML;
+                    return;
+                    
+                }  
+                
+                if(interim_span.innerHTML.includes("go to topics"))
+                {  
+                    location.href = 'http://localhost/MukhlatBeta/topic';
+                }  
+                interim_transcript += event.results[i][0].transcript;
+              }
+            }
+            final_span.innerHTML = linebreak(final_transcript);
+            interim_span.innerHTML = linebreak(interim_transcript);
+            document.getElementById("post-title").value=interim_span.innerHTML;
+            
+            
+          };
+
+        function startDictation2(event) {
+            recognition.lang = 'en-US';
+            final_transcript = '';
+            final_span.innerHTML = '';
+            interim_span.innerHTML = '';
+            recognition.start();
+        }
+                                
+    </script>
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -16,15 +79,20 @@ $topic = $_SESSION['current_topic'];
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
                         <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
+                            <span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>
+                            <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
+                            <!--<button onclick="startDictation2(event)">Try it</button>-->
                     </div>
-                    
-                    <div id="profanityWarning"></div>
+                            <div id="results" style="display: none" border="1px">
+                                <span id="final_span" class="final"></span>
+                                <span id="interim_span" class="interim"></span>
+                            </div>
+                    <!--<div id="profanityWarning"></div>-->
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
-                    
                     
                     <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
@@ -83,30 +151,40 @@ $topic = $_SESSION['current_topic'];
 
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
+                        <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
                         <script type="text/javascript">
-                        $('.form-control').keyup(function(event) {
-                          if(
-                                event.target.value.includes("fuck ")||
-                                event.target.value.includes(" fuck")||
-                                event.target.value.includes(" fuck ")||
-                                event.target.value.includes(" shit ")||
-                                event.target.value.includes("cunt")||
-                                event.target.value.includes("ass ")||
-                                event.target.value.includes(" ass")||
-                                event.target.value.includes(" ass ")||
-                                event.target.value.includes("dick")||
-                                event.target.value.includes("semen")||             
-                                event.target.value.includes("nigger")||
-                                event.target.value.includes("logan paul")||
-                                event.target.value.includes("jake paul")
-                            )
-                            {  
-//                                alert('no swearing');
-                                    document.getElementById("profanityWarning").innerText = 'NO SWEARING!';
-                            }   
-                            
-                        else
-                            document.getElementById("profanityWarning").innerText = '';
+                        $('.form-control').keydown(function(event) {
+                            if(event.keyCode!==18||event.keyCode!==16)
+                            {
+                                if(event.keyCode>=65 && event.keyCode<=90 || event.keyCode===32)
+                                {
+                                  if(
+                                        event.target.value.includes("fuck ")||
+                                        event.target.value.includes(" fuck")||
+                                        event.target.value.includes(" fuck ")||
+                                        event.target.value.includes(" shit ")||
+                                        event.target.value.includes("cunt")||
+                                        event.target.value.includes("ass ")||
+                                        event.target.value.includes(" ass")||
+                                        event.target.value.includes(" ass ")||
+                                        event.target.value.includes("dick")||
+                                        event.target.value.includes("semen")||             
+                                        event.target.value.includes("nigger")||
+                                        event.target.value.includes("logan paul")||
+                                        event.target.value.includes("jake paul")
+                                    )
+                                    {  
+                                        
+        //                                document.getElementById("profanityWarning").innerText = 'NO SWEARING!';
+                                        responsiveVoice.speak("No swearing on my bloody server","UK English Male",{rate: 1, pitch: 1.5});
+//                                        alert('No swearing on my bloody server');
+                                    }  
+                                }  
+                            }
+                                
+                             
+                            else
+                                document.getElementById("profanityWarning").innerText = '';
                         });  
                     </script>
                     
@@ -227,8 +305,6 @@ $topic = $_SESSION['current_topic'];
   // once loading is complete.
   window.addEventListener('load', startup, false);
 })();</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 <!-- END SCRIPTS -->

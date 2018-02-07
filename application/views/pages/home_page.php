@@ -85,7 +85,7 @@ include(APPPATH . 'views/header.php');
                         </div>
                         
                         <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />
+                        <!--<input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />-->
 
                     </div>
 
