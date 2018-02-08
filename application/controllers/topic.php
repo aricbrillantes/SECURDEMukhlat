@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,12 +28,13 @@ class Topic extends CI_Controller {
         $logged_user = $_SESSION['logged_user'];
 
         $topic_id = $this->uri->segment(3);
+//        echo "<script type='text/javascript'>alert('$topic_id');</script>";
 
         if ($topic_id) {
             $this->load->model('topic_model', 'topics');
             $this->load->model('notification_model', 'notifs');
             $topic = $this->topics->get_topic(true, $topic_id);
-
+                        
             if ($topic) {
                 //change to redirect later
                 $_SESSION['current_topic'] = $topic;
@@ -172,16 +172,22 @@ class Topic extends CI_Controller {
         $input = $this->input;
         $logged_user = $_SESSION['logged_user'];
         $topic = $_SESSION['current_topic'];
-
+//        topicID();
+        $topic_id = $this->uri->segment(3);
+        $topic_id2 = $topic_id;
+//        echo "<script type='text/javascript'>alert('$topic_id');</script>";
+        
         $data = array(
             'parent_id' => 0,
             'user_id' => $logged_user->user_id,
             'root_id' => 0,
-            'topic_id' => $topic->topic_id,
+//            'topic_id' => $topic->topic_id,
+            'topic_id' => $this->uri->segment(3),
             'post_title' => utf8_encode(htmlspecialchars($input->post('post_title'))),
             'post_content' => utf8_encode(htmlspecialchars($input->post('post_content'))),
         );
 
+//        echo "<script type='text/javascript'>alert('$logged_user->user_id');</script>";
         $caption = utf8_encode(htmlspecialchars($input->post('attachment_caption')));
         $this->db->set('date_posted', 'NOW()', FALSE);
         $this->db->insert('tbl_posts', $data);

@@ -1,5 +1,7 @@
 <?php
 $topic = $_SESSION['current_topic'];
+//echo "<script type='text/javascript'>alert('$topic->topic_id');</script>";
+//alert($topic);
 ?>
 <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     <!--Voice Search Script-->
@@ -25,7 +27,7 @@ $topic = $_SESSION['current_topic'];
             recognizing = false;
             document.getElementById("post-title").value=final_span.innerHTML;
         };
-//
+
         recognition.onresult = function(event) {
             var interim_transcript = '';
             for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -33,12 +35,11 @@ $topic = $_SESSION['current_topic'];
                 final_transcript += event.results[i][0].transcript;
               } else {
                   
-                if(interim_span.innerHTML.includes("stop"))
+                if(interim_span.innerHTML.includes("please stop recording"))
                 {  
+                    interim_span.innerHTML.replace('please stop recording', '');
                     recognition.stop();
-//                    document.getElementById("post-title").value=final_span.innerHTML;
                     return;
-                    
                 }  
                 
                 if(interim_span.innerHTML.includes("go to topics"))
@@ -51,9 +52,17 @@ $topic = $_SESSION['current_topic'];
             final_span.innerHTML = linebreak(final_transcript);
             interim_span.innerHTML = linebreak(interim_transcript);
             document.getElementById("post-title").value=interim_span.innerHTML;
-            
-            
           };
+
+        var two_line = /\n\n/g;
+        var one_line = /\n/g;
+        function linebreak(s) {
+          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+        }
+
+        function capitalize(s) {
+          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+        }
 
         function startDictation2(event) {
             recognition.lang = 'en-US';
@@ -62,8 +71,60 @@ $topic = $_SESSION['current_topic'];
             interim_span.innerHTML = '';
             recognition.start();
         }
-                                
-    </script>
+        
+        var recognition2 = new webkitSpeechRecognition();
+        recognition2.lang = 'fil-PH';
+        recognition2.continuous = true;
+        recognition2.interimResults = true;
+
+        recognition2.onstart = function() {
+            recognizing = true;
+//            document.getElementById("recording").innerText = 'RECORDING';
+          };
+
+          recognition2.onerror = function(event) {
+            console.log(event.error);
+          };
+
+          recognition2.onend = function() {
+            recognizing = false;
+            document.getElementById("post-title").value=final_span2.innerHTML;
+        };
+
+        recognition2.onresult = function(event) {
+            var interim_transcript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+              } else {
+                  
+                if(interim_span.innerHTML.includes("please stop recording"))
+                {  
+                    interim_span.innerHTML.replace('please stop recording', '');
+                    recognition.stop();
+                    return;
+                }  
+                
+                if(interim_span.innerHTML.includes("go to topics"))
+                {  
+                    location.href = 'http://localhost/MukhlatBeta/topic';
+                }  
+                interim_transcript += event.results[i][0].transcript;
+              }
+            }
+            final_span.innerHTML = linebreak(final_transcript);
+            interim_span.innerHTML = linebreak(interim_transcript);
+            document.getElementById("post-content").value=interim_span.innerHTML;
+          };
+
+        function startDictation2_2(event) {
+            recognition2.lang = 'en-US';
+            final_transcript = '';
+            final_span.innerHTML = '';
+            interim_span.innerHTML = '';
+            recognition2.start();
+        }
+    </script>        
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -73,6 +134,7 @@ $topic = $_SESSION['current_topic'];
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><strong>Post to <?php echo utf8_decode($topic->topic_name); ?></strong></h4>
             </div>
+            <?php echo '   current topic: '.$topic->topic_id; ?>
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/post'); ?>" id = "create-post-form" method = "POST">
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
@@ -84,15 +146,21 @@ $topic = $_SESSION['current_topic'];
                     </div>
                     
                     <div id="results" style="display: none" border="1px">
-                                <span id="final_span" class="final"></span>
-                                <span id="interim_span" class="interim"></span>
-                            </div>
+                        <span id="final_span" class="final"></span>
+                        <span id="interim_span" class="interim"></span>
+                    </div>
+                    
+                     <div id="results2" style="display: none" border="1px">
+                        <span id="final_span2" class="final"></span>
+                        <span id="interim_span2" class="interim"></span>
+                    </div>
                     <!--<div id="profanityWarning"></div>-->
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
+                     <span id="start_button" onclick="startDictation2_2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>
                     
                     
                     <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
@@ -121,7 +189,7 @@ $topic = $_SESSION['current_topic'];
 
                         <!--AUDIO-->
                         <label id = "audio-label" class="btn btn-primary">
-                            <input id = "attach-audio" accept = "audio/*" type="file" name = "post_audio" style = "display: none;">
+                            <input id = "attach-audio" accept="audio/*;capture=microphone" type="file" name = "post_audio" style = "display: none;">
                             <p id = "audio-text" class = "attach-btn-text"><i class = "fa fa-file-audio-o"></i> Add Audio</p>
                         </label>
 
