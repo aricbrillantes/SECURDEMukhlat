@@ -56,8 +56,6 @@ include(APPPATH . 'views/header.php');
 //        mysqli_close($conn);
     
     ?>
-
-
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -86,9 +84,9 @@ include(APPPATH . 'views/header.php');
                         <button id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</button>
                         
                         </div>-->
-                        
+<!--                        
                         <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <!--<input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />-->
+                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />-->
 
                     </div>
 
@@ -159,7 +157,11 @@ include(APPPATH . 'views/header.php');
                 <!--<span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span>-->
             </div>
 
-            
+            <?php
+            include(APPPATH . 'views/modals/create_post_modal.php');
+            include(APPPATH . 'views/topic_side_bar.php');
+            include(APPPATH . 'views/modals/create_topic_modal.php');
+            ?>
         </div>
     </div>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
