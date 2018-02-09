@@ -29,6 +29,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .bar1color{background:' + getCookie("ButtonColor") + ';}\n\
                     .text1color:hover{color:' + getCookie("ButtonHColor") + ';}\n\
                     .buttonsbgcolor:focus{background:' + getCookie("ButtonColor") + ';outline:0;}\n\
+                    .buttonsbgcolor:active{background:' + getCookie("ButtonAColor")  + '!important;}\n\
                     .modalbg{background:' + getCookie("NavbarColor") + ';}\n\
                     .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: ' + getCookie("NavbarColor") + ';}\n\
                     .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
@@ -111,7 +112,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>--> 
+    
+    
+    <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
     <!--Voice Search Script-->
     <script type="text/javascript">
@@ -217,7 +220,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //        }
 
     </script>
-    
+
 <body>
 <!-- Nav Bar -->
     <div class="soundbg">
@@ -266,7 +269,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                             <br>
                             <!--Hidden DIV for voice search-->
-                            <div id="results" border="1px" style="display:none;">
+                            <div id="results" border="1px" >
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
@@ -359,9 +362,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             }
 
         };
-        doDraw();
+       doDraw();
     };
-    
+
     var soundNotAllowed = function (error) {
         h.innerHTML = "You must allow your microphone.";
         console.log(error);
@@ -492,7 +495,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 }).call(this);</script>             
 <!-- End Nav Bar -->
 
-</div>
+
 
 <?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>
 <?php include(APPPATH . 'views/modals/invites_modal.php'); ?>

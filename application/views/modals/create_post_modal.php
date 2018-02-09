@@ -5,8 +5,8 @@ $topic = $_SESSION['current_topic'];
     <!--Voice Search Script-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>-->
-    <script type="text/javascript">
+    
+<script type="text/javascript">
         var recognition2 = new webkitSpeechRecognition();
         recognition2.lang = 'fil-PH';
         recognition2.continuous = true;
@@ -64,6 +64,7 @@ $topic = $_SESSION['current_topic'];
         }
                                 
     </script>
+    
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">

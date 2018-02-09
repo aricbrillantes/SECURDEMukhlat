@@ -30,29 +30,7 @@ $logged_user = $_SESSION['logged_user'];
             </ul>
         </div>
 
-        <a id = "side-topics-moderated-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">
-            <h4>Topics you Moderate</h4>
-        </a>
-        <div id = "side-topics-moderated" class = "sidebar-topic-div">
-            <ul class="nav">
-                <?php
-                if(!empty($logged_user->moderated_topics)):
-                foreach ($logged_user->moderated_topics as $topic):
-                ?>
-                <li>
-                    <a href="topic/view/<?php echo $topic->topic_id; ?>">
-                        <span class = "text-muted"><?php echo utf8_decode($topic->topic_name); ?></span>
-                        <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
-                    </a>
-                </li>
-                <?php
-                endforeach;
-                else:
-                ?>
-                <li><h5 class = "text-center text-warning">No Topics here!</h5></li>
-                <?php endif; ?>
-            </ul>
-        </div>
+
 
         <a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">
             <h4>Topics you Follow</h4>

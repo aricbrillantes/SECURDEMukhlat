@@ -16,7 +16,7 @@ include(APPPATH . 'views/header.php');
             <div class = "col-md-9 home-container">
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
-                    <div class = "clearfix content-container">
+                    <div class = "clearfix content-container" style="border-radius:20px;">
                         <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
                         </a>
@@ -37,7 +37,7 @@ include(APPPATH . 'views/header.php');
                     </div>
                 </div>
 
-                <div class = "col-md-12 content-container">
+                <div class = "col-md-12 content-container" style="border-radius:20px;">
                     <form action = "javascript:void(0);" role="search">
                         <div class="input-group" style = "width: 100%">
                             <input type="text" class="form-control search-text" placeholder="&#xF002; Search for a topic" id = "search-topic-list">
@@ -45,7 +45,7 @@ include(APPPATH . 'views/header.php');
                     </form>
                 </div>
 
-                <div class = "col-md-12 content-container">
+                <div class = "col-md-12 content-container" style="border-radius:20px;">
                     <div id = "sort-dropdown" class = "dropdown text-muted">
                         Sort Topics by: <br>
                         <button id = "chosen-sort" class="btn btn-gray dropdown-toggle" type="button" data-toggle="dropdown"><strong><i class = "fa fa-clock-o"></i> Date Created</strong>

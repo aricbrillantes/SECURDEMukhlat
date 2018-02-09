@@ -38,7 +38,6 @@ include(APPPATH . 'views/header.php');
                         <h3 class = "text-info text-center user-topic-header modalbg"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a data-toggle="pill" href="#user-topic-created">Created Topics</a></li>
-                            <li><a data-toggle="pill" href="#user-topic-moderated">Moderated Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-followed">Followed Topics</a></li>
                         </ul>
                         <br>
@@ -60,23 +59,6 @@ include(APPPATH . 'views/header.php');
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
-                            <div id="user-topic-moderated" class="tab-pane fade">
-                                <div class = "user-header">
-                                    <h4 class = "text-center"><strong>Topics Moderated by <?php echo $user->first_name; ?></strong></h4>
-                                </div>
-                                <div class = "user-topic-div">
-                                    <ul class="nav">
-                                        <?php foreach ($user->moderated_topics as $topic): ?>
-                                            <li>
-                                                <a class = "user-topic-item" href="<?php echo base_url('topic/view/' . $topic->topic_id); ?>" style = "padding: 5px 30px;">
-                                                    <h4 class = "no-padding no-margin" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4>
-                                                    <span class = "pull-right label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0' ?></span>
-                                                </a>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
                                 </div>
                             </div>
                             <div id="user-topic-followed" class="tab-pane fade">

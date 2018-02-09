@@ -74,11 +74,9 @@
                                 <table><tr>
 <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
-                                <td><div class="blocks" onClick="addBGsound('none');">No Sound</div></td>
+                                <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');">None</div></td>
                                 <td><div class="blocks" onClick="addBGsound('block');">Sound</div>
-                                <td><div class="blocks" onClick="addBGsnow('none');">No Snowflake</div></td>
                                 <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div>
-                                <td><div class="blocks" onClick="addBGspark('none');">No Sparkles</div></td>
                                 <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div>
                                 </td>
                                 </tr></table><input type="button" value="Change Theme" onClick="window.location.reload()">

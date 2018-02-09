@@ -4,6 +4,7 @@ include(APPPATH . 'views/header.php');
 $c_topic = $_SESSION['current_topic'];
 
 ?>
+
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
