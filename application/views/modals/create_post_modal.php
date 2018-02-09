@@ -7,60 +7,60 @@ $topic = $_SESSION['current_topic'];
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
     <script type="text/javascript">
-        var recognition = new webkitSpeechRecognition();
-        recognition.lang = 'fil-PH';
-        recognition.continuous = true;
-        recognition.interimResults = true;
+        var recognition2 = new webkitSpeechRecognition();
+        recognition2.lang = 'fil-PH';
+        recognition2.continuous = true;
+        recognition2.interimResults = true;
 
-        recognition.onstart = function() {
+        recognition2.onstart = function() {
             recognizing = true;
 //            document.getElementById("recording").innerText = 'RECORDING';
           };
 
-          recognition.onerror = function(event) {
+          recognition2.onerror = function(event) {
             console.log(event.error);
           };
 
-          recognition.onend = function() {
+          recognition2.onend = function() {
             recognizing = false;
-            document.getElementById("post-title").value=final_span.innerHTML;
+            document.getElementById("post-title").value=final_span2.innerHTML;
         };
 //
-        recognition.onresult = function(event) {
+        recognition2.onresult = function(event) {
             var interim_transcript = '';
             for (var i = event.resultIndex; i < event.results.length; ++i) {
               if (event.results[i].isFinal) {
                 final_transcript += event.results[i][0].transcript;
               } else {
                   
-                if(interim_span.innerHTML.includes("stop"))
+                if(interim_span2.innerHTML.includes("stop"))
                 {  
-                    recognition.stop();
-//                    document.getElementById("post-title").value=final_span.innerHTML;
+                    recognition2.stop();
+//                    document.getElementById("post-title").value=final_span2.innerHTML;
                     return;
                     
                 }  
                 
-                if(interim_span.innerHTML.includes("go to topics"))
+                if(interim_span2.innerHTML.includes("go to topics"))
                 {  
                     location.href = 'http://localhost/MukhlatBeta/topic';
                 }  
                 interim_transcript += event.results[i][0].transcript;
               }
             }
-            final_span.innerHTML = linebreak(final_transcript);
-            interim_span.innerHTML = linebreak(interim_transcript);
-            document.getElementById("post-title").value=interim_span.innerHTML;
+            final_span2.innerHTML = linebreak(final_transcript);
+            interim_span2.innerHTML = linebreak(interim_transcript);
+            document.getElementById("post-title").value=interim_span2.innerHTML;
             
             
           };
 
         function startDictation2(event) {
-            recognition.lang = 'en-US';
+            recognition2.lang = 'en-US';
             final_transcript = '';
-            final_span.innerHTML = '';
-            interim_span.innerHTML = '';
-            recognition.start();
+            final_span2.innerHTML = '';
+            interim_span2.innerHTML = '';
+            recognition2.start();
         }
                                 
     </script>
@@ -84,9 +84,9 @@ $topic = $_SESSION['current_topic'];
                     </div>
                     
                     <div id="results" style="display: none" border="1px">
-                                <span id="final_span" class="final"></span>
-                                <span id="interim_span" class="interim"></span>
-                            </div>
+                        <span id="final_span2" class="final"></span>
+                        <span id="interim_span2" class="interim"></span>
+                    </div>
                     <!--<div id="profanityWarning"></div>-->
                     
                     <div class="form-group"><!-- check if description exceeds n words-->

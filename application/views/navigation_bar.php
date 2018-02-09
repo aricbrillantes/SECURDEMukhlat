@@ -268,7 +268,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                             <br>
                             <!--Hidden DIV for voice search-->
-                            <div id="results" border="1px">
+                            <div id="results" border="1px" style="display:none;">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
@@ -285,10 +285,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     </select>
                                 </div><br>                          
                                 <div style="display: inline-block;">
-                                    <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>
-                                    <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="STOP" src="images/microphone_stop.png"height="50" width="50"></a>
-                                    <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="RESET" src="images/microphone_reset.png"height="50" width="50"</a>
-                                 <span onclick='responsiveVoice.speak(search.value,"Japanese Female",{rate: 0.9, pitch: 1});' >Play</span>
+                                    <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)">START</a>
+                                    <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)">STOP</a>
+                                    <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)">RESET</a>
+                                    <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
                         </div>
@@ -360,14 +360,14 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
             }
 
-        }
+        };
         doDraw();
-    }
-
+    };
+    
     var soundNotAllowed = function (error) {
         h.innerHTML = "You must allow your microphone.";
         console.log(error);
-    }
+    };
 
     /*window.navigator = window.navigator || {};
     /*navigator.getUserMedia =  navigator.getUserMedia       ||
