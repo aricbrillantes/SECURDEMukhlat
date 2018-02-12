@@ -85,35 +85,51 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
 <script type="text/javascript">
-                                    var strength = {
-                                            0: "Worst ☹",
-                                            1: "Bad ☹",
-                                            2: "Weak ☹",
-                                            3: "Good ☺",
-                                            4: "Strong ☻"
-                                    }
+        var strength = {
+                0: "Worst ☹",
+                1: "Bad ☹",
+                2: "Weak ☹",
+                3: "Good ☺",
+                4: "Strong ☺"
+        };
 
-                                    var password = document.getElementById('password1');
-                                    var meter = document.getElementById('password-strength-meter');
-                                    var text = document.getElementById('password-strength-text');
+        var password = document.getElementById('password1');
+        var meter = document.getElementById('password-strength-meter');
+        var text = document.getElementById('password-strength-text');
 
-                                    password.addEventListener('input', function()
-                                    {
-                                        var val = password.value;
-                                        var result = zxcvbn(val);
+        password.addEventListener('input', function()
+        {
+            var val = password.value;
+            var result = zxcvbn(val);
 
-                                        // Update the password strength meter
-                                        meter.value = result.score;
+            // Update the password strength meter
+            meter.value = result.score;
 
-                                        // Update the text indicator
-                                        if(val !== "") {
-                                            text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<span class='feedback'>" + result.feedback.warning + " " + result.feedback.suggestions + "</span"; 
-                                        }
-                                        else {
-                                            text.innerHTML = "";
-                                        }
-                                    });
-                            </script>
+            // Update the text indicator
+            if(val !== "") {
+                
+//                text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + result.feedback.warning + "<br>" + result.feedback.suggestions + "<br></span"; 
+                if(strength[result.score]==='Worst ☹')
+                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is very weak!" + "<br>" + "<br></span"; 
+                    
+                else if(strength[result.score]==='Bad ☹')
+                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is very bad!" + "<br>" + "<br></span"; 
+                
+                else if(strength[result.score]==='Weak ☹')
+                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is very weak!" + "<br>" + "<br></span"; 
+                    
+                else if(strength[result.score]==='Good ☺')
+                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is good!" + "<br>" + "<br></span"; 
+                    
+                 else if(strength[result.score]==='Strong ☺')
+                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is strong!" + "<br>" + "<br></span"; 
+              
+            }
+            else {
+                text.innerHTML = "";
+            }
+        });
+</script>
     <script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
 </body>
 </html>

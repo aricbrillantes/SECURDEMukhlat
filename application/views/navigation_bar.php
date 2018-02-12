@@ -34,6 +34,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: ' + getCookie("NavbarColor") + ';}\n\
                     .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
                     .sparklesbg{display:' + getCookie("sparklebg1") + ';}\n\
+                    .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .bubblesbg{display:' + getCookie("bubblesbg1") + ';}<\/style>');

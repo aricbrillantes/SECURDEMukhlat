@@ -79,7 +79,7 @@ $topic = $_SESSION['current_topic'];
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
                         <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
-                    <span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>
+                    <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
                             <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
                             <!--<button onclick="startDictation2(event)">Try it</button>-->
                     </div>
@@ -88,15 +88,16 @@ $topic = $_SESSION['current_topic'];
                         <span id="final_span2" class="final"></span>
                         <span id="interim_span2" class="interim"></span>
                     </div>
-                    <!--<div id="profanityWarning"></div>-->
+                    
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
                     
+                    <div class="profanityWarning" id="profanityWarning">No swearing</div>
                     
-                    <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
+<!--                    <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
                                 <div class="camera">
                                 <video id="video" style="width:95%;height:90%;"></video>
@@ -108,7 +109,7 @@ $topic = $_SESSION['current_topic'];
                                     <p id="startbutton" class = "attach-btn-text"><i class = "fa fa-file-image-o" onclick="takepicture();"></i> Take Photo</p>
                                 </div>
                             </div></center>
-                        </div>
+                        </div>-->
                          
                          <br><br>
                          
@@ -154,44 +155,34 @@ $topic = $_SESSION['current_topic'];
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
-                        <script type="text/javascript">
-                        $('.form-control').keydown(function(event) {
-                            if(event.keyCode!==18||event.keyCode!==16)
-                            {
-                                if(event.keyCode>=65 && event.keyCode<=90 || event.keyCode===32)
-                                {
-                                  if(
-                                        event.target.value.includes("fuck ")||
-                                        event.target.value.includes(" fuck")||
-                                        event.target.value.includes(" fuck ")||
-                                        event.target.value.includes(" shit ")||
-                                        event.target.value.includes("cunt")||
-                                        event.target.value.includes("ass ")||
-                                        event.target.value.includes(" ass")||
-                                        event.target.value.includes(" ass ")||
-                                        event.target.value.includes("dick")||
-                                        event.target.value.includes("semen")||             
-                                        event.target.value.includes("nigger")||
-                                        event.target.value.includes("logan paul")||
-                                        event.target.value.includes("jake paul")
-                                    )
-                                    {  
-                                        
-        //                                document.getElementById("profanityWarning").innerText = 'NO SWEARING!';
-                                        responsiveVoice.speak("No swearing on my bloody server","UK English Male",{rate: 1, pitch: 1.5});
-//                                        alert('No swearing on my bloody server');
-                                    }  
-                                }  
-                            }
-                                
-                             
-                            else
-                                document.getElementById("profanityWarning").innerText = '';
-                        });  
-                    </script>
+    <script type="text/javascript">
+        var warningCount=0, count=0;
+        var x = document.getElementById("profanityWarning");
+        $('.form-control').keydown(function(event) 
+        {
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("<3","❤");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":)","😀");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":(","☹");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":)","☺");
+            
+                if(
+                    event.target.value.includes("fuck")||
+                    event.target.value.includes("shit")
+                )
+                {  
+//                  responsiveVoice.speak("Hey there! That's a bad word!","UK English Male",{rate: 1, pitch: 1.2});
+//                  document.getElementById("profanityWarning").innerHTML = 'NO SWEARING!';
+                    x.style.display = "block";
+                }  
+              
+                else
+//                    document.getElementById("profanityWarning").innerHTML = '';
+                    x.style.display = "none";
+        });  
+</script>
                     
                     <!--camera-->
-                    
+<!--                    
 <script>(function() {
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -306,7 +297,7 @@ $topic = $_SESSION['current_topic'];
   // Set up our event listener to run the startup process
   // once loading is complete.
   window.addEventListener('load', startup, false);
-})();</script>
+})();</script>-->
 
 <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 <!-- END SCRIPTS -->
