@@ -110,19 +110,19 @@ include(APPPATH . 'views/header.php');
                 
 //                text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + result.feedback.warning + "<br>" + result.feedback.suggestions + "<br></span"; 
                 if(strength[result.score]==='Worst ☹')
-                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is very weak!" + "<br>" + "<br></span"; 
+                    text.innerHTML = "Strength: " + "<strong style='color:red'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:red'>" + "Your password is very weak!" + "<br>" + "<br></span"; 
                     
                 else if(strength[result.score]==='Bad ☹')
-                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is very bad!" + "<br>" + "<br></span"; 
+                    text.innerHTML = "Strength: " + "<strong tyle='color:orange'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:orange'>" + "Your password is still bad!" + "<br>" + "<br></span"; 
                 
                 else if(strength[result.score]==='Weak ☹')
-                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is very weak!" + "<br>" + "<br></span"; 
+                    text.innerHTML = "Strength: " + "<strong style='color:yellow'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:yellow'>" + "Your password is still weak!" + "<br>" + "<br></span"; 
                     
                 else if(strength[result.score]==='Good ☺')
-                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is good!" + "<br>" + "<br></span"; 
+                    text.innerHTML = "Strength: " + "<strong style='color:green'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:green'>" + "Your password is good!" + "<br>" + "<br></span"; 
                     
                  else if(strength[result.score]==='Strong ☺')
-                    text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + "Your password is strong!" + "<br>" + "<br></span"; 
+                    text.innerHTML = "Strength: " + "<strong style='color:blue'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:blue'>" + "Your password is strong!" + "<br>" + "<br></span"; 
               
             }
             else {
