@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <!-- Create Topic Modal Content-->
         <div class="modal-content">
-            <div class="modal-header modal-heading">
+            <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><strong>Create Topic</strong></h4>
             </div>

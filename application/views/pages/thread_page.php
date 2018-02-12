@@ -3,45 +3,10 @@ include(APPPATH . 'views/header.php');
 $topic = $post->topic;
 $user = $post->user;
 ?>
-
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
-    
-    </script>
-
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
     <div id = "thread-page" class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">
@@ -51,7 +16,12 @@ $user = $post->user;
                             Back
                         </strong>
                     </h3>
-                </a>
+    </a>
+                
+    <form  method="post">
+    <input class="btn btn-md pull-right btn-danger" value='Report' name='report' type="submit"> 
+    </form>
+                
                 <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
                         <i>Thread by 
@@ -162,10 +132,37 @@ $user = $post->user;
             </div>
         </div>
     </div>
+    
+<!--    report-->
+    <?php 
+    if(isset($_POST['report'])){
+     $servername = "127.0.0.1";
+	$username = "root";
+	$password = "";
+	$dbname = "mukhlat";
+	$conn = @new mysqli($servername, $username, $password, $dbname);
+        $logged_user->user_id;
 
+        // Create connection
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "INSERT INTO tbl_reports(ReporterId, ReportedId, TopicID, PostID, Reason, DateRP)
+        VALUES ('$logged_user->user_id', '$post->user_id', '$post->topic_id', '$post->post_id', 'test', CURRENT_TIMESTAMP )";
+
+        if (mysqli_query($conn, $sql)) {
+           ;
+        } else {
+            ;
+        }
+        mysqli_close($conn);
+    }
+    ?>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
-
+    <script type="text/javascript" src="custombg/js/custombg-loader.js"></script>
     <?php
 //    include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');

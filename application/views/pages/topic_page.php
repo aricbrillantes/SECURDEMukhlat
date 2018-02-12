@@ -1,49 +1,15 @@
 <?php
 include(APPPATH . 'views/header.php');
+  $logged_user = $_SESSION['logged_user'];  
 $c_topic = $_SESSION['current_topic'];
+
 ?>
 
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
-    
-    </script>
-
 <body>
-    
-   
-    
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
+    
     <div id = "topic-page" class = "container page" style = "min-height: 100%; height: 100%;">
         <!-- Topic Page Header -->
         <div class = "row">
@@ -74,7 +40,7 @@ $c_topic = $_SESSION['current_topic'];
                 <!-- Topic Post Preview -->
                 <div class = "col-sm-6">
                     <div class = "col-sm-12 topic-description-div no-padding">
-                        <h4 class = "no-margin text-center user-topic-header topic-intro-header">
+                        <h4 class = "no-margin text-center user-topic-header topic-intro-header bar1color">
                             <strong><?php echo utf8_decode($c_topic->topic_name); ?></strong>
                             
                             <?php if ($is_moderated): ?>
@@ -115,7 +81,7 @@ $c_topic = $_SESSION['current_topic'];
                 <!-- Topic Post List -->
                 <div class = "col-sm-6 topic-preview-div">
                     <div class = "col-xs-12">
-                        <button class = "btn btn-primary btn-block" href="#create-post-modal" data-toggle = "modal">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
+                        <button id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
                     </div>
                     <div class = "col-xs-12 topic-post-list">
                         <div class = "list-group" style = "padding-top: 15px;">
