@@ -173,20 +173,188 @@ body.sign-in{
     background-color: whitesmoke;
     position:relative;
     float:left;
-    width:5%;
+    height: 80px;
+    width: 80px;
     padding:0.5%;
     text-decoration:none;
-    border-radius:20px;
+    text-align:center;
+    font-size: 0;
+    vertical-align:middle;
+    border-radius:50%;
     transition: transform 0.25s;
-    
 }
 
 .navbaricons:hover{
     transform: scale(1.35);
+    text-align:center;
+    font-size: 12px;
+    text-decoration:none;
 }
 .navbaricons:focus{
     outline:0;
 }
+
+.navbarprofileicon {
+    margin-right:1.5%;
+    background-color: whitesmoke;
+    position:relative;
+    float:left;
+    height: 80px;
+    width: 80px;
+    padding:0.5%;
+    text-decoration:none;
+    text-align:center;
+    font-size: 0;
+    vertical-align:middle;
+    border-radius:50%;
+    transition: transform 0.25s;
+    align-content: center;
+}
+
+.navbarprofileicon:hover{
+    transform: scale(1.35);
+    text-decoration:none;
+    text-align:center;
+    font-size: 12px;
+}
+
+.navbarprofileicon:hover p:after{
+    content: 'My Profile';
+    text-decoration: none;
+    align-content: center;
+}
+
+.navbarprofileicon img{
+    vertical-align:middle;
+    align-content: center;
+}
+
+.navbarprofileicon:hover img{
+  display: none;
+}
+
+.navbarnotificon {
+    margin-right:1.5%;
+    background-color: whitesmoke;
+    position:relative;
+    float:left;
+    height: 80px;
+    width: 80px;
+    padding:0.5%;
+    text-decoration:none;
+    text-align:center;
+    font-size: 0;
+    vertical-align:middle;
+    border-radius:50%;
+    transition: transform 0.25s;
+    align-content: center;
+}
+
+.navbarnotificon:hover{
+    transform: scale(1.35);
+    text-decoration:none;
+    text-align:center;
+    font-size: 10px;
+}
+
+.navbarnotificon:hover p:after{
+    content: 'Notifications';
+    text-decoration: none;
+    align-content: center;
+}
+
+.navbarnotificon img{
+    vertical-align:middle;
+    align-content: center;
+}
+
+.navbarnotificon:hover img{
+  display: none;
+}
+
+
+.navbarthemeicon {
+    margin-right:1.5%;
+    background-color: whitesmoke;
+    position:relative;
+    float:left;
+    height: 80px;
+    width: 80px;
+    padding:0.5%;
+    text-decoration:none;
+    text-align:center;
+    font-size: 0;
+    vertical-align:middle;
+    border-radius:50%;
+    transition: transform 0.25s;
+    align-content: center;
+}
+
+.navbarthemeicon:hover{
+    transform: scale(1.35);
+    text-decoration:none;
+    text-align:center;
+    font-size: 12px;
+}
+
+.navbarthemeicon:hover p:after{
+    content: 'Customize Theme';
+    text-decoration: none;
+    align-content: center;
+}
+
+.navbarthemeicon img{
+    vertical-align:middle;
+    align-content: center;
+}
+
+.navbarthemeicon:hover img{
+  display: none;
+}
+
+.navbarlogouticon {
+    margin-right:1.5%;
+    background-color: whitesmoke;
+    position:relative;
+    float:left;
+    height: 80px;
+    width: 80px;
+    padding:0.5%;
+    text-decoration:none;
+    text-align:center;
+    font-size: 0;
+    vertical-align:middle;
+    border-radius:50%;
+    transition: transform 0.25s;
+    align-content: center;
+}
+
+.navbarlogouticon:hover{
+    transform: scale(1.35);
+    text-decoration:none;
+    text-align:center;
+    font-size: 12px;
+}
+
+.navbarlogouticon:hover p:after{
+    content: 'Logout';
+    text-decoration: none;
+    align-content: center;
+}
+
+.navbarlogouticon img{
+    vertical-align:middle;
+    align-content: center;
+}
+
+.navbarlogouticon:hover img{
+  display: none;
+}
+
+.navbarprofileicon:focus{
+    outline:0;
+}
+
 textarea{
     resize: none;
 }
@@ -200,7 +368,7 @@ textarea{
     margin-bottom: 20px;
     letter-spacing: -1px;
     font-weight: bolder;
-    //text-shadow: 0px 0px 1px #5b7375;
+    /*//text-shadow: 0px 0px 1px #5b7375;*/
 }
 .sign-in-meesage{
     font-size:120%;
@@ -334,7 +502,7 @@ textarea{
     margin-bottom: 10px;
     height: 250px;
     overflow-y: auto;
-    //border: 1px solid #90A4AE;
+    /*//border: 1px solid #90A4AE;*/
 }
 
 .home-prof-pic{

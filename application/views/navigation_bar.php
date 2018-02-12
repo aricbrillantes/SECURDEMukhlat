@@ -257,7 +257,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <li><a href="<?php echo base_url('home') ?>"><strong>Home</strong></a></li>
                     <li><a href="<?php echo base_url('topic') ?>"><strong>Topics</strong></a></li>
                 </ul>
-                <div class = "nav-left-end">
+
+                <div class = "nav-left-end" >
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <div class="input-group">
                             <div class="input-group-btn" style="display: inline-block;">
@@ -269,7 +270,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                             <br>
                             <!--Hidden DIV for voice search-->
-                            <div id="results" border="1px" >
+                            <div id="results" border="1px" style="display: none;">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
@@ -295,24 +296,27 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         </div>
                     </form>
                 </div>
-        <div style="margin:1%;">
-                            <a class="navbaricons" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" style="margin-left:9%;">
-                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
-                                <?php echo $logged_user->first_name . " " . $logged_user->last_name; ?></a>
+                <div style="margin:auto; padding-top:15px; padding-bottom:95px">
+                    <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" style="margin-left:9%;">
+                        <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
+                        <!--<br><? php echo $logged_user->first_name . " " . $logged_user->last_name; ?>-->
+                        <br><p></p>
+                    </a>
 
-                                <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                                        <i class = "glyphicon glyphicon-exclamation-sign"></i> Notifications 
-                                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
-                                        <?php endif; ?>
-                                </a>
-                                <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
-                                        Customize Theme
-                                    </a>
-                                <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
+                    <a  class="navbarnotificon" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
+                        <br><p></p>
+                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
+                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
+                        <?php endif; ?>
+                    </a>
 
+                    <a  class="navbarthemeicon" href="#customize-theme" data-toggle = "modal">
+                        <br><p></p>
+                        </a>
+                    <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><br><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
 
                 </div>
+            <!--<div style="margin:auto; padding-top:10px; padding-bottom:10px"></div>-->
             </div>
         </div>
     </nav>
