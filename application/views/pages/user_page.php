@@ -109,7 +109,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Activities -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-activities-header"><strong>Activities of <?php echo $user->first_name; ?></strong></h3>
+                        <h3 class = "text-info text-center user-activities-header modalbg"><strong>Activities of <?php echo $user->first_name; ?></strong></h3>
                         <div class = "col-sm-12 user-activities-div">
                             <!-- POST PREVIEW -->
                             <?php foreach ($user->activities as $post): ?> 

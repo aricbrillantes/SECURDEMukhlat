@@ -14,7 +14,12 @@ body.sign-in{
 .soundbg{
     display:none;
 }
-
+.close {
+    font-size:48px;
+    color: red; 
+    opacity: 1;
+    
+}
 .topic-grid1{
     background-color: whitesmoke;
     margin:1.5%;

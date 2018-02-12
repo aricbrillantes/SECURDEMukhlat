@@ -3,21 +3,6 @@
 <head>
 
 <style>
-/* The Close Button */
-.close12 {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close12:hover,
-.close12:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .selected{ 
    box-shadow:0px 0px 0px 5px #000;
 }
@@ -31,7 +16,7 @@
         <!-- Notification Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
-                <button type="button" class="close12" data-dismiss="modal">&times;</button>
+                <button type="button" class="close close12" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-center"><strong>Themes</strong></h4>
             </div>
             <div class="modal-body">
