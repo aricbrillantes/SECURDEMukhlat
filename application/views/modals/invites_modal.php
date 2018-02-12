@@ -59,10 +59,12 @@
                                 <table><tr>
 <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
-                                <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');">None</div></td>
-                                <td><div class="blocks" onClick="addBGsound('block');">Sound</div>
-                                <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div>
+                                <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
+                                <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
+                                <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
                                 <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div>
+                                </td>
+                                <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div>
                                 </td>
                                 </tr></table><input type="button" value="Change Theme" onClick="window.location.reload()">
                             </div>
@@ -117,6 +119,10 @@
         function addBGspark(value){
             document.cookie = "sparklebg1=" + value + ";" + ";path=/";
         }
+        function addBGbubble(value){
+            document.cookie = "bubblesbg1=" + value + ";" + ";path=/";
+        }
+        
     function getCookie(cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');

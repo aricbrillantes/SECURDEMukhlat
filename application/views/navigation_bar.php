@@ -35,7 +35,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
                     .sparklesbg{display:' + getCookie("sparklebg1") + ';}\n\
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
-                    .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}<\/style>');
+                    .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
+                    .bubblesbg{display:' + getCookie("bubblesbg1") + ';}<\/style>');
     
     if(getCookie("sparklebg1")=="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
@@ -223,8 +224,34 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
     </script>
 
-<body>
 <!-- Nav Bar -->
+
+<div class="bubblesbg">
+<div class="bubble-container">
+   <div class="bubble bubble1">
+      <div class="bubble-border"></div>
+      <div class="bubble-pop">*pop*</div>
+   </div>
+</div>
+<div class="bubble bubble2 bubble1">
+   <div class="bubble-border"></div>
+   <div class="bubble-pop">*pop*</div>
+</div>
+<div class="bubble bubble3 bubble1">
+   <div class="bubble-border"></div>
+   <div class="bubble-pop">*pop*</div>
+</div>
+<div class="bubble bubble4 bubble1">
+   <div class="bubble-border"></div>
+   <div class="bubble-pop">*pop*</div>
+</div>
+<div class="bubble bubble5"><div class="bubble-border"></div><div class="bubble-pop">*ouch*</div></div>
+<div class="bubble bubble6"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
+<div class="bubble bubble7"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
+<div class="bubble bubble8"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
+<div class="bubble bubble9"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
+</div>
+
     <div class="soundbg">
         <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
@@ -257,7 +284,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             <div class = "collapse navbar-collapse" id = "nav-collapse">
                 <div class = "nav-left-end">
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
-                        <div class="input-group">
+                        <span class="input-group">
                             <div class="input-group-btn" style="display: inline-block;">
                                 <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 400px;">
                                 <button class="btn btn-default search-btn" type="submit">
@@ -265,59 +292,61 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 </button>
                                 <span class="btn btn-default search-btn" onclick="voiceDropdown()" id="voice-search-button">Voice Search</span>
                             </div>
-                            <br>
+                            
                             <!--Hidden DIV for voice search-->
-                            <div id="results" border="1px" >
+                            <span id="results" border="1px" style="display:none;">
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
-                            </div>
-                        </div>
-                        <div class="voice-dropdown">
+                            </span>
+                        </span>
+                        
                             
-                            <div id="voicedropdown" class="voice-dropdown-content" style="display:none;">
-                                <div class="compact marquee" id="div_language">
+                            
+                        
+                    </form>
+                </div>
+        <div>
+            <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
+                                <div class="compact marquee" id="div_language" style="display: inline-block;">
                                     <select id="select_language">
                                         <option value="0" onclick="resetDictation(event)">English</option>
                                         <option value="1" onclick="resetDictation(event)">Filipino</option>
                                         <option value="2" onclick="resetDictation(event)">French</option>
                                         <option value="3" onclick="resetDictation(event)">Korean</option>
                                     </select>
-                                </div><br>                          
+                                </div>                         
                                 <div style="display: inline-block;">
-                                    <a href="#" class="voicesearch" id="voicesearch" onclick="startDictation(event)">START</a>
-                                    <a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation(event)">STOP</a>
-                                    <a href="#" class="voicesearch" id="voicesearch" onclick="resetDictation(event)">RESET</a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event)" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
+                                    
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1">Stop</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1">Reset</span></a>
                                     <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-        <div>
-                            <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
-                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
-                                <?php echo $logged_user->first_name; ?></a>
+            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
 
-                                <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong></a>
-                                <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong></a>
-                            </div><div class="vl"  style="margin-right:0.3%;"></div><div>
-                                <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                                        <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs
-                                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
-                                        <?php endif; ?>
-                                </a>
-                                <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
+                            <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                         <i class = "fa fa-paint-brush"></i>Theme
                                     </a>
-                                <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
-
+                            
+                            <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
+                                    <?php if ((int) $logged_user->unread_notifs > 0): ?>
+                                    <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
+                                    <?php endif; ?>    
+                                    <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs       
+                            </a>
+                            </div><div class="vl"  style="margin-right:0.3%;"></div><div>
+ 
+                                <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong></a>
+                                <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong></a>
+                                <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
+                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
+                                <?php echo $logged_user->first_name; ?></a>
 
                 </div>
             </div>
         </div>
     </nav>
-</body>
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
@@ -493,7 +522,31 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
   step();
 
-}).call(this);</script>             
+}).call(this);</script>     
+<script>var bubbles = document.querySelectorAll('.bubble');
+var poppedClass = 'bubble--popped';
+ 
+function popBubble(e, bubble) {
+   bubble.style.top = e.clientY - e.offsetY + 'px';
+   bubble.style.left = e.clientX - e.offsetX + 'px';
+   bubble.classList.add(poppedClass);
+}
+ 
+function resetBubble(bubble) {
+   bubble.classList.remove(poppedClass);
+   bubble.style.top = '';
+   bubble.style.left = '';
+}
+ 
+bubbles.forEach(function(bubble) {
+   bubble.addEventListener('click', function(e) {
+      popBubble(e, this);
+   });
+  
+   bubble.addEventListener('animationend', function() {
+      resetBubble(this);
+   });
+});</script>
 <!-- End Nav Bar -->
 
 

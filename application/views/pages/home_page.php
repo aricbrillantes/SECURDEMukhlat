@@ -74,9 +74,9 @@ include(APPPATH . 'views/header.php');
                                                 <br>
                                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
                                                 <br>
-                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
+<!--                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
-                                                </button>
+                                                </button>-->
                                             </div>
 
                                             <!-- Right -->

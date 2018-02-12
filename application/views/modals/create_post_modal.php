@@ -154,36 +154,41 @@ $topic = $_SESSION['current_topic'];
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
-    <script type="text/javascript">
-        var warningCount=0, count=0;
-        $('.form-control').keydown(function(event) {
-            if(event.keyCode!==18||event.keyCode!==16)
-            {
-                if(event.keyCode>=65 && event.keyCode<=90 || event.keyCode===32)
-                {
-                  if(
-                        event.target.value.includes("fuck ")||
-                        event.target.value.includes(" fuck")||
-                        event.target.value.includes(" fuck ")||
-                        event.target.value.includes("shit ")||
-                        event.target.value.includes(" shit")||
-                        event.target.value.includes(" shit ")||
-                        event.target.value.includes("cunt ")||
-                        event.target.value.includes(" cunt")||
-                        event.target.value.includes(" cunt ")||
-                        event.target.value.includes("ass ")||
-                        event.target.value.includes(" ass")||
-                        event.target.value.includes(" ass ")
-                    )
-                    {  
-//                        document.getElementById("profanityWarning").innerText = 'NO SWEARING!';
-                        responsiveVoice.speak("Hey there! That's a bad fucking word!","UK English Male",{rate: 1, pitch: 1.2});
-//                        alert('No swearing on my bloody server');
-                    }  
-                }  
-            }
-        });  
-</script>
+                        <script type="text/javascript">
+                        $('.form-control').keydown(function(event) {
+                            if(event.keyCode!==18||event.keyCode!==16)
+                            {
+                                if(event.keyCode>=65 && event.keyCode<=90 || event.keyCode===32)
+                                {
+                                  if(
+                                        event.target.value.includes("fuck ")||
+                                        event.target.value.includes(" fuck")||
+                                        event.target.value.includes(" fuck ")||
+                                        event.target.value.includes(" shit ")||
+                                        event.target.value.includes("cunt")||
+                                        event.target.value.includes("ass ")||
+                                        event.target.value.includes(" ass")||
+                                        event.target.value.includes(" ass ")||
+                                        event.target.value.includes("dick")||
+                                        event.target.value.includes("semen")||             
+                                        event.target.value.includes("nigger")||
+                                        event.target.value.includes("logan paul")||
+                                        event.target.value.includes("jake paul")
+                                    )
+                                    {  
+                                        
+        //                                document.getElementById("profanityWarning").innerText = 'NO SWEARING!';
+                                        responsiveVoice.speak("No swearing on my bloody server","UK English Male",{rate: 1, pitch: 1.5});
+//                                        alert('No swearing on my bloody server');
+                                    }  
+                                }  
+                            }
+                                
+                             
+                            else
+                                document.getElementById("profanityWarning").innerText = '';
+                        });  
+                    </script>
                     
                     <!--camera-->
                     
