@@ -33,7 +33,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .modalbg{background:' + getCookie("NavbarColor") + ';}\n\
                     .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: ' + getCookie("NavbarColor") + ';}\n\
                     .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
-                    .sparklesbg{display:' + getCookie("sparklebg1") + ';}<\/style>');
+                    .sparklesbg{display:' + getCookie("sparklebg1") + ';}\n\
+                    .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
+                    .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}<\/style>');
     
     if(getCookie("sparklebg1")=="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
@@ -243,7 +245,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     </div>
 
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
-        <div class = "container-fluid">
+        <div class = "container-fluid"  style="margin:0.5%;">
             <div class = "navbar-header" style = "margin-left: 50px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
                     <span class="icon-bar"></span>
@@ -253,12 +255,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 <a id ="logom" class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
             </div>
             <div class = "collapse navbar-collapse" id = "nav-collapse">
-                <ul class = "nav navbar-nav">
-                    <li><a href="<?php echo base_url('home') ?>"><strong>Home</strong></a></li>
-                    <li><a href="<?php echo base_url('topic') ?>"><strong>Topics</strong></a></li>
-                </ul>
-
-                <div class = "nav-left-end" >
+                <div class = "nav-left-end">
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <div class="input-group">
                             <div class="input-group-btn" style="display: inline-block;">
@@ -270,7 +267,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             </div>
                             <br>
                             <!--Hidden DIV for voice search-->
-                            <div id="results" border="1px" style="display: none;">
+                            <div id="results" border="1px" >
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </div>
@@ -296,27 +293,27 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         </div>
                     </form>
                 </div>
-                <div style="margin:auto; padding-top:15px; padding-bottom:95px">
-                    <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" style="margin-left:9%;">
-                        <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
-                        <!--<br><? php echo $logged_user->first_name . " " . $logged_user->last_name; ?>-->
-                        <br><p></p>
-                    </a>
+        <div>
+                            <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
+                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
+                                <?php echo $logged_user->first_name; ?></a>
 
-                    <a  class="navbarnotificon" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                        <br><p></p>
-                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
-                        <?php endif; ?>
-                    </a>
+                                <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong></a>
+                                <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong></a>
+                            </div><div class="vl"  style="margin-right:0.3%;"></div><div>
+                                <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
+                                        <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs
+                                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
+                                            <span id = "notif-badge" class = "badge"><?php echo $logged_user->unread_notifs ?></span>
+                                        <?php endif; ?>
+                                </a>
+                                <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
+                                        <i class = "fa fa-paint-brush"></i>Theme
+                                    </a>
+                                <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
 
-                    <a  class="navbarthemeicon" href="#customize-theme" data-toggle = "modal">
-                        <br><p></p>
-                        </a>
-                    <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>"><br><i class = "glyphicon glyphicon-log-out"></i> Logout</a>
 
                 </div>
-            <!--<div style="margin:auto; padding-top:10px; padding-bottom:10px"></div>-->
             </div>
         </div>
     </nav>

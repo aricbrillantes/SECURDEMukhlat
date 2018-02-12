@@ -7,54 +7,7 @@ include(APPPATH . 'views/header.php');
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
-//    $default_wall = 0;
-//    $default_wall = ($logged_user->user_id)*100;
-//    
-////    connects user to your default wall
-//    
-//    $topic1 = new \stdClass();
-//    $topic1->topic_id = ($logged_user->user_id)*100;
-//    $topic1->user = $logged_user;
-//    $topic1->topic_name = 'your wall';
-//
-//    $_SESSION['current_topic'] = $topic1;
-//    
-//    ?>
-  
-    <!--Create deafult wall-->
-    
-// <?php 
-//
-//     $servername = "127.0.0.1";
-//	$username = "root";
-//	$password = "";
-//	$dbname = "mukhlat";
-//	$conn = @new mysqli($servername, $username, $password, $dbname);
-//
-//
-//        // Create connection
-//        // Check connection
-//        if (!$conn) {
-//            die("Connection failed: " . mysqli_connect_error());
-//        }
-//
-//        $sql = "INSERT INTO tbl_topics(topic_id, creator_id, topic_name, topic_description, date_created, is_cancelled)
-//        VALUES ('$default_wall', '$logged_user->user_id', '$logged_user->first_name\'s wall', 'Welcome to my wall.', CURRENT_TIMESTAMP, '0' );";
-//        $sql1 = "INSERT INTO tbl_topic_follower(topic_id, user_id)
-//        VALUES ('$default_wall', '$logged_user->user_id');";
-//        $sql2 = "INSERT INTO tbl_topic_moderator(topic_id, user_id) 
-//        VALUES ('$default_wall', '$logged_user->user_id');";
-//
-//        if (mysqli_query($conn, $sql)) {
-//            mysqli_query($conn, $sql1);
-//            mysqli_query($conn, $sql2);
-//           ;
-//        } else {
-//            ;
-//        }
-//        
-//        mysqli_close($conn);
-    
+
     ?>
     <div class = "container page">
         <div class = "row">
@@ -116,7 +69,7 @@ include(APPPATH . 'views/header.php');
                                                     <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                                 </a>
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
+                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-thumbs-up vote-text"></span>
                                                 </button>
                                                 <br>
                                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
