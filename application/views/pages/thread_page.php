@@ -19,7 +19,7 @@ $user = $post->user;
     </a>
                 
     <form  method="post">
-    <input value='Report' name='report' type="submit"> 
+    <input class="btn btn-md pull-right btn-danger" value='Report' name='report' type="submit"> 
     </form>
                 
                 <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
