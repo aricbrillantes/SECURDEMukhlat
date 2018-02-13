@@ -645,10 +645,10 @@ class Topic extends CI_Controller {
         $html = "";
         foreach ($topics as $topic) {
             $user = $topic->user;
-            $html = $html . "<a class=\"topic-grid1\" href = \"topic/view/" . $topic->topic_id . "\">\n"
-                    . "<h4 class = \"text-info no-padding no-margin\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4><br>\n"
+            $html = $html . "<a class = \"list-group-item btn btn-link list-entry\" href = \"topic/view/" . $topic->topic_id . "\">\n"
+                    . "<h4 class = \"text-info no-padding no-margin\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4>\n"
                     . "<small><i>by " . $user->first_name . " " . $user->last_name . " </i></small>\n"
-                    . "<div class=\"topic-grid-icons\">\n"
+                    . "<div class = \"pull-right\">\n"
                     . "<span class = \"label label-info follower-label\"><i class = \"fa fa-group\"></i> " . ($topic->followers ? count($topic->followers) : '0')
                     . " <i class = \"fa fa-comments\"></i> " . $topic->post_count . "</span>\n"
                     . "</div>\n"

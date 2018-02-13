@@ -1,46 +1,12 @@
 <?php
 include(APPPATH . 'views/header.php');
 ?>
-
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
-    
-    </script>
-
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
     ?>
-
+   
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container" style = "padding-top: 20px;">
@@ -69,10 +35,9 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Topics -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-topic-header"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
+                        <h3 class = "text-info text-center user-topic-header modalbg"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a data-toggle="pill" href="#user-topic-created">Created Topics</a></li>
-                            <li><a data-toggle="pill" href="#user-topic-moderated">Moderated Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-followed">Followed Topics</a></li>
                         </ul>
                         <br>
@@ -94,23 +59,6 @@ include(APPPATH . 'views/header.php');
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
-                            <div id="user-topic-moderated" class="tab-pane fade">
-                                <div class = "user-header">
-                                    <h4 class = "text-center"><strong>Topics Moderated by <?php echo $user->first_name; ?></strong></h4>
-                                </div>
-                                <div class = "user-topic-div">
-                                    <ul class="nav">
-                                        <?php foreach ($user->moderated_topics as $topic): ?>
-                                            <li>
-                                                <a class = "user-topic-item" href="<?php echo base_url('topic/view/' . $topic->topic_id); ?>" style = "padding: 5px 30px;">
-                                                    <h4 class = "no-padding no-margin" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4>
-                                                    <span class = "pull-right label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0' ?></span>
-                                                </a>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
                                 </div>
                             </div>
                             <div id="user-topic-followed" class="tab-pane fade">
@@ -161,7 +109,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Activities -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-activities-header"><strong>Activities of <?php echo $user->first_name; ?></strong></h3>
+                        <h3 class = "text-info text-center user-activities-header modalbg"><strong>Activities of <?php echo $user->first_name; ?></strong></h3>
                         <div class = "col-sm-12 user-activities-div">
                             <!-- POST PREVIEW -->
                             <?php foreach ($user->activities as $post): ?> 
@@ -217,6 +165,7 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
+    
     <script type="text/javascript" src="<?php echo base_url("/js/user.js"); ?>"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');

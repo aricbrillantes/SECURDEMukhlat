@@ -6,7 +6,7 @@ $topic = $_SESSION['current_topic'];
     <div class="modal-dialog">
         <!-- Create Topic Modal Content-->
         <div class="modal-content">
-            <div class="modal-header modal-heading">
+            <div class="modal-header modal-heading modalbg">
                 <button type="button" id="close-edit-post" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><strong>Edit your post in <?php echo utf8_decode($topic->topic_name); ?></strong></h4>
             </div>

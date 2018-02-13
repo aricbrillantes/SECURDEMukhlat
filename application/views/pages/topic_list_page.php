@@ -3,62 +3,30 @@ include(APPPATH . 'views/header.php');
 ?>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
-    
-    </script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
+    include(APPPATH . 'views/topic_side_bar.php');
     ?>
     
     <!-- CODE HERE -->
-    <div id="options-window" class="fg-creamy bg-lightgrey"></div>
+    
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
-                    <div class = "clearfix content-container">
-                        <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+                    <div class = "clearfix content-container" style="border-radius:20px;">
+                        <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
                         </a>
 
                         <div class = "col-sm-4 home-user-text">
-                            <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" class = "btn btn-link home-username"><strong><?php echo $logged_user->first_name; ?></strong></a>
+                            <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" class = "btn btn-link home-username text1color"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
-                                <button class="btn btn-link dropdown-toggle home-username" type="button" data-toggle="dropdown"><strong>Topic</strong>
+                                <button class="btn btn-link dropdown-toggle home-username text1color" type="button" data-toggle="dropdown"><strong>Topic</strong>
                                     <i class="caret"></i></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="home">Home</a></li>
@@ -66,11 +34,11 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <a class ="btn btn-primary home-create-btn" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
+                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal"><i class = "fa fa-pencil"></i> Create Topic</a>
                     </div>
                 </div>
 
-                <div class = "col-md-12 content-container">
+                <div class = "col-md-12 content-container" style="border-radius:20px;">
                     <form action = "javascript:void(0);" role="search">
                         <div class="input-group" style = "width: 100%">
                             <input type="text" class="form-control search-text" placeholder="&#xF002; Search for a topic" id = "search-topic-list">
@@ -78,9 +46,9 @@ include(APPPATH . 'views/header.php');
                     </form>
                 </div>
 
-                <div class = "col-md-12 content-container">
+                <div class = "col-md-12 content-container" style="border-radius:20px;">
                     <div id = "sort-dropdown" class = "dropdown text-muted">
-                        Sort Topics by: 
+                        Sort Topics by: <br>
                         <button id = "chosen-sort" class="btn btn-gray dropdown-toggle" type="button" data-toggle="dropdown"><strong><i class = "fa fa-clock-o"></i> Date Created</strong>
                             <i class="caret"></i></button>
                         <ul class="dropdown-menu">
@@ -92,7 +60,7 @@ include(APPPATH . 'views/header.php');
                     <div id = "topic-list" class = "list-group">
                         <?php foreach ($topics as $topic): ?>
                             <a class="topic-grid1" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
-                                <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
+                                <h4 class = "text-info no-padding no-margin text1color" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
                                 <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
                                 <div class="topic-grid-icons">
                                     <span class = "label label-info follower-label"><i class = "fa fa-group"></i> 
@@ -105,14 +73,12 @@ include(APPPATH . 'views/header.php');
                 </div>
             </div>
             <?php
-            include(APPPATH . 'views/topic_side_bar.php');
             include(APPPATH . 'views/modals/create_topic_modal.php');
             ?>
         </div>
     </div>
 
-        <a href="#" class="sf-back-to-top"><span class="arrow"></span>Top</a>
-
+        
         <script>
             var amountScrolled = 50;
 
@@ -147,9 +113,16 @@ include(APPPATH . 'views/header.php');
                 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             }
         </script>
-
-        <!--<script type="text/javascript" src="<?//php echo base_url("/js/search.js"); ?>"></script>-->
-        <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Top</button>
-    <?php
+        
+        <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Back to Top</button>
+        
+        <!--
+        <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>
+        <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture2.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture6.png'); ?>"/></span>
+        <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture3.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture7.png'); ?>"/></span>
+        <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture4.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture8.png'); ?>"/></span>
+-->   
+ <?php
   //  include(APPPATH . 'views/chat/chat.php');
     
