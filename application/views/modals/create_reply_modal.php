@@ -6,7 +6,7 @@
     <div class="modal-dialog">
         <!-- Create reply Modal Content-->
         <div class="modal-content">
-            <div class="modal-header modal-heading">
+            <div class="modal-header modal-heading  modalbg">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 id = "reply-user" class="modal-title"></h4>
             </div>

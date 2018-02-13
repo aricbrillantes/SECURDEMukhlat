@@ -34,12 +34,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: ' + getCookie("NavbarColor") + ';}\n\
                     .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
                     .sparklesbg{display:' + getCookie("sparklebg1") + ';}\n\
-                    .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
-                    .btn-primary{background-color:' + getCookie("ButtonColor") + ';}\n\
-                    .btn-primary:hover{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .bubblesbg{display:' + getCookie("bubblesbg1") + ';}<\/style>');
+                    .bubblesbg{display:' + getCookie("bubblesbg1") + ';}\n\
+                    .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}<\/style>');
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
@@ -183,6 +181,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
         function stopDictation(event) {
             recognition.stop();
+            document.getElementById('search').focus(); return false;
         }
 
         function resetDictation(event) {
@@ -226,8 +225,13 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //        }
 
     </script>
+    
+    <!--particles-->
+    <!--<style>canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:fixed; width: 100%; height: 100%;background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }</style>-->
 
 <!-- Nav Bar -->
+
+<!--<div id="particles-js"></div>  stats - count particles   particles.js lib - https://github.com/VincentGarreau/particles.js  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  stats.js lib  <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>-->
 
 <div class="bubblesbg">
 <div class="bubble-container">
@@ -302,9 +306,13 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <span id="interim_span" class="interim"></span>
                             </span>
                         </span>
+                        
+                            
+                            
+                        
                     </form>
                 </div>
-            <div>
+        <div>
             <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
                                 <div class="compact marquee" id="div_language" style="display: inline-block;">
                                     <select id="select_language">
@@ -315,14 +323,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     </select>
                                 </div>                         
                                 <div style="display: inline-block;">
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event)" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);document.getElementById('search').focus(); return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
                                     
                                     <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1">Stop</span></a>
                                     <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1">Reset</span></a>
                                     <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
-                            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
+            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
+
                             <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                         <i class = "fa fa-paint-brush"></i>Theme
                                     </a>
@@ -545,6 +554,8 @@ bubbles.forEach(function(bubble) {
       resetBubble(this);
    });
 });</script>
+
+<!--<script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});</script>-->
 <!-- End Nav Bar -->
 
 

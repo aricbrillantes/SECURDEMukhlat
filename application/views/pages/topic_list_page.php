@@ -7,6 +7,7 @@ include(APPPATH . 'views/header.php');
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
+    include(APPPATH . 'views/topic_side_bar.php');
     ?>
     
     <!-- CODE HERE -->
@@ -33,7 +34,7 @@ include(APPPATH . 'views/header.php');
                                 </ul>
                             </div>
                         </div>
-                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
+                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal"><i class = "fa fa-pencil"></i> Create Topic</a>
                     </div>
                 </div>
 
@@ -72,7 +73,6 @@ include(APPPATH . 'views/header.php');
                 </div>
             </div>
             <?php
-            include(APPPATH . 'views/topic_side_bar.php');
             include(APPPATH . 'views/modals/create_topic_modal.php');
             ?>
         </div>

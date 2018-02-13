@@ -6,7 +6,7 @@ $topic = $_SESSION['current_topic'];
     <div class="modal-dialog">
         <!-- Invitation Modal Content-->
         <div class="modal-content">
-            <div class="modal-header modal-heading">
+            <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-center">Share <?php echo utf8_decode($topic->topic_name); ?> to others!</h4>
             </div>

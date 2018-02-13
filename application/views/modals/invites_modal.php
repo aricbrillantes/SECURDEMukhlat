@@ -30,11 +30,11 @@
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
-                                <table><tr><td><div id="green" class="blocks" onClick="changeBGColor(':#D7eadd', 'green','#1d8f15', '#14620f');">Green</div></td>
-                                <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', '#5BC0EB','#3fa0e5', '#1b7ec5');">Blue</div></td>
-                                <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', '#F6B8B8','#f7aec4','#f07197');">Pink</div></td>
-                                <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', '#FF7F51','#d13030');">Orange</div></td>
-                                <td><div id="violet" class="blocks" onClick="changeBGColor(':#e6e6fa', '#512da8','#8a49df', '#6020b3', '#501b96');">Violet</div></td>
+                                <table style="width:100%"><tr><td><div id="green" class="blocks" onClick="changeBGColor(':#D7eadd', 'green','#1d8f15', '#14620f', '#185729');">Green</div></td>
+                                <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', '#5BC0EB','#3fa0e5', '#1b7ec5', '#198bdf', '#1578c1');">Blue</div></td>
+                                <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', '#F6B8B8','#f7aec4','#f07197', '#f95d9b', '#e80862');">Pink</div></td>
+                                <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', '#FF7F51','#ed8023', '#bd5f0f', '#9d4f0d');">Orange</div></td>
+                                <td><div id="violet" class="blocks" onClick="changeBGColor(':#e6e6fa', '#512da8','#8a49df', '#a2158e', '#660d5a');">Violet</div></td>
                                 </tr>
                                 <!-- flame, horizon, sky, piglet-->
                                 <tr>
@@ -53,20 +53,25 @@
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>
                                 </td>-->
                                 </tr>
-                                </table><input type="button" value="Change Theme" onClick="window.location.reload()">
+                                <tr><td>&nbsp</td></tr>
+                                <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Change Theme" onClick="window.location.reload()"></center></td></tr>
+                                </table>
                             </div>
                             <div id="invites-div" class="tab-pane fade in">
-                                <table><tr>
+                                <table style="width:100%"><tr>
 <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
                                 <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
-                                <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
+                                <!--<td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>-->
                                 <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
                                 <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div>
                                 </td>
                                 <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div>
                                 </td>
-                                </tr></table><input type="button" value="Change Theme" onClick="window.location.reload()">
+                                </tr>
+                                <tr><td>&nbsp</td></tr>
+                                <tr><td colspan="4"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Change Theme" onClick="window.location.reload()"></center></td></tr>
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -12,7 +12,7 @@ $user = $post->user;
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">
                 <a class = "pull-left btn btn-topic-header" style = "display: inline-block; margin-right: 5px;" href="<?php echo base_url('topic/view/' . $topic->topic_id) ?>">
                     <h3 class = "pull-left" style = "margin-top: 3px; margin-bottom: 0px; padding: 2px;">
-                        <strong class = "text-info"><i class = "fa fa-chevron-left"></i> 
+                        <strong class = "text-info text1color"><i class = "fa fa-chevron-left"></i> 
                             Back
                         </strong>
                     </h3>
@@ -25,13 +25,13 @@ $user = $post->user;
                 <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
                         <i>Thread by 
-                            <a class = "btn btn-link btn-md no-padding no-margin" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
+                            <a class = "btn btn-link btn-md no-padding no-margin text1color" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
                                 <?php echo $user->first_name; ?></a>
                         </i>
                     </small>
                 </h3>
                 <?php if (!empty($post->thread_attachments)): ?>
-                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary">
+                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary buttonsbgcolor">
                         <strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong>
                     </button>
                 <?php endif; ?>
@@ -44,14 +44,14 @@ $user = $post->user;
                             <?php if (!$post->is_deleted): ?>
                                 <img src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" class="media-object img-circle post-pic"/>
                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
+                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-thumbs-up vote-text"></span>
                                 </button>
                                 <br/>
                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
                                 <br/>
-                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
+<!--                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
-                                </button>
+                                </button>-->
                             <?php endif; ?>
                         </div>
                         <div class="media-body">
@@ -74,7 +74,7 @@ $user = $post->user;
                                     <?php if ($post->post_title): ?>
                                     <h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
                                         <small>
-                                            <i>by <a class = "btn btn-link btn-xs no-padding no-margin"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
+                                            <i>by <a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
                                             <span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                         </small>
                                     <?php else: ?>

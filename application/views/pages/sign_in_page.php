@@ -113,7 +113,7 @@ include(APPPATH . 'views/header.php');
                     text.innerHTML = "Strength: " + "<strong style='color:red'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:red'>" + "Your password is very weak!" + "<br>" + "<br></span"; 
                     
                 else if(strength[result.score]==='Bad ☹')
-                    text.innerHTML = "Strength: " + "<strong tyle='color:orange'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:orange'>" + "Your password is still bad!" + "<br>" + "<br></span"; 
+                    text.innerHTML = "Strength: " + "<strong style='color:orange'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:orange'>" + "Your password is still bad!" + "<br>" + "<br></span"; 
                 
                 else if(strength[result.score]==='Weak ☹')
                     text.innerHTML = "Strength: " + "<strong style='color:yellow'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:yellow'>" + "Your password is still weak!" + "<br>" + "<br></span"; 
@@ -129,7 +129,7 @@ include(APPPATH . 'views/header.php');
                 text.innerHTML = "";
             }
         });
-</script>
+                            </script>
     <script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
 </body>
 </html>

@@ -3,13 +3,33 @@ $logged_user = $_SESSION['logged_user'];
 ?>
     
 <!-- Sidebar -->
-<div class="col-md-3" style = "padding-left: 0px;">
+<div class="col-md-3" style = "padding-left: 0px; margin-right:1%;margin-left: 3.5%;width:22.5%">
     <div class = "col-xs-12 home-sidebar content-container" style="border-radius:20px;">
-        <h3 class = "text-center text-info no-padding no-margin text1color" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>
-        <a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">
+        <!--Header-->
+        <div class = "clearfix content-container" style="border-radius:20px;">
+
+                        <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+                            <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
+                        </a>
+                        <div class = "col-sm-4 home-user-text">
+                            <a class = "btn btn-link home-username text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><strong><?php echo $logged_user->first_name . " " . $logged_user->last_name;?></strong></a>
+<!--                            <i class = "fa fa-caret-right header-arrow"></i> 
+                            <div class="home-dropdown dropdown">
+                                <button class="btn btn-link dropdown-toggle home-username text1color" type="button" data-toggle="dropdown"><strong>Home</strong>
+                                    <i class="caret"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="home">Home</a></li>
+                                    <li><a href="topic">Topic</a></li>
+                                </ul>
+                            </div>-->
+                        </div>
+ </div>
+        
+        <!--<h3 class = "text-center text-info no-padding no-margin text1color" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>-->
+        <!--<a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
             <h4>Your topics</h4>
-        </a>
-        <div id = "side-topics-created" class = "sidebar-topic-div">
+        <!--</a>-->
+        <div class = "sidebar-topic-div">
             <ul class="nav">
                 <?php
                 if(!empty($logged_user->topics)):
@@ -32,10 +52,10 @@ $logged_user = $_SESSION['logged_user'];
 
 
 
-        <a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">
+        <!--<a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
             <h4>Topics you Follow</h4>
-        </a>
-        <div id = "side-topics-followed" class = "sidebar-topic-div">
+        <!--</a>-->
+        <div class = "sidebar-topic-div">
             <ul class="nav">
                 <?php
                 if(!empty($logged_user->followed_topics)):

@@ -6,7 +6,7 @@ $topic = $_SESSION['current_topic'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-<script type="text/javascript">
+<!--<script type="text/javascript">
         var recognition2 = new webkitSpeechRecognition();
         recognition2.lang = 'fil-PH';
         recognition2.continuous = true;
@@ -63,8 +63,8 @@ $topic = $_SESSION['current_topic'];
             recognition2.start();
         }
                                 
-    </script>
-    
+    </script>-->
+
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -94,8 +94,8 @@ $topic = $_SESSION['current_topic'];
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
                     
-                    <div class="profanityWarning" id="profanityWarning">Hey there! UUUU</div>
-                    
+                   <div class="profanityWarning" id="profanityWarning">Hey there! UUUU</div>
+
 <!--                    <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
                                 <div class="camera">
@@ -115,25 +115,25 @@ $topic = $_SESSION['current_topic'];
                     <div id = "attachment-buttons" class = "form-group">
                         Attach a file:
                         <!--IMAGE-->
-                        <label id = "img-label" class="btn btn-primary">
+                        <label id = "img-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
                             <p id = "image-text" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Image</p>
                         </label>
 
                         <!--AUDIO-->
-                        <label id = "audio-label" class="btn btn-primary">
+                        <label id = "audio-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-audio" accept = "audio/*" type="file" name = "post_audio" style = "display: none;">
                             <p id = "audio-text" class = "attach-btn-text"><i class = "fa fa-file-audio-o"></i> Add Audio</p>
                         </label>
 
                         <!--VIDEO-->
-                        <label id = "video-label" class="btn btn-primary">
+                        <label id = "video-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-video" accept = "video/*" type="file" name = "post_video" style = "display: none;">
                             <p id = "video-text" class = "attach-btn-text"><i class = "fa fa-file-video-o"></i> Add Video</p>
                         </label>
 
                         <!--FILE-->
-                        <label id = "file-label" class="btn btn-primary">
+                        <label id = "file-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-file" type="file" name = "post_file" style = "display: none;">
                             <p id = "file-text" class = "attach-btn-text"><i class = "fa fa-file-o"></i> Add File</p>
                         </label>
@@ -144,7 +144,7 @@ $topic = $_SESSION['current_topic'];
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
-                    <a id = "create-post-btn" class ="btn btn-primary" data-toggle = "modal">Post</a>
+                    <a id = "create-post-btn" class ="btn btn-primary buttonsbgcolor" data-toggle = "modal">Post</a>
                 </div>
             </form>
         </div>
@@ -154,7 +154,7 @@ $topic = $_SESSION['current_topic'];
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
-    <script type="text/javascript">
+                        +    <script type="text/javascript">
         var warningCount=0, count=0;
         var btncolor=getCookie("ButtonColor");
         var x = document.getElementById("profanityWarning");
@@ -193,7 +193,7 @@ $topic = $_SESSION['current_topic'];
 </script>
                     
                     <!--camera-->
-<!--                    
+                    
 <script>(function() {
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -308,7 +308,7 @@ $topic = $_SESSION['current_topic'];
   // Set up our event listener to run the startup process
   // once loading is complete.
   window.addEventListener('load', startup, false);
-})();</script>-->
+})();</script>
 
 <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 <!-- END SCRIPTS -->

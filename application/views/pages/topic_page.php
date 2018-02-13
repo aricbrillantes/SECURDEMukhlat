@@ -16,7 +16,7 @@ $c_topic = $_SESSION['current_topic'];
             <div id = "topic-heading" class = "col-md-12 content-container no-padding">
                 <a class = "btn btn-topic-header" href="<?php echo base_url('topic'); ?>">
                     <h4 class = "pull-left topic-header-title no-padding" style = "margin-top: 3px; margin-bottom: 0px;">
-                        <strong class = "text-info"><i class = "fa fa-chevron-left"></i> 
+                        <strong class = "text-info text1color"><i class = "fa fa-chevron-left"></i> 
                             Back to Topics List
                         </strong>
                     </h4>
@@ -54,7 +54,7 @@ $c_topic = $_SESSION['current_topic'];
                         </h4>
                         <div class = "content-container topic-intro-content">
                             <p id = "desc-creator" class = "no-margin text-muted" align = "center">
-                                <small><i>by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $c_topic->user->user_id); ?>"><?php echo $c_topic->user->first_name . " " . $c_topic->user->last_name; ?></a></i></small>
+                                <small><i>by <a class = "btn btn-link btn-xs no-padding no-margin text1color" href = "<?php echo base_url('user/profile/' . $c_topic->user->user_id); ?>"><?php echo $c_topic->user->first_name . " " . $c_topic->user->last_name; ?></a></i></small>
                             </p>
                             <?php if ($is_moderated): ?>
                                 <div id = "desc-edit" class = "col-md-12 hidden">
