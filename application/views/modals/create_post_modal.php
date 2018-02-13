@@ -89,13 +89,12 @@ $topic = $_SESSION['current_topic'];
                         <span id="interim_span2" class="interim"></span>
                     </div>
                     
-                    
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
                     </div>
                     
-                    <div class="profanityWarning" id="profanityWarning">No swearing</div>
+                    <div class="profanityWarning" id="profanityWarning">Hey there! UUUU</div>
                     
 <!--                    <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
@@ -157,6 +156,7 @@ $topic = $_SESSION['current_topic'];
  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <script type="text/javascript">
         var warningCount=0, count=0;
+        var btncolor=getCookie("ButtonColor");
         var x = document.getElementById("profanityWarning");
         $('.form-control').keydown(function(event) 
         {
@@ -166,18 +166,29 @@ $topic = $_SESSION['current_topic'];
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":)","☺");
             
                 if(
-                    event.target.value.includes("fuck")||
-                    event.target.value.includes("shit")
+                    document.getElementById('post-title').value.includes("fuck")||
+                    document.getElementById('post-title').value.includes("shit")||
+                    document.getElementById('post-content').value.includes("fuck")||
+                    document.getElementById('post-content').value.includes("shit")
                 )
                 {  
 //                  responsiveVoice.speak("Hey there! That's a bad word!","UK English Male",{rate: 1, pitch: 1.2});
 //                  document.getElementById("profanityWarning").innerHTML = 'NO SWEARING!';
                     x.style.display = "block";
+                    document.getElementById('create-post-btn').style.background="red";
+                    document.getElementById('create-post-btn').innerHTML="You should remove bad words from your post!";
+                    document.getElementById('create-post-btn').style.pointerEvents="none";
                 }  
               
                 else
+                {
 //                    document.getElementById("profanityWarning").innerHTML = '';
                     x.style.display = "none";
+                    document.getElementById('create-post-btn').style.background=btncolor;
+                    document.getElementById('create-post-btn').innerHTML="Post";
+                    document.getElementById('create-post-btn').style.pointerEvents="auto";
+                }
+//              
         });  
 </script>
                     

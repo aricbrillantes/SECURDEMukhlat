@@ -10,10 +10,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var ca = document.cookie.split(';');
         for(var i = 0; i < ca.length; i++) {
             var c = ca[i];
-            while (c.charAt(0) == ' ') {
+            while (c.charAt(0) === ' ') {
                 c = c.substring(1);
             }
-            if (c.indexOf(name) == 0) {
+            if (c.indexOf(name) === 0) {
                 return c.substring(name.length, c.length);
             }
         }
@@ -37,9 +37,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
+                    .btn-primary{background-color:' + getCookie("ButtonColor") + ';}\n\
+                    .btn-primary:hover{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .bubblesbg{display:' + getCookie("bubblesbg1") + ';}<\/style>');
     
-    if(getCookie("sparklebg1")=="block"){
+    if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
         
     }
@@ -300,13 +302,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <span id="interim_span" class="interim"></span>
                             </span>
                         </span>
-                        
-                            
-                            
-                        
                     </form>
                 </div>
-        <div>
+            <div>
             <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
                                 <div class="compact marquee" id="div_language" style="display: inline-block;">
                                     <select id="select_language">
@@ -324,8 +322,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
-            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
-
+                            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
                             <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                         <i class = "fa fa-paint-brush"></i>Theme
                                     </a>
