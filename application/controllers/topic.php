@@ -93,7 +93,33 @@ class Topic extends CI_Controller {
         $this->db->set('date_created', 'NOW()', FALSE);
         $this->db->insert('tbl_topics', $data);
         $topic_id = $this->db->insert_id();
+        
+        // ATTACHMENTS
+        if (!file_exists('./uploads/_' . $topic_id . '/')) {
+            mkdir('./uploads/_' . $topic_id . '/', 0777, true);
+        }
+        $config['upload_path'] = './uploads/_' . $topic_id . '/';
+        $config['encrypt_name'] = TRUE;
+        $config['allowed_types'] = '*';
+        $config['maxsize'] = '0';
 
+        $this->load->library('upload', $config);
+
+        //image
+        if (isset($_FILES['post_image']['name'])) {
+            if (!$this->upload->do_upload('post_image')) {
+                echo $this->upload->display_errors();
+            } else {
+                //upload success
+                $upload_data = $this->upload->data();
+                $path = './uploads/_' . $topic_id . '/' . $upload_data['file_name'];
+
+                $this->load->model('attachment_model', 'attachments');
+
+                $this->attachments->insert_cover($topic_id, $path);
+            }
+        }
+        
         //follow topic
         $follow_data = array(
             'user_id' => $logged_user->user_id,

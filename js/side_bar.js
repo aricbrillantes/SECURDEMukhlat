@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#side-topics-created").hide();
     $("#side-topics-moderated").hide();
-    $("#side-topics-followed").hide();
+    $("#side-topics-followed").show();
 
     $("#side-topics-created-btn").on("click", function() {
         $("#side-topics-created").toggle('fast');

@@ -37,13 +37,17 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .bubblesbg{display:' + getCookie("bubblesbg1") + ';}\n\
-                    .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}<\/style>');
+                    .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
+                    .trail{background:' + getCookie("ButtonAColor") + '!important;}<\/style>');
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
         
     }
 </script>
+<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
+<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>
+<!--<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>-->
 <head>
     <style>
         svg{
@@ -64,21 +68,68 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         #world{
             position: fixed;
         }
+        
+        #peek {
+        position: fixed;
+        z-index: 99999;
+        float: left;
+        bottom:-500px;
+        right:-500px;
+        }
     </style>
-    
-<div class="snowflakebg">    
-    <style>
-/* customizable snowflake styling */
-.snowflake {
-  color: #fff;
-  font-size: 1em;
-  font-family: Arial;
-  text-shadow: 0 0 1px #000;
-  
-}
+<!--        <style>/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
 
-@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
-</style>
+	.modal.right .modal-dialog {
+		position: fixed;
+		margin: auto;
+		width: 320px;
+		height: 100%;
+		-webkit-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		     -o-transform: translate3d(0%, 0, 0);
+		        transform: translate3d(0%, 0, 0);
+	}
+
+	.modal.right .modal-content {
+		height: 100%;
+		overflow-y: auto;
+	}
+
+	.modal.right .modal-body {
+		padding: 15px 15px 80px;
+	}
+
+
+        
+/*Right*/
+	.modal.right.fade .modal-dialog {
+		right: -320px;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		        transition: opacity 0.3s linear, right 0.3s ease-out;
+	}
+	
+	.modal.right.fade.in .modal-dialog {
+		right: 0;
+	}
+
+/* ----- MODAL STYLE ----- */
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.modal-header {
+		border-bottom-color: #EEEEEE;
+		background-color: #FAFAFA;
+	}
+</style>-->
+<div class="snowflakebg">    
 <div class="snowflakes" aria-hidden="true">
   <div class="snowflake" style="font-size: 30px">
   ❄
@@ -112,7 +163,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
   </div>
 </div>
 </div>    
-    
+
 </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -124,6 +175,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <script type="text/javascript">
         var final_transcript = '';
         var recognizing = false;
+        var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
 
         if ('webkitSpeechRecognition' in window) {
 
@@ -154,6 +206,16 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
               } else {
                 interim_transcript += event.results[i][0].transcript;
               }
+              
+              if(interim_span.innerHTML.includes("wenona") || interim_span.innerHTML.includes("winona")){
+                  (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true});
+              }
+               if(interim_span.innerHTML.includes("meow")){
+                   meow.play();
+                   catpeek();
+                   
+               }
+              
             }
             final_span.innerHTML = linebreak(final_transcript);
             interim_span.innerHTML = linebreak(interim_transcript);
@@ -225,8 +287,21 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //        }
 
     </script>
+    <script>
+    function catpeek(){
+      $('#peek').show().delay('500').animate({
+        bottom: '0',
+        right:'0'
+      }).delay('900').animate({
+        bottom: '-500px',
+        right:'-500px'
+      });
+    };
     
-    <!--particles-->
+    </script>
+<script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
+
+<!--particles-->
     <!--<style>canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:fixed; width: 100%; height: 100%;background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }</style>-->
 
 <!-- Nav Bar -->
@@ -259,7 +334,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <div class="bubble bubble9"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
 </div>
 
-    <div class="soundbg">
+<div id ="peek" style="display:none;"><img src = "<?php echo base_url('images/green m cat.png'); ?>"/></div>
+
+    <div class="soundbg" style="float:left;">
         <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <mask id="mask">
@@ -275,8 +352,26 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             </defs>
             <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
         </svg>
-        <h1>please allow the use of your microphone</h1>
+        <h1></h1>
     </div>
+
+<!--	 Modal 
+	<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel2">Right Sidebar</h4>
+				</div>
+
+				<div class="modal-body">
+					
+				</div>
+
+			</div> modal-content 
+		</div> modal-dialog 
+	</div> modal -->
 
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid"  style="margin:0.5%;">
@@ -286,7 +381,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a id ="logom" class = "navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
+                <a id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
+<!--            <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
+			Right Sidebar Modal
+		</button>-->
             </div>
             <div class = "collapse navbar-collapse" id = "nav-collapse">
                 <div class = "nav-left-end">
@@ -295,7 +393,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             <div class="input-group-btn" style="display: inline-block;">
                                 <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 400px;">
                                 <button class="btn btn-default search-btn" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                    <i class="glyphicon glyphicon-search buttonsgo"></i>
                                 </button>
                                 <span class="btn btn-default search-btn" onclick="voiceDropdown()" id="voice-search-button">Voice Search</span>
                             </div>
@@ -312,7 +410,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         
                     </form>
                 </div>
-        <div>
+        
             <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
                                 <div class="compact marquee" id="div_language" style="display: inline-block;">
                                     <select id="select_language">
@@ -342,12 +440,12 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     <?php endif; ?>    
                                     <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs       
                             </a>
-                            </div><div class="vl"  style="margin-right:0.3%;"></div><div>
+                            <div class="vl"  style="margin-right:0.3%;"></div><div>
  
                                 <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong></a>
                                 <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong></a>
                                 <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
-                                <img class = "img-rounded nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
+                                <img class = "img-circle nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                                 <?php echo $logged_user->first_name; ?></a>
 
                 </div>
@@ -357,6 +455,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
+
+<script>var $draggable = $('.draggable').draggabilly();</script>
+
 <script>window.onload = function () {
     "use strict";
     var paths = document.getElementsByTagName('path');
@@ -372,7 +473,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         //https://support.mozilla.org/en-US/questions/984179
         window.persistAudioStream = stream;
         h.innerHTML = "Thanks";
-        h.setAttribute('style', 'opacity: 0;');
+        h.setAttribute('style', 'display:none;');
         var audioContent = new AudioContext();
         var audioStream = audioContent.createMediaStreamSource( stream );
         var analyser = audioContent.createAnalyser();
@@ -530,19 +631,24 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
   step();
 
 }).call(this);</script>     
-<script>var bubbles = document.querySelectorAll('.bubble');
+<script>
+var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
+var bubbles = document.querySelectorAll('.bubble');
 var poppedClass = 'bubble--popped';
  
 function popBubble(e, bubble) {
    bubble.style.top = e.clientY - e.offsetY + 'px';
    bubble.style.left = e.clientX - e.offsetX + 'px';
+   bubble.style.pointerEvents="none";
    bubble.classList.add(poppedClass);
+   bubpop.play();
 }
  
 function resetBubble(bubble) {
    bubble.classList.remove(poppedClass);
    bubble.style.top = '';
    bubble.style.left = '';
+   bubble.style.pointerEvents="auto";
 }
  
 bubbles.forEach(function(bubble) {
@@ -554,7 +660,73 @@ bubbles.forEach(function(bubble) {
       resetBubble(this);
    });
 });</script>
+<script>var dots = [],
+    mouse = {
+      x: 0,
+      y: 0
+    };
 
+// The Dot object used to scaffold the dots
+var Dot = function() {
+  this.x = 0;
+  this.y = 0;
+  this.node = (function(){
+    var n = document.createElement("div");
+    n.className = "trail";
+    document.body.appendChild(n);
+    return n;
+  }());
+};
+// The Dot.prototype.draw() method sets the position of 
+  // the object's <div> node
+Dot.prototype.draw = function() {
+  this.node.style.left = this.x + "px";
+  this.node.style.top = this.y + "px";
+};
+
+// Creates the Dot objects, populates the dots array
+for (var i = 0; i < 12; i++) {
+  var d = new Dot();
+  dots.push(d);
+}
+
+// This is the screen redraw function
+function draw() {
+  // Make sure the mouse position is set everytime
+    // draw() is called.
+  var x = mouse.x,
+      y = mouse.y;
+  
+  // This loop is where all the 90s magic happens
+  dots.forEach(function(dot, index, dots) {
+    var nextDot = dots[index + 1] || dots[0];
+    
+    dot.x = x;
+    dot.y = y;
+    dot.draw();
+    x += (nextDot.x - dot.x) * .6;
+    y += (nextDot.y - dot.y) * .6;
+
+  });
+}
+
+addEventListener("mousemove", function(event) {
+  //event.preventDefault();
+  mouse.x = event.pageX;
+  mouse.y = event.pageY;
+});
+
+// animate() calls draw() then recursively calls itself
+  // everytime the screen repaints via requestAnimationFrame().
+function animate() {
+  draw();
+  requestAnimationFrame(animate);
+}
+
+// And get it started by calling animate().
+animate();
+</script>
+        
 <!--<script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});</script>-->
 <!-- End Nav Bar -->
 

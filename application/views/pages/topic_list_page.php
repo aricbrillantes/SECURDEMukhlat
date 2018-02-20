@@ -101,9 +101,9 @@ include(APPPATH . 'views/header.php');
 
             function scrollFunction() {
                 if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("myBtn").style.display = "block";
+                    document.getElementsByClassName("balloon").style.display = "block";
                 } else {
-                    document.getElementById("myBtn").style.display = "none";
+                    document.getElementsByClassName("balloon").style.display = "none";
                 }
             }
 
@@ -115,7 +115,7 @@ include(APPPATH . 'views/header.php');
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <button onclick="topFunction()" id="myBtn" title="Go to top">^<br>Back to Top</button>
+        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="float:center;padding-top:50%;">Up!</p></div>
         
         <!--
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>

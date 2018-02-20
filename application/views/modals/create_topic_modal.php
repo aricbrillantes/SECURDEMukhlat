@@ -17,6 +17,10 @@
                         <label for = "description">Enter a description for your topic:</label>
                         <textarea class = "form-control" required name = "topic_description" maxlength="256" id = "topic-description" placeholder = "Tell something about your topic!"></textarea>
                     </div>
+                    <label id = "img-label" class="btn btn-primary buttonsbgcolor">
+                            <input id = "attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
+                            <p id = "image-text" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Image</p>
+                        </label>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
                     <a id = "create-topic-btn" class ="btn btn-primary buttonsbgcolor" data-toggle = "modal">Create Topic</a>
@@ -25,6 +29,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div id="create-confirmation-modal" tabindex="-1" class="modal fade" role="dialog" style = "margin-top: 50px; margin-right: 15px;">
     <div class="modal-dialog">

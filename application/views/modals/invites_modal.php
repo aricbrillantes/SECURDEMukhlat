@@ -39,7 +39,7 @@
                                 <!-- flame, horizon, sky, piglet-->
                                 <tr>
                                 <td><div id="strawberry" class="blocks" onClick="changeBGColor(':#d13030', 'green','#d13030');">Strawberry</div></td>
-                                <td><div id="sky" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #5BC0EB, #CBF9F3);', 'white','#5BC0EB');">Sky</div></td>
+                                <td><div id="sky" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #5BC0EB, #CBF9F3);', 'whitesmoke','#5BC0EB');">Sky</div></td>
                                 <td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>
                                 <td><div id="chocoice" class="blocks" onClick="changeBGColor(':#ffe3b9', '#6b3e26', '#6b3e26');"><div style="color:white;">Chocolate</div> Ice cream</div></td>
                                 <td><div id="FB" class="blocks" onClick="changeBGColor(':#e9ebee', '#4267b2', '#4267b2');">fb</div></td>
@@ -47,14 +47,14 @@
                                 <!-- image and more backgrounds-->
                                 <tr>
                                 <td><div id="galaxy" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'black','black');">Galaxy</div></td>
-                                <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', 'white','#5BC0EB');">Rainbow</div></td>
+                                <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', '#5BC0EB','#5BC0EB');">Rainbow</div></td>
                                 <!--<td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>-->
 <!--                            <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>
                                 </td>-->
                                 </tr>
                                 <tr><td>&nbsp</td></tr>
-                                <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Change Theme" onClick="window.location.reload()"></center></td></tr>
+                                <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
                                 </table>
                             </div>
                             <div id="invites-div" class="tab-pane fade in">
@@ -62,7 +62,7 @@
 <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
                                 <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
-                                <!--<td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>-->
+                                <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
                                 <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
                                 <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div>
                                 </td>
@@ -70,7 +70,7 @@
                                 </td>
                                 </tr>
                                 <tr><td>&nbsp</td></tr>
-                                <tr><td colspan="4"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Change Theme" onClick="window.location.reload()"></center></td></tr>
+                                <tr><td colspan="4"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
                                 </table>
                             </div>
                         </div>

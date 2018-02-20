@@ -64,7 +64,8 @@ $topic = $_SESSION['current_topic'];
         }
                                 
     </script>-->
-
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?php echo base_url('lib/css/emoji.css'); ?>" rel="stylesheet">
 <!-- Create Post Modal -->
 <div id="create-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -91,10 +92,12 @@ $topic = $_SESSION['current_topic'];
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
-                        <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!"></textarea>
+                        <p class="lead emoji-picker-container">
+                        <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
+                        </p>
                     </div>
                     
-                   <div class="profanityWarning" id="profanityWarning">Hey there! UUUU</div>
+                   <div class="profanityWarning" id="profanityWarning">Hey there! It looks like you used a bad word!</div>
 
 <!--                    <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
@@ -154,16 +157,25 @@ $topic = $_SESSION['current_topic'];
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
-                        +    <script type="text/javascript">
+                        <script type="text/javascript">
         var warningCount=0, count=0;
         var btncolor=getCookie("ButtonColor");
         var x = document.getElementById("profanityWarning");
         $('.form-control').keydown(function(event) 
         {
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("<3","❤");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":)","😀");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":(","☹");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace(":)","☺");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😀","😀");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("XD","🤣");
+            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😐","😐");
+            
+            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("❤","❤");
+            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😞","☹");
+            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("🙂","🙂");
+            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😀","😀");
+            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("XD","🤣");
+            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😐","😐");
             
                 if(
                     document.getElementById('post-title').value.includes("fuck")||
@@ -310,5 +322,30 @@ $topic = $_SESSION['current_topic'];
   window.addEventListener('load', startup, false);
 })();</script>
 
+<!-- ** Don't forget to Add jQuery here ** -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Begin emoji-picker JavaScript -->
+    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/util.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
+    <!-- End emoji-picker JavaScript -->
+
+    <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '<?php echo base_url('lib/img/');?>',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+    </script>
+    
 <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 <!-- END SCRIPTS -->

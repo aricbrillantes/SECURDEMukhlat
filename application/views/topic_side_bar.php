@@ -6,7 +6,7 @@ $logged_user = $_SESSION['logged_user'];
 <div class="col-md-3" style = "padding-left: 0px; margin-right:1%;margin-left: 3.5%;width:22.5%">
     <div class = "col-xs-12 home-sidebar content-container" style="border-radius:20px;">
         <!--Header-->
-        <div class = "clearfix content-container" style="border-radius:20px;">
+        <div class = "clearfix content-container" style="border-radius:20px;cursor: pointer;" id = "side-topics-followed-btn">
 
                         <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
@@ -24,7 +24,7 @@ $logged_user = $_SESSION['logged_user'];
                             </div>-->
                         </div>
  </div>
-        
+        <div id = "side-topics-followed">
         <!--<h3 class = "text-center text-info no-padding no-margin text1color" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>-->
         <!--<a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
             <h4>Your topics</h4>
@@ -94,6 +94,7 @@ $logged_user = $_SESSION['logged_user'];
         $conn->close();
         }?>
         <img class = "pinwheel1" src = "<?php echo base_url('images/Picture1.png'); ?>"/></div>
+    </div>
     </div>
 </div>
 

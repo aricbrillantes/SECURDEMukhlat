@@ -18,8 +18,9 @@ include(APPPATH . 'views/header.php');
                     <div class = "clearfix content-container" style="border-radius:20px;">
                     <center>
                                 <a id="crettop" class ="btn btn-primary buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil"></i> Create Topic</a>
-                                <a id="crettop" class="btn btn-primary buttonsbgcolor" href="<?php echo base_url('topic') ?>" style="margin:1%"><strong><i class = "glyphicon glyphicon-list"></i> Go to Topics</strong></a>
-                                </center>
+                                <a id="crettop" class="btn btn-primary buttonsbgcolor" href="<?php echo base_url('topic') ?>" style="margin:1%"><strong><i class = "glyphicon glyphicon-list"></i> Go to Topics</strong></a>                   
+                                <!--<a id="crettop" class="btn btn-primary buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</a>-->
+</center>
                     </div>
 <!--                    <div class = "clearfix content-container" style="border-radius:20px;">
 
@@ -39,11 +40,7 @@ include(APPPATH . 'views/header.php');
                             </div>
                         </div>
                         
-                        <div class = "col-xs-12">
-                        
-                        <button id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</button>
-                        
-                        </div>
+-->                        <!--
                         
                         <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
                         <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />
