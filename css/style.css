@@ -1412,3 +1412,70 @@ END CHAT
     border-radius-top-right: 45%;
   }
 }
+
+.navbaricons .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    font-size: 12px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+
+.navbarprofileicon .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    font-size: 14px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.navbaricons:hover .tooltiptext {
+    visibility: visible;
+}
+
+.navbarprofileicon:hover .tooltiptext {
+    visibility: visible;
+}
+
+.btn .btn-primary .buttonsbgcolor .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    font-size: 14px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.btn .btn-primary .buttonsbgcolor:hover .tooltiptext {
+    visibility: visible;
+}

@@ -38,12 +38,26 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .bubblesbg{display:' + getCookie("bubblesbg1") + ';}\n\
                     .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
+                    .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .trail{background:' + getCookie("ButtonAColor") + '!important;}<\/style>');
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
-        
+               
     }
+    
+    var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+//        alert(hours);
+
+//      night mode script
+        if(hours > 19){
+            document.write('<style type="text/css">\n\
+                html {background' + getCookie("backgroundColor") + ';}\n\
+                html {filter:brightness(0.87) sepia(0.25);}<\/style>');
+        } 
 </script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>
@@ -168,7 +182,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-    
+<!-- SCM Music Player http://scmplayer.co -->
+<script type="text/javascript" src="http://scmplayer.co/script.js" 
+data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'HUMBLE.','url':'<?php echo base_url('assets/music/HUMBLE.mp3'); ?>'},{'title':'STACKED DECK INTRO','url':'<?php echo base_url('assets/music/Stacked Deck Intro (NFS Carbon).mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" ></script>
+<!-- SCM Music Player script end -->
     <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
     <!--Voice Search Script-->
@@ -431,22 +448,24 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
 
                             <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
-                                        <i class = "fa fa-paint-brush"></i>Theme
-                                    </a>
+                                <i class = "fa fa-paint-brush"></i>Theme
+                                <span class="tooltiptext">Change the colors of the site!</span>
+                            </a>
                             
                             <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                                    <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                                    <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
-                                    <?php endif; ?>    
-                                    <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs       
+                                <?php if ((int) $logged_user->unread_notifs > 0): ?>
+                                <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
+                                <?php endif; ?>    
+                                <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs    
+                                <span class="tooltiptext">You can check your notifications here!</span>
                             </a>
                             <div class="vl"  style="margin-right:0.3%;"></div><div>
  
-                                <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong></a>
-                                <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong></a>
+                                <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong><span class="tooltiptext">You can browse others' topics here!</span></a>
+                                <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
                                 <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
                                 <img class = "img-circle nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
-                                <?php echo $logged_user->first_name; ?></a>
+                                <?php echo $logged_user->first_name; ?><span class="tooltiptext">Check your profile!</span></a>
 
                 </div>
             </div>
