@@ -95,10 +95,10 @@ class Topic extends CI_Controller {
         $topic_id = $this->db->insert_id();
         
         // ATTACHMENTS
-        if (!file_exists('./uploads/_' . $topic_id . '/')) {
-            mkdir('./uploads/_' . $topic_id . '/', 0777, true);
+        if (!file_exists('./uploads1/_' . $topic_id . '/')) {
+            mkdir('./uploads1/_' . $topic_id . '/', 0777, true);
         }
-        $config['upload_path'] = './uploads/_' . $topic_id . '/';
+        $config['upload_path'] = './uploads1/_' . $topic_id . '/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = '*';
         $config['maxsize'] = '0';
@@ -106,16 +106,17 @@ class Topic extends CI_Controller {
         $this->load->library('upload', $config);
 
         //image
-        if (isset($_FILES['post_image']['name'])) {
-            if (!$this->upload->do_upload('post_image')) {
+        if (isset($_FILES['topic_image']['name'])) {
+            mkdir('./uploads1/_good/', 0777, true);
+            if (!$this->upload->do_upload('topic_image')) {
                 echo $this->upload->display_errors();
             } else {
                 //upload success
                 $upload_data = $this->upload->data();
-                $path = './uploads/_' . $topic_id . '/' . $upload_data['file_name'];
+                $path = './uploads1/_' . $topic_id . '/' . $upload_data['file_name'];
 
                 $this->load->model('attachment_model', 'attachments');
-
+                
                 $this->attachments->insert_cover($topic_id, $path);
             }
         }

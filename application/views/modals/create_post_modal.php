@@ -93,7 +93,7 @@ $topic = $_SESSION['current_topic'];
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <p class="lead emoji-picker-container">
-                        <textarea class = "form-control" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
+                        <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
                         </p>
                     </div>
                     
@@ -157,6 +157,7 @@ $topic = $_SESSION['current_topic'];
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+
                         <script type="text/javascript">
         var warningCount=0, count=0;
         var btncolor=getCookie("ButtonColor");
@@ -321,9 +322,6 @@ $topic = $_SESSION['current_topic'];
   // once loading is complete.
   window.addEventListener('load', startup, false);
 })();</script>
-
-<!-- ** Don't forget to Add jQuery here ** -->
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <!-- Begin emoji-picker JavaScript -->
     <script src="<?php echo base_url('lib/js/config.js');?>"></script>

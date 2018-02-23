@@ -21,6 +21,7 @@ include(APPPATH . 'views/header.php');
                                 <a id="crettop" class="btn btn-primary buttonsbgcolor" href="<?php echo base_url('topic') ?>" style="margin:1%"><strong><i class = "glyphicon glyphicon-list"></i> Go to Topics</strong></a>                   
                                 <!--<a id="crettop" class="btn btn-primary buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</a>-->
 </center>
+
                     </div>
 <!--                    <div class = "clearfix content-container" style="border-radius:20px;">
 
@@ -123,6 +124,6 @@ include(APPPATH . 'views/header.php');
     </div>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-    
+
     <?php
 //    include(APPPATH . 'views/chat/chat.php');

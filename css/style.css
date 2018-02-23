@@ -81,7 +81,7 @@ body.sign-in{
 /*create topic*/
 
 #crettop{
-    border-radius: 15px;
+    border-radius: 20px;
     border:0px;
 }
 
@@ -90,6 +90,7 @@ body.sign-in{
     bottom:10px;
     right:10px
 }
+
 
 .blocks{
     cursor: pointer;
@@ -188,6 +189,43 @@ snap-drawer {
     pointer-events: none;
     }
 
+    
+    
+.mascoti{
+        float:right;
+        position:fixed;
+        bottom:0;
+        right:0;
+        z-index:99999;
+    }
+.mascoti + .mascotitalk {
+    float: right;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: relative;
+    z-index: 99999;
+    }
+    
+.mascoti:hover + .mascotitalk{
+    visibility: visible;
+    }
+    
+    .mascoti:hover{
+        
+    }    
+    
+.mascoti:active{
+        
+    }
+    
+    
     
 .buttonsgo{
     transition: transform 0.25s;
@@ -311,7 +349,7 @@ textarea{
     margin-bottom: 20px;
     letter-spacing: -1px;
     font-weight: bolder;
-    /*text-shadow: 0px 0px 1px #5b7375;*/
+  /*text-shadow: 0px 0px 1px #5b7375;*/
 }
 .sign-in-meesage{
     font-size:120%;
@@ -645,7 +683,7 @@ textarea{
     background-color: #E0E0E0;
     padding-left: 10px;
     color: #757575;
-    /*border-top: 1px solid #F5F5F5;*/
+  /*border-top: 1px solid #F5F5F5;*/
 }
 
 .user-post-footer{
@@ -1413,6 +1451,8 @@ END CHAT
   }
 }
 
+
+
 .navbaricons .tooltiptext {
     visibility: hidden;
     width: 120px;
@@ -1480,7 +1520,7 @@ END CHAT
     visibility: visible;
 }
 
-body ::selection {
++body ::selection {
   color: white;
   background: green;
 }
@@ -1497,3 +1537,30 @@ body::-webkit-scrollbar-thumb {
   background-color: green;
   outline: 1px solid slategrey;
 }
+
+/*custom cursors*/
+
+.defaultpointer :hover{
+    cursor:pointer;
+}
+                                    
+.aric :hover{
+    cursor:url('../images/cursors/aric.cur'), auto;
+}
+                                    
+.kyloren :hover{
+    cursor:url('../images/cursors/kyloren.cur'), auto;
+}
+
+.watermelon :hover{
+    cursor:url('../images/cursors/watermelon.cur'), auto;
+}
+                                    
+.stormtrooper :hover{
+    cursor:url('../images/cursors/stormtrooper.cur'), auto;
+}
+                                    
+.ugandanknuckles :hover{
+    cursor:url('../images/cursors/ugandanknuckles.cur'), auto;
+}
+                                    

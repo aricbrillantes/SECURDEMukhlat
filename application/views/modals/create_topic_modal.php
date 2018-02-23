@@ -17,10 +17,15 @@
                         <label for = "description">Enter a description for your topic:</label>
                         <textarea class = "form-control" required name = "topic_description" maxlength="256" id = "topic-description" placeholder = "Tell something about your topic!"></textarea>
                     </div>
+                     <div id = "attachment-buttons" class = "form-group">
                     <label id = "img-label" class="btn btn-primary buttonsbgcolor">
-                            <input id = "attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
+                            <input id = "attach-img" accept = "image/*" type="file" name = "topic_image" style = "display: none;">
                             <p id = "image-text" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Image</p>
                         </label>
+                     </div>
+                    <div id = "attachment-preview" class = "content-container">
+                        <h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>
+                    </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
                     <a id = "create-topic-btn" class ="btn btn-primary buttonsbgcolor" data-toggle = "modal">Create Topic</a>

@@ -42,16 +42,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .trail{background:' + getCookie("ButtonAColor") + '!important;}\n\
                     body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    body ::selection{background:' + getCookie("ButtonHColor") + ';}<\/style>');
+                    :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}<\/style>');
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
-               
     }
-        
-    var currentTime = new Date();
+    
+        var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
 //        alert(hours);
@@ -61,18 +60,12 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             document.write('<style type="text/css">\n\
                 html {background' + getCookie("backgroundColor") + ';}\n\
                 html {filter:brightness(0.87) sepia(0.25);}<\/style>');
-        } 
+        }
 </script>
-
-<style type="text/css">
-    .btn:hover{
-        transform: scale(1.15);
-    }
-</style>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>
-<!--<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>-->
-<head>
+<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>
+<head><link rel="stylesheet" type="text/css" href="<?php echo base_url('clippy.js-master/build/clippy.css'); ?>" media="all">
     <style>
         svg{
         display: block;
@@ -100,6 +93,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         bottom:-500px;
         right:-500px;
         }
+        
+        
+
     </style>
 <!--        <style>/*******************************
 * MODAL AS LEFT/RIGHT SIDEBAR
@@ -192,10 +188,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-<!-- SCM Music Player http://scmplayer.co -->
-<script type="text/javascript" src="http://scmplayer.co/script.js" 
-data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'HUMBLE.','url':'<?php echo base_url('assets/music/HUMBLE.mp3'); ?>'},{'title':'STACKED DECK INTRO','url':'<?php echo base_url('assets/music/Stacked Deck Intro (NFS Carbon).mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" ></script>
-<!-- SCM Music Player script end -->
+
+    
     <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
     <!--Voice Search Script-->
@@ -334,6 +328,10 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
 <!-- Nav Bar -->
 
 <!--<div id="particles-js"></div>  stats - count particles   particles.js lib - https://github.com/VincentGarreau/particles.js  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  stats.js lib  <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>-->
+    <!-- SCM Music Player http://scmplayer.co -->
+    <script type="text/javascript" src="<?php echo base_url('scm-music-player-github/script.js'); ?>" 
+    data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'HUMBLE.','url':'<?php echo base_url('assets/music/HUMBLE.mp3'); ?>'},{'title':'STACKED DECK INTRO','url':'<?php echo base_url('assets/music/Stacked Deck Intro (NFS Carbon).mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" ></script>
+    <!-- SCM Music Player script end -->
 
 <div class="bubblesbg">
 <div class="bubble-container">
@@ -431,6 +429,8 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
                                 <span id="interim_span" class="interim"></span>
                             </span>
                         </span>
+                            
+                        
                     </form>
                 </div>
         
@@ -451,40 +451,68 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
                                     <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
-                        <div class="navbaricons2">
-                            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
+                <div class="navbaricons2">
+            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Bye!</a>
 
                             <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
-                                <i class = "fa fa-paint-brush"></i>Theme
+                                        <i class = "fa fa-paint-brush"></i>Colors
                                 <span class="tooltiptext">Change the colors of the site!</span>
                             </a>
+                                    </a>
                             
                             <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                                <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                                <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
-                                <?php endif; ?>    
-                                <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs    
-                                <span class="tooltiptext">You can check your notifications here!</span>
+                                    <?php if ((int) $logged_user->unread_notifs > 0): ?>
+                                    <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
+                                    <?php endif; ?>    
+                                    <i class = "glyphicon glyphicon-exclamation-sign"></i>News    
+                                <span class="tooltiptext">You can check your notifications here!</span>  
                             </a>
                             <div class="vl"  style="margin-right:0.3%;"></div>
-                            
  
                                 <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong><span class="tooltiptext">You can browse others' topics here!</span></a>
                                 <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
+                               
                                 <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
                                 <img class = "img-circle nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                                 <?php echo $logged_user->first_name; ?><span class="tooltiptext">Check your profile!</span></a>
 
-                        </div>
+                </div>
             </div>
         </div>
     </nav>
+<p id="display" style="float: right">Time Left<p>
+<button id="start" style="float: right">Start</button>
+<!--<img class = "draggable mascoti" src = "<?php echo base_url('images/Picture1.png'); ?>"/><span class="mascotitalk">Hello</span>-->
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
 
-<script>var $draggable = $('.draggable').draggabilly();</script>
+<script>
+var start = document.getElementById("start");
+var dis = document.getElementById("display");
+var finishTime;
+var timerLength = 10;
+var timeoutID;
+dis.innerHTML = "Time Left: " + timerLength;
 
+if(localStorage.getItem('myTime')){
+    Update();
+}
+start.onclick = function () {
+    localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
+    if (timeoutID !== undefined) window.clearTimeout(timeoutID);
+    Update();
+};
+
+function Update() {
+    finishTime = localStorage.getItem('myTime');
+    var timeLeft = (finishTime - new Date());
+    dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
+    timeoutID = window.setTimeout(Update, 100);
+}
+
+</script>
+<script>var $draggable = $('.draggable').draggabilly();</script>
 <script>window.onload = function () {
     "use strict";
     var paths = document.getElementsByTagName('path');
@@ -753,7 +781,23 @@ function animate() {
 // And get it started by calling animate().
 animate();
 </script>
-        
+<!-- Add these scripts to  the bottom of the page -->
+<!-- jQuery 1.7+ -->
+<!--<script src="jquery.1.7.min.js"></script>-->
+
+<!-- Clippy.js -->
+<script src="<?php echo base_url('clippy.js-master/build/clippy.min.js'); ?>"></script>
+
+<!-- Init script -->
+<script type="text/javascript">
+    clippy.load('Links', function(agent){
+        // do anything with the loaded agent
+        agent.show();
+        agent.speak('My name is Links.');
+    });  
+    
+</script>
+
 <!--<script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});</script>-->
 <!-- End Nav Bar -->
 
