@@ -392,6 +392,12 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
 		</div> modal-dialog 
 	</div> modal -->
 
+<style type="text/css">
+    .navbaricons2 :hover{
+        cursor:url(<?php echo base_url('images/cursors/aric.cur'); ?>), auto;
+    }
+</style>
+
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid"  style="margin:0.5%;">
             <div class = "navbar-header" style = "margin-left: 50px;">
@@ -423,10 +429,6 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
                                 <span id="interim_span" class="interim"></span>
                             </span>
                         </span>
-                        
-                            
-                            
-                        
                     </form>
                 </div>
         
@@ -447,7 +449,8 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
                                     <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
-            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
+                        <div class="navbaricons2">
+                            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Logout</a>
 
                             <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                 <i class = "fa fa-paint-brush"></i>Theme
@@ -461,7 +464,8 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
                                 <i class = "glyphicon glyphicon-exclamation-sign"></i>Notifs    
                                 <span class="tooltiptext">You can check your notifications here!</span>
                             </a>
-                            <div class="vl"  style="margin-right:0.3%;"></div><div>
+                            <div class="vl"  style="margin-right:0.3%;"></div>
+                            
  
                                 <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong><span class="tooltiptext">You can browse others' topics here!</span></a>
                                 <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
@@ -469,7 +473,7 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
                                 <img class = "img-circle nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                                 <?php echo $logged_user->first_name; ?><span class="tooltiptext">Check your profile!</span></a>
 
-                </div>
+                        </div>
             </div>
         </div>
     </nav>
