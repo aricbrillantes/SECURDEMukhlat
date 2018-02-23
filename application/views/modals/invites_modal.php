@@ -25,6 +25,7 @@
                         <ul class="nav nav-pills nav-justified" style = "margin-bottom: 10px;">
                             <li class = "active"><a data-toggle="pill" href="#requests-div"><strong>Themes</strong></a></li>
                             <li><a data-toggle="pill" href="#invites-div"><strong>Extras</strong></a></li>
+                            <li><a data-toggle="pill" href="#cursors-div"><strong>Pointers</strong></a></li>
                         </ul>
                     </div>
                     <div class = "col-md-12">
@@ -73,6 +74,51 @@
                                 <tr><td colspan="4"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
                                 </table>
                             </div>
+                            <div id="cursors-div" class="tab-pane fade in">
+                                <table style="width:100%"><tr>
+<!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
+                                <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
+                                <td class="defaultpointer"><div class="blocks" onClick="changePointer('');"><br>Default</div></td>
+                                <td class="aric"><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/aric.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/aric.cur'); ?>"/><br>Aric</div></td>
+                                <td class="kyloren"><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/kyloren.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/kyloren.cur'); ?>"/><br>Kylo Ren</div></td>
+                                <td class="watermelon"><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/watermelon.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/watermelon.cur'); ?>"/>Watermelon</div></td>
+                                <td class="stormtrooper"><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/stormtrooper.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/stormtrooper.cur'); ?>"/>Stormtrooper</div></td>
+                                </tr>
+                                <td class="ugandanknuckles"><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>"/>Da Wae</div></td>
+                               
+                                <tr><td>&nbsp</td></tr>
+                                <tr><td colspan="4"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
+                                </table>
+                            </div>
+                            
+                                <style type="text/css">
+                                    .defaultpointer :hover{
+                                        cursor:pointer;
+                                    }
+                                    
+                                    .aric :hover{
+                                        cursor:url(<?php echo base_url('images/cursors/aric.cur'); ?>), auto;
+                                    }
+                                    
+                                    .kyloren :hover{
+                                        cursor:url(<?php echo base_url('images/cursors/kyloren.cur'); ?>), auto;
+                                    }
+                                    
+                                    .watermelon :hover{
+                                        cursor:url(<?php echo base_url('images/cursors/watermelon.cur'); ?>), auto;
+                                    }
+                                    
+                                    .stormtrooper :hover{
+                                        cursor:url(<?php echo base_url('images/cursors/stormtrooper.cur'); ?>), auto;
+                                    }
+                                    
+                                    .ugandanknuckles :hover{
+                                        cursor:url(<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>), auto;
+                                    }
+                                    
+                                    
+                                </style>
+                            
                         </div>
                     </div>
                 </div>
@@ -87,34 +133,41 @@
     document.cookie = "ButtonColor1=" + getCookie("ButtonColor") + ";" + ";path=/";
     document.cookie = "ButtonHColor1=" + getCookie("ButtonHColor") + ";" + ";path=/";
     document.cookie = "ButtonAColor1=" + getCookie("ButtonAColor") + ";" + ";path=/"; 
+    document.cookie = "MousePointer1=" + getCookie("MousePointer") + ";" + ";path=/"; 
+    
     function changeBGColor(value, value2, value3, value4, value5)
-                    {
-                        //var d = new Date();
-                        //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-                        //var expires = "expires="+d.toUTCString();
-                        
-                        document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
-                        document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
-                        document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
-                        document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
-                        document.cookie = "ButtonAColor=" + value5 + ";" + ";path=/";
-                    }
+    {
+        //var d = new Date();
+        //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+        //var expires = "expires="+d.toUTCString();
+
+        document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
+        document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
+        document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
+        document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
+        document.cookie = "ButtonAColor=" + value5 + ";" + ";path=/";
+    }
+   
+    function changePointer(value)
+    {
+        document.cookie = "MousePointer=" + value + ";" + ";path=/";
+    }
 
     function addBGsound(value)
-                    {
-//                     var x = document.getElementById("soundswitch1");
-//                     var y = document.getElementById("soundswitch");
-//                        if (x.style.display === "none") {
-//                        x.style.display = "block";
-//                        y.style.display = "none";}
-//                        else {
-//                        x.style.display = "none";
-//                        y.style.display = "block";
-//                        }
-                    
-                        document.cookie = "soundbg1=" + value + ";" + ";path=/";   
+    {
+//        var x = document.getElementById("soundswitch1");
+//        var y = document.getElementById("soundswitch");
+//           if (x.style.display === "none") {
+//           x.style.display = "block";
+//           y.style.display = "none";}
+//           else {
+//           x.style.display = "none";
+//           y.style.display = "block";
+//           }
 
-                    }
+        document.cookie = "soundbg1=" + value + ";" + ";path=/";   
+
+    }
                     
         function addBGsnow(value)
                     {                    

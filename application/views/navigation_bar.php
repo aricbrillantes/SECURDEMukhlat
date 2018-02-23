@@ -42,13 +42,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .trail{background:' + getCookie("ButtonAColor") + '!important;}\n\
                     body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
+                    :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}<\/style>');
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
                
     }
-    
+        
     var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
@@ -61,6 +63,12 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 html {filter:brightness(0.87) sepia(0.25);}<\/style>');
         } 
 </script>
+
+<style type="text/css">
+    .btn:hover{
+        transform: scale(1.15);
+    }
+</style>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>
 <!--<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>-->
@@ -391,12 +399,6 @@ data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'
 			</div> modal-content 
 		</div> modal-dialog 
 	</div> modal -->
-
-<style type="text/css">
-    .navbaricons2 :hover{
-        cursor:url(<?php echo base_url('images/cursors/aric.cur'); ?>), auto;
-    }
-</style>
 
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid"  style="margin:0.5%;">
