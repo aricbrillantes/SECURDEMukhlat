@@ -40,7 +40,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
                     .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .trail{background:' + getCookie("ButtonAColor") + '!important;}<\/style>');
+                    .trail{background:' + getCookie("ButtonAColor") + '!important;}\n\
+                    body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    body ::selection{background:' + getCookie("ButtonHColor") + ';}<\/style>');
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 

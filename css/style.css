@@ -311,7 +311,7 @@ textarea{
     margin-bottom: 20px;
     letter-spacing: -1px;
     font-weight: bolder;
-    //text-shadow: 0px 0px 1px #5b7375;
+    /*text-shadow: 0px 0px 1px #5b7375;*/
 }
 .sign-in-meesage{
     font-size:120%;
@@ -645,7 +645,7 @@ textarea{
     background-color: #E0E0E0;
     padding-left: 10px;
     color: #757575;
-    //border-top: 1px solid #F5F5F5;
+    /*border-top: 1px solid #F5F5F5;*/
 }
 
 .user-post-footer{
@@ -1478,4 +1478,22 @@ END CHAT
 
 .btn .btn-primary .buttonsbgcolor:hover .tooltiptext {
     visibility: visible;
+}
+
+body ::selection {
+  color: white;
+  background: green;
+}
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: green;
+  outline: 1px solid slategrey;
 }
