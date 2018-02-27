@@ -79,7 +79,8 @@ class Topic extends CI_Controller {
             $this->load->view('errors/error_404');
         }
     }
-
+    
+    
     public function create() {
         $input = $this->input;
         $logged_user = $_SESSION['logged_user'];
@@ -93,6 +94,10 @@ class Topic extends CI_Controller {
         $this->db->set('date_created', 'NOW()', FALSE);
         $this->db->insert('tbl_topics', $data);
         $topic_id = $this->db->insert_id();
+        
+        
+        
+        
         
         // ATTACHMENTS
         if (!file_exists('./uploads1/_' . $topic_id . '/')) {
@@ -672,10 +677,10 @@ class Topic extends CI_Controller {
         $html = "";
         foreach ($topics as $topic) {
             $user = $topic->user;
-            $html = $html . "<a class = \"list-group-item btn btn-link list-entry\" href = \"topic/view/" . $topic->topic_id . "\">\n"
-                    . "<h4 class = \"text-info no-padding no-margin\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4>\n"
+            $html = $html . "<a class = \"topic-grid1\" href = \"topic/view/" . $topic->topic_id . "\">\n"
+                    . "<h4 class = \"text-info no-padding no-margin text1color\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4><br>\n"
                     . "<small><i>by " . $user->first_name . " " . $user->last_name . " </i></small>\n"
-                    . "<div class = \"pull-right\">\n"
+                    . "<div class = \"topic-grid-icons\">\n"
                     . "<span class = \"label label-info follower-label\"><i class = \"fa fa-group\"></i> " . ($topic->followers ? count($topic->followers) : '0')
                     . " <i class = \"fa fa-comments\"></i> " . $topic->post_count . "</span>\n"
                     . "</div>\n"

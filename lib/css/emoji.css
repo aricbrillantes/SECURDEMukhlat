@@ -89,16 +89,22 @@ img.emoji {
 }
 
 .emoji-wysiwyg-editor {
-    padding: 6px;
+    padding: 6px 12px;
     padding-right: 35px;
     margin-bottom: 0px;
     min-height: 35px; /* 35 */
-    height: 30px;
-    max-height: 284px;
+    height: 34px;
+    max-height: 285px;
     overflow: auto;
-    line-height: 17px;
-    border: 1px solid #d2dbe3;
-    border-radius: 2px;
+    resize: vertical;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
     -webkit-box-shadow: none;
     box-shadow: none;
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;

@@ -11,18 +11,26 @@ include(APPPATH . 'views/header.php');
     ?>
     
     <!-- CODE HERE -->
-    
+<!--    <div class="well well-sm">
+        <strong>Display</strong>
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>-->
+    </div>
+
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
                 <div class = "col-md-12 home-container">
                     <!-- HEADER -->
                     <div class = "clearfix content-container" style="border-radius:20px;">
-                        <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+<!--                        <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
-                        </a>
+                        </a>-->
 
-                        <div class = "col-sm-4 home-user-text">
+<!--                        <div class = "col-sm-4 home-user-text">
                             <a href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" class = "btn btn-link home-username text1color"><strong><?php echo $logged_user->first_name; ?></strong></a>
                             <i class = "fa fa-caret-right header-arrow"></i> 
                             <div class="home-dropdown dropdown">
@@ -33,8 +41,9 @@ include(APPPATH . 'views/header.php');
                                     <li><a href="topic">Topic</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal"><i class = "fa fa-pencil"></i> Create Topic</a>
+                        </div>-->
+<center><a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal"><i class = "fa fa-pencil"></i> Create Topic</a>
+</center>
                     </div>
                 </div>
 
@@ -59,6 +68,7 @@ include(APPPATH . 'views/header.php');
                     </div>
                     <div id = "topic-list" class = "list-group">
                         <?php foreach ($topics as $topic): ?>
+                                        
                             <a class="topic-grid1" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
                                 <h4 class = "text-info no-padding no-margin text1color" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
                                 <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
@@ -77,36 +87,7 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
-
-        
         <script>
-            var amountScrolled = 50;
-
-            $(window).scroll(function() {
-                if ( $(window).scrollTop() > amountScrolled ) {
-                    $('a.sf-back-to-top').fadeIn('slow');
-                } else {
-                    $('a.sf-back-to-top').fadeOut('slow');
-                }
-            });
-
-            $('a.sf-back-to-top').click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 700);
-                return false;
-            });
-            
-            window.onscroll = function() {scrollFunction();};
-
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementsByClassName("balloon").style.display = "block";
-                } else {
-                    document.getElementsByClassName("balloon").style.display = "none";
-                }
-            }
-
             // When the user clicks on the button, scroll to the top of the document
             function topFunction() {
                 document.body.scrollTop = 0; // For Safari
@@ -115,8 +96,8 @@ include(APPPATH . 'views/header.php');
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="float:center;padding-top:50%;">Up!</p></div>
-        
+        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="float:center;padding-top:50%;cursor:pointer;">Up!</p></div>
+        <div  onclick="window.scrollTo(0, document.body.scrollHeight);"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
         <!--
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture2.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture6.png'); ?>"/></span>

@@ -1,6 +1,8 @@
 <?php
     $topic = $_SESSION['current_topic'];
 ?>
+
+<link href="<?php echo base_url('lib/css/emoji.css'); ?>" rel="stylesheet">
 <!-- Create Post Modal -->
 <div id="create-reply-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -14,11 +16,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for = "title">Enter a title for your reply (Optional):</label>
-                        <input type="text" class="form-control" maxlength = "100" name = "reply_title" id = "reply-title" placeholder = "Title of your post"/>
+                        <p class="lead emoji-picker-container">
+                        <input type="text" class="form-control" maxlength = "100" name = "reply_title" id = "reply-title" placeholder = "Title of your post" data-emojiable="true"/>
+                        </p>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your reply:</label>
-                        <textarea class = "form-control" maxlength = "16000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!"></textarea>
+                        <p class="lead emoji-picker-container">
+                        <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
+                        </p>
                     </div>
                     <div id = "attachment-buttons" class = "form-group">
                         Attach a file:
@@ -57,3 +63,26 @@
         </div>
     </div>
 </div>
+
+    <!-- Begin emoji-picker JavaScript -->
+    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/util.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
+    <!-- End emoji-picker JavaScript -->
+
+    <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '<?php echo base_url('lib/img/');?>',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+    </script>
+    

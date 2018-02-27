@@ -58,14 +58,17 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //      night mode script
         if(hours > 19){
             document.write('<style type="text/css">\n\
-                html {background' + getCookie("backgroundColor") + ';}\n\
-                html {filter:brightness(0.87) sepia(0.25);}<\/style>');
+                #overlay {display:block !important;}<\/style>');
         }
 </script>
-<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
-<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>
-<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>
-<head><link rel="stylesheet" type="text/css" href="<?php echo base_url('clippy.js-master/build/clippy.css'); ?>" media="all">
+<!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
+<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>-->
+<!--<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>-->
+<head>
+    
+    <script type="text/javascript" src="<?php echo base_url('sound-mouseover/sound-mouseover.js'); ?>"></script>
+    
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('clippy.js-master/build/clippy.css'); ?>" media="all">-->
     <style>
         svg{
         display: block;
@@ -188,8 +191,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-
-    
     <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
     <!--Voice Search Script-->
@@ -227,10 +228,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
               } else {
                 interim_transcript += event.results[i][0].transcript;
               }
-              
-              if(interim_span.innerHTML.includes("wenona") || interim_span.innerHTML.includes("winona")){
-                  (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true});
-              }
+//              
+//              if(interim_span.innerHTML.includes("wenona") || interim_span.innerHTML.includes("winona")){
+//                  (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true});
+//              }
                if(interim_span.innerHTML.includes("meow")){
                    meow.play();
                    catpeek();
@@ -330,8 +331,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <!--<div id="particles-js"></div>  stats - count particles   particles.js lib - https://github.com/VincentGarreau/particles.js  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  stats.js lib  <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>-->
     <!-- SCM Music Player http://scmplayer.co -->
     <script type="text/javascript" src="<?php echo base_url('scm-music-player-github/script.js'); ?>" 
-    data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'HUMBLE.','url':'<?php echo base_url('assets/music/HUMBLE.mp3'); ?>'},{'title':'STACKED DECK INTRO','url':'<?php echo base_url('assets/music/Stacked Deck Intro (NFS Carbon).mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" ></script>
+    data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Dora The Explorer Theme Song.','url':'<?php echo base_url('assets/music/Dora The Explorer Theme Song.mp3'); ?>'},{'title':'Flight of the Bumble-Bee','url':'<?php echo base_url('assets/music/Flight of the Bumble-Bee.mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" ></script>
     <!-- SCM Music Player script end -->
+
+    <!--night mode-->
+<div id="overlay" style="display:none;"></div>
 
 <div class="bubblesbg">
 <div class="bubble-container">
@@ -406,7 +410,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
+                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
 <!--            <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
 			Right Sidebar Modal
 		</button>-->
@@ -452,28 +456,28 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 </div>
                             </div>
                 <div class="navbaricons2">
-            <a  class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out"></i>Bye!</a>
+            <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!</a>
 
-                            <a  class="navbaricons" href="#customize-theme" data-toggle = "modal">
-                                        <i class = "fa fa-paint-brush"></i>Colors
+                            <a onmouseenter="playclip()" class="navbaricons" href="#customize-theme" data-toggle = "modal">
+                                        <i class = "fa fa-paint-brush iconin"></i>Colors
                                 <span class="tooltiptext">Change the colors of the site!</span>
                             </a>
                                     </a>
                             
-                            <a  class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
+                            <a onmouseenter="playclip()" class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
                                     <?php if ((int) $logged_user->unread_notifs > 0): ?>
                                     <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
                                     <?php endif; ?>    
-                                    <i class = "glyphicon glyphicon-exclamation-sign"></i>News    
+                                    <i class = "glyphicon glyphicon-exclamation-sign iconin"></i>News    
                                 <span class="tooltiptext">You can check your notifications here!</span>  
                             </a>
                             <div class="vl"  style="margin-right:0.3%;"></div>
  
-                                <a class="navbaricons" href="<?php echo base_url('topic') ?>"><strong><i class = "glyphicon glyphicon-list"></i>Topics</strong><span class="tooltiptext">You can browse others' topics here!</span></a>
-                                <a class="navbaricons" href="<?php echo base_url('home') ?>"><strong><i class = "glyphicon glyphicon-home"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
+                                <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('topic') ?>"><strong class="iconin"><i class = "glyphicon glyphicon-list iconin"></i>Topics</strong><span class="tooltiptext">You can browse others' topics here!</span></a>
+                                <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('home') ?>"><strong class="iconin"><i class = "glyphicon glyphicon-home iconin"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
                                
-                                <a class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
-                                <img class = "img-circle nav-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
+                                <a onmouseenter="playclip()" class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
+                                <img class = "img-circle nav-prof-pic iconin" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                                 <?php echo $logged_user->first_name; ?><span class="tooltiptext">Check your profile!</span></a>
 
                 </div>
@@ -513,7 +517,7 @@ function Update() {
 
 </script>
 <script>var $draggable = $('.draggable').draggabilly();</script>
-<script>window.onload = function () {
+<!--<script>window.onload = function () {
     "use strict";
     var paths = document.getElementsByTagName('path');
     var visualizer = document.getElementById('visualizer');
@@ -570,7 +574,7 @@ function Update() {
                               null;*/
     navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
 
-};</script>
+};</script>-->
 <script>(function() {
   var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
 
@@ -786,9 +790,9 @@ animate();
 <!--<script src="jquery.1.7.min.js"></script>-->
 
 <!-- Clippy.js -->
-<script src="<?php echo base_url('clippy.js-master/build/clippy.min.js'); ?>"></script>
+<!--<script src="<?php echo base_url('clippy.js-master/build/clippy.min.js'); ?>"></script>
 
-<!-- Init script -->
+ Init script 
 <script type="text/javascript">
     clippy.load('Links', function(agent){
         // do anything with the loaded agent
@@ -796,7 +800,12 @@ animate();
         agent.speak('My name is Links.');
     });  
     
-</script>
+</script>-->
+<audio>
+<source src="<?php echo base_url('sound-mouseover/click.mp3'); ?>">
+<source src<?php echo base_url('sound-mouseover/click.ogg'); ?>">
+</audio>
+<div id="sounddiv"><bgsound id="sound"></div>
 
 <!--<script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});</script>-->
 <!-- End Nav Bar -->

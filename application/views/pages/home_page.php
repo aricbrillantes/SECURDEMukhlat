@@ -17,11 +17,10 @@ include(APPPATH . 'views/header.php');
                     <!-- HEADER -->
                     <div class = "clearfix content-container" style="border-radius:20px;">
                     <center>
-                                <a id="crettop" class ="btn btn-primary buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil"></i> Create Topic</a>
-                                <a id="crettop" class="btn btn-primary buttonsbgcolor" href="<?php echo base_url('topic') ?>" style="margin:1%"><strong><i class = "glyphicon glyphicon-list"></i> Go to Topics</strong></a>                   
+                                <a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil iconin"></i> Create Topic</a>
+                                <a onmouseenter="playclip()" id="crettop" class="btn btn-primary buttonsbgcolor" href="<?php echo base_url('topic') ?>" style="margin:1%"><i class = "glyphicon glyphicon-list iconin"></i> Go to Topics</a>                   
                                 <!--<a id="crettop" class="btn btn-primary buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</a>-->
-</center>
-
+                    </center>
                     </div>
 <!--                    <div class = "clearfix content-container" style="border-radius:20px;">
 

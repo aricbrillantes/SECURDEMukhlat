@@ -79,8 +79,10 @@ $topic = $_SESSION['current_topic'];
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
-                        <input type="text" maxlength = "100" required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
-                    <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
+                        <p class="lead emoji-picker-container">
+                        <input type="text" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true"/>
+                        </p>
+                        <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
                             <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
                             <!--<button onclick="startDictation2(event)">Try it</button>-->
                     </div>
@@ -206,7 +208,7 @@ $topic = $_SESSION['current_topic'];
 </script>
                     
                     <!--camera-->
-                    
+<!--                    
 <script>(function() {
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -321,7 +323,7 @@ $topic = $_SESSION['current_topic'];
   // Set up our event listener to run the startup process
   // once loading is complete.
   window.addEventListener('load', startup, false);
-})();</script>
+})();</script>-->
 
     <!-- Begin emoji-picker JavaScript -->
     <script src="<?php echo base_url('lib/js/config.js');?>"></script>

@@ -40,6 +40,12 @@ class Attachment_model extends CI_Model {
         return $attachments;
     }
     
+    public function get_topic_covers($topic_id){
+        $attachments = $this->db->get_where('tbl_covers', array('topic_id' => $topic_id))->result();
+        
+        return $attachments;
+    }
+    
     public function get_thread_attachments($post_id){
         $this->db->select('a.attachment_id, p.post_id, a.attachment_type_id, a.caption, a.date_uploaded, a.file_url');
         $this->db->from('tbl_attachments as a');

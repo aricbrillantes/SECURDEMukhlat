@@ -59,7 +59,9 @@ $c_topic = $_SESSION['current_topic'];
                             <?php if ($is_moderated): ?>
                                 <div id = "desc-edit" class = "col-md-12 hidden">
                                     <div class = "form-group" style = "margin-bottom: 5px;">
-                                        <textarea id = "edit-topic-text" maxlength = "256" class = "form-control"><?php echo $c_topic->topic_description ?></textarea>
+                                        <p class="lead emoji-picker-container">
+                                        <textarea id = "edit-topic-text" maxlength = "256" class = "form-control"  data-emojiable="true"><?php echo $c_topic->topic_description ?></textarea>
+                                        </p>
                                     </div>
                                     <div class = "form-group pull-right" style = "margin-top: 0px;">
                                         <button value = "<?php echo $c_topic->topic_id ?>" id = "edit-topic-save" class = "btn btn-primary btn-sm">Save</button>

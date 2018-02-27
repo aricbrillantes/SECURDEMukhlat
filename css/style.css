@@ -1,6 +1,6 @@
 body{
     background-color: #D7eadd;
-    font-family: 'Sniglet-Regular', 'Sniglet-Regular', sans-serif;
+    font-family: 'AsparagusSprouts', 'AsparagusSprouts', sans-serif;
 }
 
 body.sign-in{
@@ -8,7 +8,7 @@ body.sign-in{
     background: linear-gradient(to top, #d7eadd, white);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: 'Sniglet-Regular', 'Sniglet-Regular', sans-serif;
+    font-family: 'AsparagusSprouts', 'AsparagusSprouts', sans-serif;
     height: 500px;
 }
 .soundbg{
@@ -20,6 +20,15 @@ body.sign-in{
     opacity: 1;
     
 }
+
+a{
+    cursor:pointer !important;
+}
+
+.iconin{
+     cursor:pointer !important;
+}
+
 .topic-grid1{
     background-color: whitesmoke;
     margin:1.5%;
@@ -54,8 +63,8 @@ body.sign-in{
 }
 
 .pinwheel1{
-    height:3%;
-    width:3%;
+    max-height: 3%;
+    max-width:3%;
     position: absolute; 
     z-index: 1; 
     right:0;
@@ -83,7 +92,9 @@ body.sign-in{
 #crettop{
     border-radius: 20px;
     border:0px;
+    cursor:pointer;
 }
+
 
 .topic-grid-icons{
     position:absolute;
@@ -226,7 +237,6 @@ snap-drawer {
     }
     
     
-    
 .buttonsgo{
     transition: transform 0.25s;
 }
@@ -238,6 +248,7 @@ snap-drawer {
 
 .buttonsbgcolor{
     border:0;
+    cursor:pointer !important;
 }
 
 .vl {
@@ -341,7 +352,7 @@ textarea{
 }
 
 .sign-in-logo{
-    font-family: 'Sniglet-Regular', sans-serif;
+    font-family: 'AsparagusSprouts', sans-serif;
     color: white;
     font-size: 47px;
     text-align: center;
@@ -382,20 +393,25 @@ textarea{
     src: url("../assets/fonts/Sniglet-Regular.otf");
 }
 
+@font-face{
+    font-family: "AsparagusSprouts";
+    src: url("../assets/fonts/AsparagusSprouts.ttf");
+}
+
 .sign-in-content{
     width: 60%;
     margin-right: auto;
     margin-left: auto;
-    font-family:'Sniglet-Regular';
+    font-family:'AsparagusSprouts';
 }
 
 .sign-in-header{
     text-align: center;
-    font-family: 'Sniglet-Regular', sans-serif; 
+    font-family: 'AsparagusSprouts', sans-serif; 
 }
 
 .navbar-font{
-    font-family: 'Sniglet-Regular', sans-serif;
+    font-family: 'AsparagusSprouts', sans-serif;
     background-color: green;
 }
 
@@ -1159,6 +1175,48 @@ END CHAT
     width: 100%;
 }
 
+.rock1{
+    width:80px;
+  height:70px;
+  position: fixed;
+  top: 100px;
+  right: 50px;
+}
+.rock1:hover{
+    cursor:pointer;
+}
+
+.goingdown{
+    transition: 2s ease;
+}
+
+.goingdown:hover{
+transform: rotate(1080deg);
+}
+
+.centeredbot {
+    position: fixed;
+    top: 120px;
+    right: 70px;
+    z-index: 1;
+    color: white;
+    cursor: pointer !important;
+    pointer-events: none;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 999999999;
+    pointer-events: none;
+    
+}
 .balloon {
   display:inline-block;
   width:80px;
@@ -1166,7 +1224,7 @@ END CHAT
   background:hsl(215,50%,65%);
   border-radius:80%;
   position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
+  bottom: 30px; /* Place the button at the bottom of the page */
   right: 30px; /* Place the button 30px from the right */
   box-shadow:inset -10px -10px 0 rgba(0,0,0,0.07);
   margin:20px 30px;
@@ -1175,6 +1233,10 @@ END CHAT
   animation:balloons 4s ease-in-out infinite;
   transform-origin:bottom center;
   
+  
+}
+.balloon:hover{
+    cursor:pointer;
 }
 
 @keyframes balloons {
@@ -1520,7 +1582,7 @@ END CHAT
     visibility: visible;
 }
 
-+body ::selection {
+body ::selection {
   color: white;
   background: green;
 }
