@@ -7,6 +7,7 @@ $user = $post->user;
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
+    
     <div id = "thread-page" class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">

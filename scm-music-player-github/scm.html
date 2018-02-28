@@ -19,12 +19,10 @@ body{overflow:hidden; background:transparent; }
 <link rel="stylesheet" type="text/css" data-bind="attr:{href:skin}" id="skin" />
 </head>
 <body>
-	<div id="contentW" data-bind="style:{top:placement()=='top'?'25px':'0',
-		bottom:placement()=='top'?'0':'25px', right:showPlaylist()?'202px':'0'}">
+	<div id="contentW" data-bind="style:{top:placement()==='top'?'25px':'0',
+		bottom:placement()==='top'?'0':'25px', right:showPlaylist()?'202px':'0'}">
 <script type="text/javascript">
 (function(){
- 	if(window==window.parent)
-		location.href = 'http://scmplayer.net';
 	var addEvent = function(elm, evType, fn) {
 			if(elm.addEventListener) 
 				elm.addEventListener(evType, fn);
@@ -39,7 +37,7 @@ body{overflow:hidden; background:transparent; }
 	window.SCMQueue = [];
 	addEvent(window,'message',function(e){
 		var data = e.data;
-		if(data.indexOf('SCM')!=0) 
+		if(data.indexOf('SCM')!==0) 
 			return;
 		if(window.SCM && window.Song)
 			(new Function("SCM,Song",data))(SCM,Song);
@@ -50,10 +48,10 @@ body{overflow:hidden; background:transparent; }
 })();
 </script>
 </div>
-<div id="playerW" data-bind="style:{ top:placement()=='top'?'0':'auto', 
-	bottom:placement()=='top'?'auto':'0',height:'25px'}"></div>
-<div id="playlistW" data-bind="style:{top:placement()=='top'?'25px':'0',
-		bottom:placement()=='top'?'0':'25px', width:showPlaylist()?'202px':'0'}"></div>
+<div id="playerW" data-bind="style:{ top:placement()==='top'?'0':'auto', 
+	bottom:placement()==='top'?'auto':'0',height:'25px'}"></div>
+<div id="playlistW" data-bind="style:{top:placement()==='top'?'25px':'0',
+		bottom:placement()==='top'?'0':'25px', width:showPlaylist()?'202px':'0'}"></div>
 
 <script type="text/javascript" src="js/lib/soundmanager/soundmanager2-nodebug-jsmin.js"></script>
 <script type="text/javascript" src="config.js?168"></script>
@@ -92,7 +90,7 @@ require([
 
 		var resize = function(){
 			$('#content').height($('#contentW').height());
-		}
+		};
 		$(window).resize(_.throttle(resize,100));
 		resize();
 

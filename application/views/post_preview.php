@@ -22,9 +22,9 @@
             <p class = "post-content text-muted" style = "font-weight: lighter;"><?php echo utf8_decode($post->post_content); ?></p>
         </div>
     </div>
-    <form action = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">
-        <button type = "submit" class = "btn btn-block btn-primary buttonsbgcolor" style="border:0;"> View Post Thread </button>
-    </form>
+    <a style="text-decoration: none;" href="<?php echo base_url('topic/thread/' . $post->post_id); ?>">
+        <button class = "btn btn-block btn-primary buttonsbgcolor" style="border:0;"> View Post Thread </button>
+    </a>
 </div>
 
 <!-- SCRIPTS -->

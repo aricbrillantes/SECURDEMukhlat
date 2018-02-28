@@ -6,8 +6,8 @@ define(['knockout'],function(ko){
 		this.url = ko.observable(data.url || '');
 		this.on = ko.observable(false);
 		this.isValid = ko.computed(function(){
-			return (typeof self.url() === 'string') && self.url()!='';
+			return (typeof self.url() === 'string') && self.url()!=='';
 		});
 
-	}
+	};
 });

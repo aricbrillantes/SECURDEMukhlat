@@ -1,5 +1,5 @@
 (function(){
-	var hasFrame = window.parent!=window,
+	var hasFrame = window.parent!==window,
 		scripts = document.getElementsByTagName('script'),
 		current = scripts[scripts.length-1],
 		config = current.getAttribute('data-config'),
@@ -18,11 +18,11 @@
 				post = function(key){
 					return function(arg){
 						var argStr = '';
-						if(typeof(arg)!='undefined')
+						if(typeof(arg)!=='undefined')
 							argStr = (key.match(/(play|queue)/) ? 'new Song(':'(') +
 								JSON.stringify(arg)+')';
 						postMessage('SCM.'+key+'('+argStr+')');
-					}
+					};
 				};
 			for(var i=0;i<keys.length;i++){
 				var key = keys[i];
@@ -46,7 +46,8 @@
 			var undef,v = 3,div = document.createElement('div'),
 			all = div.getElementsByTagName('i');
 			while (
-				div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+//                                condition but not???
+				div.innerHTML === '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
 				all[0] );
 			return v > 4 ? v : undef;
 		})(),
@@ -57,7 +58,10 @@
 				setTimeout(init,10); 
 				return;
 			}
-			if(isOutside) outside(); else inside();
+			if(isOutside) 
+                            outside(); 
+                        else 
+                            inside();
 		},
 
 		outside = function(){
@@ -85,9 +89,9 @@
 
 			addEvent(window,'load',function() {
 				setTimeout(function(){
-					while(document.body.firstChild!=scmframe)
+					while(document.body.firstChild!==scmframe)
 						document.body.removeChild(document.body.firstChild);
-					while(document.body.lastChild!=scmframe)
+					while(document.body.lastChild!==scmframe)
 						document.body.removeChild(document.body.lastChild);
 				},0);
 			});
@@ -95,7 +99,7 @@
 			//fix frame height in IE
 			addEvent(window,'resize',function(){
 				scmframe.style.height = (function(){
-					if( typeof( window.innerHeight ) == 'number' )
+					if( typeof( window.innerHeight ) === 'number' )
 						return window.innerHeight; 
 					else if( document.documentElement && document.documentElement.clientHeight ) 
 						return document.documentElement.clientHeight; 
@@ -110,11 +114,11 @@
 				path = getPath(),
 				hash = location.hash;
 			setInterval(function(){
-				if(getPath()!=path){
+				if(getPath()!==path){
 					path = getPath();
 					window.scminside.location.replace(path);
 				}
-				if(location.hash != hash){
+				if(location.hash !== hash){
 					hash = location.hash;
 					window.scminside.location.hash = hash;
 				}
@@ -131,39 +135,43 @@
 				};
 			addEvent(document.body,'click',function(e){
 				var tar = e.target;
-				var ext = (tar.target == '_blank');
-				while(!tar.tagName.match(/^(a|area)$/i) && tar!=document.body)
+				var ext = (tar.target === '_blank');
+				while(!tar.tagName.match(/^(a|area)$/i) && tar!==document.body)
 					tar = tar.parentNode;
 				if(tar.tagName.match(/^(a|area)$/i) && 
 					!tar.href.match(/.(jpg|png)$/i) && //ignore picture link
 					!tar.href.match(/^javascript:/) //ignore javascript link
 				){ 
-					if(tar.href.indexOf('#')==0){
+					if(tar.href.indexOf('#')===0){
 						//hash
-						if(tar.href != "#"){
+						if(tar.href !== "#"){
 							window.top.scminside = window;
 							window.top.location.hash = location.hash;
 							e.preventDefault();
 						}
-					}else if(tar.title.match(/^(SCM:|\[SCM\])/i)){
+					}
+                                        else if(tar.title.match(/^(SCM:|\[SCM\])/i)){
 						//SCM Play link
 						var title = tar.title.replace(/^(SCM:|\[SCM\])( )?/i,'');
 						var url = tar.href;
 						SCM.play({title:title,url:url});
 						e.preventDefault();
-					}else if(tar.href.match(/\.css$/)){
+					}
+                                        else if(tar.href.match(/\.css$/)){
 						//auto add skin
 						window.open('http://scmplayer.net/#skin='+tar.href,'_blank');
 						window.focus();
 						e.preventDefault();
-					}else if(ext || filter(tar.href).indexOf(filter(location.host))==-1 ){
+					}
+                                        else if(ext || filter(tar.href).indexOf(filter(location.host))===-1 ){
 						if(tar.href.match(/^http(s)?/)){
 							//external links
 							window.open(tar.href,'_blank');
 							window.focus();
 							e.preventDefault();
 						}
-					}else if(history.pushState){
+					}
+                                        else if(history.pushState){
 						//internal link & has pushState
 						//change address bar href
 						var url = filter(tar.href).replace(filter(destHost),'');
@@ -187,12 +195,15 @@
 		'loadPlaylist,repeatMode,isShuffle,showPlaylist,'+
 		'togglePlaylist,toggleShuffle,changeRepeatMode');
 
-	if(window.SCM && window.SCMMusicPlayer) return;
+	if(window.SCM && window.SCMMusicPlayer) 
+            return;
 
-	if(!isMobile) init();
+	if(!isMobile) 
+            init();
 
 	//send config
-	if(config) postConfig(config);
+	if(config) 
+            postConfig(config);
 	SCM.init = postConfig;
 
 	window.SCMMusicPlayer = window.SCMMusicPlayer || SCM;

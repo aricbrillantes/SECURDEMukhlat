@@ -25,7 +25,7 @@ var	playback = null,
 	autoPlay = ko.observable(false),
 	queue = function(song){
 		var matches = _(playlist()).filter(function(el){
-			return el.url() == song.url();
+			return el.url() === song.url();
 		});
 		if(matches.length>0) 
 			return matches[0];
@@ -61,7 +61,7 @@ var	playback = null,
 						url:unescape(item.url)
 					});
 				}));
-		}
+		};
 	})(),
 	filteredList = (function(){
 		var list, isDirty = true;
@@ -75,7 +75,7 @@ var	playback = null,
 			});
 			isDirty = false;
 			return list;
-		}
+		};
 	})(),
 
 	shuffledList = (function(){
@@ -100,7 +100,7 @@ var	playback = null,
 			list = _.shuffle(filteredList());
 			isDirty = false;
 			return list;
-		}
+		};
 	})(),
 
 	message = ko.observable(null),
@@ -179,7 +179,7 @@ var	playback = null,
 				});
 			else
 				pause();
-		}
+		};
 	})(),
 
 	change = function(d){
@@ -187,9 +187,9 @@ var	playback = null,
 		var len = list.length;
 		var i = d + _.indexOf(list,current());
 		//empty playlist or non repeat end
-		if(len==0 || (repeatMode()==0 && i==len)) current(null);
+		if(len===0 || (repeatMode()===0 && i===len)) current(null);
 		//non repeat at beginning
-		else if(repeatMode()==0 && i<0) current(list[0]);
+		else if(repeatMode()===0 && i<0) current(list[0]);
 		//wrap around
 		else current(list[(i + len) % len]); 
 	},
@@ -199,7 +199,7 @@ var	playback = null,
 
 	finish = function(){
 		//repeat one start again, otherwise next song
-		if(repeatMode()==2) start();
+		if(repeatMode()===2) start();
 		else next();
 	};
 		

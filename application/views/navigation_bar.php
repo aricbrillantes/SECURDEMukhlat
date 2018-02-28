@@ -4,7 +4,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 ?>
 
 <?php include(APPPATH . 'views/modals/birthday_modal.php'); ?>
-
 <script type="text/javascript">
     function getCookie(cname) {
         var name = cname + "=";
@@ -47,12 +46,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}<\/style>');
     
-//    .tooltip1 .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
     }
-    
+        
         var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
         var birthMonth = birthDate.getMonth()+1;
         var birthDay = birthDate.getDate();
@@ -61,19 +58,18 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var curMonth = currentDate.getMonth()+1;
         var curDay = currentDate.getDate();
         
-//        night mode script
+//      night mode script
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
-        
-//        alert(birthMonth + "/" + birthDay + " - " + curMonth + "/" + curDay);
-        
+//        alert(hours);
+
+
         if(hours > 19){
             document.write('<style type="text/css">\n\
-                html {background' + getCookie("backgroundColor") + ';}\n\
-                html {filter:brightness(0.87) sepia(0.25);}<\/style>');
+                #overlay {display:block !important;}<\/style>');
         }
-      
+        
         if(birthMonth===curMonth && birthDay===curDay)
         {
 //            alert(getCookie("birthday"));
@@ -93,8 +89,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             $("#birthdaypopup").on("hidden.bs.modal", function () {
                 location.href="http://localhost/MukhlatBeta/home";
             });
-            
         }
+        
 </script>
 <!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>-->
@@ -187,7 +183,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 		background-color: #FAFAFA;
 	}
 </style>-->
-<div class="snowflakebg">    
+<div class="snowflakebg" style="display: none;">    
 <div class="snowflakes" aria-hidden="true">
   <div class="snowflake" style="font-size: 30px">
   ❄
@@ -267,11 +263,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //              if(interim_span.innerHTML.includes("wenona") || interim_span.innerHTML.includes("winona")){
 //                  (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true});
 //              }
-               if(interim_span.innerHTML.includes("meow")){
-                   meow.play();
-                   catpeek();
-                   
-               }
+
               
             }
             final_span.innerHTML = linebreak(final_transcript);
@@ -303,7 +295,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             recognition.stop();
             startDictation3(event);
             document.getElementById('search').focus(); return false;
-            
         }
 
         function resetDictation(event) {
@@ -347,7 +338,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //        }
 
     </script>
-    
+
 <script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
 
 <!--particles-->
@@ -356,9 +347,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <!-- Nav Bar -->
 
 <!--<div id="particles-js"></div>  stats - count particles   particles.js lib - https://github.com/VincentGarreau/particles.js  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  stats.js lib  <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>-->
-    <!-- SCM Music Player http://scmplayer.co -->
-    <script type="text/javascript" src="<?php echo base_url('scm-music-player-github/script.js'); ?>" 
-    data-config="{'skin':'skins/simpleBlack/skin.css','volume':40,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Dora The Explorer Theme Song.','url':'<?php echo base_url('assets/music/Dora The Explorer Theme Song.mp3'); ?>'},{'title':'Flight of the Bumble-Bee','url':'<?php echo base_url('assets/music/Flight of the Bumble-Bee.mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" ></script>
+    
+<!-- SCM Music Player http://scmplayer.co -->
+<!--    <script type="text/javascript" src="<?php echo base_url('scm-music-player-github/script.js'); ?>" 
+    data-config="{'skin':'skins/simpleBlack/skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Dora The Explorer Theme Song.','url':'<?php echo base_url('assets/music/Dora The Explorer Theme Song.mp3'); ?>'},{'title':'Flight of the Bumble-Bee','url':'<?php echo base_url('assets/music/Flight of the Bumble-Bee.mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" >
+    </script>-->
     <!-- SCM Music Player script end -->
 
     <!--night mode-->
@@ -411,8 +404,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         <h1></h1>
     </div>
 
-<!--	 Modal 
-	<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+	 
+<!--	<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 
@@ -425,9 +418,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 					
 				</div>
 
-			</div> modal-content 
-		</div> modal-dialog 
-	</div> modal -->
+			</div> 
+		</div> 
+	</div>  -->
 
     <nav class = "navbar navbar-default navbar-font navbar-fixed-top" style = "box-shadow: 0px 1px 2px #ccc;">
         <div class = "container-fluid"  style="margin:0.5%;">
@@ -441,11 +434,13 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <!--            <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
 			Right Sidebar Modal
 		</button>-->
-            </div>
-             <span id="results" border="1px">
+
+            <span id="results" border="1px">
                 <span id="final_span3" class="final"></span>
                 <span id="interim_span3" class="interim"></span>
             </span>
+
+            </div>
             <div class = "collapse navbar-collapse" id = "nav-collapse">
                 <div class = "nav-left-end">
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
@@ -455,7 +450,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <button class="btn btn-default search-btn" type="submit">
                                     <i class="glyphicon glyphicon-search buttonsgo"></i>
                                 </button>
-                                <span class="btn btn-default search-btn" onclick="voiceDropdown()" id="voice-search-button">Voice Search</span>
+                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button"><i class = "fa fa-microphone buttonsgo"></i><span class="tooltiptext1">Voice search</span></span>
                             </div>
                             
                             <!--Hidden DIV for voice search-->
@@ -463,15 +458,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </span>
-                            
                             <span id="results" border="1px">
                                 <span id="final_span3" class="final"></span>
                                 <span id="interim_span3" class="interim"></span>
                             </span>
-                            
-                            <!--<span id="results" border="1px" style="display:none;">-->
-                           
-                            
                         </span>
                             
                         
@@ -488,10 +478,12 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     </select>
                                 </div>                         
                                 <div style="display: inline-block;">
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);document.getElementById('search').focus(); return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext2">Stop</span></a>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext3">Reset</span></a>
-                                    <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="voiceIndicatorON();startDictation(event);document.getElementById('search').focus();return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
+
+                                    <span id="snackbar">Speak to type is on now</span>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="voiceIndicatorOFF();stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1" style="background:red;">Stop</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="voiceIndicatorOFF();resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1" style="background:yellow;color:black">Reset</span></a>
+                                   <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
                 <div class="navbaricons2">
@@ -523,8 +515,25 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             </div>
         </div>
     </nav>
+<!--<p id="display" style="float: right">Time Left<p>
+<button id="start" style="float: right">Start</button>-->
+<!--<img class = "draggable mascoti" src = "<?php echo base_url('images/Picture1.png'); ?>"/><span class="mascotitalk">Hello</span>-->
 
-    <script type="text/javascript">
+<!-- Nav Bar Script -->
+<script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
+<script>
+function voiceIndicatorON() {
+    var VInd = document.getElementById("snackbar");
+    VInd.className = "show";
+}
+
+function voiceIndicatorOFF() {
+    var VInd = document.getElementById("snackbar");
+    VInd.className = "hide";
+}
+
+</script>
+<script type="text/javascript">
         var final_transcript3 = '';
         var recognizing3 = true;
         var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
@@ -538,7 +547,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
           recognition3.onstart = function() {
             recognizing3 = true;
-//            document.getElementById("recording").innerText = 'RECORDING';
           };
 
           recognition3.onerror = function(event) {
@@ -547,7 +555,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
           recognition3.onend = function() {
             recognizing3 = false;
-//            search.value = final_span2.innerHTML;
         };
 
        recognition3.onresult = function(event) {
@@ -559,17 +566,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
               } else {
                 interim_transcript3 += event.results[i][0].transcript;
               }
-//              
-               if(interim_span3.innerHTML.includes("meow")){
-                   meow.play();
-                   catpeek();
-               }
-               
             }
-//            alert(linebreak(interim_transcript3));
             final_span3.innerHTML = linebreak(final_transcript3);
             interim_span3.innerHTML = linebreak(interim_transcript3);
-//            search.value = linebreak(interim_transcript3);
 
                 if(interim_span3.innerHTML.includes("go to topics")){
                     location.href="http://localhost/MukhlatBeta/topic";
@@ -579,7 +578,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
                 }
                 
-                if(interim_span3.innerHTML.includes("activate voice search")){
+                if(interim_span3.innerHTML.includes("voice search")){
                     var x = document.getElementById("voicedropdown");
                     if (x.style.display === "none") {
                         x.style.display = "block";
@@ -587,15 +586,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     startDictation(event);
                 }
                 
-//            function voiceDropdown() {
-//                var x = document.getElementById("voicedropdown");
-//                if (x.style.display === "none") {
-//                    x.style.display = "block";
-//                } else {
-//                    x.style.display = "none";
-//                }
-//            }
-                
+                if(interim_span3.innerHTML.includes("meow")){
+                   meow.play();
+                   catpeek();
+                }
+
           };
         }
 
@@ -610,23 +605,17 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         }
 
         function startDictation3(event) {
-//            alert('yesss');
             recognition3.lang = 'fil-PH';
             final_transcript3 = '';
             final_span3.innerHTML = '';
             interim_span3.innerHTML = '';
             
-//            document.getElementById("recording").style.display = "block";
             
             recognition3.start();
         }
 
         function stopDictation3(event) {
-             alert('stop');    
             recognition3.stop();
-//            document.getElementById('search').focus(); return false;
-
-//            document.getElementById("recording").style.display = "none";
         }
 
         function resetDictation3(event) {
@@ -635,7 +624,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             final_transcript3 = '';
             final_span3.innerHTML = '';
             interim_span3.innerHTML = '';
-//            search.value = '';
         }
         
         var languages = new Array(
@@ -646,24 +634,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         );
 
         startDictation3(event);
-
-
-        // Close the dropdown menu if the user clicks outside of it
-//        window.onclick = function(event) {
-//          if (!event.target.matches('.dropbtn')) {
-//            var dropdowns = document.getElementsByClassName("dropdown-content");
-//            var i;
-//            for (i = 0; i < dropdowns.length; i++) {
-//              var openDropdown = dropdowns[i];
-//              if (openDropdown.classList.contains('show')) {
-//                openDropdown.classList.remove('show');
-//              }
-//            }
-//          }
-//        }
-
     </script>
-    
     <script>
     function catpeek(){
       $('#peek').show().delay('500').animate({
@@ -677,15 +648,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     
     </script>
 
-<p id="display" style="float: right">Time Left: 10<p>
-<!--<button id="start" style="float: right" onclick="start1();">Start</button>-->
-<!--<img class = "draggable mascoti" src = "<?php echo base_url('images/Picture1.png'); ?>"/><span class="mascotitalk">Hello</span>-->
-
-<!-- Nav Bar Script -->
-<script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
-
-<script>
-    var start = document.getElementById("start");
+<!--<script>
+var start = document.getElementById("start");
     var dis = document.getElementById("display");
     var finishTime = 10;
     var timerLength = 10;
@@ -725,8 +689,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         
     function Update() {
 //        finishTime = localStorage.getItem('myTime');
-
-        finishTime = getCookie("myTime");
+ finishTime = getCookie("myTime");
         var timeLeft = (finishTime - new Date());
         var ctr = 0;
         
@@ -756,10 +719,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //    var time2 = now.toUTCString();
 ////    alert(now.toUTCString() + ' assasa ' + time1);
 ////    document.cookie = 'timing=10; expires=' + now.setTime(time1)+ '10 * 1000; path=/';
-    
-</script>
+
+</script>-->
 <script>var $draggable = $('.draggable').draggabilly();</script>
-<!--<script>window.onload = function () {
+<script>window.onload = function () {
     "use strict";
     var paths = document.getElementsByTagName('path');
     var visualizer = document.getElementById('visualizer');
@@ -816,7 +779,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                               null;*/
     navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
 
-};</script>-->
+};</script>
 <script>(function() {
   var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
 
@@ -1028,7 +991,7 @@ function animate() {
 animate();
 </script>
 <!-- Add these scripts to  the bottom of the page -->
-<!-- jQuery 1.7+ -->
+<!-- jQuery 1.7+ --> 
 <!--<script src="jquery.1.7.min.js"></script>-->
 
 <!-- Clippy.js -->
