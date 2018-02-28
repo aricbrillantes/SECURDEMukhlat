@@ -3,7 +3,7 @@ include(APPPATH . 'views/header.php');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-
+<script>document.cookie = "timing=0;" + ";path=/"; </script>
 <body class = "sign-in">
     <div class = "container-fluid">
         <!-- Logo -->

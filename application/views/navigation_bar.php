@@ -3,6 +3,7 @@ $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
 ?>
 
+<?php include(APPPATH . 'views/modals/birthday_modal.php'); ?>
 
 <script type="text/javascript">
     function getCookie(cname) {
@@ -46,19 +47,53 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}<\/style>');
     
+//    .tooltip1 .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
     }
     
+        var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
+        var birthMonth = birthDate.getMonth()+1;
+        var birthDay = birthDate.getDate();
+    
+        var currentDate = new Date();
+        var curMonth = currentDate.getMonth()+1;
+        var curDay = currentDate.getDate();
+        
+//        night mode script
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
-//        alert(hours);
-
-//      night mode script
+        
+//        alert(birthMonth + "/" + birthDay + " - " + curMonth + "/" + curDay);
+        
         if(hours > 19){
             document.write('<style type="text/css">\n\
-                #overlay {display:block !important;}<\/style>');
+                html {background' + getCookie("backgroundColor") + ';}\n\
+                html {filter:brightness(0.87) sepia(0.25);}<\/style>');
+        }
+      
+        if(birthMonth===curMonth && birthDay===curDay)
+        {
+//            alert(getCookie("birthday"));
+//            alert('yes');
+//            alert(birthMonth + "/" + birthDay + " - " + curMonth + "/" + curDay);
+            if(getCookie("birthday")===0)
+                birthdayPopup();
+        }
+        
+        function birthdayPopup()
+        {
+            document.cookie = "birthday=1;" + ";path=/"; 
+             alert(getCookie("birthday"));
+//            location.href="http://localhost/MukhlatBeta/home#birthdaypopup";
+            $('#birthdaypopup').modal('show');
+            
+            $("#birthdaypopup").on("hidden.bs.modal", function () {
+                location.href="http://localhost/MukhlatBeta/home";
+            });
+            
         }
 </script>
 <!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
@@ -260,12 +295,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             final_transcript = '';
             final_span.innerHTML = '';
             interim_span.innerHTML = '';
+            stopDictation3(event);
             recognition.start();
         }
 
         function stopDictation(event) {
             recognition.stop();
+            startDictation3(event);
             document.getElementById('search').focus(); return false;
+            
         }
 
         function resetDictation(event) {
@@ -309,18 +347,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //        }
 
     </script>
-    <script>
-    function catpeek(){
-      $('#peek').show().delay('500').animate({
-        bottom: '0',
-        right:'0'
-      }).delay('900').animate({
-        bottom: '-500px',
-        right:'-500px'
-      });
-    };
     
-    </script>
 <script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
 
 <!--particles-->
@@ -415,6 +442,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 			Right Sidebar Modal
 		</button>-->
             </div>
+             <span id="results" border="1px">
+                <span id="final_span3" class="final"></span>
+                <span id="interim_span3" class="interim"></span>
+            </span>
             <div class = "collapse navbar-collapse" id = "nav-collapse">
                 <div class = "nav-left-end">
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
@@ -432,6 +463,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <span id="final_span" class="final"></span>
                                 <span id="interim_span" class="interim"></span>
                             </span>
+                            
+                            <span id="results" border="1px">
+                                <span id="final_span3" class="final"></span>
+                                <span id="interim_span3" class="interim"></span>
+                            </span>
+                            
+                            <!--<span id="results" border="1px" style="display:none;">-->
+                           
+                            
                         </span>
                             
                         
@@ -449,9 +489,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 </div>                         
                                 <div style="display: inline-block;">
                                     <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);document.getElementById('search').focus(); return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
-                                    
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1">Stop</span></a>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1">Reset</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext2">Stop</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext3">Reset</span></a>
                                     <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
@@ -484,37 +523,240 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             </div>
         </div>
     </nav>
-<p id="display" style="float: right">Time Left<p>
-<button id="start" style="float: right">Start</button>
+
+    <script type="text/javascript">
+        var final_transcript3 = '';
+        var recognizing3 = true;
+        var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
+
+        if ('webkitSpeechRecognition' in window) {
+
+          var recognition3 = new webkitSpeechRecognition();
+          recognition3.lang = 'en-US';
+          recognition3.continuous = true;
+          recognition3.interimResults = true;
+
+          recognition3.onstart = function() {
+            recognizing3 = true;
+//            document.getElementById("recording").innerText = 'RECORDING';
+          };
+
+          recognition3.onerror = function(event) {
+            console.log(event.error);
+          };
+
+          recognition3.onend = function() {
+            recognizing3 = false;
+//            search.value = final_span2.innerHTML;
+        };
+
+       recognition3.onresult = function(event) {
+                      
+            var interim_transcript3 = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                final_transcript3 += event.results[i][0].transcript;
+              } else {
+                interim_transcript3 += event.results[i][0].transcript;
+              }
+//              
+               if(interim_span3.innerHTML.includes("meow")){
+                   meow.play();
+                   catpeek();
+               }
+               
+            }
+//            alert(linebreak(interim_transcript3));
+            final_span3.innerHTML = linebreak(final_transcript3);
+            interim_span3.innerHTML = linebreak(interim_transcript3);
+//            search.value = linebreak(interim_transcript3);
+
+                if(interim_span3.innerHTML.includes("go to topics")){
+                    location.href="http://localhost/MukhlatBeta/topic";
+                }
+               
+                if(interim_span3.innerHTML.includes("go to profile")){
+                    location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
+                }
+                
+                if(interim_span3.innerHTML.includes("activate voice search")){
+                    var x = document.getElementById("voicedropdown");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    }
+                    startDictation(event);
+                }
+                
+//            function voiceDropdown() {
+//                var x = document.getElementById("voicedropdown");
+//                if (x.style.display === "none") {
+//                    x.style.display = "block";
+//                } else {
+//                    x.style.display = "none";
+//                }
+//            }
+                
+          };
+        }
+
+        var two_line = /\n\n/g;
+        var one_line = /\n/g;
+        function linebreak(s) {
+          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+        }
+
+        function capitalize(s) {
+          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+        }
+
+        function startDictation3(event) {
+//            alert('yesss');
+            recognition3.lang = 'fil-PH';
+            final_transcript3 = '';
+            final_span3.innerHTML = '';
+            interim_span3.innerHTML = '';
+            
+//            document.getElementById("recording").style.display = "block";
+            
+            recognition3.start();
+        }
+
+        function stopDictation3(event) {
+             alert('stop');    
+            recognition3.stop();
+//            document.getElementById('search').focus(); return false;
+
+//            document.getElementById("recording").style.display = "none";
+        }
+
+        function resetDictation3(event) {
+            recognition3.stop();
+            recognition3.lang = 'fil-PH';
+            final_transcript3 = '';
+            final_span3.innerHTML = '';
+            interim_span3.innerHTML = '';
+//            search.value = '';
+        }
+        
+        var languages = new Array(
+            'en-US',
+            'fil-PH',
+            'fr-FR',
+            'ko-KR'
+        );
+
+        startDictation3(event);
+
+
+        // Close the dropdown menu if the user clicks outside of it
+//        window.onclick = function(event) {
+//          if (!event.target.matches('.dropbtn')) {
+//            var dropdowns = document.getElementsByClassName("dropdown-content");
+//            var i;
+//            for (i = 0; i < dropdowns.length; i++) {
+//              var openDropdown = dropdowns[i];
+//              if (openDropdown.classList.contains('show')) {
+//                openDropdown.classList.remove('show');
+//              }
+//            }
+//          }
+//        }
+
+    </script>
+    
+    <script>
+    function catpeek(){
+      $('#peek').show().delay('500').animate({
+        bottom: '0',
+        right:'0'
+      }).delay('900').animate({
+        bottom: '-500px',
+        right:'-500px'
+      });
+    };
+    
+    </script>
+
+<p id="display" style="float: right">Time Left: 10<p>
+<!--<button id="start" style="float: right" onclick="start1();">Start</button>-->
 <!--<img class = "draggable mascoti" src = "<?php echo base_url('images/Picture1.png'); ?>"/><span class="mascotitalk">Hello</span>-->
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
 
 <script>
-var start = document.getElementById("start");
-var dis = document.getElementById("display");
-var finishTime;
-var timerLength = 10;
-var timeoutID;
-dis.innerHTML = "Time Left: " + timerLength;
+    var start = document.getElementById("start");
+    var dis = document.getElementById("display");
+    var finishTime = 10;
+    var timerLength = 10;
+    var timeoutID;
+    dis.innerHTML = "Time Left: 10";
+    
+        var myTime=new Date().getTime() + (timerLength * 1000);
+//        localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
+        
+        document.cookie = "myTime=" + myTime + ";path=/"; 
+        
+//    if(localStorage.getItem('myTime')){
+//        
+//        Update();
+//    }
+//    document.cookie = "timing=0;" + ";path=/"; 
+    
+    function start1() {
+        dis.innerHTML = "Time Left: 10";
+        var timeLeft=new Date().getTime() + (timerLength * 1000);
+//        localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
+        
+        document.cookie = "myTime=" + timeLeft + ";path=/"; 
+        
+        if (timeoutID !== undefined) 
+            window.clearTimeout(timeoutID);
+            
+        if(getCookie('timing')==='1' && dis.innerHTML === "Time Left: 0")
+        {
+            dis.innerHTML = "Time Left: 10";
+        }
+        
+        Update();
+            
+        document.cookie = "timing=1;" + ";path=/"; 
+    };
+        
+    function Update() {
+//        finishTime = localStorage.getItem('myTime');
 
-if(localStorage.getItem('myTime')){
-    Update();
-}
-start.onclick = function () {
-    localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
-    if (timeoutID !== undefined) window.clearTimeout(timeoutID);
-    Update();
-};
+        finishTime = getCookie("myTime");
+        var timeLeft = (finishTime - new Date());
+        var ctr = 0;
+        
+        if(dis.innerHTML === "Time Left: 0")
+        {
+            document.cookie = "timing=0;" + ";path=/"; 
+            alert('yes2');
+            location.href="http://localhost/MukhlatBeta/topic";
+            
+        }
+        
+        dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
+        timeoutID = window.setTimeout(Update, 100);
+        
+    }
+    
+     function End() {
+       
+    }
+    
+//    start1();
+   
 
-function Update() {
-    finishTime = localStorage.getItem('myTime');
-    var timeLeft = (finishTime - new Date());
-    dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
-    timeoutID = window.setTimeout(Update, 100);
-}
-
+//    var now = new Date();
+//    var time1 = now.getTime()+10 * 1000;
+//    now.setTime(time1);
+//    var time2 = now.toUTCString();
+////    alert(now.toUTCString() + ' assasa ' + time1);
+////    document.cookie = 'timing=10; expires=' + now.setTime(time1)+ '10 * 1000; path=/';
+    
 </script>
 <script>var $draggable = $('.draggable').draggabilly();</script>
 <!--<script>window.onload = function () {
@@ -803,7 +1045,7 @@ animate();
 </script>-->
 <audio>
 <source src="<?php echo base_url('sound-mouseover/click.mp3'); ?>">
-<source src<?php echo base_url('sound-mouseover/click.ogg'); ?>">
+<source src="<?php echo base_url('sound-mouseover/click.ogg'); ?>">
 </audio>
 <div id="sounddiv"><bgsound id="sound"></div>
 

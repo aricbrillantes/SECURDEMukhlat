@@ -330,7 +330,7 @@ snap-drawer {
 .tooltip1 .tooltiptext1 {
     visibility: hidden;
     width: 80px;
-    background-color: black;
+    background-color: green;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -343,7 +343,47 @@ snap-drawer {
     z-index: 1;
 }
 
+.tooltip1 .tooltiptext2 {
+    visibility: hidden;
+    width: 80px;
+    background-color: red;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip1 .tooltiptext3 {
+    visibility: hidden;
+    width: 80px;
+    background-color: yellow;
+    color:  black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
 .tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+}
+
+.tooltip1:hover .tooltiptext2 {
+    visibility: visible;
+}
+
+.tooltip1:hover .tooltiptext3 {
     visibility: visible;
 }
 
