@@ -4,6 +4,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 ?>
 
 <?php include(APPPATH . 'views/modals/birthday_modal.php'); ?>
+<?php include(APPPATH . 'views/modals/time_warning_modal.php'); ?>
 <script type="text/javascript">
     function getCookie(cname) {
         var name = cname + "=";
@@ -19,7 +20,14 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         }
         return "";
     }
-
+    
+    if(getCookie("ButtonColor")==='')
+    {
+        document.cookie = "ButtonColor=#1d8f15;" + ";path=/"; 
+        document.cookie = "ButtonHColor=#14620f;" + ";path=/"; 
+        document.cookie = "ButtonHColor=#185729;" + ";path=/"; 
+    }
+        
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
                      body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
@@ -40,6 +48,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
                     .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    .search-btn .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .trail{background:' + getCookie("ButtonAColor") + '!important;}\n\
                     body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
@@ -73,9 +82,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         if(birthMonth===curMonth && birthDay===curDay)
         {
 //            alert(getCookie("birthday"));
-//            alert('yes');
+//            alert('birthday');
 //            alert(birthMonth + "/" + birthDay + " - " + curMonth + "/" + curDay);
-            if(getCookie("birthday")===0)
+            if(getCookie("birthday")==='0')
                 birthdayPopup();
         }
         
@@ -288,12 +297,14 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             final_span.innerHTML = '';
             interim_span.innerHTML = '';
             stopDictation3(event);
+            voiceIndicatorON();
             recognition.start();
         }
 
         function stopDictation(event) {
             recognition.stop();
             startDictation3(event);
+            voiceIndicatorOFF();
             document.getElementById('search').focus(); return false;
         }
 
@@ -515,8 +526,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             </div>
         </div>
     </nav>
-<!--<p id="display" style="float: right">Time Left<p>
-<button id="start" style="float: right">Start</button>-->
+<p id="display" style="float: right">Time Left<p>
+<button id="start" style="float: right">Start</button>
 <!--<img class = "draggable mascoti" src = "<?php echo base_url('images/Picture1.png'); ?>"/><span class="mascotitalk">Hello</span>-->
 
 <!-- Nav Bar Script -->
@@ -573,7 +584,7 @@ function voiceIndicatorOFF() {
                 if(interim_span3.innerHTML.includes("go to topics")){
                     location.href="http://localhost/MukhlatBeta/topic";
                 }
-               
+                               
                 if(interim_span3.innerHTML.includes("go to profile")){
                     location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
                 }
@@ -648,79 +659,71 @@ function voiceIndicatorOFF() {
     
     </script>
 
-<!--<script>
-var start = document.getElementById("start");
-    var dis = document.getElementById("display");
-    var finishTime = 10;
-    var timerLength = 10;
-    var timeoutID;
-    dis.innerHTML = "Time Left: 10";
-    
-        var myTime=new Date().getTime() + (timerLength * 1000);
-//        localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
-        
-        document.cookie = "myTime=" + myTime + ";path=/"; 
-        
-//    if(localStorage.getItem('myTime')){
-//        
-//        Update();
-//    }
-//    document.cookie = "timing=0;" + ";path=/"; 
-    
-    function start1() {
-        dis.innerHTML = "Time Left: 10";
-        var timeLeft=new Date().getTime() + (timerLength * 1000);
-//        localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
-        
-        document.cookie = "myTime=" + timeLeft + ";path=/"; 
-        
-        if (timeoutID !== undefined) 
-            window.clearTimeout(timeoutID);
-            
-        if(getCookie('timing')==='1' && dis.innerHTML === "Time Left: 0")
-        {
-            dis.innerHTML = "Time Left: 10";
-        }
-        
-        Update();
-            
-        document.cookie = "timing=1;" + ";path=/"; 
-    };
-        
-    function Update() {
-//        finishTime = localStorage.getItem('myTime');
- finishTime = getCookie("myTime");
-        var timeLeft = (finishTime - new Date());
-        var ctr = 0;
-        
-        if(dis.innerHTML === "Time Left: 0")
-        {
-            document.cookie = "timing=0;" + ";path=/"; 
-            alert('yes2');
-            location.href="http://localhost/MukhlatBeta/topic";
-            
-        }
-        
-        dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
-        timeoutID = window.setTimeout(Update, 100);
-        
-    }
-    
-     function End() {
-       
-    }
-    
-//    start1();
+<script>
    
+    var now = new Date();
+    var now2 = new Date();
+    
+    var time = now.getTime();
+    var time2 = now.getTime()+(1800 * 1000);
+    
+    now.setTime(time);
+    now2.setTime(time2);
+    
+    var nowH = now.getHours().toString();
+    var nowM = now.getMinutes().toString();
+   
+//    alert('nowH '+nowH);
+//    alert('nowM '+nowM);
+    
+    if(getCookie("timeoutTime1") <= nowH.toString())
+    {        
+        if(getCookie("timed")==='0')
+        {
+            if(getCookie("nexttimed1")<=nowH.toString())
+            {
+                if(getCookie("nexttimed1")===nowH.toString())
+                {
+                   if(getCookie("nexttimed2")<nowM.toString())
+                    {
+                        alert('timeout2');
+                        $('#timepopup').modal('show');
+            
+//                        $("#timepopup").on("hidden.bs.modal", function () {
+//                            location.href="http://localhost/MukhlatBeta/home";
+//                        });
+                        
+                        document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
+                        document.cookie = "lasttimed2=" + now.getMinutes() +";path=/"; 
+                        document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
+                        document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
+                        document.cookie = "timed=1;" + ";path=/"; 
+                    }
+                }
+            }
+        }
 
-//    var now = new Date();
-//    var time1 = now.getTime()+10 * 1000;
-//    now.setTime(time1);
-//    var time2 = now.toUTCString();
-////    alert(now.toUTCString() + ' assasa ' + time1);
-////    document.cookie = 'timing=10; expires=' + now.setTime(time1)+ '10 * 1000; path=/';
+        if(getCookie("timed")==='1')
+        {
+            if(getCookie("nexttimed1")<=nowH.toString())
+            {
+                if(getCookie("nexttimed1")===nowH.toString())
+                {
+                   if(getCookie("nexttimed2")<nowM.toString())
+                    {
+                        alert('timeout2');
+                        document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
+                        document.cookie = "lasttimed2=" + now.getMinutes() +";path=/"; 
+                        document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
+                        document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
+                    }
+                }
+            }
+           
+        }
+    }
+</script>
 
-</script>-->
 <script>var $draggable = $('.draggable').draggabilly();</script>
 <script>window.onload = function () {
     "use strict";

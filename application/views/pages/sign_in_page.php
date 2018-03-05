@@ -15,7 +15,7 @@ include(APPPATH . 'views/header.php');
             <!--Sign In-->
             <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 2%; ">
                 <div id = "sign-in-container" class = "col-md-12 content-container no-padding">
-                    <form class = "form-inline" id = "log-in-form" onsubmit = "return log_in()" method = "post">
+                    <form class = "form-inline" id = "log-in-form" onsubmit = "timeLogIn(); return log_in()" method = "post">
                         <div class ="form-group">
                             <h3 class = "sign-in-header no-padding no-margin" style = "margin-left: 40px; padding: 10px;"><strong>Log In</strong></h3>
                         </div>
@@ -85,6 +85,51 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
+        
+<script>
+   document.cookie = 'birthday=0;path=/';
+   
+    var now = new Date();
+    var timeout = new Date();
+    var time1 = now.getTime();
+    var time2 = now.getTime()+(3600 * 1000);
+    
+    function timeLogIn()
+    {
+        now.setTime(time1);
+        timeout.setTime(time2);
+        var hours = now.getHours();
+        var mins = now.getMinutes();
+        var secs = now.getSeconds();
+        var meridiem = 'AM';
+        
+        if(now.getHours()>12)
+        {
+            hours=hours-12;
+            meridiem='PM';
+        }
+        
+        if(now.getMinutes()<10)
+        {
+            mins = '0' + mins;
+        }
+        
+        if(now.getSeconds()<10)
+        {
+            secs = '0' + secs;
+        }
+            
+        document.cookie = 'loginTime=' + hours + ':' + now.getMinutes() + ':' + secs + '  ' + meridiem + ';path=/';
+        document.cookie = "loginTime1=" + now.getHours() + ";path=/"; 
+        document.cookie = "loginTime2=" + now.getMinutes() +";path=/"; 
+        document.cookie = "timeoutTime1=" + timeout.getHours() +";path=/"; 
+        document.cookie = "timeoutTime2=" + timeout.getMinutes() +";path=/"; 
+        document.cookie = "timed=0;" + ";path=/"; 
+        return;
+    }
+
+//    timeLogIn();
+</script>
         
 <script type="text/javascript">
         var strength = {
