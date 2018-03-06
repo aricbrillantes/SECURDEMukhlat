@@ -41,7 +41,7 @@ include(APPPATH . 'views/header.php');
                         <center style="padding-bottom: 2%"><a href="#regi" data-toggle="collapse" ><h3 class = "sign-in-header btn btn-success buttonsgo"><strong>Sign Up for Mukhlat!</strong></h3></a></center>
                         <div id="regi" class="collapse">
                         <div class = "sign-in-form">
-                            <form id = "sign-up-form" onsubmit = "return sign_up()" method = "post">
+                            <form id = "sign-up-form" onsubmit = "timeLogIn(); return sign_up()" method = "post">
                                 <div class = "col-xs-6 form-group register-field">
                                     <input type = "text" required name = "first_name" class = "form-control sign-in-field" placeholder = "First Name" maxlength = "25">
                                 </div>
@@ -90,13 +90,16 @@ include(APPPATH . 'views/header.php');
    
     var now = new Date();
     var timeout = new Date();
+    var nexttimed = new Date();
     var time1 = now.getTime();
     var time2 = now.getTime()+(3600 * 1000);
+    var time3 = now.getTime()+(5400 * 1000);
     
     function timeLogIn()
     {
         now.setTime(time1);
         timeout.setTime(time2);
+        nexttimed.setTime(time3);
         var hours = now.getHours();
         var mins = now.getMinutes();
         var secs = now.getSeconds();
@@ -123,6 +126,10 @@ include(APPPATH . 'views/header.php');
         document.cookie = "loginTime2=" + now.getMinutes() +";path=/"; 
         document.cookie = "timeoutTime1=" + timeout.getHours() +";path=/"; 
         document.cookie = "timeoutTime2=" + timeout.getMinutes() +";path=/"; 
+        document.cookie = "lasttimed1=;path=/"; 
+        document.cookie = "lasttimed2=;path=/"; 
+        document.cookie = "nexttimed1=" + nexttimed.getHours() +";path=/"; 
+        document.cookie = "nexttimed2=" + nexttimed.getMinutes() +";path=/"; 
         document.cookie = "timed=0;" + ";path=/"; 
         return;
     }
