@@ -124,6 +124,7 @@ include(APPPATH . 'views/header.php');
     </div>
     <script>
             // When the user clicks on the button, scroll to the top of the document
+<<<<<<< HEAD
             function topFunction() {                
                 var whistleup = new Audio('<?php echo base_url('images/Slide Whistle up1.mp3'); ?>');
                 window.scroll({
@@ -131,6 +132,11 @@ include(APPPATH . 'views/header.php');
                   behavior: 'smooth' 
                 });
                 whistleup.play();
+=======
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
             }
         </script>
         

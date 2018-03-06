@@ -9,7 +9,11 @@ $logged_user = $_SESSION['logged_user'];
         <div class = "clearfix content-container" style="border-radius:20px;cursor: pointer;" id = "side-topics-followed-btn">
 
                         <a class="text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>">
+<<<<<<< HEAD
                             <img class = "pull-left img-rounded btn btn-link home-prof-pic topictop" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
+=======
+                            <img class = "pull-left img-rounded btn btn-link home-prof-pic" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>">
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
                         </a>
                         <div class = "col-sm-4 home-user-text">
                             <a class = "btn btn-link home-username text1color" href = "<?php echo base_url('user/profile/' . $logged_user->user_id); ?>"><strong><?php echo $logged_user->first_name . " " . $logged_user->last_name;?></strong></a>
@@ -75,6 +79,10 @@ $logged_user = $_SESSION['logged_user'];
                 <?php endif; ?>
             </ul>
         </div>
+<<<<<<< HEAD
+=======
+        <center><h4 id="randtriv">Random Trivia</h4></center>
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
         <div id="randtriv1">
         <?php
         $servername = "127.0.0.1";
@@ -87,9 +95,15 @@ $logged_user = $_SESSION['logged_user'];
         $sql = "SELECT Tquestion, Tanswer, Tcategory FROM tbl_trivias WHERE TriviaID = '$count'";
 	$result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
+<<<<<<< HEAD
         echo '<div class="whitebg1"> '.$row['Tcategory'].' Trivia</div><br>';
         echo '<div class="whitebg">Q: '.$row['Tquestion'].'</div><br>';
         echo '<div class="whitebg">A: '.$row['Tanswer'].'</div>';
+=======
+        echo $row['Tcategory']."<br>Q: ";
+        echo $row['Tquestion']."<br><br>A: ";
+        echo $row['Tanswer'];
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
         $conn->close();
         }?>
         <img class = "pinwheel1" src = "<?php echo base_url('images/Picture1.png'); ?>"/></div>

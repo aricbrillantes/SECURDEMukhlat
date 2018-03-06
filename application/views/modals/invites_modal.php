@@ -32,11 +32,19 @@
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
+<<<<<<< HEAD
                                 <table style="width:100%"><tr><td><div id="green" class="blocks" onClick="changeBGColor(':#D7eadd', 'linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);','#1d8f15', '#14620f', '#185729');">Green</div></td>
                                 <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', 'repeating-linear-gradient(45deg,#3485f8,#3485f8 10px,#075ad0 10px,#075ad0 20px);','#3fa0e5', '#1b7ec5', '#198bdf', '#1578c1');">Blue</div></td>
                                 <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', 'repeating-linear-gradient(-55deg,#fccfe2,#fccfe2 10px,#fac0d8 10px,#fac0d8 20px);','#f7aec4','#f07197', '#f95d9b', '#e80862');">Pink</div></td>
                                 <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', 'repeating-linear-gradient(to right,#f6ba52,#f6ba52 10px,#ffd180 10px,#ffd180 20px);','#ed8023', '#bd5f0f', '#9d4f0d');">Orange</div></td>
                                 <td><div id="violet" class="blocks" onClick="changeBGColor(':#e6e6fa', 'repeating-radial-gradient(circle,purple,purple 10px,#4b026f 10px,#4b026f 20px);','#8a49df', '#a2158e', '#660d5a');">Violet</div></td>
+=======
+                                <table style="width:100%"><tr><td><div id="green" class="blocks" onClick="changeBGColor(':#D7eadd', 'green','#1d8f15', '#14620f', '#185729');">Green</div></td>
+                                <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', '#5BC0EB','#3fa0e5', '#1b7ec5', '#198bdf', '#1578c1');">Blue</div></td>
+                                <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', '#F6B8B8','#f7aec4','#f07197', '#f95d9b', '#e80862');">Pink</div></td>
+                                <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', '#FF7F51','#ed8023', '#bd5f0f', '#9d4f0d');">Orange</div></td>
+                                <td><div id="violet" class="blocks" onClick="changeBGColor(':#e6e6fa', '#512da8','#8a49df', '#a2158e', '#660d5a');">Violet</div></td>
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
                                 </tr>
                                 <!-- flame, horizon, sky, piglet-->
                                 <tr>

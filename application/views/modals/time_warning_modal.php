@@ -17,7 +17,11 @@
         <!-- Notification Modal Content-->
         <div class="modal-content" style="background-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)">
             <div class="modal-header modal-heading" style="background-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)">
+<<<<<<< HEAD
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+=======
+                <button type="button" class="close close12" data-dismiss="modal">&times;</button>
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
                 <h4 class="modal-title text-center"><strong>timeout</strong></h4>
             </div>
             <div class="modal-body">

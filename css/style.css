@@ -18,6 +18,7 @@ body.sign-in{
     font-size:48px !important;
     color: red; 
     opacity: 1;
+<<<<<<< HEAD
 }
 
 .whitebg{
@@ -36,6 +37,9 @@ body.sign-in{
     border:0;
     font-weight: bold;
     text-align: center;
+=======
+    
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
 }
 
 span{
@@ -174,7 +178,30 @@ z-index: 50;
 
 .pinwheel1:hover{
     transform: rotate(10080deg) scale(13);
+<<<<<<< HEAD
+=======
 }
+
+/*random trivia*/
+#randtriv{
+    background-color: #d7eadd;
+    border-radius: 4px;
+>>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
+}
+#randtriv1{
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding:14px;
+}
+
+/*create topic*/
+
+#crettop{
+    border-radius: 20px;
+    border:0px;
+    cursor:pointer;
+}
+
 
 /*random trivia*/
 
