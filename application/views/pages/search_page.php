@@ -1,40 +1,6 @@
 <?php
 include(APPPATH . 'views/header.php');
 ?>
-
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
-    
-    </script>
-
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
@@ -60,7 +26,7 @@ include(APPPATH . 'views/header.php');
                                     ?>
                                     <a class = "list-group-item btn btn-link list-entry" href = "user/profile/<?php echo $user->user_id; ?>">
                                         <img class = "img-circle" width = "45px" height = "45px" src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg') ?>"/>
-                                        <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo $user->first_name . " " . $user->last_name ?></h4>
+                                        <h4 class = "text-info no-padding no-margin text1color" style = "display: inline-block;"><?php echo $user->first_name . " " . $user->last_name ?></h4>
                                     </a>
                                     <?php
                                 endforeach;
@@ -81,7 +47,7 @@ include(APPPATH . 'views/header.php');
                                 foreach ($topics as $topic):
                                     ?>
                                     <a class = "list-group-item btn btn-link list-entry" href = "topic/view/<?php echo $topic->topic_id; ?>">
-                                        <h4 class = "text-info no-padding no-margin" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4>
+                                        <h4 class = "text-info no-padding no-margin text1color" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4>
                                         <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
                                         <div class = "pull-right">
                                             <span class = "label label-info follower-label"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?>
@@ -100,7 +66,7 @@ include(APPPATH . 'views/header.php');
                     </div>
                 </div>
             </div>
-        </div>       
+        </div>      
     </div>
 
     <?php

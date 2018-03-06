@@ -45,6 +45,8 @@
 // enough that all such attempts are guarded in a try block.
 "use strict";
 
+
+
 var arr = [];
 
 var document = window.document;

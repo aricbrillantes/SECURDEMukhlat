@@ -1,81 +1,96 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
 <!-- Notification Modal -->
-<div id="invites-modal" class="modal fade" role="dialog">
+<head>
+
+<style>
+.selected{ 
+   box-shadow:0px 0px 0px 5px #000;
+}
+
+</style>
+
+</head>
+
+<div id="customize-theme" class="modal fade" role="dialog">
     <div class="modal-dialog">
+        
         <!-- Notification Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center"><strong>Invites</strong></h4>
+                <button type="button" class="close close12" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"><strong>Themes</strong></h4>
             </div>
             <div class="modal-body">
                 <div class = "row">
                     <div class = "col-md-12">
                         <ul class="nav nav-pills nav-justified" style = "margin-bottom: 10px;">
-                            <li class = "active"><a data-toggle="pill" href="#requests-div"><strong>Moderator Requests</strong></a></li>
-                            <li><a data-toggle="pill" href="#invites-div"><strong>Moderator Invites</strong></a></li>
+                            <li class = "active"><a data-toggle="pill" href="#requests-div"><strong>Themes</strong></a></li>
+                            <li><a data-toggle="pill" href="#invites-div"><strong>Extras</strong></a></li>
+                            <li><a data-toggle="pill" href="#cursors-div"><strong>Pointers</strong></a></li>
                         </ul>
-                    </div>
+                    </div></canvas>
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
-                                <?php if (!empty($logged_user->moderator_requests)): ?>
-                                    <ul class = "list-group notif-modal-overflow">
-                                        <?php foreach ($logged_user->moderator_requests as $request): ?>
-                                            <li class = "list-group-item notif-item" value = "<?php echo $request->request_id ?>">
-                                                <div class = "col-xs-1 no-padding no-margin">
-                                                    <img src = "<?php echo $request->profile_url ? base_url($request->profile_url) : base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" width = "40px" height = "40px" style = "margin-right: 10px;"/>
-                                                </div>
-                                                <div class = "col-xs-9 wrap no-margin" style = "padding: 10px;">
-                                                    <span class = "text-muted" style = "font-size: 12px;">
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $request->user_id); ?>">
-                                                            <strong><?php echo $request->first_name . " " . $request->last_name ?></strong>
-                                                        </a>
-                                                        wants to apply as a moderator in 
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $request->topic_id); ?>">
-                                                            <strong><?php echo utf8_decode($request->topic_name); ?></strong>
-                                                        </a>
-                                                        !
-                                                    </span>
-                                                </div>
-                                                <div class = "col-xs-2 no-padding no-margin">
-                                                    <button value = "<?php echo $request->request_id ?>" class = "request-accept btn btn-success btn-xs btn-block" style = "margin-bottom: 2px;"><i class = "fa fa-check"></i> Accept</button>
-                                                    <button value = "<?php echo $request->request_id ?>" class = "request-decline btn btn-danger btn-xs btn-block"><i class = "fa fa-close"></i> Decline</button>
-                                                </div>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php else: ?>
-                                    <div class = "content-container"><h4 class = "text-center text-warning">Your topics don't have any moderator requests!</h4></div>
-                                <?php endif; ?>
+                                <table style="width:100%"><tr><td><div id="green" class="blocks" onClick="changeBGColor(':#D7eadd', 'linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);','#1d8f15', '#14620f', '#185729');">Green</div></td>
+                                <td><div id="blue" class="blocks" onClick="changeBGColor(':#CBF9F3', 'repeating-linear-gradient(45deg,#3485f8,#3485f8 10px,#075ad0 10px,#075ad0 20px);','#3fa0e5', '#1b7ec5', '#198bdf', '#1578c1');">Blue</div></td>
+                                <td><div id="pink" class="blocks" onClick="changeBGColor(':#feecf2', 'repeating-linear-gradient(-55deg,#fccfe2,#fccfe2 10px,#fac0d8 10px,#fac0d8 20px);','#f7aec4','#f07197', '#f95d9b', '#e80862');">Pink</div></td>
+                                <td><div id="orange" class="blocks" onClick="changeBGColor(':#FCF7D1', 'repeating-linear-gradient(to right,#f6ba52,#f6ba52 10px,#ffd180 10px,#ffd180 20px);','#ed8023', '#bd5f0f', '#9d4f0d');">Orange</div></td>
+                                <td><div id="violet" class="blocks" onClick="changeBGColor(':#e6e6fa', 'repeating-radial-gradient(circle,purple,purple 10px,#4b026f 10px,#4b026f 20px);','#8a49df', '#a2158e', '#660d5a');">Violet</div></td>
+                                </tr>
+                                <!-- flame, horizon, sky, piglet-->
+                                <tr>
+                                <td><div id="strawberry" class="blocks" onClick="changeBGColor(':#d13030', 'green','#d13030');">Strawberry</div></td>
+                                <td><div id="sky" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #5BC0EB, #CBF9F3);', 'whitesmoke','#5BC0EB');">Sky</div></td>
+                                <td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>
+                                <td><div id="chocoice" class="blocks" onClick="changeBGColor(':#ffe3b9', '#6b3e26', '#6b3e26');"><div style="color:white;">Chocolate</div> Ice cream</div></td>
+                                <td><div id="FB" class="blocks" onClick="changeBGColor(':#e9ebee', '#4267b2', '#4267b2');">fb</div></td>
+                                </tr>
+                                <!-- image and more backgrounds-->
+                                <tr>
+                                <td><div id="galaxy" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'black','black');">Galaxy</div></td>
+                                <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', '#5BC0EB','#5BC0EB');">Rainbow</div></td>
+                                <!--<td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>-->
+<!--                            <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
+                                <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>
+                                </td>-->
+                                </tr>
+                                <tr><td>&nbsp</td></tr>
+                                <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
+                                </table>
+                            </div>
+                            <div id="invites-div" class="tab-pane fade in">
+                                <table style="width:100%"><tr>
+<!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
+                                <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
+                                <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
+                                <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
+                                <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
+                                <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div>
+                                </td>
+                                <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div>
+                                </td>
+                                </tr>
+                                <tr><td>&nbsp</td></tr>
+                                <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
+                                </table>
+                            </div>
+                            <div id="cursors-div" class="tab-pane fade in">
+                                <table style="width:100%">
+                                <tr>
+                                    <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');"><br>Default</div></center></td>
+                                <td class="aric"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/aric.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/aric.cur'); ?>"/><br>Aric</div></center></td>
+                                <td class="kyloren"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/kyloren.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/kyloren.cur'); ?>"/><br>Kylo Ren</div></center></td>
+                                <td class="watermelon"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/watermelon.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/watermelon.cur'); ?>"/>Watermelon</div></center></td>
+                                <td class="stormtrooper"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/stormtrooper.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/stormtrooper.cur'); ?>"/>Stormtrooper</div></center></td>
+                                </tr>
+                                <td class="ugandanknuckles"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>"/><br>Da Wae</div></center></td>
+
+                                <tr><td>&nbsp</td></tr>
+                                <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
+                                </table>
                             </div>
 
-                            <div id="invites-div" class="tab-pane fade in">
-                                <?php if (!empty($logged_user->moderator_invites)): ?>
-                                    <ul class = "list-group notif-modal-overflow">
-                                        <?php foreach ($logged_user->moderator_invites as $invite): ?> 
-                                            <li class = "list-group-item notif-item" value = "<?php echo $invite->invite_id ?>">
-                                                <div class = "col-xs-1 no-padding no-margin">
-                                                    <img src = "<?php echo $invite->profile_url ? base_url($invite->profile_url) : base_url("images/default.jpg"); ?>" class = "no-padding no-margin pull-left img-circle" width = "40px" height = "40px" style = "margin-right: 10px;"/>
-                                                </div>
-                                                <div class = "col-xs-9 wrap no-margin" style = "padding: 10px;">
-                                                    <span class = "text-muted" style = "font-size: 12px;">
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('user/profile/' . $invite->user_id); ?>"><strong><?php echo $invite->first_name . " " . $invite->last_name ?></strong></a>
-                                                        invited you to be a moderator of the topic 
-                                                        <a class = "btn btn-link no-padding no-margin notif-btn" href = "<?php echo base_url('topic/view/' . $invite->topic_id); ?>"><strong><?php echo utf8_decode($invite->topic_name); ?></strong></a> 
-                                                    </span>
-                                                </div>
-                                                <div class = "col-xs-2 no-padding no-margin">
-                                                    <button value = "<?php echo $invite->invite_id ?>" class = "invite-accept btn btn-success btn-xs btn-block" style = "margin-bottom: 2px;"><i class = "fa fa-check"></i> Accept</button>
-                                                    <button value = "<?php echo $invite->invite_id ?>" class = "invite-decline btn btn-danger btn-xs btn-block"><i class = "fa fa-close"></i> Decline</button>
-                                                </div>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php else: ?>
-                                    <div class = "content-container"><h4 class = "text-center">You don't have any invites to be a moderator!</h4></div>
-                                <?php endif; ?>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,3 +98,102 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    
+    document.cookie = "backgroundColor1=" + getCookie("backgroundColor") + ";" + ";path=/";  
+    document.cookie = "NavbarColor1=" + getCookie("NavbarColor") + ";" + ";path=/";  
+    document.cookie = "ButtonColor1=" + getCookie("ButtonColor") + ";" + ";path=/";
+    document.cookie = "ButtonHColor1=" + getCookie("ButtonHColor") + ";" + ";path=/";
+    document.cookie = "ButtonAColor1=" + getCookie("ButtonAColor") + ";" + ";path=/"; 
+    document.cookie = "MousePointer1=" + getCookie("MousePointer") + ";" + ";path=/"; 
+    
+    function changeBGColor(value, value2, value3, value4, value5)
+                    {
+                        //var d = new Date();
+                        //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+                        //var expires = "expires="+d.toUTCString();
+                        document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
+                        document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
+                        document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
+                        document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
+                        document.cookie = "ButtonAColor=" + value5 + ";" + ";path=/";
+                        
+                    }
+    function changePointer(value)
+    {
+        document.cookie = "MousePointer=" + value + ";" + ";path=/";
+    }
+
+    function addBGsound(value)
+                    {
+//                     var x = document.getElementById("soundswitch1");
+//                     var y = document.getElementById("soundswitch");
+//                        if (x.style.display === "none") {
+//                        x.style.display = "block";
+//                        y.style.display = "none";}
+//                        else {
+//                        x.style.display = "none";
+//                        y.style.display = "block";
+//                        }
+                    
+                        document.cookie = "soundbg1=" + value + ";" + ";path=/";   
+
+                    }
+                    
+        function addBGsnow(value)
+                    {                    
+                        document.cookie = "snowflakebg1=" + value + ";" + ";path=/";   
+                    }
+                    
+        function addBGspark(value){
+            document.cookie = "sparklebg1=" + value + ";" + ";path=/";
+        }
+        function addBGbubble(value){
+            document.cookie = "bubblesbg1=" + value + ";" + ";path=/";
+        }
+        
+    function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+   $('.blocks').click(function(){
+   $('.selected').removeClass('selected'); // removes the previous selected class
+   $(this).addClass('selected'); // adds the class to the clicked image
+});
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close12")[0];
+var modal = document.getElementById('customize-theme');
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    document.cookie = "backgroundColor=" + getCookie("backgroundColor1") + ";" + ";path=/";  
+    document.cookie = "NavbarColor=" + getCookie("NavbarColor1") + ";" + ";path=/";  
+    document.cookie = "ButtonColor=" + getCookie("ButtonColor1") + ";" + ";path=/";
+    document.cookie = "ButtonHColor=" + getCookie("ButtonHColor1") + ";" + ";path=/";
+    document.cookie = "ButtonAColor=" + getCookie("ButtonAColor1") + ";" + ";path=/";  
+    document.cookie = "MousePointer=" + getCookie("MousePointer1") + ";" + ";path=/"; 
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target === modal) {
+        document.cookie = "backgroundColor=" + getCookie("backgroundColor1") + ";" + ";path=/";  
+        document.cookie = "NavbarColor=" + getCookie("NavbarColor1") + ";" + ";path=/";  
+        document.cookie = "ButtonColor=" + getCookie("ButtonColor1") + ";" + ";path=/";
+        document.cookie = "ButtonHColor=" + getCookie("ButtonHColor1") + ";" + ";path=/";
+        document.cookie = "ButtonAColor=" + getCookie("ButtonAColor1") + ";" + ";path=/"; 
+        document.cookie = "MousePointer=" + getCookie("MousePointer1") + ";" + ";path=/"; 
+    }
+};
+</script>

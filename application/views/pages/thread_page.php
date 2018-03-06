@@ -3,65 +3,36 @@ include(APPPATH . 'views/header.php');
 $topic = $post->topic;
 $user = $post->user;
 ?>
-
-    <script>
-    
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-    //    function checkCookie() {
-    //        var user = getCookie("username");
-    //        if (user != "") {
-    //            alert("Welcome again " + user);
-    //        } else {
-    //            user = prompt("Please enter your name:", "");
-    //            if (user != "" && user != null) {
-    //                setCookie("username", user, 365);
-    //            }
-    //        }
-    //    }
-
-        document.write('<style type="text/css">body {background-color: ' + getCookie("backgroundColor") + ';}<\/style>');
-    
-    </script>
-
 <body>
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     ?>
-
+    
     <div id = "thread-page" class = "container page">
         <div class = "row">
             <div class = "col-md-12 content-container no-padding" style = "height: 100%;">
                 <a class = "pull-left btn btn-topic-header" style = "display: inline-block; margin-right: 5px;" href="<?php echo base_url('topic/view/' . $topic->topic_id) ?>">
                     <h3 class = "pull-left" style = "margin-top: 3px; margin-bottom: 0px; padding: 2px;">
-                        <strong class = "text-info"><i class = "fa fa-chevron-left"></i> 
+                        <strong class = "text-info text1color"><i class = "fa fa-chevron-left"></i> 
                             Back
                         </strong>
                     </h3>
-                </a>
+    </a>
+                
+    <form  method="post">
+    <input class="btn btn-md pull-right btn-danger" value='Report' name='report' type="submit"> 
+    </form>
+                
                 <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
                         <i>Thread by 
-                            <a class = "btn btn-link btn-md no-padding no-margin" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
+                            <a class = "btn btn-link btn-md no-padding no-margin text1color" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
                                 <?php echo $user->first_name; ?></a>
                         </i>
                     </small>
                 </h3>
                 <?php if (!empty($post->thread_attachments)): ?>
-                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary">
+                    <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary buttonsbgcolor">
                         <strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong>
                     </button>
                 <?php endif; ?>
@@ -74,14 +45,14 @@ $user = $post->user;
                             <?php if (!$post->is_deleted): ?>
                                 <img src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" class="media-object img-circle post-pic"/>
                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-chevron-up vote-text"></span>
+                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text"></span>
                                 </button>
                                 <br/>
                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
                                 <br/>
-                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
+<!--                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
-                                </button>
+                                </button>-->
                             <?php endif; ?>
                         </div>
                         <div class="media-body">
@@ -104,7 +75,7 @@ $user = $post->user;
                                     <?php if ($post->post_title): ?>
                                     <h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
                                         <small>
-                                            <i>by <a class = "btn btn-link btn-xs no-padding no-margin"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
+                                            <i>by <a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
                                             <span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                         </small>
                                     <?php else: ?>
@@ -162,10 +133,36 @@ $user = $post->user;
             </div>
         </div>
     </div>
+    
+<!--    report-->
+    <?php 
+    if(isset($_POST['report'])){
+     $servername = "127.0.0.1";
+	$username = "root";
+	$password = "";
+	$dbname = "mukhlat";
+	$conn = @new mysqli($servername, $username, $password, $dbname);
+        $logged_user->user_id;
 
+        // Create connection
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "INSERT INTO tbl_reports(ReporterId, ReportedId, TopicID, PostID, Reason, DateRP)
+        VALUES ('$logged_user->user_id', '$post->user_id', '$post->topic_id', '$post->post_id', 'test', CURRENT_TIMESTAMP )";
+
+        if (mysqli_query($conn, $sql)) {
+           ;
+        } else {
+            ;
+        }
+        mysqli_close($conn);
+    }
+    ?>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
-
     <?php
 //    include(APPPATH . 'views/chat/chat.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');

@@ -1,12 +1,13 @@
 <?php
 $topic = $_SESSION['current_topic'];
 ?>
+<link href="<?php echo base_url('lib/css/emoji.css'); ?>" rel="stylesheet">
 <!-- Create Post Modal -->
 <div id="edit-post-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Create Topic Modal Content-->
         <div class="modal-content">
-            <div class="modal-header modal-heading">
+            <div class="modal-header modal-heading modalbg">
                 <button type="button" id="close-edit-post" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><strong>Edit your post in <?php echo utf8_decode($topic->topic_name); ?></strong></h4>
             </div>
@@ -14,11 +15,15 @@ $topic = $_SESSION['current_topic'];
                 <div class="col-md-12 modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Enter a title for your post:</label>
-                        <input type="text" required maxlength = "100" class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"/>
+                        <p class="lead emoji-picker-container">
+                        <input type="text" required maxlength = "100" class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post" data-emojiable="true"/>
+                        </p>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
-                        <textarea class = "form-control" required name = "post_content" maxlength = "16000" id = "post-content" placeholder = "Tell something in your post!"></textarea>
+                        <p class="lead emoji-picker-container">
+                        <textarea class = "form-control" required name = "post_content" maxlength = "16000" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
+                        </p>
                     </div>
                     <div id = "edit-attachment-buttons" class = "form-group">
                         Attach a file:
@@ -72,3 +77,24 @@ $topic = $_SESSION['current_topic'];
         </div>
     </div>
 </div>
+    <!-- Begin emoji-picker JavaScript -->
+    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/util.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
+    <!-- End emoji-picker JavaScript -->
+
+    <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '<?php echo base_url('lib/img/');?>',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+    </script>
