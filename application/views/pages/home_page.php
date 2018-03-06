@@ -10,6 +10,7 @@ include(APPPATH . 'views/header.php');
     $logged_user = $_SESSION['logged_user'];
 
     ?>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -40,10 +41,10 @@ include(APPPATH . 'views/header.php');
                             </div>
                         </div>
                         
--->                        <!--
+-->                        
                         
-                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
-                        <input onclick='responsiveVoice.speak("shush rg");' type='button' value='🔊 Play' />
+<!--                        <a id="crettop" class ="btn btn-primary home-create-btn buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal">Create Topic</a>
+                        <input onclick='responsiveVoice.speak("shush rg");' type='button' id="sel" value='🔊 Play' />
 
                     </div>-->
 
@@ -73,7 +74,7 @@ include(APPPATH . 'views/header.php');
                                                     <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                                 </a>
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-thumbs-up vote-text"></span>
+                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
                                                 </button>
                                                 <br>
                                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
@@ -93,7 +94,7 @@ include(APPPATH . 'views/header.php');
                                                         </a>
                                                     </small>
                                                 </i>
-                                                <span class = "text-muted"> <i style = "font-size: 11px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                                <span class = "text-muted"> <i style = "font-size: 21px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                                 <p class = "home-content-body" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
                                             </div>
                                         </div>
@@ -121,8 +122,20 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
+    <script>
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+        
+        <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
+        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
+        <div  onclick="window.scrollTo(0, document.body.scrollHeight);"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    
 
     <?php
 //    include(APPPATH . 'views/chat/chat.php');

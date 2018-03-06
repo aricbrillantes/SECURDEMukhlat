@@ -85,7 +85,6 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
-        
 <script>
    document.cookie = 'birthday=0;path=/';
    
@@ -130,7 +129,7 @@ include(APPPATH . 'views/header.php');
 
 //    timeLogIn();
 </script>
-        
+
 <script type="text/javascript">
         var strength = {
                 0: "Worst ☹",

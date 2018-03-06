@@ -17,7 +17,7 @@ $topic = $_SESSION['current_topic'];
                 <form id = "share-form" action = "<?php echo base_url('invite/share'); ?>" method = "POST" style = "height: 400px; overflow-y: auto">
                     <ul class = "list-group">
                         <?php foreach ($topic->nonfollowers as $nonfollower): ?>
-                            <li class = "list-group-item no-padding no-margin" style = "padding-left: 10px; font-size: 12px;">
+                            <li class = "list-group-item no-padding no-margin" style = "padding-left: 10px; font-size: 22px;">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" class = "name-share"  name = "share-checkbox[]" value="<?php echo $nonfollower->user_id ?>">

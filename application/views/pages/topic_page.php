@@ -42,7 +42,7 @@ $c_topic = $_SESSION['current_topic'];
                     <div class = "col-sm-12 topic-description-div no-padding">
                         <h4 class = "no-margin text-center user-topic-header topic-intro-header bar1color">
                             <strong><?php echo utf8_decode($c_topic->topic_name); ?></strong>
-                            
+
                             <?php if ($is_moderated): ?>
                             <br>
                             <button id = "edit-topic-btn" class = "btn btn-default btn-xs"><i class = "fa fa-pencil"></i> Edit Description</button>

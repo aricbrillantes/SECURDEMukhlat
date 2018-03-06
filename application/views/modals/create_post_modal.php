@@ -164,8 +164,9 @@ $topic = $_SESSION['current_topic'];
         var warningCount=0, count=0;
         var btncolor=getCookie("ButtonColor");
         var x = document.getElementById("profanityWarning");
-        $('.form-control').keydown(function(event) 
+         $('.form-control').keydown(function(event) 
         {
+           
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");

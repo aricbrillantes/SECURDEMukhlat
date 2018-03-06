@@ -678,11 +678,11 @@ class Topic extends CI_Controller {
         foreach ($topics as $topic) {
             $user = $topic->user;
             $html = $html . "<a class = \"topic-grid1\" href = \"topic/view/" . $topic->topic_id . "\">\n"
-                    . "<h4 class = \"text-info no-padding no-margin text1color\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4><br>\n"
-                    . "<small><i>by " . $user->first_name . " " . $user->last_name . " </i></small>\n"
+                    . "<h4 class = \"text-info no-padding no-margin text1color topicheader\" style = \"display: inline-block;\">" . $topic->topic_name . "</h4><br>\n"
+                    . "<small class=\"topicheader2\"><i>by " . $user->first_name . " " . $user->last_name . " </i></small>\n"
                     . "<div class = \"topic-grid-icons\">\n"
-                    . "<span class = \"label label-info follower-label\"><i class = \"fa fa-group\"></i> " . ($topic->followers ? count($topic->followers) : '0')
-                    . " <i class = \"fa fa-comments\"></i> " . $topic->post_count . "</span>\n"
+                    . "<div class = \"label label-info follower-label\"><i class = \"fa fa-group\"></i> " . ($topic->followers ? count($topic->followers) : '0')
+                    . " <i class = \"fa fa-comments\"></i> " . $topic->post_count . "</div>\n"
                     . "</div>\n"
                     . "</a>\n";
         }

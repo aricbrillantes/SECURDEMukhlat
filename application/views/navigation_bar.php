@@ -3,8 +3,9 @@ $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
 ?>
 
-<?php include(APPPATH . 'views/modals/birthday_modal.php'); ?>
-<?php include(APPPATH . 'views/modals/time_warning_modal.php'); ?>
+<?php include(APPPATH . 'views/modals/birthday_modal.php'); 
+      include(APPPATH . 'views/modals/time_warning_modal.php');
+?>
 <script type="text/javascript">
     function getCookie(cname) {
         var name = cname + "=";
@@ -21,13 +22,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         return "";
     }
     
-    if(getCookie("ButtonColor")==='')
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    
+     if(getCookie("ButtonColor")==='')
     {
         document.cookie = "ButtonColor=#1d8f15;" + ";path=/"; 
         document.cookie = "ButtonHColor=#14620f;" + ";path=/"; 
         document.cookie = "ButtonHColor=#185729;" + ";path=/"; 
     }
-        
+    
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
                      body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
@@ -53,7 +56,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}<\/style>');
+                    :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
+                    .topic-grid1{background-color: #'+ randomColor +'<\/style>');
+    
     
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
@@ -76,13 +81,18 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
         if(hours > 19){
             document.write('<style type="text/css">\n\
-                #overlay {display:block !important;}<\/style>');
+                #overlay {display:block !important;}\n\
+                #nav-logo{display:none}<\/style>');
+        }
+        else{
+            document.write('<style type="text/css">\n\
+                #nav-logo2{display:none}<\/style>');
         }
         
         if(birthMonth===curMonth && birthDay===curDay)
         {
 //            alert(getCookie("birthday"));
-//            alert('birthday');
+//            alert('yes');
 //            alert(birthMonth + "/" + birthDay + " - " + curMonth + "/" + curDay);
             if(getCookie("birthday")==='0')
                 birthdayPopup();
@@ -297,14 +307,12 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             final_span.innerHTML = '';
             interim_span.innerHTML = '';
             stopDictation3(event);
-            voiceIndicatorON();
             recognition.start();
         }
 
         function stopDictation(event) {
             recognition.stop();
             startDictation3(event);
-            voiceIndicatorOFF();
             document.getElementById('search').focus(); return false;
         }
 
@@ -350,7 +358,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
     </script>
 
-<script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
+<script src="<?php echo base_url('draggabilly-master/dist/draggabilly.pkgd.min.js'); ?>"></script>
 
 <!--particles-->
     <!--<style>canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:fixed; width: 100%; height: 100%;background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }</style>-->
@@ -441,7 +449,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/></a>
+                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img style="cursor: pointer" id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/><img style="cursor: pointer" id = "nav-logo2" src = "<?php echo base_url('images/logo/bed mukhlat.png'); ?>"/></a>
 <!--            <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
 			Right Sidebar Modal
 		</button>-->
@@ -461,7 +469,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <button class="btn btn-default search-btn" type="submit">
                                     <i class="glyphicon glyphicon-search buttonsgo"></i>
                                 </button>
-                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button"><i class = "fa fa-microphone buttonsgo"></i><span class="tooltiptext1">Voice search</span></span>
+                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button"><i class = "fa fa-microphone buttonsgo"style="font-size:16px;"></i><span class="tooltiptext1">Search by voice</span></span>
                             </div>
                             
                             <!--Hidden DIV for voice search-->
@@ -497,8 +505,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                    <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
-                <div class="navbaricons2">
-            <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!</a>
+                            <div class="navbaricons2">
+                            <a onclick="window.speechSynthesis.cancel();" onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!</a>
 
                             <a onmouseenter="playclip()" class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                         <i class = "fa fa-paint-brush iconin"></i>Colors
@@ -526,8 +534,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             </div>
         </div>
     </nav>
-<p id="display" style="float: right">Time Left<p>
-<button id="start" style="float: right">Start</button>
 <!--<img class = "draggable mascoti" src = "<?php echo base_url('images/Picture1.png'); ?>"/><span class="mascotitalk">Hello</span>-->
 
 <!-- Nav Bar Script -->
@@ -584,7 +590,7 @@ function voiceIndicatorOFF() {
                 if(interim_span3.innerHTML.includes("go to topics")){
                     location.href="http://localhost/MukhlatBeta/topic";
                 }
-                               
+               
                 if(interim_span3.innerHTML.includes("go to profile")){
                     location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
                 }
@@ -663,11 +669,9 @@ function voiceIndicatorOFF() {
    
     var now = new Date();
     var now2 = new Date();
-    
     var time = now.getTime();
     var time2 = now.getTime()+(1800 * 1000);
-    
-    now.setTime(time);
+     now.setTime(time);
     now2.setTime(time2);
     
     var nowH = now.getHours().toString();
@@ -679,8 +683,7 @@ function voiceIndicatorOFF() {
     if(getCookie("timeoutTime1") <= nowH.toString())
     {        
         if(getCookie("timed")==='0')
-        {
-            if(getCookie("nexttimed1")<=nowH.toString())
+              if(getCookie("nexttimed1")<=nowH.toString())
             {
                 if(getCookie("nexttimed1")===nowH.toString())
                 {
@@ -688,12 +691,7 @@ function voiceIndicatorOFF() {
                     {
                         alert('timeout2');
                         $('#timepopup').modal('show');
-            
-//                        $("#timepopup").on("hidden.bs.modal", function () {
-//                            location.href="http://localhost/MukhlatBeta/home";
-//                        });
-                        
-                        document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
+                         document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
                         document.cookie = "lasttimed2=" + now.getMinutes() +";path=/"; 
                         document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
                         document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
@@ -704,8 +702,7 @@ function voiceIndicatorOFF() {
         }
 
         if(getCookie("timed")==='1')
-        {
-            if(getCookie("nexttimed1")<=nowH.toString())
+             if(getCookie("nexttimed1")<=nowH.toString())
             {
                 if(getCookie("nexttimed1")===nowH.toString())
                 {
@@ -719,9 +716,6 @@ function voiceIndicatorOFF() {
                     }
                 }
             }
-           
-        }
-    }
 </script>
 
 <script>var $draggable = $('.draggable').draggabilly();</script>
@@ -1014,6 +1008,30 @@ animate();
 <source src="<?php echo base_url('sound-mouseover/click.ogg'); ?>">
 </audio>
 <div id="sounddiv"><bgsound id="sound"></div>
+
+<script>
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type !== "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode === 16) {
+    var msg = new SpeechSynthesisUtterance(getSelectionText());
+    
+    window.speechSynthesis.speak(msg);
+  }
+  if(e.keyCode === 17){
+      window.speechSynthesis.cancel();
+  }
+});
+
+</script>
 
 <!--<script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});</script>-->
 <!-- End Nav Bar -->

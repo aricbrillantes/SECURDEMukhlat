@@ -15,13 +15,33 @@ body.sign-in{
     display:none;
 }
 .close {
-    font-size:48px;
+    font-size:48px !important;
     color: red; 
     opacity: 1;
     
 }
 
+span{
+    font-size: 19px;
+}
+h4{
+    font-size: 26px;
+}
+
+p{
+    font-size: 22px !important;
+}
+
+button{
+    font-size: 18px;
+}
+
+label{
+    font-size: 22px !important;
+}
+
 a{
+    font-size: 19px !important;
     cursor:pointer !important;
 }
 
@@ -29,28 +49,91 @@ a{
      cursor:pointer !important;
 }
 
+.starroll{
+     animation: roll 3s infinite;
+  transform: rotate(30deg);
+
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.topicheader{
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    border-style: solid;
+    background:#fff;
+    border-radius: 5px;
+    border:0;
+    padding:5px !important;
+    max-width: 88%;
+}
+.topicheader2{
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+    border-style: solid;
+    background:#fff;
+    border-radius: 5px;
+    border:0;
+    padding:5px;
+}
+
+
 .topic-grid1{
-    background-color: whitesmoke;
+   
     margin:1.5%;
     position:relative;
     float:left;
     width:30%;
     padding:10px;
     text-decoration:none;
-    height:150px;
-    border-radius:20px;
-    transition: transform 0.25s;
-    box-shadow: 0 9px #999;
+    height:170px;
+    border-radius: 10px;   
 }
 
-.topic-grid1:hover{
+.topic-grid2{
+   
+    transition: transform 0.25s; 
+}
+.topic-grid2:hover{
     transform: rotate(8deg) scale(1.25);
 }
 
-.topic-grid1:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+.topic-grid1 span{ /*CSS for enlarged image*/
+position: absolute;
+background-color: lightyellow;
+padding: 5px;
+left: -1000px;
+visibility: hidden;
+color: black;
+text-decoration: none;
 }
+
+.topic-grid1 span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 2px;
+max-height: 500px;
+max-width: 500px;
+}
+
+.topic-grid1:hover span{ /*CSS for enlarged image*/
+visibility: visible;
+pointer-events: none;
+top: 0;
+left: 0px; /*position where enlarged image should offset horizontally */
+z-index: 50;
+}
+
+
 
 .pinwheel{
     height:3%;
@@ -257,6 +340,7 @@ snap-drawer {
     float:right;
 }
 .navbaricons{
+    font-size:16px;
     margin-right:0.5%;
     color:white;
     position:relative;
@@ -324,12 +408,12 @@ snap-drawer {
 .tooltip1 {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
 }
 
 .tooltip1 .tooltiptext1 {
+    font-size: 22px;
     visibility: hidden;
-    width: 80px;
+    width: 120px;
     background-color: green;
     color: #fff;
     text-align: center;
@@ -1056,6 +1140,11 @@ END CHAT
 }
 
 #nav-logo{
+    height: 25px;
+    width: auto;
+}
+
+#nav-logo2{
     height: 25px;
     width: auto;
 }

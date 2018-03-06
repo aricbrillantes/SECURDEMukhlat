@@ -13,9 +13,10 @@
 
 <div id="customize-theme" class="modal fade" role="dialog">
     <div class="modal-dialog">
+        
         <!-- Notification Modal Content-->
-        <div class="modal-content" style="background-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)">
-            <div class="modal-header modal-heading" style="background-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)">
+        <div class="modal-content">
+            <div class="modal-header modal-heading">
                 <button type="button" class="close close12" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-center"><strong>Themes</strong></h4>
             </div>
@@ -27,7 +28,7 @@
                             <li><a data-toggle="pill" href="#invites-div"><strong>Extras</strong></a></li>
                             <li><a data-toggle="pill" href="#cursors-div"><strong>Pointers</strong></a></li>
                         </ul>
-                    </div>
+                    </div></canvas>
                     <div class = "col-md-12">
                         <div class="tab-content">
                             <div id="requests-div" class="tab-pane fade in active">
@@ -97,6 +98,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     
     document.cookie = "backgroundColor1=" + getCookie("backgroundColor") + ";" + ";path=/";  

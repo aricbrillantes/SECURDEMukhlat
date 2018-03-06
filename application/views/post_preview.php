@@ -4,7 +4,7 @@
             <img class = "pull-left img-circle" width = "85px" height = "85px" src = "<?php echo $post->user->profile_url ? base_url($post->user->profile_url) : base_url('images/default.jpg') ?>">
             <div class = "text-center">
                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> fa fa-thumbs-up vote-text"></span>
+                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text"></span>
                 </button>
                 <br>
                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>

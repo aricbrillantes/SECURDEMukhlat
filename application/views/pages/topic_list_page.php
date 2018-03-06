@@ -68,14 +68,26 @@ include(APPPATH . 'views/header.php');
                     </div>
                     <div id = "topic-list" class = "list-group">
                         <?php foreach ($topics as $topic): ?>
-                                        
-                            <a class="topic-grid1" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
-                                <h4 class = "text-info no-padding no-margin text1color" style = "display: inline-block;"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
-                                <small><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
+                        
+                    <a class="topic-grid1" id="topicGcolor" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
+                        <?php
+
+                        $conn = @new mysqli($servername, $username, $password, $dbname);
+
+                        $sql = "SELECT file_url FROM tbl_covers WHERE topic_id = '$topic->topic_id'";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                        echo '<img src=" '.$row['file_url'].' " width = "100%" height="150px" style="position:relative;" />';
+                        echo '<span>'. $topic->topic_name .'<img src=" '.$row['file_url'].' " /></span>';
+                        $conn->close();
+                        }?>
+
+                                <h4 class = "text-info no-padding no-margin text1color topicheader"><?php echo utf8_decode($topic->topic_name); ?></h4><br>
+                                <small class="topicheader2"><i>by <?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></i></small>
                                 <div class="topic-grid-icons">
-                                    <span class = "label label-info follower-label"><i class = "fa fa-group"></i> 
+                                    <div class = "label label-info follower-label draggable"><i class = "fa fa-group"></i> 
                                         <?php echo $topic->followers ? count($topic->followers) : '0' ?> <i class = "fa fa-comments"></i> 
-                                            <?php echo $topic->post_count; ?></span>
+                                            <?php echo $topic->post_count; ?></div>
                                 </div>
                             </a>
                         <?php endforeach; ?>
@@ -96,7 +108,7 @@ include(APPPATH . 'views/header.php');
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="float:center;padding-top:50%;cursor:pointer;">Up!</p></div>
+        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
         <div  onclick="window.scrollTo(0, document.body.scrollHeight);"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
         <!--
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>

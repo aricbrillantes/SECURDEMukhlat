@@ -48,7 +48,7 @@ class Invite extends CI_Controller {
             $this->notifs->respond_request($id, 1);
 
             $request = $this->notifs->get_request($id);
-            $request->topic = $this->topics->get_topic(false, $request->topic_id);
+            $request->topic = $this->topics->get_topic(false, $request->topic_id, false);
             $request->requester = $this->users->get_user(false, false, array('user_id' => $request->user_id));
             
             //update the invite if ever there is already an invite
@@ -64,7 +64,7 @@ class Invite extends CI_Controller {
             $this->notifs->respond_invite($id, 1);
 
             $invite = $this->notifs->get_invite($id);
-            $invite->topic = $this->topics->get_topic(false, $invite->topic_id);
+            $invite->topic = $this->topics->get_topic(false, $invite->topic_id, false);
             $invite->inviter = $this->users->get_user(false, false, array('user_id' => $invite->inviter_id));
             
             //update the invite if ever there is already an invite
@@ -93,7 +93,7 @@ class Invite extends CI_Controller {
             $this->notifs->respond_request($id, -1);
 
             $request = $this->notifs->get_request($id);
-            $request->topic = $this->topics->get_topic(false, $request->topic_id);
+            $request->topic = $this->topics->get_topic(false, $request->topic_id, false);
             $request->requester = $this->users->get_user(false, false, array('user_id' => $request->user_id));
 
             $data = array('user_id' => $request->requester->user_id,
@@ -106,7 +106,7 @@ class Invite extends CI_Controller {
             $this->notifs->respond_invite($id, -1);
 
             $invite = $this->notifs->get_invite($id);
-            $invite->topic = $this->topics->get_topic(false, $invite->topic_id);
+            $invite->topic = $this->topics->get_topic(false, $invite->topic_id, false);
             $invite->inviter = $this->users->get_user(false, false, array('user_id' => $invite->inviter_id));
 
             $data = array('user_id' => $invite->inviter->user_id,
