@@ -11,8 +11,9 @@
 //    alert('nowH '+nowH);
 //    alert('nowM '+nowM);
 
-    if(getCookie("nexttimed1")<=nowH.toString() && getCookie("nexttimed1")<=nowH.toString())
+    if(getCookie("nexttimed1")<=nowH.toString() && getCookie("nexttimed2")<=nowH.toString())
     {
+            alert(getCookie("nexttimed1") + ' --- ' + getCookie("nexttimed2"));
             document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
             document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
             document.cookie = "timed=1;" + ";path=/"; 
