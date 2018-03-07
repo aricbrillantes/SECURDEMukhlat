@@ -15,6 +15,8 @@
 
           recognition.onerror = function(event) {
             console.log(event.error);
+            voiceIndicatorOFF();
+            startDictation3(event);
           };
 
           recognition.onend = function() {
@@ -61,6 +63,8 @@
             stopDictation3(event);
             recognition.start();
             voiceIndicatorON();
+            document.getElementById('search').focus();return false;
+            
         }
 
         function stopDictation(event) {
@@ -73,6 +77,7 @@
         function resetDictation(event) {
             recognition.stop();
             voiceIndicatorOFF();
+            startDictation3(event);
             recognition.lang = languages[select_language.selectedIndex];
             final_transcript = '';
             final_span.innerHTML = '';

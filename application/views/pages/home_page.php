@@ -56,15 +56,16 @@ include(APPPATH . 'views/header.php');
                             if (!empty($posts)):
                                 foreach ($posts as $post):
                                     ?>
-                                    <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 10px;border-radius:20px;">
-                                        <div class = "user-post-heading no-margin" style="border-radius:20px;">
+                                    <div class = "col-xs-12 no-padding post-container" style = "margin-bottom: 20px;border-radius:20px;">
+                                        <div class = "user-post-heading no-margin" style="border-radius:20px;"><center>
                                             <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                 <strong><?php echo $post->first_name . " " . $post->last_name; ?></strong>
                                             </a> 
                                             <span>posted in</span> 
                                             <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
-                                                <strong><?php echo utf8_decode($post->topic_name); ?></strong>
-                                            </a>:
+                                                <strong ><?php echo utf8_decode($post->topic_name); ?></strong>
+                                            </a><h4 style="display:inline">:</h4>
+                                            </center>
                                         </div>
 
                                         <div class = "col-xs-12 user-post-content no-padding">
@@ -72,7 +73,16 @@ include(APPPATH . 'views/header.php');
                                             <div class = "col-xs-1 text-center no-padding" style = "padding-left: 10px;">
                                                 <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                     <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
-                                                </a>
+                                                </a><br>
+                                                  <i class = "text-muted">                            
+                                                    <small>by 
+                                                        <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                            <?php echo $post->first_name . " " . $post->last_name ?>
+                                                        </a>
+                                                    </small>
+                                                      <br>
+                                                </i>
+                                                <span class = "text-muted whitebg2"> <i style = "font-size: 20px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                                 
 <!--                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
@@ -81,25 +91,23 @@ include(APPPATH . 'views/header.php');
 
                                             <!-- Right -->
                                             <div class = "col-xs-11" style = "margin-top: 5px;">
-                                                <h4 class = "no-padding no-margin text-muted wrap"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
-                                                <i class = "text-muted">
-                                                    <small>by 
-                                                        <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                            <?php echo $post->first_name . " " . $post->last_name ?>
-                                                        </a>
-                                                    </small>
-                                                </i>
-                                                <span class = "text-muted"> <i style = "font-size: 21px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
-                                                <p class = "home-content-body" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
+                                                <div class="ptopcolor" style="display:inline-block; margin-left: 3%">
+                                                    <h4 class = "no-padding no-margin text-muted wrap whitebg2" style="display:inline-block"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
+                                                <p class = "home-content-body whitebg2" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
+                                                
+                                                <span class="whitebg2" style="padding-right: 30px !important;">
+                                                <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
+                                                    <span onclick="starding()" class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
+                                                </button>
+                                                <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
+                                                </span>
+                                                
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class = "user-post-footer no-margin text-right" style="border-radius:20px;">
-                                            <button class = "upvote-btn btn btn-link btn-xs pull-left" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
-                                                </button>
-                                                
-                                                <span class = "vote-count text-muted pull-left" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
-                                                
+                                            
                                             <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Post <i class = "fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
@@ -145,7 +153,7 @@ include(APPPATH . 'views/header.php');
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
         <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
-        <div  onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+        <div onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
 
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     

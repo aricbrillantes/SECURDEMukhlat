@@ -56,9 +56,9 @@ include(APPPATH . 'views/header.php');
                 </div>
 
                 <div class = "col-md-12 content-container" style="border-radius:20px;">
-                    <div id = "sort-dropdown" class = "dropdown text-muted">
+                    <div id = "sort-dropdown" class = "dropdown text-muted" style="font-size: 22px">
                         Sort Topics by: <br>
-                        <button id = "chosen-sort" class="btn btn-gray dropdown-toggle" type="button" data-toggle="dropdown"><strong><i class = "fa fa-clock-o"></i> Date Created</strong>
+                        <button id = "chosen-sort" class="btn btn-gray dropdown-toggle" type="button" data-toggle="dropdown"><strong style="font-size: 20px"><i class = "fa fa-clock-o"></i> Date Created</strong>
                             <i class="caret"></i></button>
                         <ul class="dropdown-menu">
                             <li><a href="#" data-value = "1"><i class = "fa fa-clock-o"></i> Date Created</a></li>
@@ -78,7 +78,7 @@ include(APPPATH . 'views/header.php');
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                         echo '<img src=" '.$row['file_url'].' " width = "100%" height="150px" style="position:relative;" />';
-                        echo '<span>'. $topic->topic_name .'<img src=" '.$row['file_url'].' " /></span>';
+                        echo '<span  style="font-size: 22px">'. $topic->topic_name .'<img src=" '.$row['file_url'].' " /></span>';
                         $conn->close();
                         }?>
 

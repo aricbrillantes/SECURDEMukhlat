@@ -28,7 +28,9 @@ class Attachment_model extends CI_Model {
     }
     
     public function insert_cover($topic_id, $file_url){
-        $data = array('topic_id' => $topic_id,
+        $data = array(
+//            'cover_id' => '0',
+            'topic_id' => $topic_id,
             'file_url' => $file_url);
         
         $this->db->insert('tbl_covers', $data);

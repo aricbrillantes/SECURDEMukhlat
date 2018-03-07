@@ -59,7 +59,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    .topic-grid1{background-color: #'+ randomColor +';}<\/style>');
+                    .topic-grid1{background-color: #'+ randomColor +';}\n\
+                    .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');
     
     
     if(getCookie("sparklebg1")==="block"){
@@ -81,14 +82,17 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 //        alert(hours);
 
 
-        if(hours > 19){
+        if(hours > 19 || hours <6){
             document.write('<style type="text/css">\n\
                 #overlay {display:block !important;}\n\
-                #nav-logo{display:none}<\/style>');
+                #nav-logo{display:none}\n\
+                #home2{display:none}\n\
+                <\/style>');
         }
         else{
             document.write('<style type="text/css">\n\
-                #nav-logo2{display:none}<\/style>');
+                #nav-logo2{display:none}\n\
+                #bed2{display:none}<\/style>');
         }
         
         if(birthMonth===curMonth && birthDay===curDay)
@@ -349,11 +353,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <form action = "<?php echo base_url('search'); ?>" class="navbar-left" role = "search" method = "GET" style="width:30%; margin-top:0.555%; margin-left:1%; margin-right:4%;">
                         <span class="input-group">
                             <div class="input-group-btn" style="display: inline-block;">
-                                <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 400px;">
-                                <button class="btn btn-default search-btn" type="submit">
-                                    <i class="glyphicon glyphicon-search buttonsgo" style="cursor: pointer"></i>
+                                <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 400px; font-size: 22px">
+                                <button class="btn btn-default search-btn tooltip1" type="submit">
+                                    <i class="glyphicon glyphicon-search buttonsgo" style="cursor: pointer"></i><span class="tooltiptext1" style="width:150px;">Start search</span>
                                 </button>
-                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button" style="cursor: pointer"><i class = "fa fa-microphone buttonsgo"style="font-size:16px;cursor: pointer"></i><span class="tooltiptext1">Search by voice</span></span>
+                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button" style="cursor: pointer"><i class = "fa fa-microphone buttonsgo"style="font-size:16px;cursor: pointer"></i><span class="tooltiptext1" style="width:150px;">Search by voice</span></span>
                             </div>
                             
                             <!--Hidden DIV for voice search-->
@@ -372,7 +376,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 </div>
         
             <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
-                                <div class="compact marquee" id="div_language" style="display: inline-block;">
+                                <div class="compact marquee" id="div_language" style="display: inline-block;font-size: 22px">
                                     <select id="select_language">
                                         <option value="0" onclick="resetDictation(event)">English</option>
                                         <option value="1" onclick="resetDictation(event)">Filipino</option>
@@ -381,11 +385,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     </select>
                                 </div>                         
                                 <div style="display: inline-block;">
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);document.getElementById('search').focus();return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);" style="color:white;background:green;margin-left:5px;"><i style="font-size: 22px" class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
 
                                     <span id="snackbar">Speak to type is on now</span>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1" style="background:red;">Stop</span></a>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event); startDictation3(event);" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1" style="background:yellow;color:black">Reset</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;margin-left:5px;"><i style="font-size: 22px" class = "fa fa-microphone-slash"></i><span class="tooltiptext1" style="background:red;">Stop</span></a>
+                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event);" style="color:black;background:yellow;margin-left:5px;"><i style="font-size: 22px" class = "fa fa-refresh"></i><span class="tooltiptext1" style="background:yellow;color:black">Reset</span></a>
                                    <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
@@ -408,7 +412,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             <div class="vl"  style="margin-right:0.3%;"></div>
  
                                 <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('topic') ?>"><strong class="iconin"><i class = "glyphicon glyphicon-list iconin"></i>Topics</strong><span class="tooltiptext">You can browse others' topics here!</span></a>
-                                <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('home') ?>"><strong class="iconin"><i class = "glyphicon glyphicon-home iconin"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
+                                <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('home') ?>"><strong class="iconin"><i id="home2" class = "glyphicon glyphicon-home iconin"></i><i id="bed2" class = "glyphicon glyphicon-bed iconin"></i>Home</strong><span class="tooltiptext">Go back to the homepage</span></a>
                                
                                 <a onmouseenter="playclip()" class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
                                 <img class = "img-circle nav-prof-pic iconin" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
@@ -470,7 +474,11 @@ function voiceIndicatorOFF() {
             }
             final_span3.innerHTML = linebreak(final_transcript3);
             interim_span3.innerHTML = linebreak(interim_transcript3);
-
+                
+                if(interim_span3.innerHTML.includes("go to home")){
+                    location.href="http://localhost/MukhlatBeta/home";
+                }
+                
                 if(interim_span3.innerHTML.includes("go to topics")){
                     location.href="http://localhost/MukhlatBeta/topic";
                 }
@@ -491,6 +499,7 @@ function voiceIndicatorOFF() {
                    meow.play();
                    catpeek();
                 }
+
 
           };
         }
@@ -570,6 +579,11 @@ bubbles.forEach(function(bubble) {
       resetBubble(this);
    });
 });</script>
+<script>
+var starlike = new Audio('<?php echo base_url('images/SPARKLE EFFECT1.mp3'); ?>');
+function starding(){
+    starlike.play();}
+</script>
 <script src="<?php echo base_url('js/cursordots.js'); ?>"></script>
 <!-- Add these scripts to  the bottom of the page -->
 <!-- jQuery 1.7+ --> 

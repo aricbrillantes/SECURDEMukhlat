@@ -15,14 +15,15 @@
     <canvas style="position:fixed;" id="canvas5"></canvas>
     <div class="modal-dialog">
         <!-- Notification Modal Content-->
-        <div class="modal-content" style="background-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)">
-            <div class="modal-header modal-heading" style="background-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)">
+        <div class="modal-content">
+            <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center"><strong>Happy Fucking Birthday!</strong></h4>
+                <h4 class="modal-title text-center"><strong><i class="glyphicon glyphicon-gift"></i> Happy Birthday!</strong></h4>
             </div>
             <div class="modal-body">
-                <div class = "row">
-                    <span style="color:white;">Go, go, go, go go, go, go, <?php echo $logged_user->first_name; ?><br> It's your birthday <br>We gon' party like it's yo birthday <br>We gon' sip Bacardi like it's your birthday <br>And you know we don't give a fuck cause its your birthday!</span>
+                <div class = "row"><center>
+                    <span style="font-size: 32px">Go, go, go, go go, go, go, <?php echo $logged_user->first_name; ?>!<br> It's your birthday</span>
+                    </center>
                 </div>
             </div>
         </div>

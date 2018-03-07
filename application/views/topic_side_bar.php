@@ -27,7 +27,7 @@ $logged_user = $_SESSION['logged_user'];
         <div id = "side-topics-followed">
         <!--<h3 class = "text-center text-info no-padding no-margin text1color" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>-->
         <!--<a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
-            <h4>Your topics</h4>
+            <h4 class="ptopcolor" style="border-radius: 2px;color: white">Your topics</h4>
         <!--</a>-->
         <div class = "sidebar-topic-div">
             <ul class="nav">
@@ -35,7 +35,7 @@ $logged_user = $_SESSION['logged_user'];
                 if(!empty($logged_user->topics)):
                 foreach ($logged_user->topics as $topic):
                 ?>
-                <li>
+                <li onmouseenter="playclip()">
                     <a href="topic/view/<?php echo $topic->topic_id; ?>">
                         <span class = "text-muted" style="cursor:pointer;"><?php echo utf8_decode($topic->topic_name); ?></span>
                         <span class = "pull-right label label-info" style="cursor:pointer;"><i class = "fa fa-group" style="cursor:pointer;"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
@@ -53,7 +53,7 @@ $logged_user = $_SESSION['logged_user'];
 
 
         <!--<a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
-            <h4>Topics you Follow</h4>
+        <h4 class="ptopcolor" style="border-radius: 2px;color: white">Topics you Follow</h4>
         <!--</a>-->
         <div class = "sidebar-topic-div">
             <ul class="nav">
@@ -61,7 +61,7 @@ $logged_user = $_SESSION['logged_user'];
                 if(!empty($logged_user->followed_topics)):
                 foreach ($logged_user->followed_topics as $topic):
                 ?>
-                <li>
+                <li onmouseenter="playclip()">
                     <a href="topic/view/<?php echo $topic->topic_id; ?>">
                         <span class = "text-muted"><?php echo utf8_decode($topic->topic_name); ?></span>
                         <span class = "pull-right label label-info"><i class = "fa fa-group"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
@@ -95,6 +95,7 @@ $logged_user = $_SESSION['logged_user'];
         }?>
         <img class = "pinwheel1" src = "<?php echo base_url('images/Picture1.png'); ?>"/></div>
         <div style="position: relative;bottom:100px;left: 100px;">Hello! You found me.</div>
+        <center> <a href="">Click here to learn more!</a></center>
     
     </div>
 </div>

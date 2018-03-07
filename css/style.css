@@ -29,6 +29,7 @@ body.sign-in{
     border:0;
     padding:5px !important;
 }
+
 .whitebg1{
     font-size: 28px;
     border-style: solid;
@@ -39,10 +40,30 @@ body.sign-in{
     text-align: center;
 }
 
+.whitebg2{
+    border-style: solid;
+    background:#fff;
+    border-radius: 15px;
+    border:0;
+    padding:5px !important;
+}
+
+.ptopcolor{
+    border-style: solid;
+    border-radius: 20px;
+    border:0;
+    padding:5px !important;
+}
+
 span{
     font-size: 19px;
 }
+
 h4{
+    font-size: 26px;
+}
+
+h5{
     font-size: 26px;
 }
 
@@ -411,7 +432,7 @@ snap-drawer {
 }
 
 .navbarvoice{
-    margin-left:60px;
+    margin-left:30px;
     margin-top:10px;
     position:relative;
     float:left;
@@ -791,7 +812,7 @@ textarea{
     background-color: #ECEFF1; 
     border-radius: 4px;
     margin-top: 10px;
-    height: 558px;
+    height: 550px;
     overflow-y: auto;
 }
 
@@ -1667,13 +1688,13 @@ transform: rotate(1080deg);
 .navbaricons .tooltiptext {
     visibility: hidden;
     width: 120px;
-    font-size: 12px;
+    margin-top: 5px;
+    font-size: 18px;
     background-color: black;
     color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-    width: 120px;
     top: 100%;
     left: 50%; 
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
@@ -1686,13 +1707,13 @@ transform: rotate(1080deg);
 .navbarprofileicon .tooltiptext {
     visibility: hidden;
     width: 120px;
-    font-size: 14px;
+    font-size: 20px;
+    margin-top: 5px;
     background-color: black;
     color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-    width: 120px;
     top: 100%;
     left: 50%; 
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
