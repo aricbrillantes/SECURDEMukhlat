@@ -23,27 +23,17 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     }
     
     var randomColor = Math.floor(Math.random()*16777215).toString(16);
-<<<<<<< HEAD
     var randomColor2 = Math.floor(Math.random()*16777215).toString(16);
-=======
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
     
      if(getCookie("ButtonColor")==='')
     {
         document.cookie = "ButtonColor=#1d8f15;" + ";path=/"; 
-<<<<<<< HEAD
         document.cookie = "ButtonHColor=#14620f;" + ";path=/"; 
         document.cookie = "ButtonAColor=#185729;" + ";path=/"; 
     }
     
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                     #randtriv1{background: #'+ randomColor2 +';}\n\
-=======
-        document.cookie = "ButtonHColor=#185729;" + ";path=/"; 
-    }
-    
-    document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
                      body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
                     .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}\n\
@@ -54,12 +44,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .buttonsbgcolor:focus{background:' + getCookie("ButtonColor") + ';outline:0;}\n\
                     .buttonsbgcolor:active{background:' + getCookie("ButtonAColor")  + '!important;}\n\
                     .modalbg{background:' + getCookie("NavbarColor") + ';}\n\
-                    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background-color: ' + getCookie("NavbarColor") + ';}\n\
-<<<<<<< HEAD
+                    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background: ' + getCookie("NavbarColor") + ';}\n\
                     .snowflakebg{display:' + getCookie("snowflakebg1") + '!important;}\n\
-=======
-                    .snowflakebg{display:' + getCookie("snowflakebg1") + ';}\n\
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
                     .sparklesbg{display:' + getCookie("sparklebg1") + ';}\n\
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
@@ -73,7 +59,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    .topic-grid1{background-color: #'+ randomColor +'<\/style>');
+                    .topic-grid1{background-color: #'+ randomColor +';}<\/style>');
     
     
     if(getCookie("sparklebg1")==="block"){
@@ -117,11 +103,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         function birthdayPopup()
         {
             document.cookie = "birthday=1;" + ";path=/"; 
-<<<<<<< HEAD
 //             alert(getCookie("birthday"));
-=======
-             alert(getCookie("birthday"));
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
 //            location.href="http://localhost/MukhlatBeta/home#birthdaypopup";
             $('#birthdaypopup').modal('show');
             
@@ -264,133 +246,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
     <!--Voice Search Script-->
-<<<<<<< HEAD
 <script type="text/javascript" src="<?php echo base_url('js/voicesearch.js'); ?>"> </script>
-=======
-    <script type="text/javascript">
-        var final_transcript = '';
-        var recognizing = false;
-        var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
-
-        if ('webkitSpeechRecognition' in window) {
-
-          var recognition = new webkitSpeechRecognition();
-          recognition.lang = 'en-US';
-          recognition.continuous = true;
-          recognition.interimResults = true;
-
-          recognition.onstart = function() {
-            recognizing = true;
-//            document.getElementById("recording").innerText = 'RECORDING';
-          };
-
-          recognition.onerror = function(event) {
-            console.log(event.error);
-          };
-
-          recognition.onend = function() {
-            recognizing = false;
-            search.value = final_span.innerHTML;
-        };
-
-       recognition.onresult = function(event) {
-            var interim_transcript = '';
-            for (var i = event.resultIndex; i < event.results.length; ++i) {
-              if (event.results[i].isFinal) {
-                final_transcript += event.results[i][0].transcript;
-              } else {
-                interim_transcript += event.results[i][0].transcript;
-              }
-//              
-//              if(interim_span.innerHTML.includes("wenona") || interim_span.innerHTML.includes("winona")){
-//                  (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true});
-//              }
-
-              
-            }
-            final_span.innerHTML = linebreak(final_transcript);
-            interim_span.innerHTML = linebreak(interim_transcript);
-            search.value = linebreak(interim_transcript);
-          };
-        }
-
-        var two_line = /\n\n/g;
-        var one_line = /\n/g;
-        function linebreak(s) {
-          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-        }
-
-        function capitalize(s) {
-          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
-        }
-
-        function startDictation(event) {
-            recognition.lang = languages[select_language.selectedIndex];
-            final_transcript = '';
-            final_span.innerHTML = '';
-            interim_span.innerHTML = '';
-            stopDictation3(event);
-            recognition.start();
-        }
-
-        function stopDictation(event) {
-            recognition.stop();
-            startDictation3(event);
-            document.getElementById('search').focus(); return false;
-        }
-
-        function resetDictation(event) {
-            recognition.stop();
-            recognition.lang = languages[select_language.selectedIndex];
-            final_transcript = '';
-            final_span.innerHTML = '';
-            interim_span.innerHTML = '';
-            search.value = '';
-        }
-        
-        var languages = new Array(
-            'en-US',
-            'fil-PH',
-            'fr-FR',
-            'ko-KR'
-        );
-
-        function voiceDropdown() {
-//            document.getElementById("voice-dropdown-content").classList.toggle("show");
-            var x = document.getElementById("voicedropdown");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-
-        // Close the dropdown menu if the user clicks outside of it
-//        window.onclick = function(event) {
-//          if (!event.target.matches('.dropbtn')) {
-//            var dropdowns = document.getElementsByClassName("dropdown-content");
-//            var i;
-//            for (i = 0; i < dropdowns.length; i++) {
-//              var openDropdown = dropdowns[i];
-//              if (openDropdown.classList.contains('show')) {
-//                openDropdown.classList.remove('show');
-//              }
-//            }
-//          }
-//        }
-
-    </script>
-
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
 <script src="<?php echo base_url('draggabilly-master/dist/draggabilly.pkgd.min.js'); ?>"></script>
-
-<!--particles-->
-    <!--<style>canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:fixed; width: 100%; height: 100%;background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; }</style>-->
 
 <!-- Nav Bar -->
 
-<!--<div id="particles-js"></div>  stats - count particles   particles.js lib - https://github.com/VincentGarreau/particles.js  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  stats.js lib  <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>-->
-    
 <!-- SCM Music Player http://scmplayer.co -->
 <!--    <script type="text/javascript" src="<?php echo base_url('scm-music-player-github/script.js'); ?>" 
     data-config="{'skin':'skins/simpleBlack/skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':0,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Dora The Explorer Theme Song.','url':'<?php echo base_url('assets/music/Dora The Explorer Theme Song.mp3'); ?>'},{'title':'Flight of the Bumble-Bee','url':'<?php echo base_url('assets/music/Flight of the Bumble-Bee.mp3'); ?>'},{'title':'Inhuman Reactions','url':'<?php echo base_url('assets/music/INHUMAN REACTIONS.mp3'); ?>'}]}" >
@@ -491,9 +351,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             <div class="input-group-btn" style="display: inline-block;">
                                 <input required type="text" name = "search-key" class="form-control" placeholder="Search" id="search" style="width: 400px;">
                                 <button class="btn btn-default search-btn" type="submit">
-                                    <i class="glyphicon glyphicon-search buttonsgo"></i>
+                                    <i class="glyphicon glyphicon-search buttonsgo" style="cursor: pointer"></i>
                                 </button>
-                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button"><i class = "fa fa-microphone buttonsgo"style="font-size:16px;"></i><span class="tooltiptext1">Search by voice</span></span>
+                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button" style="cursor: pointer"><i class = "fa fa-microphone buttonsgo"style="font-size:16px;cursor: pointer"></i><span class="tooltiptext1">Search by voice</span></span>
                             </div>
                             
                             <!--Hidden DIV for voice search-->
@@ -521,19 +381,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                     </select>
                                 </div>                         
                                 <div style="display: inline-block;">
-<<<<<<< HEAD
                                     <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);document.getElementById('search').focus();return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
 
                                     <span id="snackbar">Speak to type is on now</span>
                                     <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1" style="background:red;">Stop</span></a>
                                     <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1" style="background:yellow;color:black">Reset</span></a>
-=======
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="voiceIndicatorON();startDictation(event);document.getElementById('search').focus();return false;" style="color:white;background:green;"><i class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
-
-                                    <span id="snackbar">Speak to type is on now</span>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="voiceIndicatorOFF();stopDictation(event)" style="color:white;background: red;"><i class = "fa fa-microphone-slash"></i><span class="tooltiptext1" style="background:red;">Stop</span></a>
-                                    <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="voiceIndicatorOFF();resetDictation(event)" style="color:black;background:yellow;"><i class = "fa fa-refresh"></i><span class="tooltiptext1" style="background:yellow;color:black">Reset</span></a>
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
                                    <!--<a href="#" class="voicesearch" id="voicesearch" onclick='responsiveVoice.speak(search.value,"UK English Male",{rate: 0.9, pitch: 1});' >PLAY</a>-->
                                 </div>
                             </div>
@@ -684,280 +536,11 @@ function voiceIndicatorOFF() {
 
         startDictation3(event);
     </script>
-<<<<<<< HEAD
 <script src="<?php echo base_url('js/eastereggs.js'); ?>"></script>
 <script src="<?php echo base_url('js/usagetimer.js'); ?>"></script>
 <script>var $draggable = $('.draggable').draggabilly();</script>
 <script src="<?php echo base_url('js/frequencybars.js'); ?>"></script>
 <script src="<?php echo base_url('js/sparkles.js'); ?>"></script>     
-=======
-    <script>
-    function catpeek(){
-      $('#peek').show().delay('500').animate({
-        bottom: '0',
-        right:'0'
-      }).delay('900').animate({
-        bottom: '-500px',
-        right:'-500px'
-      });
-    };
-    
-    </script>
-
-<script>
-   
-    var now = new Date();
-    var now2 = new Date();
-    var time = now.getTime();
-    var time2 = now.getTime()+(1800 * 1000);
-    now.setTime(time);
-    now2.setTime(time2);
-    
-    var nowH = now.getHours().toString();
-    var nowM = now.getMinutes().toString();
-   
-    alert('nowH '+nowH);
-    alert('nowM '+nowM);
-    
-    if(getCookie("timeoutTime1") <= nowH.toString())
-    {        
-        alert('timeout1.1');
-//        if(getCookie("timed")==='0')
-//        {      
-            if(getCookie("nexttimed1")<nowH.toString())
-            {
-                alert('timeout1.2');
-                if(getCookie("nexttimed2")<=(nowM-30).toString())
-                {
-                    alert('timeout1');
-                    document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
-                    document.cookie = "lasttimed2=" + now.getMinutes() +";path=/"; 
-                    document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
-                    document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-                    document.cookie = "timed=1;" + ";path=/"; 
-                    $('#timepopup').modal('show');
-                }
-            }
-            
-            else
-            {
-                alert('timeout1.3');
-                if(getCookie("nexttimed1")===nowH.toString())
-                {
-                    alert('timeout1.4');
-                    if(getCookie("nexttimed2")<(nowM-30).toString())
-                    {
-                        alert('timeout2');
-                        document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
-                        document.cookie = "lasttimed2=" + now.getMinutes() +";path=/"; 
-                        document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
-                        document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-                        document.cookie = "timed=1;" + ";path=/"; 
-                        $('#timepopup').modal('show');
-                        
-                    }
-                }
-            }
-//        }
-    
-//        if(getCookie("timed")==='1')
-//        {
-//            alert('timeout2.1');
-//            if(getCookie("nexttimed1")<=nowH.toString())
-//            {
-//                alert('timeout2.2');
-//                if(getCookie("nexttimed1")===nowH.toString())
-//                {
-//                    alert('timeout2.3');
-//                    if(getCookie("nexttimed2")<nowM.toString())
-//                    {
-//                        alert('timeout2');
-//                        document.cookie = "lasttimed1=" + now.getHours() +";path=/"; 
-//                        document.cookie = "lasttimed2=" + now.getMinutes() +";path=/"; 
-//                        document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
-//                        document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-//                    }
-//                }
-//            }
-//        }
-    }
-</script>
-
-<script>var $draggable = $('.draggable').draggabilly();</script>
-<script>window.onload = function () {
-    "use strict";
-    var paths = document.getElementsByTagName('path');
-    var visualizer = document.getElementById('visualizer');
-    var mask = visualizer.getElementById('mask');
-    var h = document.getElementsByTagName('h1')[0];
-    var path;
-    var report = 0;
-    
-    var soundAllowed = function (stream) {
-        //Audio stops listening in FF without // window.persistAudioStream = stream;
-        //https://bugzilla.mozilla.org/show_bug.cgi?id=965483
-        //https://support.mozilla.org/en-US/questions/984179
-        window.persistAudioStream = stream;
-        h.innerHTML = "Thanks";
-        h.setAttribute('style', 'display:none;');
-        var audioContent = new AudioContext();
-        var audioStream = audioContent.createMediaStreamSource( stream );
-        var analyser = audioContent.createAnalyser();
-        audioStream.connect(analyser);
-        analyser.fftSize = 1024;
-
-        var frequencyArray = new Uint8Array(analyser.frequencyBinCount);
-        visualizer.setAttribute('viewBox', '0 0 255 255');
-      
-				//Through the frequencyArray has a length longer than 255, there seems to be no
-        //significant data after this point. Not worth visualizing.
-        for (var i = 0 ; i < 255; i++) {
-            path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            path.setAttribute('stroke-dasharray', '4,1');
-            mask.appendChild(path);
-        }
-        var doDraw = function () {
-            requestAnimationFrame(doDraw);
-            analyser.getByteFrequencyData(frequencyArray);
-          	var adjustedLength;
-            for (var i = 0 ; i < 255; i++) {
-              	adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
-                paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
-            }
-
-        };
-       doDraw();
-    };
-
-    var soundNotAllowed = function (error) {
-        h.innerHTML = "You must allow your microphone.";
-        console.log(error);
-    };
-
-    /*window.navigator = window.navigator || {};
-    /*navigator.getUserMedia =  navigator.getUserMedia       ||
-                              navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia    ||
-                              null;*/
-    navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
-
-};</script>
-<script>(function() {
-  var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
-
-  NUM_CONFETTI = 350;
-
-  COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
-
-  PI_2 = 2 * Math.PI;
-
-  canvas = document.getElementById("world");
-
-  context = canvas.getContext("2d");
-
-  window.w = 0;
-
-  window.h = 0;
-
-  resizeWindow = function() {
-    window.w = canvas.width = window.innerWidth;
-    return window.h = canvas.height = window.innerHeight;
-  };
-
-  window.addEventListener('resize', resizeWindow, false);
-
-  window.onload = function() {
-    return setTimeout(resizeWindow, 0);
-  };
-
-  range = function(a, b) {
-    return (b - a) * Math.random() + a;
-  };
-
-  drawCircle = function(x, y, r, style) {
-    context.beginPath();
-    context.arc(x, y, r, 0, PI_2, false);
-    context.fillStyle = style;
-    return context.fill();
-  };
-
-  xpos = 0.5;
-
-  document.onmousemove = function(e) {
-    return xpos = e.pageX / w;
-  };
-
-  window.requestAnimationFrame = (function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
-      return window.setTimeout(callback, 1000 / 60);
-    };
-  })();
-
-  Confetti = class Confetti {
-    constructor() {
-      this.style = COLORS[~~range(0, 5)];
-      this.rgb = `rgba(${this.style[0]},${this.style[1]},${this.style[2]}`;
-      this.r = ~~range(2, 6);
-      this.r2 = 2 * this.r;
-      this.replace();
-    }
-
-    replace() {
-      this.opacity = 0;
-      this.dop = 0.03 * range(1, 4);
-      this.x = range(-this.r2, w - this.r2);
-      this.y = range(-20, h - this.r2);
-      this.xmax = w - this.r;
-      this.ymax = h - this.r;
-      this.vx = range(0, 2) + 8 * xpos - 5;
-      return this.vy = 0.7 * this.r + range(-1, 1);
-    }
-
-    draw() {
-      var ref;
-      this.x += this.vx;
-      this.y += this.vy;
-      this.opacity += this.dop;
-      if (this.opacity > 1) {
-        this.opacity = 1;
-        this.dop *= -1;
-      }
-      if (this.opacity < 0 || this.y > this.ymax) {
-        this.replace();
-      }
-      if (!((0 < (ref = this.x) && ref < this.xmax))) {
-        this.x = (this.x + this.xmax) % this.xmax;
-      }
-      return drawCircle(~~this.x, ~~this.y, this.r, `${this.rgb},${this.opacity})`);
-    }
-
-  };
-
-  confetti = (function() {
-    var j, ref, results;
-    results = [];
-    for (i = j = 1, ref = NUM_CONFETTI; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-      results.push(new Confetti);
-    }
-    return results;
-  })();
-
-  window.step = function() {
-    var c, j, len, results;
-    requestAnimationFrame(step);
-    context.clearRect(0, 0, w, h);
-    results = [];
-    for (j = 0, len = confetti.length; j < len; j++) {
-      c = confetti[j];
-      results.push(c.draw());
-    }
-    return results;
-  };
-
-  step();
-
-}).call(this);</script>     
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
 <script>
 var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
 var bubbles = document.querySelectorAll('.bubble');
@@ -987,76 +570,7 @@ bubbles.forEach(function(bubble) {
       resetBubble(this);
    });
 });</script>
-<<<<<<< HEAD
 <script src="<?php echo base_url('js/cursordots.js'); ?>"></script>
-=======
-<script>var dots = [],
-    mouse = {
-      x: 0,
-      y: 0
-    };
-
-// The Dot object used to scaffold the dots
-var Dot = function() {
-  this.x = 0;
-  this.y = 0;
-  this.node = (function(){
-    var n = document.createElement("div");
-    n.className = "trail";
-    document.body.appendChild(n);
-    return n;
-  }());
-};
-// The Dot.prototype.draw() method sets the position of 
-  // the object's <div> node
-Dot.prototype.draw = function() {
-  this.node.style.left = this.x + "px";
-  this.node.style.top = this.y + "px";
-};
-
-// Creates the Dot objects, populates the dots array
-for (var i = 0; i < 12; i++) {
-  var d = new Dot();
-  dots.push(d);
-}
-
-// This is the screen redraw function
-function draw() {
-  // Make sure the mouse position is set everytime
-    // draw() is called.
-  var x = mouse.x,
-      y = mouse.y;
-  
-  // This loop is where all the 90s magic happens
-  dots.forEach(function(dot, index, dots) {
-    var nextDot = dots[index + 1] || dots[0];
-    
-    dot.x = x;
-    dot.y = y;
-    dot.draw();
-    x += (nextDot.x - dot.x) * .6;
-    y += (nextDot.y - dot.y) * .6;
-
-  });
-}
-
-addEventListener("mousemove", function(event) {
-  //event.preventDefault();
-  mouse.x = event.pageX;
-  mouse.y = event.pageY;
-});
-
-// animate() calls draw() then recursively calls itself
-  // everytime the screen repaints via requestAnimationFrame().
-function animate() {
-  draw();
-  requestAnimationFrame(animate);
-}
-
-// And get it started by calling animate().
-animate();
-</script>
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
 <!-- Add these scripts to  the bottom of the page -->
 <!-- jQuery 1.7+ --> 
 <!--<script src="jquery.1.7.min.js"></script>-->
@@ -1102,8 +616,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 </script>
-
-<!--<script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});</script>-->
 <!-- End Nav Bar -->
 
 

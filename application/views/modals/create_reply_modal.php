@@ -15,13 +15,13 @@
             <form enctype = "multipart/form-data" id = "create-reply-form" action = "<?php echo base_url('topic/reply');?>" method = "POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for = "title">Enter a title for your reply (Optional):</label>
+                        <label for = "title">Make a title for your reply (Optional):</label>
                         <p class="lead emoji-picker-container">
-                        <input type="text" class="form-control" maxlength = "100" name = "reply_title" id = "reply-title" placeholder = "Title of your post" data-emojiable="true"/>
+                        <input type="text" style="height: 50px;" class="form-control" maxlength = "100" name = "reply_title" id = "reply-title" placeholder = "Title of your post" data-emojiable="true"/>
                         </p>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
-                        <label for = "content">Enter the content of your reply:</label>
+                        <label for = "content">Make the content of your reply:</label>
                         <p class="lead emoji-picker-container">
                         <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
                         </p>

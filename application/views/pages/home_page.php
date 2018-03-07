@@ -10,7 +10,7 @@ include(APPPATH . 'views/header.php');
     $logged_user = $_SESSION['logged_user'];
 
     ?>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<!--    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>-->
     <div class = "container page">
         <div class = "row">
             <div class = "col-md-9 home-container">
@@ -73,12 +73,7 @@ include(APPPATH . 'views/header.php');
                                                 <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                     <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                                 </a>
-                                                <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
-                                                </button>
-                                                <br>
-                                                <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
-                                                <br>
+                                                
 <!--                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
                                                 </button>-->
@@ -99,7 +94,13 @@ include(APPPATH . 'views/header.php');
                                             </div>
                                         </div>
                                         <div class = "user-post-footer no-margin text-right" style="border-radius:20px;">
-                                            <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
+                                            <button class = "upvote-btn btn btn-link btn-xs pull-left" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
+                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
+                                                </button>
+                                                
+                                                <span class = "vote-count text-muted pull-left" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
+                                                
+                                            <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->post_id); ?>">View Post <i class = "fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
                                     <?php
@@ -124,7 +125,6 @@ include(APPPATH . 'views/header.php');
     </div>
     <script>
             // When the user clicks on the button, scroll to the top of the document
-<<<<<<< HEAD
             function topFunction() {                
                 var whistleup = new Audio('<?php echo base_url('images/Slide Whistle up1.mp3'); ?>');
                 window.scroll({
@@ -132,17 +132,20 @@ include(APPPATH . 'views/header.php');
                   behavior: 'smooth' 
                 });
                 whistleup.play();
-=======
-            function topFunction() {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
+            }
+            function botFunction() {                
+                var fallrock = new Audio('<?php echo base_url('images/falling rocks.mp3'); ?>');
+                window.scroll({
+                  top: 100000000,
+                  behavior: 'smooth' 
+                });
+                fallrock.play();
             }
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
         <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
-        <div  onclick="window.scrollTo(0, document.body.scrollHeight);"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+        <div  onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
 
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     

@@ -12,27 +12,25 @@
             <form enctype = "multipart/form-data" id = "create-topic-form" action = "topic/create" method = "POST">
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
-                        <label for = "title">Enter a title for your topic:</label>
+                        <label for = "title">Make a title for your topic:</label>
                         <p class="lead emoji-picker-container">
-                        <input type="text" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic" data-emojiable="true"/>
+                        <input type="text" style="height: 50px;" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic" data-emojiable="true"/>
                         </p>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
-                        <label for = "description">Enter a description for your topic:</label>
+                        <label for = "description">Make a description for your topic:</label>
                         <p class="lead emoji-picker-container">
-                        <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="256" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea>
+                        <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="179" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea>
                         </p>
                     </div>
                     
                      <div id = "attachment-buttons" class = "form-group">
                     <label id = "img-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-img" accept = "image/*" type="file" name = "topic_image" style = "display: none;">
-                            <p id = "image-text" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Image</p>
+                            <p id = "image-text2" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Cover Image</p>
                         </label>
                      </div>
-                    <div id = "attachment-preview" class = "content-container">
-                        <h5 id = "attachment-message" class = "text-warning text-center">No attachment yet.</h5>
-                    </div>
+
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
                     <a id = "create-topic-btn" class ="btn btn-primary buttonsbgcolor" data-toggle = "modal">Create Topic</a>

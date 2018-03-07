@@ -109,11 +109,19 @@ include(APPPATH . 'views/header.php');
                 });
                 whistleup.play();
             }
+            function botFunction() {                
+                var fallrock = new Audio('<?php echo base_url('images/falling rocks.mp3'); ?>');
+                window.scroll({
+                  top: 100000000,
+                  behavior: 'smooth' 
+                });
+                fallrock.play();
+            }
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
         <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
-        <div  onclick="window.scrollTo(0, document.body.scrollHeight);"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+        <div  onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
         <!--
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture2.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture6.png'); ?>"/></span>

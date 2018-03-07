@@ -41,7 +41,7 @@ include(APPPATH . 'views/header.php');
                         <center style="padding-bottom: 2%"><a href="#regi" data-toggle="collapse" ><h3 class = "sign-in-header btn btn-success buttonsgo"><strong>Sign Up for Mukhlat!</strong></h3></a></center>
                         <div id="regi" class="collapse">
                         <div class = "sign-in-form">
-                            <form id = "sign-up-form" onsubmit = "timeLogIn(); return sign_up()" method = "post">
+                            <form id = "sign-up-form" onsubmit = "return sign_up()" method = "post">
                                 <div class = "col-xs-6 form-group register-field">
                                     <input type = "text" required name = "first_name" class = "form-control sign-in-field" placeholder = "First Name" maxlength = "25">
                                 </div>

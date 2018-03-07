@@ -16,14 +16,15 @@ $c_topic = $_SESSION['current_topic'];
             <div id = "topic-heading" class = "col-md-12 content-container no-padding">
                 <a class = "btn btn-topic-header" href="<?php echo base_url('topic'); ?>">
                     <h4 class = "pull-left topic-header-title no-padding" style = "margin-top: 3px; margin-bottom: 0px;">
-                        <strong class = "text-info text1color"><i class = "fa fa-chevron-left"></i> 
+                        <strong class = "text-info text1color" style="cursor:pointer;"><i class = "fa fa-chevron-left" style="cursor:pointer;"></i> 
                             Back to Topics List
                         </strong>
                     </h4>
                 </a>
                 <?php if (!$is_followed): ?>
-                    <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $c_topic->topic_id ?>">
+                    <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%;" value = "<?php echo $c_topic->topic_id ?>">
                         <i class = "fa fa-plus-circle"></i> Follow Topic
+                    </button>
                     <?php else: ?>
                         <button id = "topic-follow-btn" class = "btn btn-md pull-right btn-danger" style = "margin: 5px; margin-right: 20px; width: 20%" value = "<?php echo $c_topic->topic_id ?>">
                             <i class = "fa fa-minus-circle"></i> Unfollow Topic

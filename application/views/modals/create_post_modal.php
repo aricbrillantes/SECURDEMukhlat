@@ -78,9 +78,9 @@ $topic = $_SESSION['current_topic'];
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/post'); ?>" id = "create-post-form" method = "POST">
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
-                        <label for = "title">Enter a title for your post:</label>
+                        <label for = "title">Make a title for your post:</label>
                         <p class="lead emoji-picker-container">
-                        <input type="text" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true"/>
+                        <input type="text" style="height: 50px;" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true"/>
                         </p>
                         <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
                             <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
@@ -93,7 +93,7 @@ $topic = $_SESSION['current_topic'];
                     </div>
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
-                        <label for = "content">Enter the content of your post:</label>
+                        <label for = "content">Make the content of your post:</label>
                         <p class="lead emoji-picker-container">
                         <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
                         </p>
@@ -158,20 +158,14 @@ $topic = $_SESSION['current_topic'];
 
 <!-- SCRIPTS -->
 <!--PROFANITY FILTER-->
- <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+ <!--<script src="https://code.responsivevoice.org/responsivevoice.js"></script>-->
 
                         <script type="text/javascript">
         var warningCount=0, count=0;
         var btncolor=getCookie("ButtonColor");
         var x = document.getElementById("profanityWarning");
-<<<<<<< HEAD
          $(document).keydown(function(event) 
         {
-=======
-         $('.form-control').keydown(function(event) 
-        {
-           
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
             document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");

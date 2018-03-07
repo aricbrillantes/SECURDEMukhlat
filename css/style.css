@@ -15,10 +15,10 @@ body.sign-in{
     display:none;
 }
 .close {
+    font-family: arial;
     font-size:48px !important;
     color: red; 
     opacity: 1;
-<<<<<<< HEAD
 }
 
 .whitebg{
@@ -37,9 +37,6 @@ body.sign-in{
     border:0;
     font-weight: bold;
     text-align: center;
-=======
-    
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
 }
 
 span{
@@ -55,6 +52,7 @@ p{
 
 button{
     font-size: 18px;
+    cursor:pointer !important;
 }
 
 label{
@@ -66,13 +64,18 @@ a{
     cursor:pointer !important;
 }
 
+small{
+    font-size: 18px;
+}
+
 .iconin{
      cursor:pointer !important;
 }
 
 .starroll{
-     animation: roll 3s infinite;
-  transform: rotate(30deg);
+    cursor: pointer !important;
+    animation: roll 3s infinite;
+    transform: rotate(30deg);
 
 }
 
@@ -178,30 +181,7 @@ z-index: 50;
 
 .pinwheel1:hover{
     transform: rotate(10080deg) scale(13);
-<<<<<<< HEAD
-=======
 }
-
-/*random trivia*/
-#randtriv{
-    background-color: #d7eadd;
-    border-radius: 4px;
->>>>>>> 4c35d4c29132c99779e19640dc97af481b6057d5
-}
-#randtriv1{
-    background-color: whitesmoke;
-    border-radius: 4px;
-    padding:14px;
-}
-
-/*create topic*/
-
-#crettop{
-    border-radius: 20px;
-    border:0px;
-    cursor:pointer;
-}
-
 
 /*random trivia*/
 
@@ -209,6 +189,7 @@ z-index: 50;
     background-color: whitesmoke;
     border-radius: 4px;
     padding:10px;
+    z-index: 20;
 }
 
 /*create topic*/
@@ -575,7 +556,7 @@ textarea{
 
 .navbar-font{
     font-family: 'AsparagusSprouts', sans-serif;
-    background-color: green;
+    background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
 }
 
 .search-div{
@@ -786,7 +767,7 @@ textarea{
 }
 
 .topic-description-div{
-    height: 195px;
+    height: 300px;
     padding: 5px;
     margin-bottom: 0px;
 }
@@ -810,7 +791,7 @@ textarea{
     background-color: #ECEFF1; 
     border-radius: 4px;
     margin-top: 10px;
-    height: 455px;
+    height: 558px;
     overflow-y: auto;
 }
 
