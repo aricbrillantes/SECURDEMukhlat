@@ -89,17 +89,14 @@ include(APPPATH . 'views/header.php');
    document.cookie = 'birthday=0;path=/';
    
     var now = new Date();
-    var timeout = new Date();
     var nexttimed = new Date();
     var time1 = now.getTime();
     var time2 = now.getTime()+(3600 * 1000);
-    var time3 = now.getTime()+(5400 * 1000);
     
     function timeLogIn()
     {
         now.setTime(time1);
-        timeout.setTime(time2);
-        nexttimed.setTime(time3);
+        nexttimed.setTime(time2);
         var hours = now.getHours();
         var mins = now.getMinutes();
         var secs = now.getSeconds();
@@ -121,13 +118,9 @@ include(APPPATH . 'views/header.php');
             secs = '0' + secs;
         }
             
-        document.cookie = 'loginTime=' + hours + ':' + now.getMinutes() + ':' + secs + '  ' + meridiem + ';path=/';
+        document.cookie = 'loginTime=' + hours + ':' + mins + ':' + secs + '  ' + meridiem + ';path=/';
         document.cookie = "loginTime1=" + now.getHours() + ";path=/"; 
         document.cookie = "loginTime2=" + now.getMinutes() +";path=/"; 
-        document.cookie = "timeoutTime1=" + timeout.getHours() +";path=/"; 
-        document.cookie = "timeoutTime2=" + timeout.getMinutes() +";path=/"; 
-        document.cookie = "lasttimed1=;path=/"; 
-        document.cookie = "lasttimed2=;path=/"; 
         document.cookie = "nexttimed1=" + nexttimed.getHours() +";path=/"; 
         document.cookie = "nexttimed2=" + nexttimed.getMinutes() +";path=/"; 
         document.cookie = "timed=0;" + ";path=/"; 
