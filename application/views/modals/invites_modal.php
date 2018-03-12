@@ -62,7 +62,9 @@
                             <div id="cursors-div" class="tab-pane fade in">
                                 <table style="width:100%">
                                 <tr>
-                                    <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');"><br>Default</div></center></td>
+                                
+                                <td><center><div class="blocks" onClick="mouseTrail();"><img src = "<?php echo base_url('images/cursors/trail.cur'); ?>"/><br>Mouse Trail</div></center></td>
+                                <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');"><br>Default</div></center></td>
                                 <td class="aric"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/aric.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/aric.cur'); ?>"/><br>Aric</div></center></td>
                                 <td class="kyloren"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/kyloren.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/kyloren.cur'); ?>"/><br>Kylo Ren</div></center></td>
                                 <td class="watermelon"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/watermelon.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/watermelon.cur'); ?>"/>Watermelon</div></center></td>
@@ -124,18 +126,31 @@
         document.cookie = "MousePointer=" + value + ";" + ";path=/";
     }
 
-        function addBGsound(value){
-                        document.cookie = "soundbg1=" + value + ";" + ";path=/";
-                    }
-        function addBGsnow(value){                    
-                        document.cookie = "snowflakebg1=" + value + ";" + ";path=/";   
-                    }
-        function addBGspark(value){
-            document.cookie = "sparklebg1=" + value + ";" + ";path=/";
+    function mouseTrail()
+    {
+        if(getCookie("MouseTrail")==='0')
+            document.cookie = "MouseTrail=1;" + ";path=/";
+        
+        else
+        {
+            if(getCookie("MouseTrail")==='1')
+                document.cookie = "MouseTrail=0;" + ";path=/";
         }
-        function addBGbubble(value){
-            document.cookie = "bubblesbg1=" + value + ";" + ";path=/";
-        }
+        
+    }
+
+    function addBGsound(value){
+                    document.cookie = "soundbg1=" + value + ";" + ";path=/";
+                }
+    function addBGsnow(value){                    
+                    document.cookie = "snowflakebg1=" + value + ";" + ";path=/";   
+                }
+    function addBGspark(value){
+        document.cookie = "sparklebg1=" + value + ";" + ";path=/";
+    }
+    function addBGbubble(value){
+        document.cookie = "bubblesbg1=" + value + ";" + ";path=/";
+    }
         
     function getCookie(cname) {
             var name = cname + "=";
