@@ -27,7 +27,7 @@ include(APPPATH . 'views/header.php');
                                 <input style="font-size: 20px" id = "log-in-password" type = "password" required name = "log_in_password"  class = "form-control sign-in-field" placeholder = "Password"/>
                             </div>
                             <div class = "form-group text-center">
-                                <button type="submit" class="btn btn-primary buttonsgo" style = "width: 100%;font-size:24px;">Login</button>
+                                <button type="submit" class="btn btn-primary buttonsgo" id="loginbutton" style = "width: 100%;font-size:24px;">Login</button>
                             </div>
                         </div>
                     </form>
@@ -93,6 +93,10 @@ include(APPPATH . 'views/header.php');
     var time1 = now.getTime();
     var time2 = now.getTime()+(3600 * 1000);
     
+    document.cookie = "nexttimed1=;path=/"; 
+    document.cookie = "nexttimed2=;path=/"; 
+    document.cookie = "blur=0;path=/"; 
+    
     function timeLogIn()
     {
         now.setTime(time1);
@@ -123,8 +127,25 @@ include(APPPATH . 'views/header.php');
         document.cookie = "loginTime2=" + now.getMinutes() +";path=/"; 
         document.cookie = "nexttimed1=" + nexttimed.getHours() +";path=/"; 
         document.cookie = "nexttimed2=" + nexttimed.getMinutes() +";path=/"; 
-        document.cookie = "timed=0;" + ";path=/"; 
+        document.cookie = "MouseTrail=0;" + ";path=/";
+        document.cookie = "blur=0;" + ";path=/"; 
         return;
+    }
+
+//    alert(now.getHours());
+    if(now.getHours() < 6 || now.getHours() > 19)
+    {  
+//        alert('yes');
+        document.getElementById('loginbutton').style.background="red";
+        document.getElementById('loginbutton').innerHTML="You cannot log in!";
+        document.getElementById('loginbutton').style.pointerEvents="none";
+    }  
+
+    else
+    {
+        document.getElementById('loginbutton').style.background="#1d8f15";
+        document.getElementById('loginbutton').innerHTML="Log In";
+        document.getElementById('loginbutton').style.pointerEvents="auto";
     }
 
 //    timeLogIn();

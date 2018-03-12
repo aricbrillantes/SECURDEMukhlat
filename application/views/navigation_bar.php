@@ -6,7 +6,37 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <?php include(APPPATH . 'views/modals/birthday_modal.php'); 
       include(APPPATH . 'views/modals/time_warning_modal.php');
 ?>
+
+    <p id="display" style="float: right">Time Left<p>
+    <button id="start" style="float: right">Start</button>
+    
 <script type="text/javascript">
+    
+    var start = document.getElementById("start");
+    var dis = document.getElementById("display");
+    var finishTime;
+    var timerLength = 10;
+    var timeoutID;
+    dis.innerHTML = "Time Left: " + timerLength;
+
+    if(localStorage.getItem('myTime')){
+        Update();
+    }
+    start.onclick = function () {
+        localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
+        if (timeoutID !== undefined) window.clearTimeout(timeoutID);
+        Update();
+    };
+
+    function Update() {
+        finishTime = localStorage.getItem('myTime');
+        var timeLeft = (finishTime - new Date());
+        dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
+        timeoutID = window.setTimeout(Update, 100);
+    }
+        
+    
+    
     function getCookie(cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');
@@ -59,8 +89,19 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
+                    .modal-header{background:' + getCookie("NavbarColor") + ';}\n\
                     .topic-grid1{background-color: #'+ randomColor +';}\n\
                     .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');
+    
+        if(getCookie("MouseTrail")==='0')
+            document.write('<style type="text/css">.trail{display:none;}<\/style>');
+        
+//        else
+//        {
+//            if(getCookie("MouseTrail")==='0')
+//                document.cookie = "MouseTrail=0;" + ";path=/";
+//        }
+    
     
     
     if(getCookie("sparklebg1")==="block"){
@@ -79,17 +120,32 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
-//        alert(hours);
 
-
-        if(hours > 19 || hours <6){
-            document.write('<style type="text/css">\n\
+        document.write('<style type="text/css">\n\
                 #overlay {display:block !important;}\n\
-                #nav-logo{display:none}\n\
-                #home2{display:none}\n\
-                <\/style>');
+                html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
+    
+        switch(hours)
+        {
+            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.05);}<\/style>');break;
+            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
+            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
+            case 20:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.3);}#logout-btn {animation: emphasize 0.75s infinite;}<\/style>');break;
+            case 21:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
+            case 22:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.5);}<\/style>');break;
+            default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
         }
-        else{
+
+        if(hours > 18 || hours < 6)
+        {
+            document.write('<style type="text/css">\n\
+            #nav-logo{display:none}\n\
+            #home2{display:none}\n\
+            <\/style>');
+        }
+        
+        else
+        {
             document.write('<style type="text/css">\n\
                 #nav-logo2{display:none}\n\
                 #bed2{display:none}<\/style>');
@@ -97,9 +153,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         
         if(birthMonth===curMonth && birthDay===curDay)
         {
-//            alert(getCookie("birthday"));
-//            alert('yes');
-//            alert(birthMonth + "/" + birthDay + " - " + curMonth + "/" + curDay);
             if(getCookie("birthday")==='0')
                 birthdayPopup();
         }
@@ -107,55 +160,193 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         function birthdayPopup()
         {
             document.cookie = "birthday=1;" + ";path=/"; 
-//             alert(getCookie("birthday"));
-//            location.href="http://localhost/MukhlatBeta/home#birthdaypopup";
             $('#birthdaypopup').modal('show');
             
-            $("#birthdaypopup").on("hidden.bs.modal", function () {
-                location.href="http://localhost/MukhlatBeta/home";
-            });
+//            $("#birthdaypopup").on("hidden.bs.modal", function () {
+//                location.href="http://localhost/MukhlatBeta/home";
+//            });
         }
         
+        var now = new Date();
+        var now2 = new Date();
+        var time = now.getTime();
+        var time2 = now.getTime()+(1800 * 1000);
+        now.setTime(time);
+        now2.setTime(time2);
+
+        var nowH = now.getHours();
+        var nowM = now.getMinutes();
+
+        var blur = Number(getCookie("blur"));
+    
+        if(Number(getCookie("nexttimed1"))<nowH && (Number(getCookie("nexttimed2"))-30)<=nowM)
+        {
+            blur = blur+1;
+            document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
+            document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
+            document.cookie = "blur=" + blur + ";path=/"; 
+            $('#timepopup').modal('show');
+        }
+
+        if(Number(getCookie("nexttimed1"))===nowH && (Number(getCookie("nexttimed2")))<=nowM)
+        {
+            blur = blur+1;
+            document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
+            document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
+            document.cookie = "blur=" + blur + ";path=/"; 
+            $('#timepopup').modal('show');
+        }
+        
+        function forceTimeout()
+        {
+            blur = blur+1;
+            document.cookie = "blur=" + blur + ";path=/"; 
+            $('#timepopup').modal('show');
+        }
+        
+        function removeBlur()
+        {
+            blur = 0;
+            document.cookie = "blur=" + blur + ";path=/"; 
+            location.reload();
+        }
+        
+        
+        var final_transcript = '';
+        var recognizing = false;
+
+        if ('webkitSpeechRecognition' in window) {
+
+          var recognition = new webkitSpeechRecognition();
+          recognition.lang = 'en-US';
+          recognition.continuous = true;
+          recognition.interimResults = true;
+
+          recognition.onstart = function() {
+            recognizing = true;
+          };
+
+          recognition.onerror = function(event) {
+            console.log(event.error);
+            voiceIndicatorOFF();
+            startDictation3(event);
+          };
+
+          recognition.onend = function() {
+            recognizing = false;
+            search.value = final_span.innerHTML;
+        };
+
+       recognition.onresult = function(event) {
+            var interim_transcript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+              } else {
+                interim_transcript += event.results[i][0].transcript;
+              }
+              
+            }
+            final_span.innerHTML = linebreak(final_transcript);
+            interim_span.innerHTML = linebreak(interim_transcript);
+            search.value = linebreak(interim_transcript);
+          };
+        }
+
+        var two_line = /\n\n/g;
+        var one_line = /\n/g;
+        function linebreak(s) {
+          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+        }
+
+        function capitalize(s) {
+          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+        }
+
+        function startDictation(event) {
+            recognition.lang = languages[select_language.selectedIndex];
+            final_transcript = '';
+            final_span.innerHTML = '';
+            interim_span.innerHTML = '';
+            stopDictation3(event);
+            recognition.start();
+            voiceIndicatorON();
+            document.getElementById('search').focus();return false;
+            
+        }
+
+        function stopDictation(event) {
+            recognition.stop();
+            voiceIndicatorOFF();
+            startDictation3(event);
+            document.getElementById('search').focus(); return false;
+        }
+
+        function resetDictation(event) {
+            recognition.stop();
+            voiceIndicatorOFF();
+            startDictation3(event);
+            recognition.lang = languages[select_language.selectedIndex];
+            final_transcript = '';
+            final_span.innerHTML = '';
+            interim_span.innerHTML = '';
+            search.value = '';
+        }
+        
+        var languages = new Array(
+            'en-US',
+            'fil-PH',
+            'fr-FR',
+            'ko-KR'
+        );
+
+        function voiceDropdown() {
+//            document.getElementById("voice-dropdown-content").classList.toggle("show");
+            var x = document.getElementById("voicedropdown");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
 </script>
 <!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>-->
 <!--<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>-->
-<head>
-    
-    <script type="text/javascript" src="<?php echo base_url('sound-mouseover/sound-mouseover.js'); ?>"></script>
-    
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('clippy.js-master/build/clippy.css'); ?>" media="all">-->
-    <style>
-        svg{
-        display: block;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        position: fixed;
-        }
+<script type="text/javascript" src="<?php echo base_url('sound-mouseover/sound-mouseover.js'); ?>"></script>
 
-        path{
-        stroke-linecap: square;
-        stroke: white;
-        stroke-width: 0.5px;
-        }
-        
-        #world{
-            position: fixed;
-        }
-        
-        #peek {
-        position: fixed;
-        z-index: 99999;
-        float: left;
-        bottom:-500px;
-        right:-500px;
-        }
-        
-        
+<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('clippy.js-master/build/clippy.css'); ?>" media="all">-->
+<style>
+    svg{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    }
 
-    </style>
+    path{
+    stroke-linecap: square;
+    stroke: white;
+    stroke-width: 0.5px;
+    }
+
+    #world{
+        position: fixed;
+    }
+
+    #peek {
+    position: fixed;
+    z-index: 99999;
+    float: left;
+    bottom:-500px;
+    right:-500px;
+    }
+
+</style>
+
 <!--        <style>/*******************************
 * MODAL AS LEFT/RIGHT SIDEBAR
 * Add "left" or "right" in modal parent div, after class="modal".
@@ -263,6 +454,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
     <!--night mode-->
 <div id="overlay" style="display:none;"></div>
+<div id="overlay2" style="display:none;"></div>
 
 <div class="bubblesbg">
 <div class="bubble-container">
@@ -394,7 +586,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 </div>
                             </div>
                             <div class="navbaricons2">
-                            <a onclick="window.speechSynthesis.cancel();" onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!</a>
+                            <a onclick="window.speechSynthesis.cancel();" onmouseenter="playclip()" id="logout-btn" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!</a>
 
                             <a onmouseenter="playclip()" class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                         <i class = "fa fa-paint-brush iconin"></i>Colors
@@ -475,32 +667,64 @@ function voiceIndicatorOFF() {
             final_span3.innerHTML = linebreak(final_transcript3);
             interim_span3.innerHTML = linebreak(interim_transcript3);
                 
-                if(interim_span3.innerHTML.includes("go to home")){
-                    location.href="http://localhost/MukhlatBeta/home";
-                }
-                
-                if(interim_span3.innerHTML.includes("go to topics")){
-                    location.href="http://localhost/MukhlatBeta/topic";
-                }
-               
-                if(interim_span3.innerHTML.includes("go to profile")){
-                    location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
-                }
-                
-                if(interim_span3.innerHTML.includes("voice search")){
-                    var x = document.getElementById("voicedropdown");
-                    if (x.style.display === "none") {
-                        x.style.display = "block";
-                    }
-                    startDictation(event);
-                }
-                
-                if(interim_span3.innerHTML.includes("meow")){
-                   meow.play();
-                   catpeek();
-                }
+            if(interim_span3.innerHTML.includes("birthday ko") || interim_span3.innerHTML.includes("happy birthday")){
+                birthdayPopup();
+            }
 
+            if(interim_span3.innerHTML.includes("sawa na ako") || interim_span3.innerHTML.includes("time out")){
+                forceTimeout();
+            }
 
+            if(interim_span3.innerHTML.includes("sawa na ako") || interim_span3.innerHTML.includes("remove blur")){
+                removeBlur();
+                location.href="http://localhost/MukhlatBeta/home";
+            }
+
+            if(interim_span3.innerHTML.includes("remove night mode")){
+                document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');
+                location.href="http://localhost/MukhlatBeta/home";
+            }
+
+            if(interim_span3.innerHTML.includes("go to home")){
+                location.href="http://localhost/MukhlatBeta/home";
+            }
+
+            if(interim_span3.innerHTML.includes("sa home po")){
+                location.href="http://localhost/MukhlatBeta/home";
+            }
+
+            if(interim_span3.innerHTML.includes("di siya mahal")){
+                location.href="https://www.facebook.com/rafael.tanchuan";
+            }
+
+            if(interim_span3.innerHTML.includes("go to topics")){
+                location.href="http://localhost/MukhlatBeta/topic";
+            }
+
+            if(interim_span3.innerHTML.includes("sa topics po")){
+                location.href="http://localhost/MukhlatBeta/topic";
+            }
+
+            if(interim_span3.innerHTML.includes("go to profile")){
+                location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
+            }
+
+            if(interim_span3.innerHTML.includes("sa profile po")){
+                location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
+            }
+
+            if(interim_span3.innerHTML.includes("voice search")){
+                var x = document.getElementById("voicedropdown");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                }
+                startDictation(event);
+            }
+
+            if(interim_span3.innerHTML.includes("meow")){
+               meow.play();
+               catpeek();
+            }
           };
         }
 
@@ -631,8 +855,6 @@ document.addEventListener('keydown', function(e) {
 
 </script>
 <!-- End Nav Bar -->
-
-
 
 <?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>
 <?php include(APPPATH . 'views/modals/invites_modal.php'); ?>

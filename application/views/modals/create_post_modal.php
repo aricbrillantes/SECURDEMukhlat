@@ -79,7 +79,7 @@ $topic = $_SESSION['current_topic'];
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Make a title for your post:</label>
-                        <p class="lead emoji-picker-container">
+                        <!--<p class="lead emoji-picker-container">-->
                         <input type="text" style="height: 50px;" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true"/>
                         </p>
                         <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
@@ -94,7 +94,7 @@ $topic = $_SESSION['current_topic'];
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Make the content of your post:</label>
-                        <p class="lead emoji-picker-container">
+                        <!--<p class="lead emoji-picker-container">-->
                         <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
                         </p>
                     </div>
@@ -326,10 +326,10 @@ $topic = $_SESSION['current_topic'];
 })();</script>-->
 
     <!-- Begin emoji-picker JavaScript -->
-    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
+<!--    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
     <script src="<?php echo base_url('lib/js/util.js');?>"></script>
     <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
-    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
+    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>-->
     <!-- End emoji-picker JavaScript -->
 
     <script>

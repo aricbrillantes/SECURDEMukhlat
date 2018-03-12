@@ -109,6 +109,24 @@ small{
   }
 }
 
+#logout-btn
+{
+    cursor: pointer !important;
+/*    animation: emphasize 0.75s infinite;*/
+}
+
+
+@keyframes emphasize {
+  0% {
+    transform: scale(1);
+  }
+50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 .topicheader{
     position: absolute;
@@ -324,10 +342,10 @@ snap-drawer {
     background: green;
     z-index: 9000;
     pointer-events: none;
-    }
+    /*display: none;*/
+}
 
-    
-    
+       
 .mascoti{
         float:right;
         position:fixed;
@@ -1382,11 +1400,10 @@ transform: rotate(1080deg);
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.4);
     z-index: 999999999;
     pointer-events: none;
-    
 }
+
 .balloon {
   display:inline-block;
   width:80px;
