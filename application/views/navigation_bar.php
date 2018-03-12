@@ -80,7 +80,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
                     .bubblesbg{display:' + getCookie("bubblesbg1") + ';}\n\
-                    .profanityWarning{background-color:' + getCookie("ButtonColor") + ';}\n\
                     .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .search-btn .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\

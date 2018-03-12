@@ -13,17 +13,18 @@
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Make a title for your topic:</label>
-                        <p class="lead emoji-picker-container">
+                        <!--<p class="lead emoji-picker-container">-->
                         <input type="text" style="height: 50px;" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic" data-emojiable="true"/>
                         </p>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "description">Make a description for your topic:</label>
-                        <p class="lead emoji-picker-container">
+                        <!--<p class="lead emoji-picker-container">-->
                         <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="179" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea>
                         </p>
                     </div>
-                    
+                    <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
+                    <br>
                      <div id = "attachment-buttons" class = "form-group">
                     <label id = "img-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-img" accept = "image/*" type="file" name = "topic_image" style = "display: none;">
@@ -36,6 +37,7 @@
                     <a id = "create-topic-btn" class ="btn btn-primary buttonsbgcolor" data-toggle = "modal">Create Topic</a>
                 </div>
             </form>
+            
         </div>
     </div>
 </div>
@@ -62,10 +64,10 @@
     <script src="<?php echo base_url('lib/js/config.js');?>"></script>
     <script src="<?php echo base_url('lib/js/util.js');?>"></script>
     <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
-    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
+    <script src="<?php // echo base_url('lib/js/emoji-picker.js');?>"></script>
     <!-- End emoji-picker JavaScript -->
 
-    <script>
+<!--    <script>
       $(function() {
         // Initializes and creates emoji set from sprite sheet
         window.emojiPicker = new EmojiPicker({
@@ -78,10 +80,42 @@
         // It can be called as many times as necessary; previously converted input fields will not be converted again
         window.emojiPicker.discover();
       });
-    </script>
+    </script>-->
+    
+    <script type="text/javascript">
+    var warningCount=0, count=0;
+    var x = document.getElementById("profanityWarning");
+    $('.modal-body').keydown(function(event) 
+    {
+
+            if(
+                document.getElementById('topic-title').value.includes("fuck")||
+                document.getElementById('topic-title').value.includes("shit")||
+                document.getElementById('topic-description').value.includes("fuck")||
+                document.getElementById('topic-description').value.includes("shit")
+            )
+            {  
+//                  responsiveVoice.speak("Hey there! That's a bad word!","UK English Male",{rate: 1, pitch: 1.2});
+//                  document.getElementById("profanityWarning").innerHTML = 'NO SWEARING!';
+                x.style.display = "block";
+                document.getElementById('create-topic-btn').style.background="red";
+                document.getElementById('create-topic-btn').innerHTML="You should remove bad words from your topic!";
+                document.getElementById('create-topic-btn').style.pointerEvents="none";
+            }  
+
+            else
+            {
+//                    document.getElementById("profanityWarning").innerHTML = '';
+                x.style.display = "none";
+                document.getElementById('create-topic-btn').style.background=getCookie("ButtonColor");
+                document.getElementById('create-topic-btn').innerHTML="Post";
+                document.getElementById('create-topic-btn').style.pointerEvents="auto";
+            }
+//              
+    });  
+</script>
+    
 <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
 
-
-    
     
 <!-- END SCRIPTS -->

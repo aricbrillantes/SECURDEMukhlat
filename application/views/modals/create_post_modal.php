@@ -99,7 +99,7 @@ $topic = $_SESSION['current_topic'];
                         </p>
                     </div>
                     
-                   <div class="profanityWarning" id="profanityWarning">Hey there! It looks like you used a bad word!</div>
+                   <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
 
 <!--                    <div data-toggle="collapse" data-target="#camera" class="dropbtn" style = "background: #D7eadd; cursor: pointer;"><center><div>Take Picture</div>
                             <div id="camera" class="collapse">
@@ -160,51 +160,50 @@ $topic = $_SESSION['current_topic'];
 <!--PROFANITY FILTER-->
  <!--<script src="https://code.responsivevoice.org/responsivevoice.js"></script>-->
 
-                        <script type="text/javascript">
-        var warningCount=0, count=0;
-        var btncolor=getCookie("ButtonColor");
-        var x = document.getElementById("profanityWarning");
-         $(document).keydown(function(event) 
-        {
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😀","😀");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("XD","🤣");
-            document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😐","😐");
-            
-            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("❤","❤");
-            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😞","☹");
-            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("🙂","🙂");
-            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😀","😀");
-            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("XD","🤣");
-            document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😐","😐");
-            
-                if(
-                    document.getElementById('post-title').value.includes("fuck")||
-                    document.getElementById('post-title').value.includes("shit")||
-                    document.getElementById('post-content').value.includes("fuck")||
-                    document.getElementById('post-content').value.includes("shit")
-                )
-                {  
+<script type="text/javascript">
+    var warningCount=0, count=0;
+    var x = document.getElementById("profanityWarning");
+    $('.modal-body').keydown(function(event) 
+    {
+        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
+        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
+        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");
+        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😀","😀");
+        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("XD","🤣");
+        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😐","😐");
+
+        document.getElementById('post-content').value=document.getElementById('post-content').value.replace("❤","❤");
+        document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😞","☹");
+        document.getElementById('post-content').value=document.getElementById('post-content').value.replace("🙂","🙂");
+        document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😀","😀");
+        document.getElementById('post-content').value=document.getElementById('post-content').value.replace("XD","🤣");
+        document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😐","😐");
+
+            if(
+                document.getElementById('post-title').value.includes("fuck")||
+                document.getElementById('post-title').value.includes("shit")||
+                document.getElementById('post-content').value.includes("fuck")||
+                document.getElementById('post-content').value.includes("shit")
+            )
+            {  
 //                  responsiveVoice.speak("Hey there! That's a bad word!","UK English Male",{rate: 1, pitch: 1.2});
 //                  document.getElementById("profanityWarning").innerHTML = 'NO SWEARING!';
-                    x.style.display = "block";
-                    document.getElementById('create-post-btn').style.background="red";
-                    document.getElementById('create-post-btn').innerHTML="You should remove bad words from your post!";
-                    document.getElementById('create-post-btn').style.pointerEvents="none";
-                }  
-              
-                else
-                {
+                x.style.display = "block";
+                document.getElementById('create-post-btn').style.background="red";
+                document.getElementById('create-post-btn').innerHTML="You should remove bad words from your post!";
+                document.getElementById('create-post-btn').style.pointerEvents="none";
+            }  
+
+            else
+            {
 //                    document.getElementById("profanityWarning").innerHTML = '';
-                    x.style.display = "none";
-                    document.getElementById('create-post-btn').style.background=btncolor;
-                    document.getElementById('create-post-btn').innerHTML="Post";
-                    document.getElementById('create-post-btn').style.pointerEvents="auto";
-                }
+                x.style.display = "none";
+                document.getElementById('create-post-btn').style.background=getCookie("ButtonColor");
+                document.getElementById('create-post-btn').innerHTML="Post";
+                document.getElementById('create-post-btn').style.pointerEvents="auto";
+            }
 //              
-        });  
+    });  
 </script>
                     
                     <!--camera-->
