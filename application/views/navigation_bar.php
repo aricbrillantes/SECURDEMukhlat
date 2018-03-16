@@ -5,6 +5,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 <?php include(APPPATH . 'views/modals/birthday_modal.php'); 
       include(APPPATH . 'views/modals/time_warning_modal.php');
+      include(APPPATH . 'views/modals/timeout_warning_modal.php');
 ?>
 
     <p id="display" style="float: right">Time Left<p>
@@ -17,7 +18,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     var finishTime;
     var timerLength = 10;
     var timeoutID;
-    dis.innerHTML = "Time Left: " + timerLength;
+    dis.innerHTML = "Time Left: 60" + timerLength;
 
     if(localStorage.getItem('myTime')){
         Update();
@@ -141,6 +142,16 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             #nav-logo{display:none}\n\
             #home2{display:none}\n\
             <\/style>');
+        }
+        
+        if(hours >= 20)
+        {
+            location.href="http://localhost/MukhlatBeta/signin/logout";
+        }
+                
+        if(hours === 19 && minutes >= 30)
+        {
+            $('#timeoutpopup').modal('show');
         }
         
         else
@@ -296,7 +307,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             'en-US',
             'fil-PH',
             'fr-FR',
-            'ko-KR'
+            'ko-KR',
+            'it-IT',
+            'es-MX',
+            'ja-JP'
+            
         );
 
         function voiceDropdown() {
@@ -573,6 +588,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                         <option value="1" onclick="resetDictation(event)">Filipino</option>
                                         <option value="2" onclick="resetDictation(event)">French</option>
                                         <option value="3" onclick="resetDictation(event)">Korean</option>
+                                        <option value="4" onclick="resetDictation(event)">Italian</option>
+                                        <option value="5" onclick="resetDictation(event)">Spanish</option>
+                                        <option value="6" onclick="resetDictation(event)">Japanese</option>
                                     </select>
                                 </div>                         
                                 <div style="display: inline-block;">
