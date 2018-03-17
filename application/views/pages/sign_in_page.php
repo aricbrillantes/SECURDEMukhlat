@@ -96,6 +96,8 @@ include(APPPATH . 'views/header.php');
     document.cookie = "nexttimed1=;path=/"; 
     document.cookie = "nexttimed2=;path=/"; 
     document.cookie = "blur=0;path=/"; 
+    document.cookie = "warned=0;path=/"; 
+    document.cookie = "dance=;path=/"; 
     
     function timeLogIn()
     {
@@ -127,6 +129,7 @@ include(APPPATH . 'views/header.php');
         document.cookie = "loginTime2=" + now.getMinutes() +";path=/"; 
         document.cookie = "nexttimed1=" + nexttimed.getHours() +";path=/"; 
         document.cookie = "nexttimed2=" + nexttimed.getMinutes() +";path=/"; 
+        document.cookie = "score=0;path=/"; 
         document.cookie = "MouseTrail=0;" + ";path=/";
         document.cookie = "blur=0;" + ";path=/"; 
         return;
@@ -136,8 +139,8 @@ include(APPPATH . 'views/header.php');
     if(now.getHours() < 6 || now.getHours() > 19)
     {  
 //        alert('yes');
-        document.getElementById('loginbutton').style.background="red";
-        document.getElementById('loginbutton').innerHTML="You cannot log in!";
+        document.getElementById('loginbutton').style.background="orange";
+        document.getElementById('loginbutton').innerHTML="You cannot log in anymore!<br> Come back tomorrow!";
         document.getElementById('loginbutton').style.pointerEvents="none";
     }  
 

@@ -3,40 +3,16 @@ $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
 ?>
 
-<?php include(APPPATH . 'views/modals/birthday_modal.php'); 
-      include(APPPATH . 'views/modals/time_warning_modal.php');
-      include(APPPATH . 'views/modals/timeout_warning_modal.php');
+<?php   include(APPPATH . 'views/modals/birthday_modal.php'); 
+        include(APPPATH . 'views/modals/time_warning_modal.php');
+        include(APPPATH . 'views/modals/timeout_warning_modal.php');
+        include(APPPATH . 'views/modals/afk_warning_modal.php');
 ?>
 
-    <p id="display" style="float: right">Time Left<p>
-    <button id="start" style="float: right">Start</button>
+    <p id="afktimer" style="float: right; display:none;">Time Left: 9999<p>
+    <!--<p id="bubblegame" style="float: right;">Bubbles Popped: <p>-->
     
 <script type="text/javascript">
-    
-    var start = document.getElementById("start");
-    var dis = document.getElementById("display");
-    var finishTime;
-    var timerLength = 10;
-    var timeoutID;
-    dis.innerHTML = "Time Left: 60" + timerLength;
-
-    if(localStorage.getItem('myTime')){
-        Update();
-    }
-    start.onclick = function () {
-        localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
-        if (timeoutID !== undefined) window.clearTimeout(timeoutID);
-        Update();
-    };
-
-    function Update() {
-        finishTime = localStorage.getItem('myTime');
-        var timeLeft = (finishTime - new Date());
-        dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
-        timeoutID = window.setTimeout(Update, 100);
-    }
-        
-    
     
     function getCookie(cname) {
         var name = cname + "=";
@@ -52,6 +28,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         }
         return "";
     }
+    
     
     var randomColor = Math.floor(Math.random()*16777215).toString(16);
     var randomColor2 = Math.floor(Math.random()*16777215).toString(16);
@@ -84,6 +61,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .search-btn .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    #logom .bubbletooltip{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .trail{background:' + getCookie("ButtonAColor") + '!important;}\n\
                     body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
@@ -96,14 +74,12 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         if(getCookie("MouseTrail")==='0')
             document.write('<style type="text/css">.trail{display:none;}<\/style>');
         
-//        else
-//        {
-//            if(getCookie("MouseTrail")==='0')
-//                document.cookie = "MouseTrail=0;" + ";path=/";
-//        }
-    
-    
-    
+        if(getCookie("bubblesbg1")==='block')
+            document.write('<style type="text/css"> #logom .bubbletooltip{visibility:visible;}<\/style>');
+        
+        else
+            document.write('<style type="text/css"> #logom .bubbletooltip{visibility:hidden;}<\/style>');
+        
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
     }
@@ -125,13 +101,34 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #overlay {display:block !important;}\n\
                 html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
     
+        if(getCookie("dance")==='1')
+        {
+            document.write('<style type="text/css">\n\
+                            .btn{animation: dance 3s infinite;}\n\
+                            .navbaricons{animation: dance 3s infinite;}\n\
+                            .navbarprofileicon{animation: dance 3s infinite;}\n\
+                            #logout-btn{animation: dance 3s infinite;}\n\
+                            <\/style>');
+        }
+        
+        else
+        {
+            document.write('<style type="text/css">\n\
+                            .btn{animation: none;}\n\
+                            .navbaricons{animation: none;}\n\
+                            .navbarprofileicon{animation: none;}\n\
+                            #logout-btn{animation: none;}\n\
+                            <\/style>');
+        }
+        
+    
         switch(hours)
         {
             case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.05);}<\/style>');break;
-            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
-            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
-            case 20:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.3);}#logout-btn {animation: emphasize 0.75s infinite;}<\/style>');break;
-            case 21:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
+            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}#logout-btn {animation: emphasize 3s infinite;}<\/style>');break;
+            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
+            case 20:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.3);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
+            case 21:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.75s infinite;}<\/style>');break;
             case 22:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.5);}<\/style>');break;
             default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
         }
@@ -143,17 +140,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             #home2{display:none}\n\
             <\/style>');
         }
-        
-        if(hours >= 20)
-        {
-            location.href="http://localhost/MukhlatBeta/signin/logout";
-        }
-                
-        if(hours === 19 && minutes >= 30)
-        {
-            $('#timeoutpopup').modal('show');
-        }
-        
+           
         else
         {
             document.write('<style type="text/css">\n\
@@ -161,11 +148,67 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #bed2{display:none}<\/style>');
         }
         
+        if(hours >= 20)
+        {
+            location.href="http://localhost/MukhlatBeta/signin/logout";
+        }
+        
+        if(hours === 19 && getCookie("warned")==='0')
+        {
+            
+            $('#timeoutpopup').modal('show');
+            document.cookie = "warned=1;path=/"; 
+            
+        }
+        
         if(birthMonth===curMonth && birthDay===curDay)
         {
             if(getCookie("birthday")==='0')
                 birthdayPopup();
         }
+        
+        var start = document.getElementById("start");
+        var dis = document.getElementById("afktimer");
+        var finishTime;
+        var timerLength = 240;
+        var timeoutID;
+        dis.innerHTML = "Time Left: " + timerLength;
+        
+        document.onmousemove = function(){
+            StartTimer();
+            $('#afkpopup').modal('hide');
+        };
+        
+        StartTimer();
+
+        function StartTimer() {
+            localStorage.setItem('myTime', ((new Date()).getTime() + timerLength * 1000));
+            if (timeoutID !== undefined) window.clearTimeout(timeoutID);
+            Update();
+        };
+
+        function Update() {
+            finishTime = localStorage.getItem('myTime');
+            var timeLeft = (finishTime - new Date());
+            dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
+            timeoutID = window.setTimeout(Update, 100);
+
+            if(timeLeft<=120*1000)
+            {
+                $('#afkpopup').modal('show');
+            }
+            
+            if(dis.innerHTML==='Time Left: 0')
+            {
+                location.href="http://localhost/MukhlatBeta/signin/logout";
+            }
+            
+            if(hours >= 20)
+            {
+                location.href="http://localhost/MukhlatBeta/signin/logout";
+            }
+        }
+        
         
         function birthdayPopup()
         {
@@ -326,7 +369,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 </script>
 <!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
-<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>-->
+<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>
 <!--<script type="text/javascript">/* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"https://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"winona":1},"autostart":true}); /* ]]> */</script>-->
 <script type="text/javascript" src="<?php echo base_url('sound-mouseover/sound-mouseover.js'); ?>"></script>
 
@@ -543,7 +586,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img style="cursor: pointer" id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/><img style="cursor: pointer" id = "nav-logo2" src = "<?php echo base_url('images/logo/bed mukhlat.png'); ?>"/></a>
+                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img style="cursor: pointer" id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/><img style="cursor: pointer" id = "nav-logo2" src = "<?php echo base_url('images/logo/bed mukhlat.png'); ?>"/><span class="bubbletooltip" id="bubblegame"style="">Score: </span></a>
 <!--            <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
 			Right Sidebar Modal
 		</button>-->
@@ -580,7 +623,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         
                     </form>
                 </div>
-        
+               
             <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
                                 <div class="compact marquee" id="div_language" style="display: inline-block;font-size: 22px">
                                     <select id="select_language">
@@ -603,7 +646,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 </div>
                             </div>
                             <div class="navbaricons2">
-                            <a onclick="window.speechSynthesis.cancel();" onmouseenter="playclip()" id="logout-btn" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!</a>
+                            <a onclick="window.speechSynthesis.cancel();" onmouseenter="playclip()" id="logout-btn" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!<span class="tooltiptext" id="logouttooltip">Say goodbye to Mukhlat</span></a>
 
                             <a onmouseenter="playclip()" class="navbaricons" href="#customize-theme" data-toggle = "modal">
                                         <i class = "fa fa-paint-brush iconin"></i>Colors
@@ -645,6 +688,8 @@ function voiceIndicatorOFF() {
     var VInd = document.getElementById("snackbar");
     VInd.className = "hide";
 }
+
+
 
 </script>
 <script type="text/javascript">
@@ -785,41 +830,58 @@ function voiceIndicatorOFF() {
         );
 
         startDictation3(event);
+        
+        if(getCookie("warned")==='1')
+            document.getElementById("logouttooltip").innerHTML="You'll be logged out by 8:00 PM! Save your changes!";
+        
     </script>
 <script src="<?php echo base_url('js/eastereggs.js'); ?>"></script>
 <script src="<?php echo base_url('js/usagetimer.js'); ?>"></script>
 <script>var $draggable = $('.draggable').draggabilly();</script>
 <script src="<?php echo base_url('js/frequencybars.js'); ?>"></script>
 <script src="<?php echo base_url('js/sparkles.js'); ?>"></script>     
+
 <script>
-var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
-var bubbles = document.querySelectorAll('.bubble');
-var poppedClass = 'bubble--popped';
- 
-function popBubble(e, bubble) {
-   bubble.style.top = e.clientY - e.offsetY + 'px';
-   bubble.style.left = e.clientX - e.offsetX + 'px';
-   bubble.style.pointerEvents="none";
-   bubble.classList.add(poppedClass);
-   bubpop.play();
-}
- 
-function resetBubble(bubble) {
-   bubble.classList.remove(poppedClass);
-   bubble.style.top = '';
-   bubble.style.left = '';
-   bubble.style.pointerEvents="auto";
-}
- 
-bubbles.forEach(function(bubble) {
-   bubble.addEventListener('click', function(e) {
-      popBubble(e, this);
-   });
-  
-   bubble.addEventListener('animationend', function() {
-      resetBubble(this);
-   });
-});</script>
+    var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
+    var bubbles = document.querySelectorAll('.bubble');
+    var poppedClass = 'bubble--popped';
+    var score = Number(getCookie("score"));
+    
+    document.getElementById("bubblegame").innerHTML='Bubbles Popped: ' + score;
+    
+    function scoreBubble() {
+        score++;
+        document.cookie = "score=" + score +";path=/"; 
+        document.getElementById("bubblegame").innerHTML='Bubbles Popped: ' + score;
+    }
+    
+    function popBubble(e, bubble) {
+       bubble.style.top = e.clientY - e.offsetY + 'px';
+       bubble.style.left = e.clientX - e.offsetX + 'px';
+       bubble.style.pointerEvents="none";
+       bubble.classList.add(poppedClass);
+       scoreBubble();
+       bubpop.play();
+    }
+
+    function resetBubble(bubble) {
+       bubble.classList.remove(poppedClass);
+       bubble.style.top = '';
+       bubble.style.left = '';
+       bubble.style.pointerEvents="auto";
+    }
+
+    bubbles.forEach(function(bubble) {
+       bubble.addEventListener('click', function(e) {
+          popBubble(e, this);
+       });
+
+       bubble.addEventListener('animationend', function() {
+          resetBubble(this);
+       });
+    });
+</script>
+
 <script>
 var starlike = new Audio('<?php echo base_url('images/SPARKLE EFFECT1.mp3'); ?>');
 function starding(){

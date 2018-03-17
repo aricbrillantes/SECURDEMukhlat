@@ -79,15 +79,20 @@
                                 </table>
                             </div>
                             <div id="invites-div" class="tab-pane fade in">
-                                <table style="width:100%"><tr>
-<!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
-                                <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
-                                <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
-                                <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
-                                <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
-                                <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div></td>
-                                <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div></td>
-                                </tr>
+                                <table style="width:100%">
+                                    <tr>
+    <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
+                                        <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
+                                        <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
+                                        <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
+                                        <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
+                                        <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div></td>
+                                    </tr>    
+                                    <tr>
+                                        <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div></td>
+                                        <td><div class="blocks" onClick="buttonDance();">Dancing Buttons</div></td>
+                                    </tr>
+                                    
                                 <tr><td>&nbsp</td></tr>
                                 <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
                                 </table>
@@ -122,6 +127,16 @@
         document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
         document.cookie = "ButtonAColor=" + value5 + ";" + ";path=/";
 
+    }
+    
+    function buttonDance()
+    {
+        if(getCookie("dance")==='0' || getCookie("dance")==='')
+            document.cookie = "dance=1;path=/";
+        
+        else
+            document.cookie = "dance=0;path=/";
+        
     }
     
     function themeCookie(value)
