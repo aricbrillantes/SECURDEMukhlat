@@ -130,6 +130,7 @@ include(APPPATH . 'views/header.php');
         document.cookie = "nexttimed1=" + nexttimed.getHours() +";path=/"; 
         document.cookie = "nexttimed2=" + nexttimed.getMinutes() +";path=/"; 
         document.cookie = "score=0;path=/"; 
+        document.cookie = "randomcolors=0;path=/"; 
         document.cookie = "MouseTrail=0;" + ";path=/";
         document.cookie = "blur=0;" + ";path=/"; 
         return;

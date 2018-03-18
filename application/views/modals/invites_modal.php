@@ -83,7 +83,7 @@
                                     <tr>
     <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                         <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
-                                        <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');">None</div></td>
+                                        <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');document.cookie='randomcolors=0;path=/;';document.cookie='dance=0;path=/;';">None</div></td>
                                         <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
                                         <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
                                         <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div></td>
@@ -91,6 +91,7 @@
                                     <tr>
                                         <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div></td>
                                         <td><div class="blocks" onClick="buttonDance();">Dancing Buttons</div></td>
+                                        <td><div class="blocks" onClick="toggleRandomColors();">Random Colors</div></td>
                                     </tr>
                                     
                                 <tr><td>&nbsp</td></tr>
@@ -127,6 +128,16 @@
         document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
         document.cookie = "ButtonAColor=" + value5 + ";" + ";path=/";
 
+    }
+    
+    function toggleRandomColors()
+    {
+        if(getCookie("randomcolors")==='0')
+            document.cookie = "randomcolors=1;path=/";
+        
+        else
+            document.cookie = "randomcolors=0;path=/";
+        
     }
     
     function buttonDance()

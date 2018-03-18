@@ -41,7 +41,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     }
     
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
-                    #randtriv1{background: #'+ randomColor2 +';}\n\
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
                      body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
                     .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}\n\
@@ -68,7 +67,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     .modal-header{background:' + getCookie("NavbarColor") + ';}\n\
-                    .topic-grid1{background-color: #'+ randomColor +';}\n\
                     .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');
     
         if(getCookie("MouseTrail")==='0')
@@ -79,6 +77,20 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         
         else
             document.write('<style type="text/css"> #logom .bubbletooltip{visibility:hidden;}<\/style>');
+        
+        if(getCookie("randomcolors")==='1')
+        {
+            document.write('<style type="text/css">\n\
+                        #randtriv1{background: #'+ randomColor2 +';}\n\
+                    .topic-grid1{background-color: #'+ randomColor +';}<\/style>');
+        }
+        
+        else
+        {
+            document.write('<style type="text/css">\n\
+                        #randtriv1{background:'+ getCookie("ButtonColor") +';}\n\
+                        .topic-grid1{background-color:'+ getCookie("ButtonColor") +';}<\/style>');
+        }
         
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
