@@ -215,11 +215,17 @@ $topic = $_SESSION['current_topic'];
             {  
                 document.getElementById('charLimitMessage3').style.display = "block";
             }  
+            
+            else
+                document.getElementById('charLimitMessage3').style.display = "none";
 
             if(document.getElementById('post-content').value.length>=16000)
             {  
                 document.getElementById('charLimitMessage4').style.display = "block";
             }  
+                
+            else
+                document.getElementById('charLimitMessage4').style.display = "none";
 
     });  
 </script>

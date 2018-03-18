@@ -119,12 +119,18 @@
         if(document.getElementById('topic-title').value.length>=35)
         {  
             document.getElementById('charLimitMessage1').style.display = "block";
-        }  
+        }
+        
+        else
+            document.getElementById('charLimitMessage1').style.display = "none";
         
         if(document.getElementById('topic-description').value.length>=180)
         {  
             document.getElementById('charLimitMessage2').style.display = "block";
         }  
+        
+        else
+            document.getElementById('charLimitMessage2').style.display = "none";
 //              
     });  
 </script>
