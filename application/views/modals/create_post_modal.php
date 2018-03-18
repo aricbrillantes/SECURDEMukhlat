@@ -81,7 +81,8 @@ $topic = $_SESSION['current_topic'];
                         <label for = "title">Make a title for your post:</label>
                         <!--<p class="lead emoji-picker-container">-->
                         <input type="text" style="height: 50px;" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true"/>
-                        </p>
+                        <p id="charsRemaining3">Characters Left: 100</p>
+                        <div class="charLimitMessage" id="charLimitMessage3"><center>Oops! You've used up all the letters and numbers for your title!</center></div>
                         <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
                             <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
                             <!--<button onclick="startDictation2(event)">Try it</button>-->
@@ -96,7 +97,8 @@ $topic = $_SESSION['current_topic'];
                         <label for = "content">Make the content of your post:</label>
                         <!--<p class="lead emoji-picker-container">-->
                         <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
-                        </p>
+                        <p id="charsRemaining4">Characters Left: 16000</p>
+                        <div class="charLimitMessage" id="charLimitMessage4"><center>Oops! You've used up all the letters and numbers for your post!</center></div>
                     </div>
                     
                    <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
@@ -163,8 +165,14 @@ $topic = $_SESSION['current_topic'];
 <script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");
-    $('.modal-body').keydown(function(event) 
+    var charCount1=100, charCount2=16000;
+    
+    $('.modal-body').keyup(function(event) 
     {
+        
+        document.getElementById('charsRemaining3').innerHTML='Characters Left: '+(charCount1-document.getElementById('post-title').value.length);
+        document.getElementById('charsRemaining4').innerHTML='Characters Left: '+(charCount2-document.getElementById('post-content').value.length);
+        
         document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
         document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
         document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");
@@ -203,6 +211,16 @@ $topic = $_SESSION['current_topic'];
                 document.getElementById('create-post-btn').style.pointerEvents="auto";
             }
 //              
+            if(document.getElementById('post-title').value.length>=100)
+            {  
+                document.getElementById('charLimitMessage3').style.display = "block";
+            }  
+
+            if(document.getElementById('post-content').value.length>=16000)
+            {  
+                document.getElementById('charLimitMessage4').style.display = "block";
+            }  
+
     });  
 </script>
                     

@@ -67,6 +67,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
                     .modal-header{background:' + getCookie("NavbarColor") + ';}\n\
+                    .charLimitMessage{background:' + getCookie("ButtonHColor") + ';}\n\
                     .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');
     
         if(getCookie("MouseTrail")==='0')

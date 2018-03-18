@@ -15,13 +15,16 @@
                         <label for = "title">Make a title for your topic:</label>
                         <!--<p class="lead emoji-picker-container">-->
                         <input type="text" style="height: 50px;" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic" data-emojiable="true"/>
-                        </p>
+                        <p id="charsRemaining1">Characters Left: 35</p>
+                        <div class="charLimitMessage" id="charLimitMessage1"><center>Oops! You've used up all the letters and numbers for your title!</center></div>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "description">Make a description for your topic:</label>
                         <!--<p class="lead emoji-picker-container">-->
-                        <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="179" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea>
-                        </p>
+                        <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="180" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea>
+                        <p id="charsRemaining2">Characters Left: 180</p>    
+                        <div class="charLimitMessage" id="charLimitMessage2"><center>Oops! You've used up all the letters and numbers for your topic!</center></div>
+                    </p>
                     </div>
                     <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
                     <br>
@@ -85,32 +88,43 @@
     <script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");
-    $('.modal-body').keydown(function(event) 
+    var charCount1=35, charCount2=180;
+    
+    $('.modal-body').keyup(function(event) 
     {
+        document.getElementById('charsRemaining1').innerHTML='Characters Left: '+(charCount1-document.getElementById('topic-title').value.length);
+        document.getElementById('charsRemaining2').innerHTML='Characters Left: '+(charCount2-document.getElementById('topic-description').value.length);
+        
+        if(
+            document.getElementById('topic-title').value.includes("fuck")||
+            document.getElementById('topic-title').value.includes("shit")||
+            document.getElementById('topic-description').value.includes("fuck")||
+            document.getElementById('topic-description').value.includes("shit")
+        )
+        {   
+            x.style.display = "block";
+            document.getElementById('create-topic-btn').style.background="red";
+            document.getElementById('create-topic-btn').innerHTML="You should remove bad words from your topic!";
+            document.getElementById('create-topic-btn').style.pointerEvents="none";
+        }  
 
-            if(
-                document.getElementById('topic-title').value.includes("fuck")||
-                document.getElementById('topic-title').value.includes("shit")||
-                document.getElementById('topic-description').value.includes("fuck")||
-                document.getElementById('topic-description').value.includes("shit")
-            )
-            {  
-//                  responsiveVoice.speak("Hey there! That's a bad word!","UK English Male",{rate: 1, pitch: 1.2});
-//                  document.getElementById("profanityWarning").innerHTML = 'NO SWEARING!';
-                x.style.display = "block";
-                document.getElementById('create-topic-btn').style.background="red";
-                document.getElementById('create-topic-btn').innerHTML="You should remove bad words from your topic!";
-                document.getElementById('create-topic-btn').style.pointerEvents="none";
-            }  
+        else
+        {
+            x.style.display = "none";
+            document.getElementById('create-topic-btn').style.background=getCookie("ButtonColor");
+            document.getElementById('create-topic-btn').innerHTML="Post";
+            document.getElementById('create-topic-btn').style.pointerEvents="auto";
+        }
 
-            else
-            {
-//                    document.getElementById("profanityWarning").innerHTML = '';
-                x.style.display = "none";
-                document.getElementById('create-topic-btn').style.background=getCookie("ButtonColor");
-                document.getElementById('create-topic-btn').innerHTML="Post";
-                document.getElementById('create-topic-btn').style.pointerEvents="auto";
-            }
+        if(document.getElementById('topic-title').value.length>=35)
+        {  
+            document.getElementById('charLimitMessage1').style.display = "block";
+        }  
+        
+        if(document.getElementById('topic-description').value.length>=180)
+        {  
+            document.getElementById('charLimitMessage2').style.display = "block";
+        }  
 //              
     });  
 </script>
