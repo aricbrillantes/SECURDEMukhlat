@@ -16,6 +16,20 @@ include(APPPATH . 'views/header.php');
             <div class = "col-md-9 home-container">
                 <div class = "col-sm-12 home-container">
                     <!-- HEADER -->
+<!--                    <div class = "clearfix content-container" style="border-radius:20px;"><center>
+                            
+                        <h1>How are you feeling today?</h1>
+                        <input class="hide23" type="checkbox" title="Happy" name="happy" id="happy">
+                        <label for="happy" class="labelers1 option-happy">Happy</label>
+  
+                        <input class="hide23" type="checkbox" title="Sad" name="sad" id="sad">
+                        <label for="sad" class="labelers1 option-sad">Sad</label>
+  
+                        <input class="hide23" type="checkbox" title="Meh" name="meh" id="meh">
+                        <label for="meh" class="labelers1 option-meh">Meh</label>
+                        
+                        </center></div>-->
+                    
                     <div class = "clearfix content-container" style="border-radius:20px;">
                     <center>
                                 <a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil iconin"></i> Create Topic</a>
@@ -82,7 +96,7 @@ include(APPPATH . 'views/header.php');
                                                     </small>
                                                       <br>
                                                 </i>
-                                                <span class = "text-muted whitebg2"> <i style = "font-size: 20px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                                <span class = "text-muted whitebg2"> <i style = "font-size: 14px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                                 
 <!--                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
@@ -92,14 +106,15 @@ include(APPPATH . 'views/header.php');
                                             <!-- Right -->
                                             <div class = "col-xs-11" style = "margin-top: 5px;">
                                                 <div class="ptopcolor" style="display:inline-block; margin-left: 3%">
-                                                    <h4 class = "no-padding no-margin text-muted wrap whitebg2" style="display:inline-block"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
-                                                <p class = "home-content-body whitebg2" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
+                                                    <!--<h4 class = "no-padding no-margin text-muted wrap whitebg2" style="display:inline-block"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
+                                                <p class = "home-content-body whitebg2" style = "border-right: none;white-space: pre-wrap;max-width: 700px;"><?php echo utf8_decode($post->post_content); ?></p>
                                                 
                                                 <span class="whitebg2" style="padding-right: 30px !important;">
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
                                                     <span onclick="starding()" class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
                                                 </button>
                                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
+                                                <button class = "btn btn-primary pull-right" id="text2speak" style = "margin-left: 3px;border-radius: 20px" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up"></i></button>
                                                 </span>
                                                 
                                                 </div>
@@ -125,8 +140,7 @@ include(APPPATH . 'views/header.php');
             </div>
 
             <?php
-            
-            
+            include(APPPATH . 'views/side_navbar.php');
             include(APPPATH . 'views/modals/create_topic_modal.php');
             ?>
         </div>
@@ -150,7 +164,19 @@ include(APPPATH . 'views/header.php');
                 fallrock.play();
             }
         </script>
-        
+        <script>
+function readcontent(value) {
+    if(!(speechSynthesis.speaking)){
+    var value2 = value.replace(/`/g, "'");
+    var reader = new SpeechSynthesisUtterance(value2);
+    window.speechSynthesis.speak(reader);
+    }
+    else{
+        window.speechSynthesis.cancel();
+    }
+  }
+
+</script>
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
         <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
         <div onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>

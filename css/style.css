@@ -11,6 +11,26 @@ body.sign-in{
     font-family: 'AsparagusSprouts', 'AsparagusSprouts', sans-serif;
     height: 500px;
 }
+
+.modalbg{
+    background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
+}
+
+.modal-header{
+    background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { 
+    background:linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
+}
+.nav-pills>li.active>a{
+text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+    
 .soundbg{
     display:none;
 }
@@ -89,30 +109,12 @@ small{
     font-size: 18px;
 }
 
-.iconin{
-     cursor:pointer !important;
-}
-
-.starroll{
-    cursor: pointer !important;
-    animation: roll 3s infinite;
-    transform: rotate(30deg);
-
-}
-
-@keyframes roll {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 #logout-btn
 {
     cursor: pointer !important;
+/*    animation: emphasize 0.75s infinite;*/
 }
+
 
 @keyframes emphasize {
   0% {
@@ -138,6 +140,68 @@ small{
   }
 }
 
+.iconin{
+     cursor:pointer !important;
+}
+
+.starroll{
+    cursor: pointer !important;
+    animation: roll 3s infinite;
+
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hide23 {
+  position: absolute;
+  left: -10000px;
+}
+
+.labelers1 {
+  display: inline-block;
+  background: gray;
+  margin: 25px;
+  position: relative;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 2px;
+  font-size: 1em;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+#happy ~ .option-happy {
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+}
+#happy:checked ~ .option-happy {
+  background: green;
+}
+
+#sad ~ .option-sad {
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/sad.png"), auto;
+}
+#sad:checked ~ .option-sad {
+  background: blue;
+}
+
+#meh ~ .option-meh {
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/meh.png"), auto;
+}
+#meh:checked ~ .option-meh {
+  background: orange;
+}
+
+
 .topicheader{
     position: absolute;
     top: 12px;
@@ -159,6 +223,7 @@ small{
     border:0;
     padding:5px;
 }
+
 
 
 .topic-grid1{
@@ -206,8 +271,22 @@ left: 0px; /*position where enlarged image should offset horizontally */
 z-index: 50;
 }
 
-
-
+        
+#world{
+    position: fixed;
+}
+#firework{
+    position: absolute;
+}
+        
+#peek {
+    position: fixed;
+    z-index: 99999;
+    float: left;
+    bottom:-500px;
+    right:-500px;
+}
+        
 .pinwheel{
     height:3%;
     width:3%;
@@ -269,7 +348,7 @@ z-index: 50;
 }
 
 #green{
-    background:linear-gradient(to bottom, green 0%,green 25%, #D7eadd 25%,#D7eadd 100%);
+    background:linear-gradient(to bottom, #009900,#009900 10%,#007f00 10%,#007f00 20%, #D7eadd 20%,#D7eadd 100%);
     color:white;
 }
 #blue{
@@ -345,6 +424,38 @@ snap-drawer {
     transform: scale(1.35);
 }
 
+#logom .bubbletooltip {
+    width: 120px;
+    margin-top: 5px;
+    font-size: 18px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    animation: bubbletooltip 3s infinite;
+    /*display:none;*/
+    /*visibility:hidden;*/
+}
+
+@keyframes bubbletooltip {
+  0% {
+    transform: scale(1.3);
+  }
+50% {
+    transform: scale(1.6);
+  }
+  100% {
+    transform: scale(1.3);
+  }
+}
+
 .trail { /* className for the trail elements */
     position: absolute;
     height: 6px; width: 6px;
@@ -352,10 +463,10 @@ snap-drawer {
     background: green;
     z-index: 9000;
     pointer-events: none;
-    /*display: none;*/
-}
+    }
 
-       
+    
+    
 .mascoti{
         float:right;
         position:fixed;
@@ -414,6 +525,11 @@ snap-drawer {
     font-size:16px;
     margin-right:0.5%;
     color:white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
     position:relative;
     float:right;
     width:50px;
@@ -441,7 +557,11 @@ snap-drawer {
     float:right;
     display: inline-block;
     height:50px;
-
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
     margin-right:1%;
     padding-left: 0.7%;
     padding-right: 0.7%;
@@ -1249,7 +1369,23 @@ END CHAT
 .ellipsis{
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    max-height: 80px;
+}
+
+.fadebelow{
+  position: relative;
+}
+
+.fadebelow:after {
+  position: absolute;
+  bottom: 0;  
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(to top,
+     rgba(255,255,255, 1) 0%, 
+     rgba(255,255,255, 0) 40%
+  );
 }
 
 .user-list-entry{
@@ -1400,6 +1536,11 @@ transform: rotate(1080deg);
     color: white;
     cursor: pointer !important;
     pointer-events: none;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 #overlay {
@@ -1412,6 +1553,7 @@ transform: rotate(1080deg);
     bottom: 0;
     z-index: 999999999;
     pointer-events: none;
+    
 }
 
 .balloon {
@@ -1531,6 +1673,7 @@ transform: rotate(1080deg);
     border-radius: 10px; /* Rounded corners */
     font-size: 21px;
 }
+
 /*bubbles*/
 
 .bubblesbg{
@@ -1725,8 +1868,9 @@ transform: rotate(1080deg);
   }
 }
 
-#logom .bubbletooltip {
-    width: 120px;
+.camerapic .tooltiptext {
+    visibility: hidden;
+    width: 150px;
     margin-top: 5px;
     font-size: 18px;
     background-color: black;
@@ -1734,27 +1878,46 @@ transform: rotate(1080deg);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-    top: 100%;
-    left: 50%; 
+   
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
     /* Position the tooltip */
+    top: 15px;
+    right: 90%; 
     position: absolute;
     z-index: 1;
-    animation: bubbletooltip 3s infinite;
-    /*display:none;*/
-    /*visibility:hidden;*/
 }
 
-@keyframes bubbletooltip {
-  0% {
-    transform: scale(1.3);
-  }
-50% {
-    transform: scale(1.6);
-  }
-  100% {
-    transform: scale(1.3);
-  }
+.camerapic:hover .tooltiptext {
+    visibility: visible;
+}
+
+.camerapic:hover{
+    background: whitesmoke;
+}
+.audiorec:hover{
+    background: whitesmoke;
+}
+
+.audiorec .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    margin-top: 5px;
+    font-size: 18px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 75px;
+    right: 90%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+    position: absolute;
+    z-index: 1;
+}
+
+.audiorec:hover .tooltiptext {
+    visibility: visible;
 }
 
 .navbaricons .tooltiptext {
@@ -1774,6 +1937,7 @@ transform: rotate(1080deg);
     position: absolute;
     z-index: 1;
 }
+
 
 .navbarprofileicon .tooltiptext {
     visibility: hidden;

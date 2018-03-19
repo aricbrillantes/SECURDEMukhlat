@@ -4,22 +4,22 @@
 
 <style>
 
+	
 </style>
 
 </head>
 
-<div id="timepopup" class="modal fade" role="dialog">
+<div id="recorderpopup" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Notification Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center"><strong><i class="glyphicon glyphicon-time"></i> Time to take a break</strong></h4>
+                <h4 class="modal-title text-center"><strong><i class="fa fa-microphone"></i> Record your voice</strong></h4>
             </div>
             <div class="modal-body">
-                <div class = "row"><center>
-                    <span style="font-size: 32px">It might be time to take a break, <?php echo $logged_user->first_name; ?>.<br> You have been on this site for a long time. </span>
-                    </center>
+                <div class = "row">
+                    <p style="color: red;text-align: center;font-weight: bold">Coming Soon!</p>
                 </div>
             </div>
         </div>

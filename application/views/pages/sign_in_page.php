@@ -52,7 +52,68 @@ include(APPPATH . 'views/header.php');
                                     <input type = "email" required name = "sign_up_email" class = "form-control sign-in-field" placeholder = "Email Address" maxlength = "45">
                                 </div>
                                 <div class = "col-xs-7 form-group register-field" style = "font-size:24px;">When is your birthday:
-                                    <input style="height:55px" type = "date" required name = "sign_up_birthday" class = "form-control sign-in-field">
+                                    <input style="height:55px;display:none;" type = "date" required name = "sign_up_birthday" class = "form-control sign-in-field" id="birhdate10"><br>
+                                    <select style="width:120px;height:30px" id="DOBMonth" onclick="choosebday()">
+                                    <option>Month</option>
+                                    <option value="01">January</option>
+                                    <option value="02">Febuary</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+
+                                <select style="width:100px;height:30px" id="DOBDay" onclick="choosebday()">
+                                        <option>Day</option>
+                                        <option value="01">1</option>
+                                        <option value="02">2</option>
+                                        <option value="03">3</option>
+                                        <option value="04">4</option>
+                                        <option value="05">5</option>
+                                        <option value="06">6</option>
+                                        <option value="07">7</option>
+                                        <option value="08">8</option>
+                                        <option value="09">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                </select>
+
+                                <select style="width:100px;height:30px" id="DOBYear" onclick="choosebday()">
+                                        <option>Year</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2012">2012</option>
+                                </select>
                                 </div>
                                 <div  style = "display: none;">
                                 <div class = "col-xs-1 text-center register-field">
@@ -85,6 +146,19 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
+<script>
+    function choosebday(){
+    var date1 = document.getElementById("DOBDay");
+    var month1 = document.getElementById("DOBMonth");
+    var year1 = document.getElementById("DOBYear");
+    
+    var selectedday = date1.options[date1.selectedIndex].value;
+    var selectedmonth = month1.options[month1.selectedIndex].value;
+    var selectedyear = year1.options[year1.selectedIndex].value;
+    
+    document.getElementById("birhdate10").value = selectedyear + "-" + selectedmonth + "-" + selectedday;
+    }
+    </script>
 <script>
    document.cookie = 'birthday=0;path=/';
    
@@ -137,7 +211,7 @@ include(APPPATH . 'views/header.php');
     }
 
 //    alert(now.getHours());
-    if(now.getHours() < 6 || now.getHours() > 19)
+    if( now.getHours() > 19)
     {  
 //        alert('yes');
         document.getElementById('loginbutton').style.background="orange";
@@ -202,7 +276,9 @@ include(APPPATH . 'views/header.php');
                 text.innerHTML = "";
             }
         });
-                            </script>
+</script>    
+
     <script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
+
 </body>
 </html>

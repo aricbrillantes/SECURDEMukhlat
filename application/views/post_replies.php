@@ -39,7 +39,7 @@ if ($post->parent_id !== '0'):
                     </button>-->
                 </div>
                 <?php if ($post->post_title): ?>
-                    <h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>
+                    <!--<h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
                     <small>
                         <i>by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url("user/profile/" . $post->user->user_id); ?>"><?php echo $post->user->first_name . " " . $post->user->last_name ?></a></i>
                         <span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
@@ -73,7 +73,7 @@ if ($post->parent_id !== '0'):
                     <?php
                 endif;
                 ?>
-                <p class = "post-content" style = "margin-top: 15px;"><?php echo utf8_decode($post->post_content); ?></p>
+                <p class = "post-content" style = "margin-top: 15px;white-space: pre-wrap;"><?php echo utf8_decode($post->post_content); ?></p>
             <?php else: ?>
                 <div class="media-heading">
                     <h4 class = "no-padding no-margin text-danger">Deleted Post</h4>

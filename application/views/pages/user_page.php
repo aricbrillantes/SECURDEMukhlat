@@ -137,7 +137,7 @@ include(APPPATH . 'views/header.php');
                                         </div>
                                         <div class = "col-xs-10 no-padding" style = "margin-top: 5px;">
                                             <?php if (!empty($post->post_title)): ?>
-                                                <h5 class = "no-padding no-margin text-muted wrap"><strong style = "font-size: 21px"><?php echo utf8_decode($post->post_title); ?></strong></h5>
+                                                <!--<h5 class = "no-padding no-margin text-muted wrap"><strong style = "font-size: 21px"><?php echo utf8_decode($post->post_title); ?></strong></h5>-->
                                                 <i class = "text-muted">
                                                     <small>by 
                                                         <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
@@ -150,12 +150,12 @@ include(APPPATH . 'views/header.php');
 
                                             <?php endif; ?>
                                             <span class = "text-muted"> <i style = "font-size: 18px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
-                                            <p class = "home-content-body" style = "border-right: none;"><?php echo utf8_decode($post->post_content); ?></p>
+                                            <p class = "home-content-body" style = "border-right: none;white-space: pre-wrap;"><?php echo utf8_decode($post->post_content); ?></p>
 
                                         </div>
                                     </div>
                                     <div class = "user-post-footer no-margin text-right">
-                                        <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->root_id); ?>">View Thread <i class = "fa fa-chevron-right"></i></a>
+                                        <a class = "btn btn-user-post-footer no-up-down-pad" href = "<?php echo base_url('topic/thread/' . $post->root_id); ?>">View Post <i class = "fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             <?php endforeach; ?>

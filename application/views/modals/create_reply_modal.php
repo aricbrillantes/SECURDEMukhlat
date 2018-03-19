@@ -14,12 +14,12 @@
             </div>
             <form enctype = "multipart/form-data" id = "create-reply-form" action = "<?php echo base_url('topic/reply');?>" method = "POST">
                 <div class="modal-body">
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label for = "title">Make a title for your reply (Optional):</label>
                         <p class="lead emoji-picker-container">
                         <input type="text" style="height: 50px;" class="form-control" maxlength = "100" name = "reply_title" id = "reply-title" placeholder = "Title of your post" data-emojiable="true"/>
                         </p>
-                    </div>
+                    </div>-->
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Make the content of your reply:</label>
                         <p class="lead emoji-picker-container">

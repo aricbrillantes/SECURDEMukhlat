@@ -95,7 +95,7 @@ $logged_user = $_SESSION['logged_user'];
         }?>
         <img class = "pinwheel1" src = "<?php echo base_url('images/Picture1.png'); ?>"/></div>
         <div style="position: relative;bottom:100px;left: 100px;">Hello! You found me.</div>
-        <center> <a href="">Click here to learn more!</a></center>
+        <center> <a href="https://kids.nationalgeographic.com/">Click here to learn more!</a></center>
     
     </div>
 </div>

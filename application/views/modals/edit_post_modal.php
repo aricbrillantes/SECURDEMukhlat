@@ -14,10 +14,12 @@ $topic = $_SESSION['current_topic'];
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/edit_post'); ?>" id = "edit-post-form" method = "POST">
                 <div class="col-md-12 modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
+                        <div style="display: none">
                         <label for = "title">Enter a title for your post:</label>
                         <p class="lead emoji-picker-container">
                         <input type="text" required maxlength = "100" class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post" data-emojiable="true"/>
                         </p>
+                    </div>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>

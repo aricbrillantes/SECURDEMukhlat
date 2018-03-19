@@ -78,7 +78,7 @@ include(APPPATH . 'views/header.php');
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                         echo '<img src=" '.$row['file_url'].' " width = "100%" height="150px" style="position:relative;" />';
-                        echo '<span  style="font-size: 22px">'. $topic->topic_name .'<img src=" '.$row['file_url'].' " /></span>';
+                        echo '<span  style="font-size: 32px">'. $topic->topic_name .'<img src=" '.$row['file_url'].' " /></span>';
                         $conn->close();
                         }?>
 
@@ -95,6 +95,7 @@ include(APPPATH . 'views/header.php');
                 </div>
             </div>
             <?php
+            include(APPPATH . 'views/side_navbar.php');
             include(APPPATH . 'views/modals/create_topic_modal.php');
             ?>
         </div>
