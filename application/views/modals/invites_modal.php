@@ -83,17 +83,18 @@
                                     <tr>
     <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                         <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
-                                        <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');document.cookie='randomcolors=0;path=/;';document.cookie='dance=0;path=/;';">None</div></td>
+                                        <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');addBGfirework('none');document.cookie='randomcolors=0;path=/;';document.cookie='dance=0;path=/;';">None</div></td>
                                         <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
                                         <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
                                         <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div></td>
+                                        <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div></td>
                                     </tr>    
                                     <tr>
-                                        <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div></td>
                                         <td><div class="blocks" onClick="buttonDance();">Dancing Buttons</div></td>
                                         <td><div class="blocks" onClick="toggleRandomColors();">Random Colors</div></td>
                                     </tr>
-                                    
+                                <!--<tr><td><div class="blocks" onClick="addBGfirework('block');">Fireworks</div></td></tr>-->
+                                
                                 <tr><td>&nbsp</td></tr>
                                 <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
                                 </table>
@@ -202,6 +203,9 @@
     function addBGbubble(value){
         document.cookie = "bubblesbg1=" + value + ";" + ";path=/";
     }
+    function addBGfirework(value){
+            document.cookie = "fireworkbg1=" + value + ";" + ";path=/";
+        }
         
     function getCookie(cname) {
             var name = cname + "=";
