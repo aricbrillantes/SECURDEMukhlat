@@ -84,14 +84,14 @@
     <!--                                <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                         <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>-->
                                         <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');addBGfirework('none');document.cookie='randomcolors=0;path=/;';document.cookie='dance=0;path=/;';">None</div></td>
-                                        <td><div class="blocks" onClick="addBGsound('block');">Sound</div></td>
-                                        <td><div class="blocks" onClick="addBGsnow('block');">Snowflake</div></td>
-                                        <td><div class="blocks" onClick="addBGspark('block');">Sparkles</div></td>
-                                        <td><div class="blocks" onClick="addBGbubble('block');">Bubbles</div></td>
+                                        <td><div class="blocks" onClick="addBGsound('block');"><img src = "<?php echo base_url('images/extras/sound.png'); ?>"/>Sound</div></td>
+                                        <td><div class="blocks" onClick="addBGsnow('block');"><img src = "<?php echo base_url('images/extras/snowflake.png'); ?>"/>Snowflake</div></td>
+                                        <td><div class="blocks" onClick="addBGspark('block');"><img src = "<?php echo base_url('images/extras/sparkles.png'); ?>"/>Sparkles</div></td>
+                                        <td><div class="blocks" onClick="addBGbubble('block');"><img src = "<?php echo base_url('images/extras/bubbles.png'); ?>"/>Bubbles</div></td>
                                     </tr>    
                                     <tr>
-                                        <td><div class="blocks" onClick="buttonDance();">Dancing Buttons</div></td>
-                                        <td><div class="blocks" onClick="toggleRandomColors();">Random Colors</div></td>
+                                        <td><div class="blocks" onClick="buttonDance();"><img src = "<?php echo base_url('images/extras/bubbles.png'); ?>"/>Dancing Buttons</div></td>
+                                        <td><div class="blocks" onClick="toggleRandomColors();"><img src = "<?php echo base_url('images/extras/randomcolors.png'); ?>"/>Random Colors</div></td>
                                     </tr>
                                 <!--<tr><td><div class="blocks" onClick="addBGfirework('block');">Fireworks</div></td></tr>-->
                                 

@@ -10,7 +10,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 ?>
 
 <p id="afktimer" style="float: right; display:none;">Time Left: 9999<p>
-    <!--<p id="bubblegame" style="float: right;">Bubbles Popped: <p>-->
+<!--    <p id="bubblegame" style="float: right;">Bubbles Popped: <p>-->
 
 <script type="text/javascript">
     
@@ -188,7 +188,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var start = document.getElementById("start");
         var dis = document.getElementById("afktimer");
         var finishTime;
-        var timerLength = 240;
+        var timerLength = 600;
         var timeoutID;
         dis.innerHTML = "Time Left: " + timerLength;
         
@@ -211,7 +211,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
             timeoutID = window.setTimeout(Update, 100);
 
-            if(timeLeft<=120*1000)
+            if(timeLeft<=300*1000)
             {
                 $('#afkpopup').modal('show');
             }
@@ -488,7 +488,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img style="cursor: pointer" id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/><img style="cursor: pointer" id = "nav-logo2" src = "<?php echo base_url('images/logo/bed mukhlat.png'); ?>"/></a>
+                <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>"><img style="cursor: pointer" id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/><img style="cursor: pointer" id = "nav-logo2" src = "<?php echo base_url('images/logo/bed mukhlat.png'); ?>"/><span class="bubbletooltip" id="bubblegame"style="">Score: </span></a>
 <!--            <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
 			Right Sidebar Modal
 		</button>-->
@@ -829,7 +829,7 @@ function getSelectionText() {
 document.addEventListener('keydown', function(e) {
   if (e.keyCode === 16) {
     var msg = new SpeechSynthesisUtterance(getSelectionText());
-    msg.voice = voices90[2];
+    msg.voice = voices90[5];
     synth.speak(msg);
   }
   if(e.keyCode === 17){
