@@ -27,7 +27,7 @@ $logged_user = $_SESSION['logged_user'];
         <div id = "side-topics-followed">
         <!--<h3 class = "text-center text-info no-padding no-margin text1color" style = "margin-bottom: 10px;"><strong>Topic Shortcuts</strong></h3>-->
         <!--<a id = "side-topics-created-btn" class = "btn btn-sm btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
-            <h4 class="ptopcolor" style="border-radius: 2px;color: white">Your topics</h4>
+            <h4 class="ptopcolor textoutliner" style="border-radius: 2px;color: white">Your topics</h4>
         <!--</a>-->
         <div class = "sidebar-topic-div">
             <ul class="nav">
@@ -53,7 +53,7 @@ $logged_user = $_SESSION['logged_user'];
 
 
         <!--<a id = "side-topics-followed-btn" class = "btn btn-block no-padding sidebar-header-btn buttonsbgcolor">-->
-        <h4 class="ptopcolor" style="border-radius: 2px;color: white">Topics you Follow</h4>
+        <h4 class="ptopcolor textoutliner" style="border-radius: 2px;color: white">Topics you Follow</h4>
         <!--</a>-->
         <div class = "sidebar-topic-div">
             <ul class="nav">

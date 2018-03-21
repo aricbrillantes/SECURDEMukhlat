@@ -109,6 +109,18 @@ small{
     font-size: 18px;
 }
 
+.text1color{
+    font-size: 22px !important;
+}
+
+.textoutliner{
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+}
+
 #logout-btn
 {
     cursor: pointer !important;

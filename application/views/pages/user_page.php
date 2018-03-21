@@ -35,7 +35,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Topics -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-topic-header modalbg"><strong>Topics of <?php echo $user->first_name ?></strong></h3>
+                        <h3 class = "text-info text-center user-topic-header modalbg"><strong class="textoutliner">Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a data-toggle="pill" href="#user-topic-created">Created Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-followed">Followed Topics</a></li>
@@ -109,7 +109,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Activities -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-activities-header modalbg"><strong>Activities of <?php echo $user->first_name; ?></strong></h3>
+                        <h3 class = "text-info text-center user-activities-header modalbg"><strong class="textoutliner">Activities of <?php echo $user->first_name; ?></strong></h3>
                         <div class = "col-sm-12 user-activities-div">
                             <!-- POST PREVIEW -->
                             <?php foreach ($user->activities as $post): ?> 
@@ -139,7 +139,7 @@ include(APPPATH . 'views/header.php');
                                             <?php if (!empty($post->post_title)): ?>
                                                 <!--<h5 class = "no-padding no-margin text-muted wrap"><strong style = "font-size: 21px"><?php echo utf8_decode($post->post_title); ?></strong></h5>-->
                                                 <i class = "text-muted">
-                                                    <small>by 
+                                                    <small>
                                                         <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                             <?php echo $post->first_name . " " . $post->last_name ?>
                                                         </a>

@@ -77,17 +77,18 @@ $topic = $_SESSION['current_topic'];
             </div>
             <form enctype = "multipart/form-data" action = "<?php echo base_url('topic/post'); ?>" id = "create-post-form" method = "POST">
                 <div class="modal-body">
+                    <div style="display: none">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Make a title for your post:</label>
                         <!--<p class="lead emoji-picker-container">-->
-                        <input type="text" style="height: 50px;" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true"/>
+                        <input type="text" style="height: 50px;" maxlength = "100"  required class="form-control" name = "post_title" id = "post-title" placeholder = "Title of your Post"  data-emojiable="true" value=" "/>
                         <p id="charsRemaining3">Characters Left: 100</p>
                         <div class="charLimitMessage" id="charLimitMessage3"><center>Oops! You've used up all the letters and numbers for your title!</center></div>
                         <!--<span id="start_button" onclick="startDictation2(event)" style="display: inline-block;"><img border="0" alt="Start" id="start_img" src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></span>-->
                             <!--<a href="#" class="voicesearch" id="voicesearch" onclick="stopDictation2(event)"><img border="0" id="voicesearchicon" class="voicesearchicon" alt="START" src="images/microphone_start.png" height="50" width="50"></a>-->
                             <!--<button onclick="startDictation2(event)">Try it</button>-->
                     </div>
-                    
+                    </div>
                     <div id="results" style="display: none" border="1px">
                         <span id="final_span2" class="final"></span>
                         <span id="interim_span2" class="interim"></span>

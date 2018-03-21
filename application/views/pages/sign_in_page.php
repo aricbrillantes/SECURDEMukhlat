@@ -211,7 +211,7 @@ include(APPPATH . 'views/header.php');
     }
 
 //    alert(now.getHours());
-    if( now.getHours() > 19)
+    if(now.getHours() < 6 || now.getHours() > 19)
     {  
 //        alert('yes');
         document.getElementById('loginbutton').style.background="orange";

@@ -75,7 +75,7 @@ $user = $post->user;
                                     <?php if ($post->post_title): ?>
                                     <!--<h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
                                         <small>
-                                            <i>by <a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
+                                            <i><a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
                                             <span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
                                         </small>
                                     <?php else: ?>

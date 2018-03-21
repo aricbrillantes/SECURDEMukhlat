@@ -10,7 +10,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 ?>
 
 <p id="afktimer" style="float: right; display:none;">Time Left: 9999<p>
-<!--    <p id="bubblegame" style="float: right;">Bubbles Popped: <p>-->
 
 <script type="text/javascript">
     
@@ -166,7 +165,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #bed2{display:none}<\/style>');
         }
         
-        if(hours >= 20)
+        if(hours >= 20 || hours < 6)
         {
             location.href="http://localhost/MukhlatBeta/signin/logout";
         }
@@ -843,4 +842,4 @@ document.addEventListener('keydown', function(e) {
 
 
 <?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>
-<?php include(APPPATH . 'views/modals/invites_modal.php'); ?>
+<?php include(APPPATH . 'views/modals/customize_modal.php'); ?>

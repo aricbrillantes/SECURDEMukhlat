@@ -32,8 +32,8 @@ include(APPPATH . 'views/header.php');
                     
                     <div class = "clearfix content-container" style="border-radius:20px;">
                     <center>
-                                <a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil iconin"></i> Create Topic</a>
-                                <a onmouseenter="playclip()" id="crettop" class="btn btn-primary buttonsbgcolor" href="<?php echo base_url('topic') ?>" style="margin:1%"><i class = "glyphicon glyphicon-list iconin"></i> Go to Topics</a>                   
+                                <a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor textoutliner" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil iconin"></i> Create Topic</a>
+                                <a onmouseenter="playclip()" id="crettop" class="btn btn-primary buttonsbgcolor textoutliner" href="<?php echo base_url('topic') ?>" style="margin:1%"><i class = "glyphicon glyphicon-list iconin"></i> Go to Topics</a>                   
                                 <!--<a id="crettop" class="btn btn-primary buttonsbgcolor" href="#create-post-modal" data-toggle = "modal">Post to your wall</a>-->
                     </center>
                     </div>
@@ -88,15 +88,7 @@ include(APPPATH . 'views/header.php');
                                                 <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                     <img class = "img-circle" style = "margin: 10px 0px;" width = "65px" height = "65px" src = "<?php echo $post->profile_url ? base_url($post->profile_url) : base_url('images/default.jpg'); ?>"/>
                                                 </a><br>
-                                                  <i class = "text-muted">                            
-                                                    <small>by 
-                                                        <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
-                                                            <?php echo $post->first_name . " " . $post->last_name ?>
-                                                        </a>
-                                                    </small>
-                                                      <br>
-                                                </i>
-                                                <span class = "text-muted whitebg2"> <i style = "font-size: 14px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                                  
                                                 
 <!--                                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
@@ -104,8 +96,17 @@ include(APPPATH . 'views/header.php');
                                             </div>
 
                                             <!-- Right -->
-                                            <div class = "col-xs-11" style = "margin-top: 5px;">
-                                                <div class="ptopcolor" style="display:inline-block; margin-left: 3%">
+                                            <div class = "col-xs-11" style = "margin-top: 7px;">
+                                                <i class = "text-muted" style="display:inline-block;">                            
+                                                    
+                                                        <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
+                                                            <?php echo $post->first_name . " " . $post->last_name ?>
+                                                        </a>
+                                                    
+                                                      
+                                                </i>
+                                                <span class = "text-muted"> <i style = "font-size: 18px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span><br>
+                                                <div class="ptopcolor" style="display:inline-block;">
                                                     <!--<h4 class = "no-padding no-margin text-muted wrap whitebg2" style="display:inline-block"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
                                                 <p class = "home-content-body whitebg2" style = "border-right: none;white-space: pre-wrap;max-width: 700px;"><?php echo utf8_decode($post->post_content); ?></p>
                                                 

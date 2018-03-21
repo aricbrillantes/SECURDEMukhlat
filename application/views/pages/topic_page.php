@@ -22,15 +22,15 @@ $c_topic = $_SESSION['current_topic'];
                     </h4>
                 </a>
                 <?php if (!$is_followed): ?>
-                    <button onmouseenter="playclip()" id = "topic-follow-btn" class = "btn pull-right btn-primary" style = "margin: 5px; margin-right: 20px; width: 20%;font-size: 19px;" value = "<?php echo $c_topic->topic_id ?>">
+                    <button onmouseenter="playclip()" id = "topic-follow-btn" class = "btn pull-right btn-primary textoutliner" style = "margin: 5px; margin-right: 20px; width: 20%;font-size: 19px;" value = "<?php echo $c_topic->topic_id ?>">
                         <i class = "fa fa-plus-circle"></i> Follow Topic
                     </button>
                     <?php else: ?>
-                        <button onmouseenter="playclip()" id = "topic-follow-btn" class = "btn pull-right btn-danger" style = "margin: 5px; margin-right: 20px; width: 20%;font-size: 19px;" value = "<?php echo $c_topic->topic_id ?>">
+                        <button onmouseenter="playclip()" id = "topic-follow-btn" class = "btn pull-right btn-danger textoutliner" style = "margin: 5px; margin-right: 20px; width: 20%;font-size: 19px;" value = "<?php echo $c_topic->topic_id ?>">
                             <i class = "fa fa-minus-circle"></i> Unfollow Topic
                         <?php endif; ?>
                     </button>
-                    <a onmouseenter="playclip()" class = "btn btn-success pull-right btn-md" style = "margin: 5px; width: 20%" href = "#topic-members-modal" data-toggle = "modal">
+                    <a onmouseenter="playclip()" class = "btn btn-success pull-right btn-md textoutliner" style = "margin: 5px; width: 20%" href = "#topic-members-modal" data-toggle = "modal">
                         <i class = "fa fa-user"></i> Members
                     </a>
             </div>
@@ -42,7 +42,7 @@ $c_topic = $_SESSION['current_topic'];
                 <div class = "col-sm-6">
                     <div class = "col-sm-12 topic-description-div no-padding">
                         <h4 class = "no-margin text-center user-topic-header topic-intro-header bar1color">
-                            <strong><?php echo utf8_decode($c_topic->topic_name); ?></strong>
+                            <strong class="textoutliner"><?php echo utf8_decode($c_topic->topic_name); ?></strong>
 
                             <?php if ($is_moderated): ?>
                             <br>
@@ -84,7 +84,7 @@ $c_topic = $_SESSION['current_topic'];
                 <!-- Topic Post List -->
                 <div class = "col-sm-6 topic-preview-div">
                     <div class = "col-xs-12">
-                        <button onmouseenter="playclip()" id="crettop" class = "btn btn-primary btn-block buttonsbgcolor" href="#create-post-modal" data-toggle = "modal" style="font-size:22px">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
+                        <button onmouseenter="playclip()" id="crettop" class = "btn btn-primary btn-block buttonsbgcolor textoutliner" href="#create-post-modal" data-toggle = "modal" style="font-size:22px">Post to <?php echo utf8_decode($c_topic->topic_name); ?></button>
                     </div>
                     <div class = "col-xs-12 topic-post-list">
                         <div class = "list-group" style = "padding-top: 15px;">
