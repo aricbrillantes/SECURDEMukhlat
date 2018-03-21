@@ -61,7 +61,7 @@ $c_topic = $_SESSION['current_topic'];
                                 <div id = "desc-edit" class = "col-md-12 hidden">
                                     <div class = "form-group" style = "margin-bottom: 5px;">
                                         <p class="lead emoji-picker-container">
-                                            <textarea id = "edit-topic-text" style="height:100px;" maxlength = "179" class = "form-control" data-emojiable="true"><?php echo $c_topic->topic_description ?></textarea>
+                                            <textarea id = "edit-topic-text" style="height:100px;" maxlength = "180" class = "form-control" data-emojiable="true"><?php echo $c_topic->topic_description ?></textarea>
                                         </p>
                                     </div>
                                     <div class = "form-group pull-right" style = "margin-top: 0px;">
@@ -100,12 +100,12 @@ $c_topic = $_SESSION['current_topic'];
                                 ?>
                                 <a href = "javascript: void(0);" class = "btn btn-link list-group-item list-entry no-up-down-pad topic-post-entry" data-value = "<?php echo $post->post_id; ?>">
                                     <div class = "row">
-                                        <div class = "col-xs-10 fadebelow">
+                                        <div class = "col-xs-9 fadebelow">
                                             <!--<h4 class = "ellipsis"><strong><?php echo utf8_decode($post->post_title); ?></strong> <small><i><?php echo $post->user->first_name . " " . $post->user->last_name; ?></i></small></h4>-->
                                             <p class = "ellipsis" style="white-space: pre-wrap;"><?php echo utf8_decode($post->post_content); ?></p>
                                         </div>
-                                        <div class = "col-xs-2 text-center" style = "padding: 0px;">
-                                            <p style = "padding-top: 10px; font-size: 11px;"><i><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></p>
+                                        <div class = "col-xs-3 text-center" style = "padding: 0px;">
+                                            <p style = "padding-top: 10px; font-size: 18px !important;color: #78909C;"><i><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></p>
                                             <span class = "vote-count <?php echo $text_class ?>"><?php echo $post->vote_count ? $post->vote_count : '0'; ?> <i class = "fa fa-trophy"></i></span>
                                         </div>
                                     </div>

@@ -91,6 +91,14 @@ p{
     font-size: 22px !important;
 }
 
+input{
+    font-size: 22px !important;
+}
+
+textarea{
+    font-size: 22px !important;
+}
+
 button{
     font-size: 18px;
     cursor:pointer !important;

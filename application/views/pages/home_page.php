@@ -78,7 +78,7 @@ include(APPPATH . 'views/header.php');
                                             <span>posted in</span> 
                                             <a class = "btn btn-link no-padding text1color" href = "<?php echo base_url('topic/view/' . $post->topic_id); ?>">
                                                 <strong ><?php echo utf8_decode($post->topic_name); ?></strong>
-                                            </a><h4 style="display:inline">:</h4>
+                                            </a><h4 style="display:inline"></h4>
                                             </center>
                                         </div>
 
@@ -96,8 +96,8 @@ include(APPPATH . 'views/header.php');
                                             </div>
 
                                             <!-- Right -->
-                                            <div class = "col-xs-11" style = "margin-top: 7px;">
-                                                <i class = "text-muted" style="display:inline-block;">                            
+                                            <div class = "col-xs-11" style = "margin-top: 7px;margin-bottom: 10px;">
+                                                <i class = "text-muted" style="display:inline">                            
                                                     
                                                         <a class = "btn btn-link btn-xs no-padding text1color" href = "<?php echo base_url('user/profile/' . $post->user_id); ?>">
                                                             <?php echo $post->first_name . " " . $post->last_name ?>
@@ -105,10 +105,10 @@ include(APPPATH . 'views/header.php');
                                                     
                                                       
                                                 </i>
-                                                <span class = "text-muted"> <i style = "font-size: 18px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span><br>
-                                                <div class="ptopcolor" style="display:inline-block;">
+                                                <span class = "text-muted pull-right"> <i style = "font-size: 18px"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span><br>
+                                                <div class="ptopcolor">
                                                     <!--<h4 class = "no-padding no-margin text-muted wrap whitebg2" style="display:inline-block"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
-                                                <p class = "home-content-body whitebg2" style = "border-right: none;white-space: pre-wrap;max-width: 700px;"><?php echo utf8_decode($post->post_content); ?></p>
+                                                <p class = "home-content-body whitebg2" style = "border-right: none;white-space: pre-wrap;max-width: 714px;"><?php echo utf8_decode($post->post_content); ?></p>
                                                 
                                                 <span class="whitebg2" style="padding-right: 30px !important;">
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">

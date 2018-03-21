@@ -59,15 +59,15 @@ $user = $post->user;
                             <?php if (!$post->is_deleted): ?>
                                 <?php if ($user->user_id === $logged_user->user_id || $is_moderated): ?>
                                     <!-- Delete Button -->
-                                    <button value = "<?php echo $post->post_id ?>" class = "delete-btn pull-right btn btn-sm btn-danger"><i class = "fa fa-trash"></i></button>
+                                    <button value = "<?php echo $post->post_id ?>" class = "delete-btn pull-right btn btn-sm btn-danger"><i class = "fa fa-trash"></i> Delete</button>
                                 <?php endif; ?>
 
                                 <!-- Reply Button -->
-                                <button class = "reply-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i></button>
+                                <button class = "reply-btn pull-left btn btn-gray" style = "margin-right: 5px;" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i> Reply</button>
 
                                 <?php if ($user->user_id === $logged_user->user_id): ?>
                                     <!-- Edit Button -->
-                                    <button value = "<?php echo $post->post_id ?>" class = "edit-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i></button>
+                                    <button value = "<?php echo $post->post_id ?>" class = "edit-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i> Edit</button>
                                 <?php endif; ?>
 
                                 <!-- Post Heading -->
@@ -76,11 +76,11 @@ $user = $post->user;
                                     <!--<h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
                                         <small>
                                             <i><a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
-                                            <span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                            <span class = "text-muted"><i style = "font-size: 18px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                                         </small>
                                     <?php else: ?>
-                                        <a class = "btn btn-link no-padding btn-lg" href = "<?php echo base_url('user/profile/' . $user->user_id); ?>"><strong><?php echo $user->first_name . " " . $user->last_name; ?></strong></a>
-                                        <br><span class = "text-muted"><i style = "font-size: 11px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                        <a class = "btn btn-link no-padding btn-lg pull-left" href = "<?php echo base_url('user/profile/' . $user->user_id); ?>"><strong><?php echo $user->first_name . " " . $user->last_name; ?></strong></a>
+                                        <span class = "text-muted"><i style = "font-size: 18px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                                     <?php endif; ?>
                                 </div>
                                 <!-- Attachment -->

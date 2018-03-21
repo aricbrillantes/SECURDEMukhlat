@@ -109,18 +109,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                             .navbaricons{animation: dance 3s infinite;}\n\
                             .navbarprofileicon{animation: dance 3s infinite;}\n\
                             #logout-btn{animation: dance 3s infinite;}\n\
+                            button{animation: dance 3s infinite;}\n\
+                            a{animation: dance 3s infinite;}\n\
                             <\/style>');
         }
-        
-        else
-        {
-            document.write('<style type="text/css">\n\
-                            .btn{animation: none;}\n\
-                            .navbaricons{animation: none;}\n\
-                            .navbarprofileicon{animation: none;}\n\
-                            #logout-btn{animation: none;}\n\
-                            <\/style>');
-        }
+       
         
         var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
         var birthMonth = birthDate.getMonth()+1;

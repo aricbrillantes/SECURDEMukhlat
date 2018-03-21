@@ -127,7 +127,7 @@ include(APPPATH . 'views/header.php');
                                             <strong style = "font-size: 22px"><?php echo utf8_decode($post->topic_name); ?></strong>
                                         </a>
                                         <?php if (!empty($post->parent)): ?>
-                                            <span class = "text-muted" style = "font-size: 11px;">( <i class = "fa fa-reply"></i> <i>in reply to <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $post->parent->user->user_id); ?>"><?php echo $post->parent->user->first_name . " " . $post->parent->user->last_name; ?></a> )</i></span>
+                                            <span class = "text-muted" style = "font-size: 18px;">( <i class = "fa fa-reply"></i> <i>in reply to <a class = "btn btn-link btn-xs no-padding no-margin text1color" href = "<?php echo base_url('user/profile/' . $post->parent->user->user_id); ?>"><?php echo $post->parent->user->first_name . " " . $post->parent->user->last_name; ?></a> )</i></span>
                                         <?php endif; ?>
                                         :
                                     </div>
@@ -146,10 +146,10 @@ include(APPPATH . 'views/header.php');
                                                     </small>
                                                 </i>
                                             <?php else: ?>
-                                                <h5 class = "no-padding no-margin text-muted wrap"><a class = "btn btn-link no-padding no-margin"><strong style = "font-size: 21px"><?php echo $post->first_name . " " . $post->last_name; ?></strong></a></h5>
+                                            <strong style = "font-size: 21px" class="text1color"><?php echo $post->first_name . " " . $post->last_name; ?></strong>
 
                                             <?php endif; ?>
-                                            <span class = "text-muted"> <i style = "font-size: 18px"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i></span>
+                                            <span class = "text-muted pull-right"> <i style = "font-size: 18px;padding-right: 10px"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                                             <p class = "home-content-body" style = "border-right: none;white-space: pre-wrap;"><?php echo utf8_decode($post->post_content); ?></p>
 
                                         </div>

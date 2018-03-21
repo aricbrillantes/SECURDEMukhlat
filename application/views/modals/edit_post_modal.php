@@ -24,31 +24,31 @@ $topic = $_SESSION['current_topic'];
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Enter the content of your post:</label>
                         <p class="lead emoji-picker-container">
-                        <textarea class = "form-control" required name = "post_content" maxlength = "16000" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
+                        <textarea class = "form-control" style="height: 100px;" required name = "post_content" maxlength = "16000" id = "post-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
                         </p>
                     </div>
                     <div id = "edit-attachment-buttons" class = "form-group">
                         Attach a file:
                         <!--IMAGE-->
-                        <label id = "edit-img-label" class="btn btn-primary">
+                        <label id = "edit-img-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "edit-attach-img" accept = "image/*" type="file" name = "post_image" style = "display: none;">
                             <p id = "edit-image-text" class = "attach-btn-text"><i class = "fa fa-file-image-o"></i> Add Image</p>
                         </label>
 
                         <!--AUDIO-->
-                        <label id = "edit-audio-label" class="btn btn-primary">
+                        <label id = "edit-audio-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "edit-attach-audio" accept = "audio/*" type="file" name = "post_audio" style = "display: none;">
                             <p id = "edit-audio-text" class = "attach-btn-text"><i class = "fa fa-file-audio-o"></i> Add Audio</p>
                         </label>
 
                         <!--VIDEO-->
-                        <label id = "edit-video-label" class="btn btn-primary">
+                        <label id = "edit-video-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "edit-attach-video" accept = "video/*" type="file" name = "post_video" style = "display: none;">
                             <p id = "edit-video-text" class = "attach-btn-text"><i class = "fa fa-file-video-o"></i> Add Video</p>
                         </label>
 
                         <!--FILE-->
-                        <label id = "edit-file-label" class="btn btn-primary">
+                        <label id = "edit-file-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "edit-attach-file" type="file" name = "post_file" style = "display: none;">
                             <p id = "edit-file-text" class = "attach-btn-text"><i class = "fa fa-file-o"></i> Add File</p>
                         </label>
@@ -58,7 +58,7 @@ $topic = $_SESSION['current_topic'];
                     </div>
                 </div>
                 <div class = "modal-footer" style = "padding: 5px; border-top: none; padding-bottom: 10px; padding-right: 10px;">
-                    <a id = "edit-post-btn" class ="btn btn-primary" data-toggle = "modal">Save Changes</a>
+                    <a id = "edit-post-btn" class ="btn btn-primary buttonsbgcolor" data-toggle = "modal">Save Changes</a>
                 </div>
             </form>
         </div>

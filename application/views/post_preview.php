@@ -18,7 +18,7 @@
             <!--<h4 class = "text-muted no-margin wrap"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
             <span class = "text-muted" style = "font-size: 12px;"></span>
             <a class = "btn btn-link home-content-body-username text1color" href = "<?php echo base_url('user/profile/' . $post->user->user_id); ?>"><i><?php echo $post->user->first_name . " " . $post->user->last_name; ?></i></a>
-            <i class = "home-content-body-date" style="font-size: 18px;"><?php echo date("M-d-y", strtotime($post->date_posted)); ?></i>
+            <i class = "home-content-body-date pull-right" style="font-size: 18px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i>
             <p class = "post-content text-muted" style = "font-weight: lighter;white-space: pre-wrap;"><?php echo utf8_decode($post->post_content); ?></p>
         </div>
     </div>

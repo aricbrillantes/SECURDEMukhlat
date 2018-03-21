@@ -12,7 +12,7 @@ $topic = $_SESSION['current_topic'];
             </div>
             <div class="modal-body" style = "height: 400px;">
                 <!-- followers -->
-                <div class = "col-sm-6 no-padding">
+                <div class = "col-sm-12 no-padding">
                     <div class = "col-xs-12 no-padding">
                         <h4 class = "text-center text-info text1color"><strong>Followers</strong></h4>
                         <div class = "col-xs-12 list-group topic-members-container">

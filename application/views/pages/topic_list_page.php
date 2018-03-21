@@ -47,7 +47,7 @@ include(APPPATH . 'views/header.php');
                     </div>
                 </div>
 
-                <div class = "col-md-12 content-container" style="border-radius:20px;">
+                <div class = "col-md-12 content-container" style="border-radius:20px;display:none">
                     <form action = "javascript:void(0);" role="search">
                         <div class="input-group" style = "width: 100%">
                             <input type="text" class="form-control search-text" placeholder="&#xF002; Search for a topic" id = "search-topic-list">
