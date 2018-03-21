@@ -1936,6 +1936,31 @@ transform: rotate(1080deg);
     z-index: 1;
 }
 
+.playpop .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    margin-top: 5px;
+    font-size: 18px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 75px;
+    right: 90%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+    position: absolute;
+    z-index: 1;
+}
+
+.playpop:hover{
+    background: whitesmoke;
+}
+.playpop:hover .tooltiptext {
+    visibility: visible;
+}
+
 .audiorec:hover .tooltiptext {
     visibility: visible;
 }

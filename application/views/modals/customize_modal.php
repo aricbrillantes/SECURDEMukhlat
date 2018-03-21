@@ -65,7 +65,7 @@
                                 <tr>
                                 
                                 <td><center><div class="blocks" onClick="mouseTrail();"><img src = "<?php echo base_url('images/cursors/trail.cur'); ?>"/><br>Mouse Trail</div></center></td>
-                                <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');"><br>Default</div></center></td>
+                                <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');removeTrail();"><br>Default</div></center></td>
                                 <td class="themepointer"><center><div class="blocks" onClick="changeThemePointer(getCookie('theme'));"><img src = "<?php echo base_url('images/cursors/green.cur'); ?>"/><br>Theme</div></center></td>
                                 <td class="aric"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/aric.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/aric.cur'); ?>"/><br>Aric</div></center></td>
                                 <td class="kyloren"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/kyloren.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/kyloren.cur'); ?>"/><br>Kylo Ren</div></center></td>
@@ -90,7 +90,7 @@
                                         <td><div class="blocks" onClick="addBGbubble('block');"><img src = "<?php echo base_url('images/extras/bubbles.png'); ?>"/>Bubbles</div></td>
                                     </tr>    
                                     <tr>
-                                        <td><div class="blocks" onClick="buttonDance();"><img src = "<?php echo base_url('images/extras/bubbles.png'); ?>"/>Dancing Buttons</div></td>
+                                        <td><div class="blocks"><div class="btn btn-primary buttonsbgcolor textoutliner" onClick="buttonDance();" style="animation: dance 3s infinite;">Dancing Buttons</div></div></td>
                                         <td><div class="blocks" onClick="toggleRandomColors();"><img src = "<?php echo base_url('images/extras/randomcolors.png'); ?>"/>Random Colors</div></td>
                                     </tr>
                                 <!--<tr><td><div class="blocks" onClick="addBGfirework('block');">Fireworks</div></td></tr>-->
@@ -176,6 +176,9 @@
         }
         
         changePointer(value);
+    }
+    function removeTrail(){
+        document.cookie = "MouseTrail=0;" + ";path=/";
     }
     
     function mouseTrail()

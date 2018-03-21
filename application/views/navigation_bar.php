@@ -663,6 +663,15 @@ function voiceIndicatorOFF() {
             if(interim_span3.innerHTML.includes("sa profile po")){
                 location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
             }
+            
+            if(interim_span3.innerHTML.includes("activate camera")){
+                $('#camerapopup').modal('show');
+            }
+            
+            if(interim_span3.innerHTML.includes("selfie")){
+                takephoto();
+                interim_span3.innerHTML = interim_span3.innerHTML.replace("selfie","");
+            }
 
 //                if(interim_span3.innerHTML.includes("di siya mahal")){
 //                    location.href="https://www.facebook.com/rafael.tanchuan";
@@ -735,7 +744,7 @@ function voiceIndicatorOFF() {
 <script>var $draggable = $('.draggable').draggabilly();</script>
 <script src="<?php echo base_url('js/frequencybars.js'); ?>"></script>
 <script src="<?php echo base_url('js/sparkles.js'); ?>"></script>
-<script src="<?php echo base_url('js/fireworks.js'); ?>"></script>          
+<!--<script src="<?php echo base_url('js/fireworks.js'); ?>"></script>-->          
 <script>
     var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
     var bubbles = document.querySelectorAll('.bubble');
@@ -821,7 +830,7 @@ function getSelectionText() {
 document.addEventListener('keydown', function(e) {
   if (e.keyCode === 16) {
     var msg = new SpeechSynthesisUtterance(getSelectionText());
-    msg.voice = voices90[5];
+    msg.voice = voices90[2];
     synth.speak(msg);
   }
   if(e.keyCode === 17){

@@ -69,7 +69,7 @@
       return this.vy = 0.7 * this.r + range(-1, 1);
     }
 
-    draw() {
+    drawsparks() {
       var ref;
       this.x += this.vx;
       this.y += this.vy;
@@ -98,18 +98,18 @@
     return results;
   })();
 
-  window.step = function() {
+  window.step2 = function() {
     var c, j, len, results;
-    requestAnimationFrame(step);
+    requestAnimationFrame(step2);
     context.clearRect(0, 0, w, h);
     results = [];
     for (j = 0, len = confetti.length; j < len; j++) {
       c = confetti[j];
-      results.push(c.draw());
+      results.push(c.drawsparks());
     }
     return results;
   };
 
-  step();
+  step2();
 
 }).call(this);

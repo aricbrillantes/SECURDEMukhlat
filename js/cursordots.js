@@ -15,9 +15,9 @@ var Dot = function() {
     return n;
   }());
 };
-// The Dot.prototype.draw() method sets the position of 
+// The Dot.prototype.drawcurdots() method sets the position of 
   // the object's <div> node
-Dot.prototype.draw = function() {
+Dot.prototype.drawcurdots = function() {
   this.node.style.left = this.x + "px";
   this.node.style.top = this.y + "px";
 };
@@ -28,10 +28,10 @@ for (var i = 0; i < 12; i++) {
   dots.push(d);
 }
 
-// This is the screen redraw function
-function draw() {
+// This is the screen redrawcurdots function
+function drawcurdots() {
   // Make sure the mouse position is set everytime
-    // draw() is called.
+    // drawcurdots() is called.
   var x = mouse.x,
       y = mouse.y;
   
@@ -41,7 +41,7 @@ function draw() {
     
     dot.x = x;
     dot.y = y;
-    dot.draw();
+    dot.drawcurdots();
     x += (nextDot.x - dot.x) * .6;
     y += (nextDot.y - dot.y) * .6;
 
@@ -54,12 +54,12 @@ addEventListener("mousemove", function(event) {
   mouse.y = event.pageY;
 });
 
-// animate() calls draw() then recursively calls itself
+// animatecurdots() calls drawcurdots() then recursively calls itself
   // everytime the screen repaints via requestAnimationFrame().
-function animate() {
-  draw();
-  requestAnimationFrame(animate);
+function animatecurdots() {
+  drawcurdots();
+  requestAnimationFrame(animatecurdots);
 }
 
-// And get it started by calling animate().
-animate();
+// And get it started by calling animatecurdots().
+animatecurdots();
