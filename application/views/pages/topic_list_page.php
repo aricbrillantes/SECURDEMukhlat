@@ -101,6 +101,25 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
         <script>
+window.onload = function(){scrollFunction();};
+window.onscroll = function() {scrollFunction();};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("topbut").style.display = "block";
+        document.getElementById('topbut').className = 'balloon';
+    } else {
+        document.getElementById("topbut").style.display = "none";
+        document.getElementById('topbut').className = '';
+    }
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        document.getElementById("botbut").style.display = "none";
+    }
+    else {
+        document.getElementById("botbut").style.display = "block";
+    }
+}
+            
             // When the user clicks on the button, scroll to the top of the document
             function topFunction() {
                 var whistleup = new Audio('<?php echo base_url('images/Slide Whistle up1.mp3'); ?>');
@@ -121,8 +140,8 @@ include(APPPATH . 'views/header.php');
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
-        <div  onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+        <div onclick="topFunction()" id="topbut" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
+        <div onclick="botFunction()" id="botbut"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
         <!--
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture1.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture5.png'); ?>"/></span>
         <span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture2.png'); ?>"/></span><span> <img class = "pinwheel" src = "<?php echo base_url('images/Picture6.png'); ?>"/></span>

@@ -171,15 +171,15 @@ $topic = $_SESSION['current_topic'];
     $('.modal-body').keyup(function(event) 
     {
         
-        document.getElementById('charsRemaining3').innerHTML='Characters Left: '+(charCount1-document.getElementById('post-title').value.length);
+//        document.getElementById('charsRemaining3').innerHTML='Characters Left: '+(charCount1-document.getElementById('post-title').value.length);
         document.getElementById('charsRemaining4').innerHTML='Characters Left: '+(charCount2-document.getElementById('post-content').value.length);
         
-        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
-        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
-        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");
-        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😀","😀");
-        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("XD","🤣");
-        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😐","😐");
+//        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("❤","❤");
+//        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😞","☹");
+//        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("🙂","🙂");
+//        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😀","😀");
+//        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("XD","🤣");
+//        document.getElementById('post-title').value=document.getElementById('post-title').value.replace("😐","😐");
 
         document.getElementById('post-content').value=document.getElementById('post-content').value.replace("❤","❤");
         document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😞","☹");
@@ -189,8 +189,8 @@ $topic = $_SESSION['current_topic'];
         document.getElementById('post-content').value=document.getElementById('post-content').value.replace("😐","😐");
 
             if(
-                document.getElementById('post-title').value.includes("fuck")||
-                document.getElementById('post-title').value.includes("shit")||
+//                document.getElementById('post-title').value.includes("fuck")||
+//                document.getElementById('post-title').value.includes("shit")||
                 document.getElementById('post-content').value.includes("fuck")||
                 document.getElementById('post-content').value.includes("shit")
             )
@@ -211,14 +211,14 @@ $topic = $_SESSION['current_topic'];
                 document.getElementById('create-post-btn').innerHTML="Post";
                 document.getElementById('create-post-btn').style.pointerEvents="auto";
             }
-//              
-            if(document.getElementById('post-title').value.length>=100)
-            {  
-                document.getElementById('charLimitMessage3').style.display = "block";
-            }  
-            
-            else
-                document.getElementById('charLimitMessage3').style.display = "none";
+////              
+//            if(document.getElementById('post-title').value.length>=100)
+//            {  
+//                document.getElementById('charLimitMessage3').style.display = "block";
+//            }  
+//            
+//            else
+//                document.getElementById('charLimitMessage3').style.display = "none";
 
             if(document.getElementById('post-content').value.length>=16000)
             {  

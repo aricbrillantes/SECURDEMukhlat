@@ -18,7 +18,7 @@ include(APPPATH . 'views/header.php');
                                 <img class = "pull-left img-circle user-profile-img" src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" width = "100px" height = "100px"/>
                             </div>
                             <div class = "col-xs-6 no-padding no-margin">
-                                <h3 class = "no-padding text-info" style = "margin-bottom: 0px;"><strong><?php echo $user->first_name . " " . $user->last_name ?></strong></h3>
+                                <h3 class = "no-padding text-info pull-left" style = "margin-bottom: 0px;"><strong><?php echo $user->first_name . " " . $user->last_name ?></strong></h3>
                                 <small class = "no-padding no-margin"><?php echo $user->email ?></small>
                                 <p class = "wrap text-muted" style = "font-size: 12px;"><i><?php echo $user->description ? $user->description : 'Hello World!'; ?></i></p>
                                 <?php //feature unavailable - hide buttons 
@@ -35,7 +35,7 @@ include(APPPATH . 'views/header.php');
 
                     <!-- User Topics -->
                     <div class = "col-md-12 user-topic-container">
-                        <h3 class = "text-info text-center user-topic-header modalbg"><strong class="textoutliner">Topics of <?php echo $user->first_name ?></strong></h3>
+                        <h3 class = "text-info text-center user-topic-header modalbg" style="margin-bottom: 2px;"><strong class="textoutliner">Topics of <?php echo $user->first_name ?></strong></h3>
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a data-toggle="pill" href="#user-topic-created">Created Topics</a></li>
                             <li><a data-toggle="pill" href="#user-topic-followed">Followed Topics</a></li>
@@ -169,5 +169,6 @@ include(APPPATH . 'views/header.php');
     <script type="text/javascript" src="<?php echo base_url("/js/user.js"); ?>"></script>
     <?php
   //  include(APPPATH . 'views/chat/chat.php');
+    include(APPPATH . 'views/side_navbar.php');
     include(APPPATH . 'views/modals/edit_profile_modal.php');
     

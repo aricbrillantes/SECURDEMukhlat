@@ -106,7 +106,7 @@ $c_topic = $_SESSION['current_topic'];
                                         </div>
                                         <div class = "col-xs-3 text-center" style = "padding: 0px;">
                                             <p style = "padding-top: 10px; font-size: 18px !important;color: #78909C;"><i><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></p>
-                                            <span class = "vote-count <?php echo $text_class ?>"><?php echo $post->vote_count ? $post->vote_count : '0'; ?> <i class = "fa fa-trophy"></i></span>
+                                            <span class = "vote-count <?php echo $text_class ?>"><?php echo $post->vote_count ? $post->vote_count : '0'; ?> <i class = "glyphicon glyphicon-star"></i></span>
                                         </div>
                                     </div>
                                 </a>
@@ -119,6 +119,7 @@ $c_topic = $_SESSION['current_topic'];
     </div>
 
     <?php
+    include(APPPATH . 'views/side_navbar.php');
     include(APPPATH . 'views/modals/create_post_modal.php');
     include(APPPATH . 'views/modals/topic_members_modal.php');
     include(APPPATH . 'views/modals/cancel_topic_modal.php');

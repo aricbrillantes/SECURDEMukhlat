@@ -2,7 +2,7 @@
     $topic = $_SESSION['current_topic'];
 ?>
 
-<link href="<?php echo base_url('lib/css/emoji.css'); ?>" rel="stylesheet">
+<!--<link href="<?php echo base_url('lib/css/emoji.css'); ?>" rel="stylesheet">-->
 <!-- Create Post Modal -->
 <div id="create-reply-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -22,10 +22,13 @@
                     </div>-->
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Make the content of your reply:</label>
-                        <p class="lead emoji-picker-container">
-                        <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!" data-emojiable="true"></textarea>
-                        </p>
+                        <!--<p class="lead emoji-picker-container">-->
+                        <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!"></textarea>
+<!--                        </p>-->
+                        <p id="charsRemaining5">Characters Left: 16000</p>
+                        <div class="charLimitMessage" id="charLimitMessage5"><center>Oops! You've used up all the letters and numbers for your post!</center></div>
                     </div>
+                    <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
                     <div id = "attachment-buttons" class = "form-group">
                         Attach a file:
                         <!--IMAGE-->
@@ -64,12 +67,12 @@
     </div>
 </div>
 
-    <!-- Begin emoji-picker JavaScript -->
+<!--     Begin emoji-picker JavaScript 
     <script src="<?php echo base_url('lib/js/config.js');?>"></script>
     <script src="<?php echo base_url('lib/js/util.js');?>"></script>
     <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
     <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
-    <!-- End emoji-picker JavaScript -->
+     End emoji-picker JavaScript 
 
     <script>
       $(function() {
@@ -84,5 +87,54 @@
         // It can be called as many times as necessary; previously converted input fields will not be converted again
         window.emojiPicker.discover();
       });
-    </script>
+    </script>-->
     
+<script type="text/javascript">
+    var warningCount=0, count=0;
+    var x = document.getElementById("profanityWarning");
+    var charCount1=100, charCount2=16000;
+    
+    $('.form-control').keyup(function(event) 
+    {
+        document.getElementById('charsRemaining5').innerHTML='Characters Left: '+(charCount2-document.getElementById('reply-content').value.length);
+
+        document.getElementById('reply-content').value=document.getElementById('reply-content').value.replace("❤","❤");
+        document.getElementById('reply-content').value=document.getElementById('reply-content').value.replace("😞","☹");
+        document.getElementById('reply-content').value=document.getElementById('reply-content').value.replace("🙂","🙂");
+        document.getElementById('reply-content').value=document.getElementById('reply-content').value.replace("😀","😀");
+        document.getElementById('reply-content').value=document.getElementById('reply-content').value.replace("XD","🤣");
+        document.getElementById('reply-content').value=document.getElementById('reply-content').value.replace("😐","😐");
+
+            if(
+                document.getElementById('reply-content').value.includes("fuck")||
+                document.getElementById('reply-content').value.includes("shit")
+            )
+            {  
+//                  responsiveVoice.speak("Hey there! That's a bad word!","UK English Male",{rate: 1, pitch: 1.2});
+//                  document.getElementById("profanityWarning").innerHTML = 'NO SWEARING!';
+                x.style.display = "block";
+                document.getElementById('create-reply-btn').style.background="red";
+                document.getElementById('create-reply-btn').innerHTML="You should remove bad words from your reply!";
+                document.getElementById('create-reply-btn').style.pointerEvents="none";
+            }  
+
+            else
+            {
+//                    document.getElementById("profanityWarning").innerHTML = '';
+                x.style.display = "none";
+                document.getElementById('create-reply-btn').style.background=getCookie("ButtonColor");
+                document.getElementById('create-reply-btn').innerHTML="Reply";
+                document.getElementById('create-reply-btn').style.pointerEvents="auto";
+            }
+
+
+            if(document.getElementById('reply-content').value.length>=16000)
+            {  
+                document.getElementById('charLimitMessage5').style.display = "block";
+            }  
+                
+            else
+                document.getElementById('charLimitMessage5').style.display = "none";
+
+    });  
+</script>

@@ -2,11 +2,10 @@
     <div class = "col-md-12 content-container post-preview">
         <div class = "col-sm-2 no-padding">
             <img class = "pull-left img-circle" width = "85px" height = "85px" src = "<?php echo $post->user->profile_url ? base_url($post->user->profile_url) : base_url('images/default.jpg') ?>">
-            <div class = "text-center">
+            <div class = "text-center"><br><br>
                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text"></span>
+                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
                 </button>
-                <br>
                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
                 <br>
 <!--                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
@@ -23,7 +22,7 @@
         </div>
     </div>
     <a style="text-decoration: none;" href="<?php echo base_url('topic/thread/' . $post->post_id); ?>">
-        <button class = "btn btn-block btn-primary buttonsbgcolor" style="border:0;"> View Post Thread </button>
+        <button class = "btn btn-block btn-primary buttonsbgcolor" style="border:0;font-size: 22px"> View Post Thread </button>
     </a>
 </div>
 

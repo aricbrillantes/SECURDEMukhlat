@@ -40,17 +40,18 @@
                                 <td><div id="violet" class="blocks" onClick="themeCookie('violet');changeBGColor(':#e6e6fa', 'repeating-radial-gradient(circle,purple,purple 10px,#4b026f 10px,#4b026f 20px);','#8a49df', '#a2158e', '#660d5a');">Violet</div></td>
                                 </tr>
                                 <!-- flame, horizon, sky, piglet-->
+                                <!--background, navbar, button, buttonH, buttonA-->
                                 <tr>
-                                <td><div id="strawberry" class="blocks" onClick="changeBGColor(':#d13030', 'green','#d13030');">Strawberry</div></td>
-                                <td><div id="sky" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #5BC0EB, #CBF9F3);', 'whitesmoke','#5BC0EB');">Sky</div></td>
-                                <td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>
-                                <td><div id="chocoice" class="blocks" onClick="changeBGColor(':#ffe3b9', '#6b3e26', '#6b3e26');"><div style="color:white;">Chocolate</div> Ice cream</div></td>
-                                <td><div id="FB" class="blocks" onClick="changeBGColor(':#e9ebee', '#4267b2', '#4267b2');">fb</div></td>
+                                <td><div id="strawberry" class="blocks" onClick="changeBGColor(':#d13030', 'green','#EEC247','#D3AB2F','#A74901');">Strawberry</div></td>
+                                <td><div id="sky" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #5BC0EB, #CBF9F3);', 'white','#7ec0ee','#6499be','#4b738e');">Sky</div></td>
+                                <td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030','#253947','#0c1317');">Watermelon</div></td>
+                                <td><div id="chocoice" class="blocks" onClick="changeBGColor(':#ffe3b9', '#6b3e26', '#6b3e26','#542a0c','#2a1506');"><div style="color:white;">Chocolate</div> Ice cream</div></td>
+                                <td><div id="FB" class="blocks" onClick="changeBGColor(':#e9ebee', '#4267b2', '#4267b2','#3B5CA0','#3B5CA0');">fb</div></td>
                                 </tr>
                                 <!-- image and more backgrounds-->
                                 <tr>
-                                <td><div id="galaxy" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', 'black','black');">Galaxy</div></td>
-                                <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', '#5BC0EB','#5BC0EB');">Rainbow</div></td>
+                                <td><div id="galaxy" class="blocks" onClick="changeBGColor('-image: url(<?php echo base_url('images/galaxy.jpg'); ?>)', '#060707','#404a4d','#1d2223','whitesmoke');">Galaxy</div></td>
+                                <td><div id="rainbow" class="blocks" onClick="changeBGColor(':linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);', '#5BC0EB','#5BC0EB');document.cookie='activaterain=1;path=/;';">Rainbow</div></td>
                                 <!--<td><div id="watermelon" class="blocks" onClick="changeBGColor(':linear-gradient(to top, #f96868 80%, white);', 'green','#d13030');">Watermelon</div></td>-->
 <!--                            <td><div id="soundswitch" class="blocks" onClick="addBGsound('none');">No Sound</div></td>
                                 <td><div id="soundswitch1" class="blocks" onClick="addBGsound('block');">Sound</div>
@@ -119,7 +120,7 @@
     document.cookie = "MousePointer1=" + getCookie("MousePointer") + ";" + ";path=/"; 
     
     function changeBGColor(value, value2, value3, value4, value5)
-    {
+    {document.cookie='activaterain=0;path=/;';
         //var d = new Date();
         //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
         //var expires = "expires="+d.toUTCString();
@@ -240,6 +241,7 @@ span.onclick = function() {
     document.cookie = "ButtonHColor=" + getCookie("ButtonHColor1") + ";" + ";path=/";
     document.cookie = "ButtonAColor=" + getCookie("ButtonAColor1") + ";" + ";path=/";  
     document.cookie = "MousePointer=" + getCookie("MousePointer1") + ";" + ";path=/"; 
+    document.cookie='activaterain=0;path=/;';
 };
 
 // When the user clicks anywhere outside of the modal, close it
@@ -251,6 +253,7 @@ window.onclick = function(event) {
         document.cookie = "ButtonHColor=" + getCookie("ButtonHColor1") + ";" + ";path=/";
         document.cookie = "ButtonAColor=" + getCookie("ButtonAColor1") + ";" + ";path=/"; 
         document.cookie = "MousePointer=" + getCookie("MousePointer1") + ";" + ";path=/"; 
+        document.cookie='activaterain=0;path=/;';
     }
 };
 </script>

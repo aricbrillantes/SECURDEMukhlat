@@ -26,7 +26,7 @@
                     <h1>Meet Bubble POP!</h1>
             <br>
             <div class="text-center" id="canvasforpop">
-                <button onclick="playbubblepop()" class="btn buttonsbgcolor" id="playbut">Play</button>
+                <button onclick="playbubblepop()" class="btn buttonsbgcolor textoutliner" id="playbut" style="color: white;font-size: 24px;">Play</button>
             </div>
             <br>
             <h3>Click out same colored groups<br>

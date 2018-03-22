@@ -13,15 +13,15 @@
                 <div class="modal-body">
                     <div class="form-group"><!-- check if title is already taken -->
                         <label for = "title">Make a title for your topic:</label>
-                        <!--<p class="lead emoji-picker-container">-->
-                        <input type="text" style="height: 50px;" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic" data-emojiable="true"/>
+                        <p class="lead emoji-picker-container">
+                            <input type="text" style="height: 50px;" required class="form-control" name = "topic_name" maxlength="35" id = "topic-title" placeholder = "Title of your topic" data-emojiable="true"/></p>
                         <p id="charsRemaining1">Characters Left: 35</p>
                         <div class="charLimitMessage" id="charLimitMessage1"><center>Oops! You've used up all the letters and numbers for your title!</center></div>
                     </div>
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "description">Make a description for your topic:</label>
-                        <!--<p class="lead emoji-picker-container">-->
-                        <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="180" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea>
+                        <p class="lead emoji-picker-container">
+                            <textarea class = "form-control" style="height: 100px;" required name = "topic_description" maxlength="180" id = "topic-description" placeholder = "Tell something about your topic!" data-emojiable="true"></textarea></p>
                         <p id="charsRemaining2">Characters Left: 180</p>    
                         <div class="charLimitMessage" id="charLimitMessage2"><center>Oops! You've used up all the letters and numbers for your topic!</center></div>
                     </p>
@@ -64,13 +64,13 @@
 
 
 <!-- SCRIPTS -->    <!-- Begin emoji-picker JavaScript -->
-    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
+<!--    <script src="<?php echo base_url('lib/js/config.js');?>"></script>
     <script src="<?php echo base_url('lib/js/util.js');?>"></script>
     <script src="<?php echo base_url('lib/js/jquery.emojiarea.js');?>"></script>
-    <script src="<?php // echo base_url('lib/js/emoji-picker.js');?>"></script>
-    <!-- End emoji-picker JavaScript -->
+    <script src="<?php echo base_url('lib/js/emoji-picker.js');?>"></script>
+     End emoji-picker JavaScript 
 
-<!--    <script>
+    <script>
       $(function() {
         // Initializes and creates emoji set from sprite sheet
         window.emojiPicker = new EmojiPicker({
@@ -81,7 +81,9 @@
         // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
         // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
         // It can be called as many times as necessary; previously converted input fields will not be converted again
+        
         window.emojiPicker.discover();
+//        window.emojiPicker.freeze();
       });
     </script>-->
     

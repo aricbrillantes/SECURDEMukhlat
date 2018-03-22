@@ -30,6 +30,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     
     var randomColor = Math.floor(Math.random()*16777215).toString(16);
     var randomColor2 = Math.floor(Math.random()*16777215).toString(16);
+    var randomColor3 = Math.floor(Math.random()*16777215).toString(16);
+    var randomColor4 = Math.floor(Math.random()*16777215).toString(16);
+    
+    if(getCookie("activaterain")==='1'){  
+        document.cookie = "NavbarColor=#" + randomColor + ";" + ";path=/"; 
+        document.cookie = "ButtonColor=#" + randomColor4 + ";" + ";path=/"; 
+        document.cookie = "ButtonHColor=#" + randomColor2 + ";" + ";path=/";
+        document.cookie = "ButtonAColor=#" + randomColor3 + ";" + ";path=/";
+    }
     
      if(getCookie("ButtonColor")==='')
     {
@@ -59,6 +68,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .bubblesbg{display:' + getCookie("bubblesbg1") + ';}\n\
                     .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .camerapic .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
+                    .playpop .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .audiorec .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
                     .search-btn .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\
@@ -72,6 +82,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .charLimitMessage{background:' + getCookie("ButtonHColor") + ';}\n\
                     .topic-grid1{background-color: #'+ randomColor +';}\n\
                     .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');
+    
+    
+    
     
     if(getCookie("MouseTrail")==='0')
             document.write('<style type="text/css">.trail{display:none;}<\/style>');
@@ -165,8 +178,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         
         if(hours === 19 && getCookie("warned")==='0')
         {
-            
-            $('#timeoutpopup').modal('show');
+            $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
             document.cookie = "warned=1;path=/"; 
             
         }
@@ -248,7 +260,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
             document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
             document.cookie = "blur=" + blur + ";path=/"; 
-            $('#timepopup').modal('show');
+            $('#timepopup').modal({backdrop: 'static', keyboard: false});
         }
 
         if(Number(getCookie("nexttimed1"))===nowH && (Number(getCookie("nexttimed2")))<=nowM)
@@ -257,14 +269,14 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
             document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
             document.cookie = "blur=" + blur + ";path=/"; 
-            $('#timepopup').modal('show');
+            $('#timepopup').modal({backdrop: 'static', keyboard: false});
         }
         
         function forceTimeout()
         {
             blur = blur+1;
             document.cookie = "blur=" + blur + ";path=/"; 
-            $('#timepopup').modal('show');
+            $('#timepopup').modal({backdrop: 'static', keyboard: false});
         }
         
         function removeBlur()
@@ -274,6 +286,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             location.reload();
         }
         
+       
 </script>
 <!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>-->
@@ -735,8 +748,6 @@ function voiceIndicatorOFF() {
 
         startDictation3(event);
         
-        if(getCookie("warned")==='1')
-            document.getElementById("logouttooltip").innerHTML="You'll be logged out by 8:00 PM! Finish what you're doing!";
         
     </script>
 <script src="<?php echo base_url('js/eastereggs.js'); ?>"></script>
@@ -785,11 +796,11 @@ function voiceIndicatorOFF() {
        });
     });
 </script>
-<script>
-var starlike = new Audio('<?php echo base_url('images/SPARKLE EFFECT1.mp3'); ?>');
-function starding(){
-    starlike.play();}
-</script>
+<!--<script>//
+//var starlike = new Audio('<?php echo base_url('images/SPARKLE EFFECT1.mp3'); ?>');
+//function starding(){
+//    starlike.play();}
+//</script>-->
 <script src="<?php echo base_url('js/cursordots.js'); ?>"></script>
 <!-- Add these scripts to  the bottom of the page -->
 <!-- jQuery 1.7+ --> 
@@ -837,6 +848,19 @@ document.addEventListener('keydown', function(e) {
      window.speechSynthesis.cancel();
   }
 });
+
+</script>
+        <script>
+function readcontent(value) {
+    if(!(speechSynthesis.speaking)){
+    var value2 = value.replace(/`/g, "'");
+    var reader = new SpeechSynthesisUtterance(value2);
+    window.speechSynthesis.speak(reader);
+    }
+    else{
+        window.speechSynthesis.cancel();
+    }
+  }
 
 </script>
 <!-- End Nav Bar -->

@@ -56,8 +56,12 @@ text-shadow:
     background:mintcream;
     border-radius: 20px;
     border:0;
-    font-weight: bold;
     text-align: center;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    
 }
 
 .whitebg2{

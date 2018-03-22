@@ -23,14 +23,14 @@ $user = $post->user;
     <input class="btn btn-md pull-right btn-danger" value='Report' name='report' type="submit"> 
     </form>
                 
-                <h3 class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
+                <p class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
-                        <i>Thread by 
+                        <i>Topic by 
                             <a class = "btn btn-link btn-md no-padding no-margin text1color" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
                                 <?php echo $user->first_name; ?></a>
                         </i>
                     </small>
-                </h3>
+                </p>
                 <?php if (!empty($post->thread_attachments)): ?>
                     <button value = "<?php echo $post->post_id ?>" id = "thread-attachment-btn" class = "pull-right btn btn-primary buttonsbgcolor">
                         <strong><i class = "fa fa-paperclip" style = "font-size: 16px;"></i> View Thread Attachments</strong>
@@ -44,30 +44,26 @@ $user = $post->user;
                         <div class="media-left text-center">
                             <?php if (!$post->is_deleted): ?>
                                 <img src = "<?php echo $user->profile_url ? base_url($user->profile_url) : base_url('images/default.jpg'); ?>" class="media-object img-circle post-pic"/>
-                                <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text"></span>
-                                </button>
-                                <br/>
-                                <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
-                                <br/>
+                                
+                                
 <!--                                <button class = "downvote-btn btn btn-link btn-xs" value = "<?php echo $post->post_id; ?>">
                                     <span class = "<?php echo $post->vote_type === '-1' ? 'downvote-text' : '' ?> fa fa-chevron-down vote-text"></span>
                                 </button>-->
                             <?php endif; ?>
                         </div>
-                        <div class="media-body">
+                        <div class="media-body" style="position:relative">
                             <?php if (!$post->is_deleted): ?>
                                 <?php if ($user->user_id === $logged_user->user_id || $is_moderated): ?>
                                     <!-- Delete Button -->
-                                    <button value = "<?php echo $post->post_id ?>" class = "delete-btn pull-right btn btn-sm btn-danger"><i class = "fa fa-trash"></i> Delete</button>
+                                    <button value = "<?php echo $post->post_id ?>" class = "delete-btn pull-right btn btn-danger"><i class = "fa fa-trash"></i> Delete</button>
                                 <?php endif; ?>
 
                                 <!-- Reply Button -->
-                                <button class = "reply-btn pull-left btn btn-gray" style = "margin-right: 5px;" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i> Reply</button>
+                                <button class = "reply-btn pull-left btn btn-gray" style = "margin-right: 5px;font-size: 18px;position: absolute;bottom:0;" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i> Comment</button>
 
                                 <?php if ($user->user_id === $logged_user->user_id): ?>
                                     <!-- Edit Button -->
-                                    <button value = "<?php echo $post->post_id ?>" class = "edit-btn pull-right btn btn-sm btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i> Edit</button>
+                                    <button value = "<?php echo $post->post_id ?>" class = "edit-btn pull-right btn btn-gray" style = "margin-right: 5px;"><i class = "fa fa-pencil"></i> Edit</button>
                                 <?php endif; ?>
 
                                 <!-- Post Heading -->
@@ -76,7 +72,7 @@ $user = $post->user;
                                     <!--<h4 class = "no-padding no-margin text-muted"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
                                         <small>
                                             <i><a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
-                                            <span class = "text-muted"><i style = "font-size: 18px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
+                                            <span class = "text-muted pull-right"><i style = "font-size: 18px;margin-right: 7px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                                         </small>
                                     <?php else: ?>
                                         <a class = "btn btn-link no-padding btn-lg pull-left" href = "<?php echo base_url('user/profile/' . $user->user_id); ?>"><strong><?php echo $user->first_name . " " . $user->last_name; ?></strong></a>
@@ -105,9 +101,19 @@ $user = $post->user;
                                     <?php
                                     endif;
                                 endif;
-                                ?>
-                                <p class = "post-content" style = "margin-top: 15px;white-space: pre-wrap;"><?php echo utf8_decode($post->post_content) ?></p>
-<?php else: ?>
+                                ?><div class="ptopcolor" style="margin-bottom:50px;padding-bottom:15px !important;">
+                                
+                                <p class = "post-content whitebg2" style = "margin-top: 5px;white-space: pre-wrap;"><?php echo utf8_decode($post->post_content) ?></p>
+                                
+                                <span class="whitebg2" style="padding-right: 30px !important;">
+                                <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
+                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
+                                </button>
+                                <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span> 
+                                <button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>
+                                </span>        
+                                        </div>
+<?php else: ?>                  
                                 <div class="media-heading">
                                     <h4 class = "no-padding no-margin text-danger">Deleted Post</h4>
                                 </div>
@@ -118,8 +124,8 @@ $user = $post->user;
                 </div>
 
                 <!-- COMMENTS -->
-                <div class = "col-md-12 reply-header">
-                    Replies:
+                <div class = "col-md-12 reply-header" style="font-size:22px">
+                    Comments
                 </div>
                 <div class = "col-md-12 content-container reply-container">
                     <?php
@@ -127,7 +133,7 @@ $user = $post->user;
                         echo $replies;
                     else:
                         ?>
-                        <h4 class = "text-center text-warning no-padding no-margin"><strong>This post has no replies yet!</strong></h4>
+                        <h4 class = "text-center text-warning no-padding no-margin"><strong>This post has no comments yet!</strong></h4>
 <?php endif; ?>
                 </div>
             </div>
@@ -165,6 +171,7 @@ $user = $post->user;
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
     <?php
 //    include(APPPATH . 'views/chat/chat.php');
+    include(APPPATH . 'views/side_navbar.php');
     include(APPPATH . 'views/modals/create_reply_modal.php');
     include(APPPATH . 'views/modals/edit_post_modal.php');
     include(APPPATH . 'views/modals/delete_post_modal.php');

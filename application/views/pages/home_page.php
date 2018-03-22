@@ -106,16 +106,16 @@ include(APPPATH . 'views/header.php');
                                                       
                                                 </i>
                                                 <span class = "text-muted pull-right"> <i style = "font-size: 18px"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span><br>
-                                                <div class="ptopcolor">
+                                                <div class="ptopcolor" style="padding-bottom:15px !important;">
                                                     <!--<h4 class = "no-padding no-margin text-muted wrap whitebg2" style="display:inline-block"><strong><?php echo utf8_decode($post->post_title); ?></strong></h4>-->
                                                 <p class = "home-content-body whitebg2" style = "border-right: none;white-space: pre-wrap;max-width: 714px;"><?php echo utf8_decode($post->post_content); ?></p>
                                                 
                                                 <span class="whitebg2" style="padding-right: 30px !important;">
                                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                                    <span onclick="starding()" class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
+                                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
                                                 </button>
                                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
-                                                <button class = "btn btn-primary pull-right" id="text2speak" style = "margin-left: 3px;border-radius: 20px" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up"></i></button>
+                                                <button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>
                                                 </span>
                                                 
                                                 </div>
@@ -147,6 +147,24 @@ include(APPPATH . 'views/header.php');
         </div>
     </div>
     <script>
+window.onload = function(){scrollFunction();};
+window.onscroll = function() {scrollFunction();};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("topbut").style.display = "block";
+        document.getElementById('topbut').className = 'balloon';
+    } else {
+        document.getElementById("topbut").style.display = "none";
+        document.getElementById('topbut').className = '';
+    }
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        document.getElementById("botbut").style.display = "none";
+    }
+    else {
+        document.getElementById("botbut").style.display = "block";
+    }
+}
             // When the user clicks on the button, scroll to the top of the document
             function topFunction() {                
                 var whistleup = new Audio('<?php echo base_url('images/Slide Whistle up1.mp3'); ?>');
@@ -165,22 +183,10 @@ include(APPPATH . 'views/header.php');
                 fallrock.play();
             }
         </script>
-        <script>
-function readcontent(value) {
-    if(!(speechSynthesis.speaking)){
-    var value2 = value.replace(/`/g, "'");
-    var reader = new SpeechSynthesisUtterance(value2);
-    window.speechSynthesis.speak(reader);
-    }
-    else{
-        window.speechSynthesis.cancel();
-    }
-  }
 
-</script>
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <div onclick="topFunction()" class="balloon" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
-        <div onclick="botFunction()"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+        <div onclick="topFunction()" id="topbut" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
+        <div onclick="botFunction()" id="botbut"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
 
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     
