@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- Customize Modal -->
 <head>
 
 <style>
@@ -14,7 +14,7 @@
 <div id="customize-theme" class="modal fade" role="dialog">
     <div class="modal-dialog">
         
-        <!-- Notification Modal Content-->
+        <!-- Customize Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close close12" data-dismiss="modal">&times;</button>
@@ -39,7 +39,6 @@
                                 <td><div id="orange" class="blocks" onClick="themeCookie('orange');changeBGColor(':#FCF7D1', 'repeating-linear-gradient(to right,#f6ba52,#f6ba52 10px,#ffd180 10px,#ffd180 20px);','#ed8023', '#bd5f0f', '#9d4f0d');">Orange</div></td>
                                 <td><div id="violet" class="blocks" onClick="themeCookie('violet');changeBGColor(':#e6e6fa', 'repeating-radial-gradient(circle,purple,purple 10px,#4b026f 10px,#4b026f 20px);','#8a49df', '#a2158e', '#660d5a');">Violet</div></td>
                                 </tr>
-                                <!-- flame, horizon, sky, piglet-->
                                 <!--background, navbar, button, buttonH, buttonA-->
                                 <tr>
                                 <td><div id="strawberry" class="blocks" onClick="changeBGColor(':#d13030', 'green','#EEC247','#D3AB2F','#A74901');">Strawberry</div></td>
@@ -64,26 +63,17 @@
                             <div id="cursors-div" class="tab-pane fade in">
                                 <table style="width:100%">
                                 <tr>
+                                
                                 <td><center><div class="blocks" onClick="mouseTrail();"><img src = "<?php echo base_url('images/cursors/trail.cur'); ?>"/><br>Mouse Trail</div></center></td>
                                 <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');removeTrail();"><br>Default</div></center></td>
                                 <td class="themepointer"><center><div class="blocks" onClick="changeThemePointer(getCookie('theme'));"><img src = "<?php echo base_url('images/cursors/green.cur'); ?>"/><br>Theme</div></center></td>
-                                <td class="bb8"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/bb8.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/bb8.cur'); ?>"/><br>BB-8</div></center></td>
+                                <td class="aric"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/aric.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/aric.cur'); ?>"/><br>Aric</div></center></td>
                                 <td class="kyloren"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/kyloren.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/kyloren.cur'); ?>"/><br>Kylo Ren</div></center></td>
                                 </tr>
-                                <tr>
                                 <td class="watermelon"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/watermelon.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/watermelon.cur'); ?>"/>Watermelon</div></center></td>
                                 <td class="stormtrooper"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/stormtrooper.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/stormtrooper.cur'); ?>"/>Stormtrooper</div></center></td>
                                 <td class="ugandanknuckles"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/ugandanknuckles.cur'); ?>"/><br>Da Wae</div></center></td>
-                                <td class="sushi"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/sushi.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/sushi.cur'); ?>"/><br>Sushi</div></center></td>
-                                <td class="oreo"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/oreo.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/oreo.cur'); ?>"/><br>Oreo</div></center></td>                                
-                                </tr>
-                                <tr>
-                                <td class="ghost"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/ghost.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/ghost.cur'); ?>"/>Ghost</div></center></td>
-                                <td class="pooh"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/pooh.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/pooh.cur'); ?>"/>Pooh</div></center></td>
-                                <td class="dorito"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/dorito.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/dorito.cur'); ?>"/><br>Dorito</div></center></td>
-                                <td class="rainbowdash"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/rainbowdash.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/rainbowdash.cur'); ?>"/><br>Rainbow Dash</div></center></td>
-                                <td class="stitch"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/stitch.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/stitch.cur'); ?>"/><br>Stitch</div></center></td>                                
-                                </tr>
+
                                 <tr><td>&nbsp</td></tr>
                                 <tr><td colspan="5"><center><input class="btn btn-primary buttonsbgcolor" type="button" value="Done!" onClick="window.location.reload()"></center></td></tr>
                                 </table>
@@ -96,7 +86,7 @@
                                         <td><div class="blocks" onClick="addBGsound('none');addBGspark('none');addBGsnow('none');addBGbubble('none');addBGfirework('none');document.cookie='randomcolors=0;path=/;';document.cookie='dance=0;path=/;';">None</div></td>
                                         <td><div class="blocks" onClick="addBGsound('block');"><img src = "<?php echo base_url('images/extras/sound.png'); ?>"/>Sound</div></td>
                                         <td><div class="blocks" onClick="addBGsnow('block');"><img src = "<?php echo base_url('images/extras/snowflake.png'); ?>"/>Snowflake</div></td>
-                                        <!--<td><div class="blocks" onClick="addBGspark('block');"><img src = "<?php echo base_url('images/extras/sparkles.png'); ?>"/>Sparkles</div></td>-->
+                                        <td><div class="blocks" onClick="addBGspark('block');"><img src = "<?php echo base_url('images/extras/sparkles.png'); ?>"/>Sparkles</div></td>
                                         <td><div class="blocks" onClick="addBGbubble('block');"><img src = "<?php echo base_url('images/extras/bubbles.png'); ?>"/>Bubbles</div></td>
                                     </tr>    
                                     <tr>
@@ -128,16 +118,15 @@
     document.cookie = "ButtonAColor1=" + getCookie("ButtonAColor") + ";" + ";path=/"; 
     document.cookie = "MousePointer1=" + getCookie("MousePointer") + ";" + ";path=/"; 
     
-    function changeBGColor(value, value2, value3, value4, value5)
+    
+    function changeBGColor(background, navbar, button, buttonH, buttonA)
     {document.cookie='activaterain=0;path=/;';
-        //var d = new Date();
-        //d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-        //var expires = "expires="+d.toUTCString();
-        document.cookie = "backgroundColor=" + value + ";" + ";path=/";   
-        document.cookie = "NavbarColor=" + value2 + ";" + ";path=/"; 
-        document.cookie = "ButtonColor=" + value3 + ";" + ";path=/"; 
-        document.cookie = "ButtonHColor=" + value4 + ";" + ";path=/";
-        document.cookie = "ButtonAColor=" + value5 + ";" + ";path=/";
+        
+        document.cookie = "backgroundColor=" + background + ";" + ";path=/";   
+        document.cookie = "NavbarColor=" + navbar + ";" + ";path=/"; 
+        document.cookie = "ButtonColor=" + button + ";" + ";path=/"; 
+        document.cookie = "ButtonHColor=" + buttonH + ";" + ";path=/";
+        document.cookie = "ButtonAColor=" + buttonA + ";" + ";path=/";
 
     }
     

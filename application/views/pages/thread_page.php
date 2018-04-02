@@ -140,7 +140,7 @@ $user = $post->user;
         </div>
     </div>
     
-<!--    report-->
+<!--Report a post-->
     <?php 
     if(isset($_POST['report'])){
      $servername = "127.0.0.1";

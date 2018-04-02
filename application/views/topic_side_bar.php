@@ -76,6 +76,7 @@ $logged_user = $_SESSION['logged_user'];
             </ul>
         </div>
         </div>
+        <!--random trivia-->
         <div id="randtriv1" class="draggable">
         <?php
         $servername = "127.0.0.1";
@@ -101,6 +102,7 @@ $logged_user = $_SESSION['logged_user'];
 </div>
 
 <!-- SCRIPTS -->
+<!--topic sidebar collapsed or expanded script-->
 <script>
 function tpsidebar(){
     if($("#side-topics-followed").is(":visible"))

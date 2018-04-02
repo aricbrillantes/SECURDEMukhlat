@@ -46,7 +46,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         document.cookie = "ButtonHColor=#14620f;" + ";path=/"; 
         document.cookie = "ButtonAColor=#185729;" + ";path=/"; 
     }
-    
+//    changing custom themes, pointers, effects based on the users choices
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
                     #randtriv1{background: #'+ randomColor2 +';}\n\
                     .soundbg {display:' + getCookie("soundbg1") + ';}\n\
@@ -136,15 +136,16 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var curMonth = currentDate.getMonth()+1;
         var curDay = currentDate.getDate();
         
-//      night mode script
+//night mode script
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
 
-
+//screen blur after usage time warning
         document.write('<style type="text/css">\n\
                 html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
 
+//darker screen depending on time
         switch(hours)
         {   
             case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}<\/style>');break;
@@ -156,6 +157,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
         }
 
+//different logo on nightmode
         if(hours > 18 || hours < 6)
         {
             document.write('<style type="text/css">\n\
@@ -170,19 +172,19 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #nav-logo2{display:none}\n\
                 #bed2{display:none}<\/style>');
         }
-        
+//force logout by 8pm to 6am
         if(hours >= 20 || hours < 6)
         {
             location.href="http://localhost/MukhlatBeta/signin/logout";
         }
-        
+//Warning before 8pm's force logout
         if(hours === 19 && getCookie("warned")==='0')
         {
             $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
             document.cookie = "warned=1;path=/"; 
             
         }
-        
+//greet if user's birthday
         if(birthMonth===curMonth && birthDay===curDay)
         {
             if(getCookie("birthday")==='0')
@@ -237,9 +239,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             document.cookie = "birthday=1;" + ";path=/"; 
             $('#birthdaypopup').modal('show');
             
-//            $("#birthdaypopup").on("hidden.bs.modal", function () {
-//                location.href="http://localhost/MukhlatBeta/home";
-//            });
         }
         
         var now = new Date();
@@ -365,6 +364,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 		background-color: #FAFAFA;
 	}
 </style>-->
+    <!--snowflakes falling effect-->
 <div class="snowflakebg" style="display: none;">    
 <div class="snowflakes" aria-hidden="true">
   <div class="snowflake" style="font-size: 30px">
@@ -406,8 +406,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     
     <!--<script src="/intl/en/chrome/assets/common/js/chrome.min.js"></script>-->     
     
-    <!--Voice Search Script-->
+<!--Voice Search Script-->
 <script type="text/javascript" src="<?php echo base_url('js/voicesearch.js'); ?>"> </script>
+
+<!--draggability script-->
 <script src="<?php echo base_url('draggabilly-master/dist/draggabilly.pkgd.min.js'); ?>"></script>
 
 <!-- Nav Bar -->
@@ -421,6 +423,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <!--night mode-->
 <div id="overlay"></div>
 
+<!--bubbles effect-->
 <div class="bubblesbg">
 <div class="bubble-container">
    <div class="bubble bubble1">
@@ -446,8 +449,11 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <div class="bubble bubble8"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
 <div class="bubble bubble9"><div class="bubble-border"></div><div class="bubble-pop">*pop*</div></div>
 </div>
+
+<!--voice command easter egg-->
 <div id ="peek" style="display:none;"><img src = "<?php echo base_url('images/green m cat.png'); ?>"/></div>
 
+<!--frequency bar effect-->
     <div class="soundbg" style="float:left;">
         <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
@@ -530,7 +536,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         
                     </form>
                 </div>
-        
+        <!--voice search-->
             <div id="voicedropdown" class="voice-dropdown-content navbarvoice" style="display:none;">
                                 <div class="compact marquee" id="div_language" style="display: inline-block;font-size: 22px">
                                     <select id="select_language">
@@ -586,6 +592,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
 <!-- Nav Bar Script -->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
+<!--voice search indicator script-->
 <script>
 function voiceIndicatorON() {
     var VInd = document.getElementById("snackbar");
@@ -598,6 +605,8 @@ function voiceIndicatorOFF() {
 }
 
 </script>
+
+<!--voice commands script-->
 <script type="text/javascript">
         var final_transcript3 = '';
         var recognizing3 = true;
@@ -755,7 +764,9 @@ function voiceIndicatorOFF() {
 <script>var $draggable = $('.draggable').draggabilly();</script>
 <script src="<?php echo base_url('js/frequencybars.js'); ?>"></script>
 <script src="<?php echo base_url('js/sparkles.js'); ?>"></script>
-<!--<script src="<?php echo base_url('js/fireworks.js'); ?>"></script>-->          
+<!--<script src="<?php echo base_url('js/fireworks.js'); ?>"></script>-->
+
+<!--bubble popping and popped bubbles counter script-->
 <script>
     var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
     var bubbles = document.querySelectorAll('.bubble');
@@ -818,17 +829,20 @@ function voiceIndicatorOFF() {
     });  
     
 </script>-->
+
+<!--mouseover on a button audio-->
 <audio>
 <source src="<?php echo base_url('sound-mouseover/click.mp3'); ?>">
 <source src="<?php echo base_url('sound-mouseover/click.ogg'); ?>">
 </audio>
 <div id="sounddiv"><bgsound id="sound"></div>
 
+<!--highlighted text reader script-->
 <script>
 var synth = window.speechSynthesis;
 var voices90 = synth.getVoices();
 
-function getSelectionText() {
+function getSelectionText() { //highlight desired text to read
     var text = "";
     if (window.getSelection) {
         text = window.getSelection().toString();
@@ -839,17 +853,19 @@ function getSelectionText() {
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.keyCode === 16) {
+  if (e.keyCode === 16) { //press shift to read higlighted text
     var msg = new SpeechSynthesisUtterance(getSelectionText());
     msg.voice = voices90[2];
     synth.speak(msg);
   }
-  if(e.keyCode === 17){
+  if(e.keyCode === 17){ //press ctrl to stop reading
      window.speechSynthesis.cancel();
   }
 });
 
 </script>
+
+<!--read post content reader script-->
         <script>
 function readcontent(value) {
     if(!(speechSynthesis.speaking)){

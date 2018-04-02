@@ -88,7 +88,7 @@
         window.emojiPicker.discover();
       });
     </script>-->
-    
+    <!--Profanity Filter and character limit counter-->
 <script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");

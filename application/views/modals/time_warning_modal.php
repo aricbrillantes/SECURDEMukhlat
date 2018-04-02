@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!--Usage Time Warning Modal -->
 <head>
 
 <style>
@@ -10,7 +10,7 @@
 
 <div id="timepopup" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <!-- Notification Modal Content-->
+        <!-- Usage Time Warning Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <h4 class="modal-title text-center"><strong><i class="glyphicon glyphicon-time"></i> Time to take a break</strong></h4>

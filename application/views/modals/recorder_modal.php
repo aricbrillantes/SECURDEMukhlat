@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- Recorder Modal -->
 <head>
 
 <style>
@@ -10,7 +10,7 @@
 
 <div id="recorderpopup" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <!-- Notification Modal Content-->
+        <!-- Recorder Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>

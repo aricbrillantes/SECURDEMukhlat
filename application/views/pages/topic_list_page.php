@@ -69,6 +69,7 @@ include(APPPATH . 'views/header.php');
                     <div id = "topic-list" class = "list-group">
                         <?php foreach ($topics as $topic): ?>
                         
+                        <!--retrieving the cover photo-->
                     <a class="topic-grid1" id="topicGcolor" href = "<?php echo base_url('topic/view/' . $topic->topic_id); ?>">
                         <?php
 
@@ -100,8 +101,11 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
+    <!--back to top and go to bottom script-->
         <script>
-window.onload = function(){scrollFunction();};
+window.addEventListener('load', function (){
+    scrollFunction();
+});
 window.onscroll = function() {scrollFunction();};
 
 function scrollFunction() {
@@ -140,6 +144,7 @@ function scrollFunction() {
         </script>
         
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
+        <!--back to top and go to bottom buttons-->
         <div onclick="topFunction()" id="topbut" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
         <div onclick="botFunction()" id="botbut"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
         <!--

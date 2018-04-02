@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- Birthday Greeting Modal -->
 <head>
 
 <style>
@@ -11,7 +11,7 @@
 <div id="birthdaypopup" class="modal fade" role="dialog">
     <canvas style="position:fixed;" id="canvas5"></canvas>
     <div class="modal-dialog">
-        <!-- Notification Modal Content-->
+        <!-- Birthday Greeting Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -26,7 +26,7 @@
         </div>
     </div>
 </div>
-
+<!--Falling Confetti background script-->
 <script type="text/javascript">
     (function () {
     // globals

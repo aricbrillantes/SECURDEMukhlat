@@ -146,6 +146,8 @@ include(APPPATH . 'views/header.php');
             </div>
         </div>
     </div>
+        
+        <!--change birthday input-->
 <script>
     function choosebday(){
     var date1 = document.getElementById("DOBDay");
@@ -159,6 +161,8 @@ include(APPPATH . 'views/header.php');
     document.getElementById("birhdate10").value = selectedyear + "-" + selectedmonth + "-" + selectedday;
     }
     </script>
+    
+    
 <script>
    document.cookie = 'birthday=0;path=/';
    
@@ -229,6 +233,7 @@ include(APPPATH . 'views/header.php');
 //    timeLogIn();
 </script>
 
+<!--password strength checker-->
 <script type="text/javascript">
         var strength = {
                 0: "Worst ☹",

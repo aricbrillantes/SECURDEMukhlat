@@ -45,7 +45,7 @@
     </div>
 </div>
 
-
+<!--Confirmation of topic creation modal-->
 
 <div id="create-confirmation-modal" tabindex="-1" class="modal fade" role="dialog" style = "margin-top: 50px; margin-right: 15px;">
     <div class="modal-dialog">
@@ -86,7 +86,7 @@
 //        window.emojiPicker.freeze();
       });
     </script>-->
-    
+    <!--Profanity Filter and character limit counter-->
     <script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");

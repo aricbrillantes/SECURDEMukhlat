@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- Play Modal -->
 <head>
 <!--<link href="<?php echo base_url('bubble-pop-master/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">-->
 <script src="<?php echo base_url('bubble-pop-master/js/helpers.js'); ?>"></script> 
@@ -15,7 +15,7 @@
 
 <div id="playpopup" class="modal fade" role="dialog">
     <div class="modal-dialog" style="width:800px;">
-        <!-- Notification Modal Content-->
+        <!-- Play Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>

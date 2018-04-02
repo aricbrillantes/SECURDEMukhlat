@@ -1,7 +1,8 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- Camera Modal -->
 <head>
 
+    
 <style>
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
@@ -169,7 +170,7 @@ h3{
 
 <div id="camerapopup" class="modal fade" role="dialog" >
     <div class="modal-dialog" style="width:50%">
-        <!-- Notification Modal Content-->
+        <!-- Camera Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -202,6 +203,7 @@ h3{
         </div>
     </div>
 </div>
+<!--Camera script-->
 <script>
     // References to all the element we will need.
 var video = document.querySelector('#camera-stream'),

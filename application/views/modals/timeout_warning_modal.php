@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- Timeout Warning Modal -->
 <head>
 
 <style>
@@ -10,7 +10,7 @@
 <div id="timeoutpopup" class="modal fade" role="dialog">
     <canvas style="position:fixed;" id="canvas5"></canvas>
     <div class="modal-dialog">
-        <!-- Notification Modal Content-->
+        <!-- Timeout Warning  Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">                
                 <h4 class="modal-title text-center"><strong><i class="glyphicon glyphicon-time"></i>It's almost 8 PM!</strong></h4>

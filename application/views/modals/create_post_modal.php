@@ -160,7 +160,7 @@ $topic = $_SESSION['current_topic'];
 </div>
 
 <!-- SCRIPTS -->
-<!--PROFANITY FILTER-->
+<!--PROFANITY FILTER and character limit counter-->
  <!--<script src="https://code.responsivevoice.org/responsivevoice.js"></script>-->
 
 <script type="text/javascript">

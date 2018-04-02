@@ -1,5 +1,5 @@
 <?php $logged_user = $_SESSION['logged_user']; ?>
-<!-- Notification Modal -->
+<!-- AFK Warning Modal -->
 <head>
 
 <style>
@@ -11,7 +11,7 @@
 <div id="afkpopup" class="modal fade" role="dialog">
     <canvas style="position:fixed;" id="canvas5"></canvas>
     <div class="modal-dialog">
-        <!-- Notification Modal Content-->
+        <!-- AFK Warning Modal Content-->
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
