@@ -158,7 +158,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         }
 
 //different logo on nightmode
-        if(hours > 18 || hours < 6)
+        if(hours >= 18 || hours < 6)
         {
             document.write('<style type="text/css">\n\
             #nav-logo{display:none}\n\
