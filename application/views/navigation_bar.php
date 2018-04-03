@@ -81,33 +81,35 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .modal-header{background:' + getCookie("NavbarColor") + ';}\n\
                     .charLimitMessage{background:' + getCookie("ButtonHColor") + ';}\n\
                     .topic-grid1{background-color: #'+ randomColor +';}\n\
-                    .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');
+                    .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');    
     
-    
-    
-    
+//    mouse trail effect
     if(getCookie("MouseTrail")==='0')
             document.write('<style type="text/css">.trail{display:none;}<\/style>');
         
+//    bubbles background   
     if(getCookie("bubblesbg1")==='block')
         document.write('<style type="text/css"> #logom .bubbletooltip{visibility:visible;}<\/style>');
         
    else
         document.write('<style type="text/css"> #logom .bubbletooltip{visibility:hidden;}<\/style>');
         
+//     random colors   
     if(getCookie("randomcolors")==='1')
-        {
-            document.write('<style type="text/css">\n\
-                        #randtriv1{background: #'+ randomColor2 +';}\n\
-                    .topic-grid1{background-color: #'+ randomColor +';}<\/style>');
-        }
+    {
+        document.write('<style type="text/css">\n\
+                    #randtriv1{background: #'+ randomColor2 +';}\n\
+                .topic-grid1{background-color: #'+ randomColor +';}<\/style>');
+    }
         
-        else
-        {
-            document.write('<style type="text/css">\n\
-                        #randtriv1{background:'+ getCookie("ButtonColor") +';}\n\
-                        .topic-grid1{background-color:'+ getCookie("ButtonColor") +';}<\/style>');
-        }    
+    else
+    {
+        document.write('<style type="text/css">\n\
+                    #randtriv1{background:'+ getCookie("ButtonColor") +';}\n\
+                    .topic-grid1{background-color:'+ getCookie("ButtonColor") +';}<\/style>');
+    }    
+    
+//    sparkles background
     if(getCookie("sparklebg1")==="block"){
         document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
     }
@@ -115,49 +117,57 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         document.write('<canvas id="firework" class="fireworkbg"></canvas>'); 
     }
     
+//    dancing buttons
     if(getCookie("dance")==='1')
-        {
-            document.write('<style type="text/css">\n\
-                            .btn{animation: dance 3s infinite;}\n\
-                            .navbaricons{animation: dance 3s infinite;}\n\
-                            .navbarprofileicon{animation: dance 3s infinite;}\n\
-                            #logout-btn{animation: dance 3s infinite;}\n\
-                            button{animation: dance 3s infinite;}\n\
-                            a{animation: dance 3s infinite;}\n\
-                            <\/style>');
-        }
+    {
+        document.write('<style type="text/css">\n\
+                        .btn{animation: dance 3s infinite;}\n\
+                        .navbaricons{animation: dance 3s infinite;}\n\
+                        .navbarprofileicon{animation: dance 3s infinite;}\n\
+                        #logout-btn{animation: dance 3s infinite;}\n\
+                        button{animation: dance 3s infinite;}\n\
+                        a{animation: dance 3s infinite;}\n\
+                        <\/style>');
+    }
        
-        
-        var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
-        var birthMonth = birthDate.getMonth()+1;
-        var birthDay = birthDate.getDate();
-    
+ 
+//      getting current date
         var currentDate = new Date();
         var curMonth = currentDate.getMonth()+1;
         var curDay = currentDate.getDate();
         
-//night mode script
+        
+//      getting current time for night mode script
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
 
-//screen blur after usage time warning
+//      screen blur after usage time warning
+/*     
+ *      Developers' note: 
+ *          Blurring the screen is not the best way to make the user/child log out.
+ *          We simply added 
+*/
         document.write('<style type="text/css">\n\
                 html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
 
-//darker screen depending on time
+//darker screen depending on time (night mode); see actual function below
+/*     
+ *      Developers' note: 
+ *          Blurring the screen is not the best way to make the user/child log out.
+ *          We simply added 
+*/
         switch(hours)
         {   
-            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}<\/style>');break;
-                
-            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}<\/style>');break;
-            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.3);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
-            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
-            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.5);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
+            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}<\/style>');break;     
+            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1.5);}<\/style>');break;
+            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
+            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2.5);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
+            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
             default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
         }
 
-//different logo on nightmode
+//  displays a different Mukhlat logo on nightmode
         if(hours >= 18 || hours < 6)
         {
             document.write('<style type="text/css">\n\
@@ -172,35 +182,52 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #nav-logo2{display:none}\n\
                 #bed2{display:none}<\/style>');
         }
-//force logout by 8pm to 6am
+        //force logout by 8pm to 6am
         if(hours >= 20 || hours < 6)
         {
             location.href="http://localhost/MukhlatBeta/signin/logout";
         }
-//Warning before 8pm's force logout
+        
+//  Warning before curfew's forced logout
         if(hours === 19 && getCookie("warned")==='0')
         {
             $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
             document.cookie = "warned=1;path=/"; 
             
         }
-//greet if user's birthday
+        
+//      getting user's birthday
+        var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
+        var birthMonth = birthDate.getMonth()+1;
+        var birthDay = birthDate.getDate(); 
+       
+//      greet the user if it's their birthday
         if(birthMonth===curMonth && birthDay===curDay)
         {
             if(getCookie("birthday")==='0')
                 birthdayPopup();
         }
         
+//      greet the user if it's their birthday
+        function birthdayPopup()
+        {
+            document.cookie = "birthday=1;" + ";path=/"; 
+            $('#birthdaypopup').modal('show');
+            
+        }
+        
+//      AFK Timer Script
+
         var start = document.getElementById("start");
         var dis = document.getElementById("afktimer");
         var finishTime;
-        var timerLength = 600;
+        var timerLength = 600; // 600 seconds or 10 minutes
         var timeoutID;
         dis.innerHTML = "Time Left: " + timerLength;
         
-        document.onmousemove = function(){
+        document.onmousemove = function(){ //reset timer and hide AFK popup
             StartTimer();
-            $('#afkpopup').modal('hide');
+            $('#afkpopup').modal('hide'); 
         };
         
         StartTimer();
@@ -217,30 +244,23 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
             timeoutID = window.setTimeout(Update, 100);
 
-            if(timeLeft<=300*1000)
+            if(timeLeft<=300*1000) //display AFK popup after 5 minutes
             {
                 $('#afkpopup').modal('show');
             }
             
-            if(dis.innerHTML==='Time Left: 0')
+            if(dis.innerHTML==='Time Left: 0') // logout user if AFK
             {
                 location.href="http://localhost/MukhlatBeta/signin/logout";
             }
             
-            if(hours >= 20)
+            if(hours >= 20) // force logout of user
             {
                 location.href="http://localhost/MukhlatBeta/signin/logout";
             }
         }
         
-        
-        function birthdayPopup()
-        {
-            document.cookie = "birthday=1;" + ";path=/"; 
-            $('#birthdaypopup').modal('show');
-            
-        }
-        
+//      getting current time for night mode and usage restriction
         var now = new Date();
         var now2 = new Date();
         var time = now.getTime();
@@ -253,6 +273,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
         var blur = Number(getCookie("blur"));
     
+//      if lasttimed (last time warned) cookie is earlier then current time, warn user and reset cookie
         if(Number(getCookie("nexttimed1"))<nowH && (Number(getCookie("nexttimed2"))-30)<=nowM)
         {
             blur = blur+1;
@@ -271,21 +292,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             $('#timepopup').modal({backdrop: 'static', keyboard: false});
         }
         
-        function forceTimeout()
-        {
-            blur = blur+1;
-            document.cookie = "blur=" + blur + ";path=/"; 
-            $('#timepopup').modal({backdrop: 'static', keyboard: false});
-        }
-        
-        function removeBlur()
-        {
-            blur = 0;
-            document.cookie = "blur=" + blur + ";path=/"; 
-            location.reload();
-        }
-        
-       
 </script>
 <!--<script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config"></script>
 <script type="text/javascript" src="https://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script"></script>-->
@@ -295,23 +301,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <script type="text/javascript" src="<?php echo base_url('sound-mouseover/sound-mouseover.js'); ?>"></script>
     
     <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('clippy.js-master/build/clippy.css'); ?>" media="all">-->
-    <style>
-        svg{
-        display: block;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        position: fixed;
-        }
 
-        path{
-        stroke-linecap: square;
-        stroke: white;
-        stroke-width: 0.5px;
-        }        
-
-    </style>
 <!--        <style>/*******************************
 * MODAL AS LEFT/RIGHT SIDEBAR
 * Add "left" or "right" in modal parent div, after class="modal".
@@ -608,96 +598,68 @@ function voiceIndicatorOFF() {
 
 <!--voice commands script-->
 <script type="text/javascript">
-        var final_transcript3 = '';
-        var recognizing3 = true;
-        var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
+    var final_transcript3 = '';
+    var recognizing3 = true;
+    var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
 
-        if ('webkitSpeechRecognition' in window) {
+    if ('webkitSpeechRecognition' in window) {
 
-          var recognition3 = new webkitSpeechRecognition();
-          recognition3.lang = 'en-US';
-          recognition3.continuous = true;
-          recognition3.interimResults = true;
+      var recognition3 = new webkitSpeechRecognition();
+      recognition3.lang = 'en-US';
+      recognition3.continuous = true;
+      recognition3.interimResults = true;
 
-          recognition3.onstart = function() {
-            recognizing3 = true;
-          };
+      recognition3.onstart = function() {
+        recognizing3 = true;
+      };
 
-          recognition3.onerror = function(event) {
-            console.log(event.error);
-          };
+      recognition3.onerror = function(event) {
+        console.log(event.error);
+      };
 
-          recognition3.onend = function() {
-            recognizing3 = false;
-        };
+      recognition3.onend = function() {
+        recognizing3 = false;
+    };
 
        recognition3.onresult = function(event) {
                       
             var interim_transcript3 = '';
             for (var i = event.resultIndex; i < event.results.length; ++i) {
-              if (event.results[i].isFinal) {
-                final_transcript3 += event.results[i][0].transcript;
-              } else {
-                interim_transcript3 += event.results[i][0].transcript;
-              }
+                if (event.results[i].isFinal) {
+                    final_transcript3 += event.results[i][0].transcript;
+                } 
+                
+                else{
+                    interim_transcript3 += event.results[i][0].transcript;
+                }
             }
             final_span3.innerHTML = linebreak(final_transcript3);
             interim_span3.innerHTML = linebreak(interim_transcript3);
-                
-                if(interim_span3.innerHTML.includes("birthday ko") || interim_span3.innerHTML.includes("happy birthday")){
-                birthdayPopup();
-            }
 
             if(interim_span3.innerHTML.includes("sawa na ako") || interim_span3.innerHTML.includes("time out")){
                 forceTimeout();
             }
 
-            if(interim_span3.innerHTML.includes("sawa na ako") || interim_span3.innerHTML.includes("remove blur")){
+            if(interim_span3.innerHTML.includes("go to home") || interim_span3.innerHTML.includes("sa home po")){
                 location.href="http://localhost/MukhlatBeta/home";
             }
 
-            if(interim_span3.innerHTML.includes("remove night mode")){
-                document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');
-                location.href="http://localhost/MukhlatBeta/home";
-            }
-
-            if(interim_span3.innerHTML.includes("go to home")){
-                location.href="http://localhost/MukhlatBeta/home";
-            }
-
-            if(interim_span3.innerHTML.includes("sa home po")){
-                location.href="http://localhost/MukhlatBeta/home";
-            }
-
-
-            if(interim_span3.innerHTML.includes("go to topics")){
+            if(interim_span3.innerHTML.includes("go to topics") || interim_span3.innerHTML.includes("sa topics po")){
                 location.href="http://localhost/MukhlatBeta/topic";
             }
 
-            if(interim_span3.innerHTML.includes("sa topics po")){
-                location.href="http://localhost/MukhlatBeta/topic";
-            }
-
-            if(interim_span3.innerHTML.includes("go to profile")){
+            if(interim_span3.innerHTML.includes("go to profile") || interim_span3.innerHTML.includes("sa profile po")){
                 location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
             }
 
-            if(interim_span3.innerHTML.includes("sa profile po")){
-                location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
-            }
-            
             if(interim_span3.innerHTML.includes("activate camera")){
                 $('#camerapopup').modal('show');
             }
-            
-            if(interim_span3.innerHTML.includes("selfie")){
-                takephoto();
-                interim_span3.innerHTML = interim_span3.innerHTML.replace("selfie","");
-            }
 
-//                if(interim_span3.innerHTML.includes("di siya mahal")){
-//                    location.href="https://www.facebook.com/rafael.tanchuan";
-//                }
+    //            if(interim_span3.innerHTML.includes("selfie")){
+    //                takephoto();
+    //                interim_span3.innerHTML = interim_span3.innerHTML.replace("selfie","");
+    //            }
 
             if(interim_span3.innerHTML.includes("voice search")){
                 var x = document.getElementById("voicedropdown");
@@ -708,22 +670,23 @@ function voiceIndicatorOFF() {
             }
 
             if(interim_span3.innerHTML.includes("meow")){
-               meow.play();
-               catpeek();
+                meow.play();
+                catpeek();
             }
-
 
           };
         }
 
         var two_line = /\n\n/g;
         var one_line = /\n/g;
+        recognition3.lang = 'fil-PH';
+        
         function linebreak(s) {
-          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+            return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
         }
 
         function capitalize(s) {
-          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+            return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
         }
 
         function startDictation3(event) {
@@ -731,8 +694,6 @@ function voiceIndicatorOFF() {
             final_transcript3 = '';
             final_span3.innerHTML = '';
             interim_span3.innerHTML = '';
-            
-            
             recognition3.start();
         }
 
@@ -740,25 +701,10 @@ function voiceIndicatorOFF() {
             recognition3.stop();
         }
 
-        function resetDictation3(event) {
-            recognition3.stop();
-            recognition3.lang = 'fil-PH';
-            final_transcript3 = '';
-            final_span3.innerHTML = '';
-            interim_span3.innerHTML = '';
-        }
-        
-        var languages = new Array(
-            'en-US',
-            'fil-PH',
-            'fr-FR',
-            'ko-KR'
-        );
-
         startDictation3(event);
         
-        
     </script>
+    
 <script src="<?php echo base_url('js/eastereggs.js'); ?>"></script>
 <script src="<?php echo base_url('js/usagetimer.js'); ?>"></script>
 <script>var $draggable = $('.draggable').draggabilly();</script>

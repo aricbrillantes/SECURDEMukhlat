@@ -2079,4 +2079,22 @@ body::-webkit-scrollbar-thumb {
 .ugandanknuckles :hover{
     cursor:url('../images/cursors/ugandanknuckles.cur'), auto;
 }
+
+
+svg{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+}
+
+path{
+    stroke-linecap: square;
+    stroke: white;
+    stroke-width: 0.5px;
+}        
+
+
                                     
