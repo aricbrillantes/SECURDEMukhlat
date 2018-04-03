@@ -8,7 +8,7 @@ $topic = $_SESSION['current_topic'];
         <div class="modal-content">
             <div class="modal-header modal-heading modalbg">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">Members of <?php echo utf8_decode($topic->topic_name); ?></h4>
+                <h4 class="modal-title text-center">Followers of <?php echo utf8_decode($topic->topic_name); ?></h4>
             </div>
             <div class="modal-body" style = "height: 400px;">
                 <!-- followers -->
