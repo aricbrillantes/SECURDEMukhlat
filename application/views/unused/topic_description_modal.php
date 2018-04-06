@@ -33,7 +33,7 @@ $topic = $_SESSION['current_topic'];
                     <?php echo utf8_decode($topic->topic_description); ?>
                 </p>
                 <p class = "text-muted" align = "center">
-                    <small><i>Created by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $topic->user->user_id); ?>"><?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></a> on <?php echo date("M-d-y", strtotime($topic->date_created)); ?></i></small>
+                    <small><i>Created by <a class = "btn btn-link btn-xs no-padding no-margin" href = "<?php echo base_url('user/profile/' . $topic->user->user_id); ?>"><?php echo $topic->user->first_name . " " . $topic->user->last_name; ?></a> on <?php echo date("F d, Y", strtotime($topic->date_created)); ?></i></small>
                 </p>
             </div>
         </div>
