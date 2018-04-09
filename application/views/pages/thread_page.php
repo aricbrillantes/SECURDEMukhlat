@@ -25,7 +25,7 @@ $user = $post->user;
                 
                 <p class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
-                        <i>Topic by 
+                        <i>Post by 
                             <a class = "btn btn-link btn-md no-padding no-margin text1color" href = "<?php echo base_url("user/profile/" . $user->user_id); ?>" style = "margin-bottom: 5px;">
                                 <?php echo $user->first_name; ?></a>
                         </i>
