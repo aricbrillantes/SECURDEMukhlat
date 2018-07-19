@@ -2060,8 +2060,8 @@ body::-webkit-scrollbar-thumb {
     cursor:pointer;
 }
                                     
-.aric :hover{
-    cursor:url('../images/cursors/aric.cur'), auto;
+.dorito :hover{
+    cursor:url('../images/cursors/dorito.cur'), auto;
 }
                                     
 .kyloren :hover{

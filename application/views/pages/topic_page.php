@@ -31,7 +31,7 @@ $c_topic = $_SESSION['current_topic'];
                         <?php endif; ?>
                     </button>
                     <a onmouseenter="playclip()" class = "btn btn-success pull-right btn-md textoutliner" style = "margin: 5px; width: 20%" href = "#topic-members-modal" data-toggle = "modal">
-                        <i class = "fa fa-user"></i> Members
+                        <i class = "fa fa-user"></i> Followers
                     </a>
             </div>
         </div>

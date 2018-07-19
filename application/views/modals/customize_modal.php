@@ -66,7 +66,7 @@
                                 <td><center><div class="blocks" onClick="mouseTrail();"><img src = "<?php echo base_url('images/cursors/trail.cur'); ?>"/><br>Mouse Trail</div></center></td>
                                 <td class="defaultpointer"><center><div class="blocks" onClick="changePointer('');removeTrail();"><br>Default</div></center></td>
                                 <td class="themepointer"><center><div class="blocks" onClick="changeThemePointer(getCookie('theme'));"><img src = "<?php echo base_url('images/cursors/green.cur'); ?>"/><br>Theme</div></center></td>
-                                <td class="aric"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/aric.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/aric.cur'); ?>"/><br>Aric</div></center></td>
+                                <td class="dorito"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/dorito.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/dorito.cur'); ?>"/><br>Dorito</div></center></td>
                                 <td class="kyloren"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/kyloren.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/kyloren.cur'); ?>"/><br>Kylo Ren</div></center></td>
                                 </tr>
                                 <td class="watermelon"><center><div class="blocks" onClick="changePointer('<?php echo base_url('images/cursors/watermelon.cur'); ?>');"><img src = "<?php echo base_url('images/cursors/watermelon.cur'); ?>"/>Watermelon</div></center></td>
