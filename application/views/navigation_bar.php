@@ -264,29 +264,19 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var minutes = currentTime.getMinutes();
 
 //      screen blur after usage time warning
-/*     
- *      Developers' note: 
- *          Blurring the screen is not the best way to make the user/child log out.
- *          We simply added 
-*/
-        document.write('<style type="text/css">\n\
-                html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
+//        document.write('<style type="text/css">\n\
+//                html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
 
 //darker screen depending on time (night mode); see actual function below
-/*     
- *      Developers' note: 
- *          Blurring the screen is not the best way to make the user/child log out.
- *          We simply added 
-*/
-        switch(hours)
-        {   
-            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}<\/style>');break;     
-            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1.5);}<\/style>');break;
-            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
-            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2.5);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
-            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
-            default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
-        }
+//        switch(hours)
+//        {   
+//            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}<\/style>');break;     
+//            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1.5);}<\/style>');break;
+//            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
+//            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2.5);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
+//            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
+//            default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
+//        }
 
 //  displays a different Mukhlat logo on nightmode
         if(hours >= 18 || hours < 6)
@@ -317,19 +307,17 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             
         }
         
-//      getting user's birthday
+//      getting user's birthday and greet them if it's their birthday
         var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
         var birthMonth = birthDate.getMonth()+1;
         var birthDay = birthDate.getDate(); 
        
-//      greet the user if it's their birthday
         if(birthMonth===curMonth && birthDay===curDay)
         {
             if(getCookie("birthday")==='0')
                 birthdayPopup();
         }
         
-//      greet the user if it's their birthday
         function birthdayPopup()
         {
             document.cookie = "birthday=1;" + ";path=/"; 

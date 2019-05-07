@@ -26,3 +26,5 @@ uploads/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+application/views/style.css - Shortcut.lnk
+application/config/database.php

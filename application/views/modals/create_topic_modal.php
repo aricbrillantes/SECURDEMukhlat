@@ -1,4 +1,3 @@
-
 <!-- Create Topic Modal -->
 <div id="create-topic-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -64,21 +63,37 @@
 
 
     <!--Profanity Filter and character limit counter-->
-    <script type="text/javascript">
+<script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");
     var charCount1=35, charCount2=180;
-    
+
     $('.modal-body').keyup(function(event) 
     {
         document.getElementById('charsRemaining1').innerHTML='Characters Left: '+(charCount1-document.getElementById('topic-title').value.length);
         document.getElementById('charsRemaining2').innerHTML='Characters Left: '+(charCount2-document.getElementById('topic-description').value.length);
         
-        if(
+        if( 
             document.getElementById('topic-title').value.includes("fuck")||
+            document.getElementById('topic-title').value.includes("fuck ")||
+            document.getElementById('topic-title').value.includes(" fuck ")||
+            document.getElementById('topic-title').value.includes(" fuck")||
             document.getElementById('topic-title').value.includes("shit")||
+            document.getElementById('topic-title').value.includes("shit ")||
+            document.getElementById('topic-title').value.includes(" shit ")||
+            document.getElementById('topic-title').value.includes(" shit")||
+            document.getElementById('topic-title').value.includes("ass ")||
+            document.getElementById('topic-title').value.includes(" ass")||
             document.getElementById('topic-description').value.includes("fuck")||
-            document.getElementById('topic-description').value.includes("shit")
+            document.getElementById('topic-description').value.includes("fuck ")||
+            document.getElementById('topic-description').value.includes(" fuck ")||
+            document.getElementById('topic-description').value.includes(" fuck")||
+            document.getElementById('topic-description').value.includes("shit")||
+            document.getElementById('topic-description').value.includes("shit ")||
+            document.getElementById('topic-description').value.includes(" shit ")||
+            document.getElementById('topic-description').value.includes(" shit")||
+            document.getElementById('topic-description').value.includes("ass ")||
+            document.getElementById('topic-description').value.includes(" ass")
         )
         {   
             x.style.display = "block";
@@ -110,7 +125,6 @@
         
         else
             document.getElementById('charLimitMessage2').style.display = "none";
-//              
     });  
 </script>
     
