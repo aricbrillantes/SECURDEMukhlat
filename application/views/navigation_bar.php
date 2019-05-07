@@ -258,27 +258,25 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var curDay = currentDate.getDate();
         
         
-//      getting current time for night mode script
-        var currentTime = new Date();
+//      getting current time for night mode 
+        var currentTime = new Date;
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
 
-//      screen blur after usage time warning
-//        document.write('<style type="text/css">\n\
-//                html {filter:blur(' + getCookie("blur") + 'px);}<\/style>');
 
-//darker screen depending on time (night mode); see actual function below
-//        switch(hours)
-//        {   
-//            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1);}<\/style>');break;     
-//            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.1.5);}<\/style>');break;
-//            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
-//            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.2.5);}#logout-btn {animation: emphasize 1s infinite;}<\/style>');break;
-//            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0.4);}#logout-btn {animation: emphasize 0.5s infinite;}<\/style>');break;
-//            default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}<\/style>');break;
-//        }
+        //darken screen slightly depending on time (night mode)
+        switch(hours)
+        {   
+            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.05);}#logout-btn {animation: none;}<\/style>');break;     
+            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.03);}#logout-btn {animation: emphasize3 3s infinite;}<\/style>');break;
+            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.05);}#logout-btn {animation: emphasize2 3s infinite;}<\/style>');break;
+            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.07);}#logout-btn {animation: emphasize2 2.5s infinite;}<\/style>');break;
+            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.08);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
+            case 20:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.09);}#logout-btn {animation: emphasize 1.5s infinite;}<\/style>');break;
+            default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}#logout-btn {animation: none;}<\/style>');break;
+        }
 
-//  displays a different Mukhlat logo on nightmode
+        //  displays a different Mukhlat logo on nightmode
         if(hours >= 18 || hours < 6)
         {
             document.write('<style type="text/css">\n\
@@ -293,13 +291,14 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #nav-logo2{display:none}\n\
                 #bed2{display:none}<\/style>');
         }
-        //force logout by 8pm to 6am
-        if(hours >= 20 || hours < 6)
+        
+        //force logout from 9pm to 6am
+        if(hours > 20 || hours < 6)
         {
             location.href="http://localhost/MukhlatBeta/signin/logout";
         }
         
-//  Warning before curfew's forced logout
+        //  Warning before curfew's forced logout
         if(hours === 19 && getCookie("warned")==='0')
         {
             $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
@@ -307,7 +306,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             
         }
         
-//      getting user's birthday and greet them if it's their birthday
+        //      getting user's birthday and greet them if it's their birthday
         var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
         var birthMonth = birthDate.getMonth()+1;
         var birthDay = birthDate.getDate(); 
@@ -322,10 +321,9 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         {
             document.cookie = "birthday=1;" + ";path=/"; 
             $('#birthdaypopup').modal('show');
-            
         }
         
-//      AFK Timer Script
+        //AFK Timer Script
 
         var start = document.getElementById("start");
         var dis = document.getElementById("afktimer");
@@ -380,24 +378,18 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         var nowH = now.getHours();
         var nowM = now.getMinutes();
 
-        var blur = Number(getCookie("blur"));
-    
 //      if lasttimed (last time warned) cookie is earlier then current time, warn user and reset cookie
         if(Number(getCookie("nexttimed1"))<nowH && (Number(getCookie("nexttimed2"))-30)<=nowM)
         {
-            blur = blur+1;
             document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
             document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-            document.cookie = "blur=" + blur + ";path=/"; 
             $('#timepopup').modal({backdrop: 'static', keyboard: false});
         }
 
         if(Number(getCookie("nexttimed1"))===nowH && (Number(getCookie("nexttimed2")))<=nowM)
         {
-            blur = blur+1;
             document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
             document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-            document.cookie = "blur=" + blur + ";path=/"; 
             $('#timepopup').modal({backdrop: 'static', keyboard: false});
         }
         

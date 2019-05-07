@@ -17,7 +17,7 @@
             </div>
             <div class="modal-body">
                 <div class = "row"><center>
-                        <span style="font-size: 32px">Hey there, <?php echo $logged_user->first_name; ?>!<br> Mukhlat will be saying goodbye by 8 PM!.<br> Make sure to finish what you're doing now!</span><br><br>
+                        <span style="font-size: 32px">Hey there, <?php echo $logged_user->first_name; ?>!<br> Mukhlat will be saying goodbye by 9 PM!.<br> Make sure to finish what you're doing now!</span><br><br>
                         <button type="button" class="btn buttonsbgcolor textoutliner" data-dismiss="modal" style="color: white;font-size: 24px;">Okay! I understand!</button>
                     
                     </center>
