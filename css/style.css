@@ -1697,7 +1697,7 @@ transform: rotate(1080deg);
 }
 
 .profanityWarning{
-    background: red;
+    background: rgb(255,50,50);
     display: none; /* Hidden by default */
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */
@@ -1710,7 +1710,7 @@ transform: rotate(1080deg);
 }
 
 .charLimitMessage{
-    background: green;
+    background: rgb(255,50,50);
     display: none; /* Hidden by default */
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */

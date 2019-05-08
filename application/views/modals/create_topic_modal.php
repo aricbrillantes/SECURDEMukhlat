@@ -24,8 +24,12 @@
                         <div class="charLimitMessage" id="charLimitMessage2"><center>Oops! You've used up all the letters and numbers for your topic!</center></div>
                     </p>
                     </div>
+                    
+                    <!--profanity warning-->
                     <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
                     <br>
+                    
+                    
                      <div id = "attachment-buttons" class = "form-group">
                     <label id = "img-label" class="btn btn-primary buttonsbgcolor">
                             <input id = "attach-img" accept = "image/*" type="file" name = "topic_image" style = "display: none;">
@@ -48,10 +52,12 @@
 <div id="create-confirmation-modal" tabindex="-1" class="modal fade" role="dialog" style = "margin-top: 50px; margin-right: 15px;">
     <div class="modal-dialog">
         <div class="modal-content text-center">
+            
             <div class="modal-header modal-heading">
                 <button type="button" class="close" style = "padding: 5px;" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><strong>Confirm Topic Creation?</strong></h4>
             </div>
+            
             <div class="modal-body">
                 <button id = "create-topic-proceed" type = "submit" class = "btn btn-success">Proceed</button>
                 <button class = "btn btn-Danger" data-dismiss="modal">Cancel</button>
@@ -65,7 +71,7 @@
     <!--Profanity Filter and character limit counter-->
 <script type="text/javascript">
     var warningCount=0, count=0;
-    var x = document.getElementById("profanityWarning");
+    var profanityWarning = document.getElementById("profanityWarning");
     var charCount1=35, charCount2=180;
 
     $('.modal-body').keyup(function(event) 
@@ -96,33 +102,35 @@
             document.getElementById('topic-description').value.includes(" ass")
         )
         {   
-            x.style.display = "block";
-            document.getElementById('create-topic-btn').style.background="red";
+            profanityWarning.style.display = "block";
+            document.getElementById('create-topic-btn').style.background="rgb(255,50,50)";
             document.getElementById('create-topic-btn').innerHTML="You should remove bad words from your topic!";
             document.getElementById('create-topic-btn').style.pointerEvents="none";
         }  
 
         else
         {
-            x.style.display = "none";
-            document.getElementById('create-topic-btn').style.background=getCookie("ButtonColor");
+            profanityWarning.style.display = "none";
+            document.getElementById('create-topic-btn').style.background = getCookie("ButtonColor");
             document.getElementById('create-topic-btn').innerHTML="Post";
             document.getElementById('create-topic-btn').style.pointerEvents="auto";
         }
 
         if(document.getElementById('topic-title').value.length>=35)
-        {  
+        {
             document.getElementById('charLimitMessage1').style.display = "block";
+            document.getElementById('charLimitMessage1').style.background = getCookie("ButtonHColor1");
         }
         
         else
             document.getElementById('charLimitMessage1').style.display = "none";
         
         if(document.getElementById('topic-description').value.length>=180)
-        {  
+        {
             document.getElementById('charLimitMessage2').style.display = "block";
-        }  
-        
+            document.getElementById('charLimitMessage2').style.background = getCookie("ButtonHColor1");
+        }
+         
         else
             document.getElementById('charLimitMessage2').style.display = "none";
     });  

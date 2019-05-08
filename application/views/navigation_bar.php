@@ -134,17 +134,21 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
     
     
-    function getCookie(cname) {
+    function getCookie(cname) 
+    {
         var name = cname + "=";
         var ca = document.cookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
+        
+        for(var i = 0; i < ca.length; i++) 
+        {
             var c = ca[i];
-            while (c.charAt(0) === ' ') {
+            
+            while (c.charAt(0) === ' ') 
                 c = c.substring(1);
-            }
-            if (c.indexOf(name) === 0) {
+            
+            if (c.indexOf(name) === 0) 
                 return c.substring(name.length, c.length);
-            }
+            
         }
         return "";
     }
@@ -154,7 +158,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     var randomColor3 = Math.floor(Math.random()*16777215).toString(16);
     var randomColor4 = Math.floor(Math.random()*16777215).toString(16);
     
-    if(getCookie("activaterain")==='1'){  
+    if(getCookie("activaterain")==='1')
+    {  
         document.cookie = "NavbarColor=#" + randomColor + ";" + ";path=/"; 
         document.cookie = "ButtonColor=#" + randomColor4 + ";" + ";path=/"; 
         document.cookie = "ButtonHColor=#" + randomColor2 + ";" + ";path=/";
@@ -292,19 +297,19 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 #bed2{display:none}<\/style>');
         }
         
-        //force logout from 9pm to 6am
-        if(hours > 20 || hours < 6)
-        {
-            location.href="http://localhost/MukhlatBeta/signin/logout";
-        }
-        
-        //  Warning before curfew's forced logout
-        if(hours === 19 && getCookie("warned")==='0')
-        {
-            $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
-            document.cookie = "warned=1;path=/"; 
-            
-        }
+//        //force logout from 9pm to 6am
+//        if(hours > 20 || hours < 6)
+//        {
+//            location.href="http://localhost/MukhlatBeta/signin/logout";
+//        }
+//        
+//        //  Warning before curfew's forced logout
+//        if(hours === 20 && getCookie("warned")==='0')
+//        {
+//            $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
+//            document.cookie = "warned=1;path=/"; 
+//            
+//        }
         
         //      getting user's birthday and greet them if it's their birthday
         var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
@@ -401,38 +406,38 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
   
     <!--snowflakes falling effect-->
 <div class="snowflakebg" style="display: none;">    
-<div class="snowflakes" aria-hidden="true">
-  <div class="snowflake" style="font-size: 30px">
-  ❄
-  </div>
-  <div class="snowflake" style="font-size: 25px">
-  ❅
-  </div>
-  <div class="snowflake" style="font-size: 31px">
-  ❆
-  </div>
-  <div class="snowflake" style="font-size: 26px">
-  ❄
-  </div>
-  <div class="snowflake" style="font-size: 27px">
-  ❅
-  </div>
-  <div class="snowflake" style="font-size: 28px">
-  ❆
-  </div>
-  <div class="snowflake" style="font-size: 29px">
-  ❄
-  </div>
-  <div class="snowflake" style="font-size: 24px">
-  ❅
-  </div>
-  <div class="snowflake" style="font-size: 32px">
-  ❆
-  </div>
-  <div class="snowflake" style="font-size: 23px">
-  ❄
-  </div>
-</div>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake" style="font-size: 30px">
+        ❄
+        </div>
+        <div class="snowflake" style="font-size: 25px">
+        ❅
+        </div>
+        <div class="snowflake" style="font-size: 31px">
+        ❆
+        </div>
+        <div class="snowflake" style="font-size: 26px">
+        ❄
+        </div>
+        <div class="snowflake" style="font-size: 27px">
+        ❅
+        </div>
+        <div class="snowflake" style="font-size: 28px">
+        ❆
+        </div>
+        <div class="snowflake" style="font-size: 29px">
+        ❄
+        </div>
+        <div class="snowflake" style="font-size: 24px">
+        ❅
+        </div>
+        <div class="snowflake" style="font-size: 32px">
+        ❆
+        </div>
+        <div class="snowflake" style="font-size: 23px">
+        ❄
+        </div>
+    </div>
 </div>    
 
 </head>

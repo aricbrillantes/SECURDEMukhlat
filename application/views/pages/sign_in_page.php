@@ -279,7 +279,7 @@ include(APPPATH . 'views/header.php');
         });
 </script>    
 
-    <script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("/js/sign_in.js"); ?>"></script>
 
 </body>
 </html>
