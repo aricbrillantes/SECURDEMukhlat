@@ -212,19 +212,23 @@ include(APPPATH . 'views/header.php');
         return;
     }
 
-    if(now.getHours() < 6 || now.getHours() > 19)
-    {  
-        document.getElementById('loginbutton').style.background="orange";
-        document.getElementById('loginbutton').innerHTML="You cannot log in anymore!<br> Come back tomorrow!";
-        document.getElementById('loginbutton').style.pointerEvents="none";
-    }  
-
-    else
-    {
         document.getElementById('loginbutton').style.background="#1d8f15";
         document.getElementById('loginbutton').innerHTML="Log In";
         document.getElementById('loginbutton').style.pointerEvents="auto";
-    }
+
+//    if(now.getHours() < 6 || now.getHours() > 19)
+//    {  
+//        document.getElementById('loginbutton').style.background="orange";
+//        document.getElementById('loginbutton').innerHTML="You cannot log in anymore!<br> Come back tomorrow!";
+//        document.getElementById('loginbutton').style.pointerEvents="none";
+//    }  
+//
+//    else
+//    {
+//        document.getElementById('loginbutton').style.background="#1d8f15";
+//        document.getElementById('loginbutton').innerHTML="Log In";
+//        document.getElementById('loginbutton').style.pointerEvents="auto";
+//    }
 
 //    timeLogIn();
 </script>
