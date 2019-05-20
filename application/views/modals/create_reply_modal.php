@@ -16,9 +16,9 @@
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Make the content of your reply:</label>
 
-                        <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!"></textarea>
+                        <textarea class = "form-control" style="height: 100px;" maxlength = "1000" required name = "reply_content" id = "reply-content" placeholder = "Tell something in your post!"></textarea>
 
-                        <p id="charsRemaining5">Characters Left: 16000</p>
+                        <p id="charsRemaining5">Characters Left: 1000</p>
                         <div class="charLimitMessage" id="charLimitMessage5"><center>Oops! You've used up all the letters and numbers for your post!</center></div>
                     </div>
                     <div class="profanityWarning" id="profanityWarning"><center>Hey there! It looks like you used a bad word!</center></div>
@@ -65,7 +65,7 @@
 <script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");
-    var charCount1=100, charCount2=16000;
+    var charCount1=100, charCount2=1000;
     
     $('.form-control').keyup(function(event) 
     {
@@ -98,7 +98,7 @@
             }
 
 
-            if(document.getElementById('reply-content').value.length>=16000)
+            if(document.getElementById('reply-content').value.length>=1000)
             {  
                 document.getElementById('charLimitMessage5').style.display = "block";
             }  

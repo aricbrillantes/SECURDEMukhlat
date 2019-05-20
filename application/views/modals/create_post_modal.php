@@ -34,8 +34,8 @@ $topic = $_SESSION['current_topic'];
                     
                     <div class="form-group"><!-- check if description exceeds n words-->
                         <label for = "content">Make the content of your post:</label>
-                        <textarea class = "form-control" style="height: 100px;" maxlength = "16000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" ></textarea>
-                        <p id="charsRemaining4">Characters Left: 16000</p>
+                        <textarea class = "form-control" style="height: 100px;" maxlength = "1000" required name = "post_content" id = "post-content" placeholder = "Tell something in your post!" ></textarea>
+                        <p id="charsRemaining4">Characters Left: 1000</p>
                         <div class="charLimitMessage" id="charLimitMessage4"><center>Oops! You've used up all the letters and numbers for your post!</center></div>
                     </div>
                     
@@ -89,7 +89,7 @@ $topic = $_SESSION['current_topic'];
 <script type="text/javascript">
     var warningCount=0, count=0;
     var x = document.getElementById("profanityWarning");
-    var charCount1=100, charCount2=16000;
+    var charCount1=100, charCount2=1000;
     
     $('.modal-body').keyup(function(event) 
     {
@@ -122,7 +122,7 @@ $topic = $_SESSION['current_topic'];
                 document.getElementById('create-post-btn').style.pointerEvents="auto";
             }
 
-            if(document.getElementById('post-content').value.length>=16000)
+            if(document.getElementById('post-content').value.length>=1000)
             {  
                 document.getElementById('charLimitMessage4').style.display = "block";
             }  

@@ -796,14 +796,14 @@ function getSelectionText() { //highlight desired text to read
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.keyCode === 16) { //press shift to read higlighted text
-    var msg = new SpeechSynthesisUtterance(getSelectionText());
-    msg.voice = voices90[2];
-    synth.speak(msg);
-  }
-  if(e.keyCode === 17){ //press ctrl to stop reading
-     window.speechSynthesis.cancel();
-  }
+//  if (e.keyCode === 16) { //press shift to read higlighted text
+//    var msg = new SpeechSynthesisUtterance(getSelectionText());
+//    msg.voice = voices90[2];
+//    synth.speak(msg);
+//  }
+//  if(e.keyCode === 17){ //press ctrl to stop reading
+//     window.speechSynthesis.cancel();
+//  }
 });
 
 </script>
