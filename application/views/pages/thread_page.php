@@ -55,7 +55,7 @@ $user = $post->user;
                                 <?php endif; ?>
 
                                 <!-- Reply Button -->
-                                <button class = "reply-btn pull-left btn btn-gray" style = "margin-right: 5px;font-size: 18px;position: absolute;bottom:0;" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i> Comment</button>
+                                <button class = "reply-btn pull-left btn btn-gray" style = "margin-right: 5px;font-size: 13px;position: absolute;bottom:0;" value = "<?php echo $post->post_id; ?>"><i class = "fa fa-reply"></i> Comment</button>
 
                                 <?php if ($user->user_id === $logged_user->user_id): ?>
                                     <!-- Edit Button -->
@@ -68,11 +68,11 @@ $user = $post->user;
                                     
                                         <small>
                                             <i><a class = "btn btn-link btn-xs no-padding no-margin text1color"  href = "<?php echo base_url("user/profile/" . $user->user_id); ?>"><?php echo $user->first_name . " " . $user->last_name ?></a></i>
-                                            <span class = "text-muted pull-right"><i style = "font-size: 18px;margin-right: 7px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
+                                            <span class = "text-muted pull-right"><i style = "font-size: 13px;margin-right: 7px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                                         </small>
                                     <?php else: ?>
                                         <a class = "btn btn-link no-padding btn-lg pull-left" href = "<?php echo base_url('user/profile/' . $user->user_id); ?>"><strong><?php echo $user->first_name . " " . $user->last_name; ?></strong></a>
-                                        <span class = "text-muted"><i style = "font-size: 18px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
+                                        <span class = "text-muted"><i style = "font-size: 13px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                                     <?php endif; ?>
                                 </div>
                                 <!-- Attachment -->
@@ -103,10 +103,10 @@ $user = $post->user;
                                 
                                 <span class="whitebg2" style="padding-right: 30px !important;">
                                 <button class = "upvote-btn btn btn-link btn-xs" style = "margin-left: 3px;" value = "<?php echo $post->post_id; ?>">
-                                    <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
+                                    <!--<span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>-->
                                 </button>
                                 <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span> 
-                                <button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>
+                                <!--<button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>-->
                                 </span>        
                                         </div>
 <?php else: ?>                  

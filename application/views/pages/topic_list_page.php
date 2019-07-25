@@ -127,7 +127,7 @@ function scrollFunction() {
         <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
         <!--back to top and go to bottom buttons-->
         <div onclick="topFunction()" id="topbut" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>
-        <div onclick="botFunction()" id="botbut"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>
+        <!--<div onclick="botFunction()" id="botbut"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>-->
 
  <?php
   //  include(APPPATH . 'views/chat/chat.php');

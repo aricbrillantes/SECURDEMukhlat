@@ -19,30 +19,6 @@ $logged_user = $_SESSION['logged_user'];
         <div id = "side-topics-followed">
 
             <h4 class="ptopcolor textoutliner" style="border-radius: 2px;color: white">Your topics</h4>
-
-        <div class = "sidebar-topic-div">
-            <ul class="nav">
-                <?php
-                if(!empty($logged_user->topics)):
-                foreach ($logged_user->topics as $topic):
-                ?>
-                <li onmouseenter="playclip()">
-                    <a href="topic/view/<?php echo $topic->topic_id; ?>">
-                        <span class = "text-muted" style="cursor:pointer;"><?php echo utf8_decode($topic->topic_name); ?></span>
-                        <span class = "pull-right label label-info" style="cursor:pointer;"><i class = "fa fa-group" style="cursor:pointer;"></i> <?php echo $topic->followers ? count($topic->followers) : '0'; ?></span>
-                    </a>
-                </li>
-                <?php
-                endforeach;
-                else:
-                ?>
-                <li><h5 class = "text-center text-warning">No Topics here!</h5></li>
-                <?php endif; ?>
-            </ul>
-        </div>
-
-        <h4 class="ptopcolor textoutliner" style="border-radius: 2px;color: white">Topics you Follow</h4>
-
         <div class = "sidebar-topic-div">
             <ul class="nav">
                 <?php
@@ -65,26 +41,7 @@ $logged_user = $_SESSION['logged_user'];
         </div>
         </div>
         <!--random trivia-->
-        <div id="randtriv1" class="draggable">
-        <?php
-        $servername = "127.0.0.1";
-	$username = "root";
-	$password = "";
-	$dbname = "mukhlat";
-	$conn = @new mysqli($servername, $username, $password, $dbname);
         
-        $count = rand(1, 4);
-        $sql = "SELECT Tquestion, Tanswer, Tcategory FROM tbl_trivias WHERE TriviaID = '$count'";
-	$result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-        echo '<div class="whitebg1"> '.$row['Tcategory'].' Trivia</div><br>';
-        echo '<div class="whitebg">Q: '.$row['Tquestion'].'</div><br>';
-        echo '<div class="whitebg">A: '.$row['Tanswer'].'</div>';
-        $conn->close();
-        }?>
-        <img class = "pinwheel1" src = "<?php echo base_url('images/Picture1.png'); ?>"/></div>
-        <div style="position: relative;bottom:100px;left: 100px;">Hello! You found me.</div>
-        <center> <a href="https://kids.nationalgeographic.com/">Click here to learn more!</a></center>
     
     </div>
 </div>

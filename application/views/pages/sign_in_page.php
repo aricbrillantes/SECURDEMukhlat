@@ -7,6 +7,8 @@ include(APPPATH . 'views/header.php');
 
 <body class = "sign-in">
     <div class = "container-fluid">
+        <text>SECURDE</text>
+        
         <!-- Logo -->
         <div class = "row sign-in-logo"><img src = "<?php echo base_url('images/logo/mukhlatlogo1.png'); ?>"></div>
 

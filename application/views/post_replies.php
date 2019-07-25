@@ -37,12 +37,12 @@ if ($post->parent_id !== '0'):
                 <?php if ($post->post_title): ?>
                     <small>
                         <i>by <a class = "btn btn-link btn-xs no-padding no-margin text1color" href = "<?php echo base_url("user/profile/" . $post->user->user_id); ?>"><?php echo $post->user->first_name . " " . $post->user->last_name ?></a></i>
-                        <span class = "text-muted"><i style = "font-size: 18px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
+                        <span class = "text-muted"><i style = "font-size: 13px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                     </small>
                 <?php else: ?>
                     <a style = "margin-left: 7px;" class = "btn btn-link no-padding btn-lg pull-left text1color" href = "<?php echo base_url('user/profile/' . $user->user_id); ?>"><strong><?php echo $user->first_name . " " . $user->last_name; ?></strong></a>
                     
-                    <span class = "text-muted pull-right"><i style = "font-size: 18px;margin-right: 7px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
+                    <span class = "text-muted pull-right"><i style = "font-size: 13px;margin-right: 7px;"><?php echo date("F d, Y", strtotime($post->date_posted)); ?></i></span>
                 <?php endif; ?>
                 <?php if (!empty($post->attachments)): ?>
                     <div> 
@@ -75,7 +75,7 @@ if ($post->parent_id !== '0'):
                         <span class = "<?php echo $post->vote_type === '1' ? 'upvote-text' : '' ?> glyphicon glyphicon-star vote-text starroll"></span>
                     </button>
                     <span class = "vote-count text-muted" style = "margin-left: 3px;"><?php echo $post->vote_count ? $post->vote_count : '0'; ?></span>
-                    <button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>
+                    <!--<button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>-->
                 </span>
                     </div>
                     <br>

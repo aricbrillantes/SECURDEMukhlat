@@ -1,6 +1,6 @@
 body{
     background-color: #D7eadd;
-    font-family: 'AsparagusSprouts', 'AsparagusSprouts', sans-serif;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
 body.sign-in{
@@ -8,7 +8,7 @@ body.sign-in{
     background: linear-gradient(to top, #d7eadd, white);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: 'AsparagusSprouts', 'AsparagusSprouts', sans-serif;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
     height: 500px;
 }
 
@@ -80,45 +80,45 @@ text-shadow:
 }
 
 span{
-    font-size: 19px;
+    font-size: 13px;
 }
 
 h4{
-    font-size: 26px;
+    font-size: 20px;
 }
 
 h5{
-    font-size: 26px;
+    font-size: 20px;
 }
 
 p{
-    font-size: 22px !important;
+    font-size: 19px !important;
 }
 
 input{
-    font-size: 22px !important;
+    font-size: 19px !important;
 }
 
 textarea{
-    font-size: 22px !important;
+    font-size: 19px !important;
 }
 
 button{
-    font-size: 18px;
+    font-size: 15px;
     cursor:pointer !important;
 }
 
 label{
-    font-size: 22px !important;
+    font-size: 19px !important;
 }
 
 a{
-    font-size: 19px !important;
+    font-size: 12px !important;
     cursor:pointer !important;
 }
 
 small{
-    font-size: 18px;
+    font-size: 12px;
 }
 
 .text1color{
@@ -475,7 +475,7 @@ snap-drawer {
 #logom .bubbletooltip {
     width: 120px;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 13px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -713,7 +713,7 @@ textarea{
 }
 
 .sign-in-logo{
-    font-family: 'AsparagusSprouts', sans-serif;
+    font-family: 'Comic Sans', cursive;
     color: white;
     font-size: 47px;
     text-align: center;
@@ -724,7 +724,7 @@ textarea{
   /*text-shadow: 0px 0px 1px #5b7375;*/
 }
 .sign-in-meesage{
-    font-size:120%;
+    font-size:90%;
 }
 .sign-in-form{
     padding: 15px;
@@ -733,7 +733,7 @@ textarea{
 .sign-in-field{
     text-align: center;
     background-color: whitesmoke;
-    font-size:120%;
+    font-size:90%;
 }
 
 .register-field{
@@ -755,24 +755,24 @@ textarea{
 }
 
 @font-face{
-    font-family: "AsparagusSprouts";
-    src: url("../assets/fonts/AsparagusSprouts.ttf");
+    font-family: "Comic Sans";
+    src: url("../assets/fonts/Comic Sans.ttf");
 }
 
 .sign-in-content{
     width: 60%;
     margin-right: auto;
     margin-left: auto;
-    font-family:'AsparagusSprouts';
+    font-family:'Comic Sans';
 }
 
 .sign-in-header{
     text-align: center;
-    font-family: 'AsparagusSprouts', sans-serif; 
+    font-family: 'Comic Sans', cursive; 
 }
 
 .navbar-font{
-    font-family: 'AsparagusSprouts', sans-serif;
+    font-family: 'Comic Sans', cursive;
     background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
 }
 
@@ -976,7 +976,7 @@ textarea{
     text-align: justify;
     word-wrap: break-word;
     text-justify: inter-word;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .topic-preview-div{
@@ -1163,7 +1163,7 @@ textarea{
 }
 
 p{
-    font-size: 13px;
+    font-size: 10px;
 }
 
 .vote-text{
@@ -1920,7 +1920,7 @@ transform: rotate(1080deg);
     visibility: hidden;
     width: 150px;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 13px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -1950,7 +1950,7 @@ transform: rotate(1080deg);
     visibility: hidden;
     width: 150px;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 13px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -1968,7 +1968,7 @@ transform: rotate(1080deg);
     visibility: hidden;
     width: 150px;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 13px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -1997,7 +1997,7 @@ transform: rotate(1080deg);
     visibility: hidden;
     width: 120px;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 13px;
     background-color: black;
     color: #fff;
     text-align: center;

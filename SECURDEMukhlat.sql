@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mukhlatV2`
+-- Database: `SECURDEMukhlat`
 --
 
 -- --------------------------------------------------------
@@ -609,14 +609,11 @@ ALTER TABLE `tbl_moderator_request`
 --
 -- Indexes for table `tbl_notifications`
 --
-ALTER TABLE `tbl_notifications`
-  ADD PRIMARY KEY (`notification_id`);
 
 --
 -- Indexes for table `tbl_notification_type`
 --
-ALTER TABLE `tbl_notification_type`
-  ADD PRIMARY KEY (`notification_type_id`);
+
 
 --
 -- Indexes for table `tbl_posts`
@@ -664,8 +661,6 @@ ALTER TABLE `tbl_moderator_request`
 --
 -- AUTO_INCREMENT for table `tbl_notifications`
 --
-ALTER TABLE `tbl_notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
 --
 -- AUTO_INCREMENT for table `tbl_posts`
 --

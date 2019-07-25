@@ -3,148 +3,13 @@ $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
 ?>
 
-<?php include(APPPATH . 'views/modals/birthday_modal.php'); 
-      include(APPPATH . 'views/modals/time_warning_modal.php');
-      include(APPPATH . 'views/modals/timeout_warning_modal.php');
-      include(APPPATH . 'views/modals/afk_warning_modal.php');
+<?php include(APPPATH . 'views/modals/afk_warning_modal.php');
 ?>
 
 <p id="afktimer" style="float: right; display:none;">Time Left: 9999<p>
 
 <script type="text/javascript">
 
-    /*------------------------- voice commands script -------------------------*/
-    var final_transcript = '';
-    var recognizing = false;
-
-        if ('webkitSpeechRecognition' in window) 
-        {
-          var recognition = new webkitSpeechRecognition();
-          recognition.lang = 'en-US';
-          recognition.continuous = true;
-          recognition.interimResults = true;
-
-          recognition.onstart = function() 
-          {
-            recognizing = true;
-//            document.getElementById("recording").innerText = 'RECORDING';
-          };
-
-          recognition.onerror = function(event) 
-          {
-            console.log(event.error);
-            voiceIndicatorOFF();
-            startDictation3(event);
-          };
-
-          recognition.onend = function() 
-          {
-            recognizing = false;
-            search.value = final_span.innerHTML;
-        };
-
-       recognition.onresult = function(event) 
-       {
-            var interim_transcript = '';
-            for (var i = event.resultIndex; i < event.results.length; ++i) 
-            {
-              if (event.results[i].isFinal) 
-              {
-                final_transcript += event.results[i][0].transcript;
-              } 
-              
-              else 
-              {
-                interim_transcript += event.results[i][0].transcript;
-              }
-              
-            }
-            final_span.innerHTML = linebreak(final_transcript);
-            interim_span.innerHTML = linebreak(interim_transcript);
-            search.value = linebreak(interim_transcript);
-          };
-        }
-
-        var two_line = /\n\n/g;
-        var one_line = /\n/g;
-        
-        function linebreak(s) {
-          return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-        }
-
-        function capitalize(s) {
-          return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
-        }
-
-        function startDictation(event) 
-        {
-            recognition.lang = languages[select_language.selectedIndex];
-            final_transcript = '';
-            final_span.innerHTML = '';
-            interim_span.innerHTML = '';
-            stopDictation3(event);
-            recognition.start();
-            voiceIndicatorON();
-            document.getElementById('search').focus();return false;
-        }
-
-        function stopDictation(event) 
-        {
-            recognition.stop();
-            voiceIndicatorOFF();
-            startDictation3(event);
-            document.getElementById('search').focus(); return false;
-        }
-
-        function resetDictation(event) 
-        {
-            recognition.stop();
-            voiceIndicatorOFF();
-            startDictation3(event);
-            recognition.lang = languages[select_language.selectedIndex];
-            final_transcript = '';
-            final_span.innerHTML = '';
-            interim_span.innerHTML = '';
-            search.value = '';
-        }
-        
-        var languages = new Array
-        (
-            'en-US',
-            'fil-PH',
-            'fr-FR',
-            'ko-KR'
-        );
-
-        function voiceDropdown() 
-        {
-//            document.getElementById("voice-dropdown-content").classList.toggle("show");
-            var x = document.getElementById("voicedropdown");
-            
-            if (x.style.display === "none") 
-            {
-                x.style.display = "block";
-            } 
-            
-            else 
-            {
-                x.style.display = "none";
-            }
-        }
-
-        // Close the dropdown menu if the user clicks outside of it
-//        window.onclick = function(event) {
-//          if (!event.target.matches('.dropbtn')) {
-//            var dropdowns = document.getElementsByClassName("dropdown-content");
-//            var i;
-//            for (i = 0; i < dropdowns.length; i++) {
-//              var openDropdown = dropdowns[i];
-//              if (openDropdown.classList.contains('show')) {
-//                openDropdown.classList.remove('show');
-//              }
-//            }
-//          }
-//        }
 
     function getCookie(cname) 
     {
@@ -164,181 +29,39 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         }
         return "";
     }
+
     
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
-    var randomColor2 = Math.floor(Math.random()*16777215).toString(16);
-    var randomColor3 = Math.floor(Math.random()*16777215).toString(16);
-    var randomColor4 = Math.floor(Math.random()*16777215).toString(16);
-    
-    if(getCookie("activaterain")==='1')
-    {  
-        document.cookie = "NavbarColor=#" + randomColor + ";" + ";path=/"; 
-        document.cookie = "ButtonColor=#" + randomColor4 + ";" + ";path=/"; 
-        document.cookie = "ButtonHColor=#" + randomColor2 + ";" + ";path=/";
-        document.cookie = "ButtonAColor=#" + randomColor3 + ";" + ";path=/";
-    }
-    
-     if(getCookie("ButtonColor")==='')
-    {
-        document.cookie = "ButtonColor=#1d8f15;" + ";path=/"; 
-        document.cookie = "ButtonHColor=#14620f;" + ";path=/"; 
-        document.cookie = "ButtonAColor=#185729;" + ";path=/"; 
-    }
+
 //    changing custom themes, pointers, effects based on the users choices
     document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
-                    #randtriv1{background: #'+ randomColor2 +';}\n\
-                    .soundbg {display:' + getCookie("soundbg1") + ';}\n\
-                     body {background' + getCookie("backgroundColor") + ';background-repeat: no-repeat;background-attachment: fixed;}\n\
-                    .buttonsbgcolor {background:' + getCookie("ButtonColor") + ';}\n\
-                    .buttonsbgcolor:hover{background:' + getCookie("ButtonHColor") + ';}\n\
-                    .text1color{color:' + getCookie("ButtonColor") + ';}\n\
-                    .bar1color{background:' + getCookie("ButtonColor") + ';}\n\
-                    .text1color:hover{color:' + getCookie("ButtonHColor") + ';}\n\
-                    .buttonsbgcolor:focus{background:' + getCookie("ButtonColor") + ';outline:0;}\n\
-                    .buttonsbgcolor:active{background:' + getCookie("ButtonAColor")  + '!important;}\n\
-                    .modalbg{background:' + getCookie("NavbarColor") + ';}\n\
+                     body {background:#e4e6e4;background-repeat: no-repeat;background-attachment: fixed;}\n\
+                    .buttonsbgcolor {background:#1d8f15;}\n\
+                    .buttonsbgcolor:hover{background:#14620f;}\n\
+                    .text1color{color:#1d8f15;}\n\
+                    .bar1color{background:#1d8f15;}\n\
+                    .text1color:hover{color:#14620f;}\n\
+                    .buttonsbgcolor:focus{background:#1d8f15;outline:0;}\n\
+                    .buttonsbgcolor:active{background:#185729!important;}\n\
+                    .modalbg{background:#d4f8d2;}\n\
                     .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background: ' + getCookie("NavbarColor") + ';}\n\
-                    .snowflakebg{display:' + getCookie("snowflakebg1") + '!important;}\n\
-                    .sparklesbg{display:' + getCookie("sparklebg1") + ';}\n\
-                    .fireworkbg{display:' + getCookie("fireworkbg1") + ';}\n\
-                    .navbaricons:hover{background:' + getCookie("ButtonHColor") + ';}\n\
-                    .navbarprofileicon:hover{background:' + getCookie("ButtonHColor") + ';}\n\
-                    .bubblesbg{display:' + getCookie("bubblesbg1") + ';}\n\
-                    .navbaricons .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .camerapic .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .playpop .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .audiorec .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .navbarprofileicon .tooltiptext{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .search-btn .tooltiptext1{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    #logom .bubbletooltip{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    .trail{background:' + getCookie("ButtonAColor") + '!important;}\n\
-                    body::-webkit-scrollbar-thumb{background-color:' + getCookie("ButtonHColor") + ';}\n\
-                    body ::selection{background:' + getCookie("ButtonHColor") + ';}\n\
-                    body{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    :hover{cursor:url(' + getCookie("MousePointer") + '),auto;}\n\
-                    .modal-header{background:' + getCookie("NavbarColor") + ';}\n\
-                    .charLimitMessage{background:' + getCookie("ButtonHColor") + ';}\n\
-                    .topic-grid1{background-color: #'+ randomColor +';}\n\
-                    .ptopcolor{background:' + getCookie("ButtonColor") + ';}<\/style>');    
+                    .navbaricons:hover{background:#14620f;}\n\
+                    .navbarprofileicon:hover{background:#14620f;}\n\
+                    .navbaricons .tooltiptext{background-color:#14620f;}\n\
+                    .camerapic .tooltiptext{background-color:#14620f;}\n\
+                    .playpop .tooltiptext{background-color:#14620f;}\n\
+                    .audiorec .tooltiptext{background-color:#14620f;}\n\
+                    .navbarprofileicon .tooltiptext{background-color:#14620f;}\n\
+                    .search-btn .tooltiptext1{background-color:#14620f;}\n\
+                    #logom .bubbletooltip{background-color:#14620f;}\n\
+                    .trail{background:#185729!important;}\n\
+                    body::-webkit-scrollbar-thumb{background-color:#14620f;}\n\
+                    body ::selection{background:#14620f;}\n\
+                    .modal-header{background:#d4f8d2;;}\n\
+                    .charLimitMessage{background:#14620f;}\n\
+                    .ptopcolor{background:#1d8f15;}<\/style>');    
     
-//    mouse trail effect
-    if(getCookie("MouseTrail")==='0')
-            document.write('<style type="text/css">.trail{display:none;}<\/style>');
-        
-//    bubbles background   
-    if(getCookie("bubblesbg1")==='block')
-        document.write('<style type="text/css"> #logom .bubbletooltip{visibility:visible;}<\/style>');
-        
-   else
-        document.write('<style type="text/css"> #logom .bubbletooltip{visibility:hidden;}<\/style>');
-        
-//     random colors   
-    if(getCookie("randomcolors")==='1')
-    {
-        document.write('<style type="text/css">\n\
-                    #randtriv1{background: #'+ randomColor2 +';}\n\
-                .topic-grid1{background-color: #'+ randomColor +';}<\/style>');
-    }
-        
-    else
-    {
-        document.write('<style type="text/css">\n\
-                    #randtriv1{background:'+ getCookie("ButtonColor") +';}\n\
-                    .topic-grid1{background-color:'+ getCookie("ButtonColor") +';}<\/style>');
-    }    
-    
-//    sparkles background
-    if(getCookie("sparklebg1")==="block"){
-        document.write('<canvas id="world" class="sparklesbg"></canvas>'); 
-    }
-    if(getCookie("fireworkbg1")==="block"){
-        document.write('<canvas id="firework" class="fireworkbg"></canvas>'); 
-    }
-    
-//    dancing buttons
-    if(getCookie("dance")==='1')
-    {
-        document.write('<style type="text/css">\n\
-                        .btn{animation: dance 3s infinite;}\n\
-                        .navbaricons{animation: dance 3s infinite;}\n\
-                        .navbarprofileicon{animation: dance 3s infinite;}\n\
-                        #logout-btn{animation: dance 3s infinite;}\n\
-                        button{animation: dance 3s infinite;}\n\
-                        a{animation: dance 3s infinite;}\n\
-                        <\/style>');
-    }
-       
- 
-//      getting current date
-        var currentDate = new Date();
-        var curMonth = currentDate.getMonth()+1;
-        var curDay = currentDate.getDate();
-        
-        
-//      getting current time for night mode 
-        var currentTime = new Date;
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
 
 
-        //darken screen slightly depending on time (night mode)
-        switch(hours)
-        {   
-            case 6:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.05);}#logout-btn {animation: none;}<\/style>');break;     
-            case 16:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.03);}#logout-btn {animation: emphasize3 3s infinite;}<\/style>');break;
-            case 17:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.05);}#logout-btn {animation: emphasize2 3s infinite;}<\/style>');break;
-            case 18:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.07);}#logout-btn {animation: emphasize2 2.5s infinite;}<\/style>');break;
-            case 19:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.08);}#logout-btn {animation: emphasize 2s infinite;}<\/style>');break;
-            case 20:document.write('<style type="text/css">#overlay{background-color: rgba(50,50,25,0.09);}#logout-btn {animation: emphasize 1.5s infinite;}<\/style>');break;
-            default:document.write('<style type="text/css">#overlay{background-color: rgba(0,0,0,0);}#logout-btn {animation: none;}<\/style>');break;
-        }
-
-        //  displays a different Mukhlat logo on nightmode
-        if(hours >= 18 || hours < 6)
-        {
-            document.write('<style type="text/css">\n\
-            #nav-logo{display:none}\n\
-            #home2{display:none}\n\
-            <\/style>');
-        }
-        
-        else
-        {
-            document.write('<style type="text/css">\n\
-                #nav-logo2{display:none}\n\
-                #bed2{display:none}<\/style>');
-        }
-        
-//        //force logout from 9pm to 6am
-//        if(hours > 20 || hours < 6)
-//        {
-//            location.href="http://localhost/MukhlatBeta/signin/logout";
-//        }
-//        
-//        //  Warning before curfew's forced logout
-//        if(hours === 20 && getCookie("warned")==='0')
-//        {
-//            $('#timeoutpopup').modal({backdrop: 'static', keyboard: false});
-//            document.cookie = "warned=1;path=/"; 
-//            
-//        }
-        
-        //      getting user's birthday and greet them if it's their birthday
-        var birthDate = new Date('<?php echo $logged_user->birthdate; ?>');
-        var birthMonth = birthDate.getMonth()+1;
-        var birthDay = birthDate.getDate(); 
-       
-        if(birthMonth===curMonth && birthDay===curDay)
-        {
-            if(getCookie("birthday")==='0')
-                birthdayPopup();
-        }
-        
-        function birthdayPopup()
-        {
-            document.cookie = "birthday=1;" + ";path=/"; 
-            $('#birthdaypopup').modal('show');
-        }
         
 /*------------------------- AFK Timer Script -------------------------*/
 
@@ -417,21 +140,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
     <script type="text/javascript" src="<?php echo base_url('sound-mouseover/sound-mouseover.js'); ?>"></script>
 
 
-<!------------------------- snowflakes effect ------------------------->
-<div class="snowflakebg" style="display: none;">    
-    <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake" style="font-size: 30px">        ❄        </div>
-        <div class="snowflake" style="font-size: 25px">        ❅        </div>
-        <div class="snowflake" style="font-size: 31px">        ❆        </div>
-        <div class="snowflake" style="font-size: 26px">        ❆        </div>
-        <div class="snowflake" style="font-size: 27px">        ❅        </div>
-        <div class="snowflake" style="font-size: 28px">        ❆        </div>
-        <div class="snowflake" style="font-size: 29px">        ❄        </div>
-        <div class="snowflake" style="font-size: 24px">        ❅        </div>
-        <div class="snowflake" style="font-size: 32px">        ❆        </div>
-        <div class="snowflake" style="font-size: 23px">        ❄        </div>
-    </div>
-</div>    
+
 
 </head>
 
@@ -512,8 +221,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                 
                 <a onmouseenter="playclip()" id ="logom" class = "draggable navbar-brand" href = "<?php echo base_url('home') ?>">
                     <img style="cursor: pointer" id = "nav-logo" src = "<?php echo base_url('images/logo/mukhlatlogo on the sideb.png'); ?>"/>
-                    <img style="cursor: pointer" id = "nav-logo2" src = "<?php echo base_url('images/logo/bed mukhlat.png'); ?>"/>
-                    <span class="bubbletooltip" id="bubblegame"style="">Score: </span>
                 </a>
 
                 <span id="results" border="1px">
@@ -530,7 +237,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                                 <button class="btn btn-default search-btn tooltip1" type="submit">
                                     <i class="glyphicon glyphicon-search buttonsgo" style="cursor: pointer"></i><span class="tooltiptext1" style="width:150px;">Start search</span>
                                 </button>
-                                <span class="btn btn-default search-btn tooltip1" onclick="voiceDropdown()" id="voice-search-button" style="cursor: pointer"><i class = "fa fa-microphone buttonsgo"style="font-size:16px;cursor: pointer"></i><span class="tooltiptext1" style="width:150px;">Search by voice</span></span>
                             </div>
                             
                             <!--Hidden DIV for voice search-->
@@ -562,44 +268,15 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                         </select>
                     </div> 
 
-                    <div style="display: inline-block;">
-                        <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="startDictation(event);" style="color:white;background:green;margin-left:5px;"><i style="font-size: 22px" class = "fa fa-microphone"></i><span class="tooltiptext1">Start</span></a>
-                        <span id="snackbar">Speak to type is on now</span>
-                        <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="stopDictation(event)" style="color:white;background: red;margin-left:5px;"><i style="font-size: 22px" class = "fa fa-microphone-slash"></i><span class="tooltiptext1" style="background:red;">Stop</span></a>
-                        <a href="#" class="voicesearch voicesearchtext tooltip1" id="voicesearch" onclick="resetDictation(event);" style="color:black;background:yellow;margin-left:5px;"><i style="font-size: 22px" class = "fa fa-refresh"></i><span class="tooltiptext1" style="background:yellow;color:black">Reset</span></a>
-                    </div>
+                    
                 </div>
 
                 <div class="navbaricons2">
-                    <a onclick="window.speechSynthesis.cancel();" onmouseenter="playclip()" id="logout-btn" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!
+                    <a  onmouseenter="playclip()" id="logout-btn" class="navbaricons" href="<?php echo base_url('signin/logout'); ?>" style="margin-right:4%;"><i class = "glyphicon glyphicon-log-out iconin"></i>Bye!
                         <span class="tooltiptext">Log out of Mukhlat</span>
                     </a>
 
-                    <a onmouseenter="playclip()" class="navbaricons" href="#customize-theme" data-toggle = "modal">
-                        <i class = "fa fa-paint-brush iconin"></i>Colors
-                        <span class="tooltiptext">Change the colors of the site!</span>
-                    </a>
-                            
-
-                    <a onmouseenter="playclip()" class="navbaricons" id = "notif-btn" href="#notif-modal" data-toggle = "modal" <?php echo (int) $logged_user->unread_notifs > 0 ? "data-value = \"" . $logged_user->unread_notifs . "\"" : "" ?>>
-                        <?php if ((int) $logged_user->unread_notifs > 0): ?>
-                        <span id = "notif-badge" class = "badge" style="float:right;background: red;"><?php echo $logged_user->unread_notifs ?></span>
-                        <?php endif; ?>    
-                        <i class = "glyphicon glyphicon-exclamation-sign iconin"></i>News    
-                        <span class="tooltiptext">You can check your notifications here!</span>  
-                    </a>
                     
-                    <div class="vl"  style="margin-right:0.3%;"></div>
-                        <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('topic') ?>">
-                            <strong class="iconin"><i class = "glyphicon glyphicon-list iconin"></i>Topics</strong>
-                            <span class="tooltiptext">You can browse others' topics here!</span>
-                        </a>
-                        
-                    <a onmouseenter="playclip()" class="navbaricons" href="<?php echo base_url('home') ?>">
-                        <strong class="iconin"><i id="home2" class = "glyphicon glyphicon-home iconin"></i><i id="bed2" class = "glyphicon glyphicon-bed iconin"></i>Home</strong>
-                        <span class="tooltiptext">Go back to the homepage</span>
-                    </a>
-
                     <a onmouseenter="playclip()" class="navbarprofileicon" href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>" >
                         <img class = "img-circle nav-prof-pic iconin" src = "<?php echo $logged_user->profile_url ? base_url($logged_user->profile_url) : base_url('images/default.jpg') ?>"/> 
                         <?php echo $logged_user->first_name; ?><span class="tooltiptext">Check your profile!</span>
@@ -613,189 +290,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 <!------------------------- Nav Bar Script ------------------------->
 <script type="text/javascript" src="<?php echo base_url("/js/nav_bar.js"); ?>"></script>
 
-<!------------------------- voice search indicator script ------------------------->
-<script>
-    function voiceIndicatorON() 
-    {
-        var VInd = document.getElementById("snackbar");
-        VInd.className = "show";
-    }
 
-    function voiceIndicatorOFF() 
-    {
-        var VInd = document.getElementById("snackbar");
-        VInd.className = "hide";
-    }
-</script>
-
-<!------------------------- voice commands script ------------------------->
-<!--<script type="text/javascript" src="<?php echo base_url('js/voicesearch.js'); ?>"> </script>-->
-<script type="text/javascript">
-    var final_transcript3 = '';
-    var recognizing3 = true;
-    var meow = new Audio('<?php echo base_url('images/catmeow.mp3'); ?>');
-
-    if ('webkitSpeechRecognition' in window) 
-    {
-
-      var recognition3 = new webkitSpeechRecognition();
-      recognition3.lang = 'en-US';
-      recognition3.continuous = true;
-      recognition3.interimResults = true;
-
-      recognition3.onstart = function() {
-        recognizing3 = true;
-      };
-
-      recognition3.onerror = function(event) {
-        console.log(event.error);
-      };
-
-      recognition3.onend = function() {
-        recognizing3 = false;
-    };
-
-       recognition3.onresult = function(event) 
-       {          
-            var interim_transcript3 = '';
-            
-            for (var i = event.resultIndex; i < event.results.length; ++i) 
-            {
-                if (event.results[i].isFinal) 
-                {
-                    final_transcript3 += event.results[i][0].transcript;
-                } 
-                
-                else
-                {
-                    interim_transcript3 += event.results[i][0].transcript;
-                }
-            }
-            
-            final_span3.innerHTML = linebreak(final_transcript3);
-            interim_span3.innerHTML = linebreak(interim_transcript3);
-
-            if(interim_span3.innerHTML.includes("sawa na ako") || interim_span3.innerHTML.includes("time out"))
-            {
-                forceTimeout();
-            }
-
-            if(interim_span3.innerHTML.includes("go to home") || interim_span3.innerHTML.includes("sa home po"))
-            {
-                location.href="http://localhost/MukhlatBeta/home";
-            }
-
-            if(interim_span3.innerHTML.includes("go to topics") || interim_span3.innerHTML.includes("sa topics po"))
-            {
-                location.href="http://localhost/MukhlatBeta/topic";
-            }
-
-            if(interim_span3.innerHTML.includes("go to profile") || interim_span3.innerHTML.includes("sa profile po"))
-            {
-                location.href="<?php echo base_url('user/profile/' . $logged_user->user_id); ?>";
-            }
-
-            if(interim_span3.innerHTML.includes("activate camera"))
-            {
-                $('#camerapopup').modal('show');
-            }
-
-    //            if(interim_span3.innerHTML.includes("selfie")){
-    //                takephoto();
-    //                interim_span3.innerHTML = interim_span3.innerHTML.replace("selfie","");
-    //            }
-
-            if(interim_span3.innerHTML.includes("voice search")){
-                var x = document.getElementById("voicedropdown");
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                }
-                startDictation(event);
-            }
-
-            if(interim_span3.innerHTML.includes("meow")){
-                meow.play();
-                catpeek();
-            }
-
-          };
-        }
-
-        var two_line = /\n\n/g;
-        var one_line = /\n/g;
-        recognition3.lang = 'fil-PH';
-        
-        function linebreak(s) {
-            return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-        }
-
-        function capitalize(s) {
-            return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
-        }
-
-        function startDictation3(event) {
-            recognition3.lang = 'fil-PH';
-            final_transcript3 = '';
-            final_span3.innerHTML = '';
-            interim_span3.innerHTML = '';
-            recognition3.start();
-        }
-
-        function stopDictation3(event) {
-            recognition3.stop();
-        }
-
-        startDictation3(event);
-        
-</script>
-    
-<script src="<?php echo base_url('js/eastereggs.js'); ?>"></script>
-<script src="<?php echo base_url('js/usagetimer.js'); ?>"></script>
-<script>var $draggable = $('.draggable').draggabilly();</script>
-<script src="<?php echo base_url('js/frequencybars.js'); ?>"></script>
-<script src="<?php echo base_url('js/sparkles.js'); ?>"></script>
-
-<!------------------------- bubble popping and popped bubbles counter script ------------------------->
-<script>
-    var bubpop = new Audio('<?php echo base_url('images/pop.mp3'); ?>');
-    var bubbles = document.querySelectorAll('.bubble');
-    var poppedClass = 'bubble--popped';
-    var score = Number(getCookie("score"));
-    
-    document.getElementById("bubblegame").innerHTML='Bubbles Popped: ' + score;
-    
-    function scoreBubble() {
-        score++;
-        document.cookie = "score=" + score +";path=/"; 
-        document.getElementById("bubblegame").innerHTML='Bubbles Popped: ' + score;
-    }
-    
-    function popBubble(e, bubble) {
-       bubble.style.top = e.clientY - e.offsetY + 'px';
-       bubble.style.left = e.clientX - e.offsetX + 'px';
-       bubble.style.pointerEvents="none";
-       bubble.classList.add(poppedClass);
-       scoreBubble();
-       bubpop.play();
-    }
-
-    function resetBubble(bubble) {
-       bubble.classList.remove(poppedClass);
-       bubble.style.top = '';
-       bubble.style.left = '';
-       bubble.style.pointerEvents="auto";
-    }
-
-    bubbles.forEach(function(bubble) {
-       bubble.addEventListener('click', function(e) {
-          popBubble(e, this);
-       });
-
-       bubble.addEventListener('animationend', function() {
-          resetBubble(this);
-       });
-    });
-</script>
 
 <!------------------------- mouseover on a button audio ------------------------->
 <audio>
@@ -804,54 +299,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 </audio>
 <div id="sounddiv"><bgsound id="sound"></div>
 
-<!------------------------- highlighted text reader script ------------------------->
-<script>
-    var synth = window.speechSynthesis;
-    var voices90 = synth.getVoices();
 
-    function getSelectionText() { //highlight desired text to read
-        var text = "";
-        if (window.getSelection) {
-            text = window.getSelection().toString();
-        } else if (document.selection && document.selection.type !== "Control") {
-            text = document.selection.createRange().text;
-        }
-        return text;
-    }
 
-    document.addEventListener('keydown', function(e) 
-    {
-    //  if (e.keyCode === 16) { //press shift to read higlighted text
-    //    var msg = new SpeechSynthesisUtterance(getSelectionText());
-    //    msg.voice = voices90[2];
-    //    synth.speak(msg);
-    //  }
-    //  if(e.keyCode === 17){ //press ctrl to stop reading
-    //     window.speechSynthesis.cancel();
-    //  }
-    });
-</script>
 
-<!------------------------- read post content reader script ------------------------->
-<script>
-    function readcontent(value) 
-    {
-        if(!(speechSynthesis.speaking))
-        {
-            var value2 = value.replace(/`/g, "'");
-            var reader = new SpeechSynthesisUtterance(value2);
-            window.speechSynthesis.speak(reader);
-        }
-        
-        else
-        {
-            window.speechSynthesis.cancel();
-        }
-      }
-
-</script>
 
 <!-- End Nav Bar -->
 
-<?php include(APPPATH . 'views/modals/notifications_modal.php'); ?>
-<?php include(APPPATH . 'views/modals/customize_modal.php'); ?>
+
