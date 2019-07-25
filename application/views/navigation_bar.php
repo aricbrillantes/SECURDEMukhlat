@@ -60,8 +60,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .charLimitMessage{background:#14620f;}\n\
                     .ptopcolor{background:#1d8f15;}<\/style>');    
     
-
-
         
 /*------------------------- AFK Timer Script -------------------------*/
 
@@ -98,42 +96,10 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
             
             if(dis.innerHTML==='Time Left: 0') // logout user if AFK
             {
-                location.href="http://localhost/MukhlatBeta/signin/logout";
-            }
-            
-            if(hours >= 20) // force logout of user
-            {
-                location.href="http://localhost/MukhlatBeta/signin/logout";
+                location.href="http://localhost/SECURDEMukhlat/signin/logout";
             }
         }
 
-/*------------------------- Night mode and usage restriction -------------------------*/
-
-//      getting current time
-        var now = new Date();
-        var now2 = new Date();
-        var time = now.getTime();
-        var time2 = now.getTime()+(1800 * 1000);
-        now.setTime(time);
-        now2.setTime(time2);
-
-        var nowH = now.getHours();
-        var nowM = now.getMinutes();
-
-//      if lasttimed (last time warned) cookie is earlier then current time, warn user and reset cookie
-        if(Number(getCookie("nexttimed1"))<nowH && (Number(getCookie("nexttimed2"))-30)<=nowM)
-        {
-            document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
-            document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-            $('#timepopup').modal({backdrop: 'static', keyboard: false});
-        }
-
-        if(Number(getCookie("nexttimed1"))===nowH && (Number(getCookie("nexttimed2")))<=nowM)
-        {
-            document.cookie = "nexttimed1=" + now2.getHours() +";path=/"; 
-            document.cookie = "nexttimed2=" + now2.getMinutes() +";path=/"; 
-            $('#timepopup').modal({backdrop: 'static', keyboard: false});
-        }
         
 </script>
 <head>
