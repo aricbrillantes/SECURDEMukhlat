@@ -1,3 +1,16 @@
+##############
+Steps to run:
+##############
+1. Download .zip file and extract SECURDEMukhlat folder to xampp/htdocs
+2. Launch XAMPP and start Apache server
+3. Kayo bahala kung paano SQL server
+4. go to localhost/SECURDEMukhlat/
+5. enjoy
+
+############################################
+This Project uses the CodeIgniter Framework
+############################################
+
 ###################
 What is CodeIgniter
 ###################
