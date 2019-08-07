@@ -32,8 +32,8 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
 
     
 
-//    changing custom themes, pointers, effects based on the users choices
-    document.write('<style type="text/css">.navbar-font {background:' + getCookie("NavbarColor") + ';}\n\
+//  double check colors
+    document.write('<style type="text/css">.navbar-font {background:#1d8f15;}\n\
                      body {background:#e4e6e4;background-repeat: no-repeat;background-attachment: fixed;}\n\
                     .buttonsbgcolor {background:#1d8f15;}\n\
                     .buttonsbgcolor:hover{background:#14620f;}\n\
@@ -43,7 +43,7 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
                     .buttonsbgcolor:focus{background:#1d8f15;outline:0;}\n\
                     .buttonsbgcolor:active{background:#185729!important;}\n\
                     .modalbg{background:#d4f8d2;}\n\
-                    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { background: ' + getCookie("NavbarColor") + ';}\n\
+                    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {background:#1d8f15;}\n\
                     .navbaricons:hover{background:#14620f;}\n\
                     .navbarprofileicon:hover{background:#14620f;}\n\
                     .navbaricons .tooltiptext{background-color:#14620f;}\n\
