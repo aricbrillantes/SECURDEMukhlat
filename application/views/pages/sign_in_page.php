@@ -7,7 +7,7 @@ include(APPPATH . 'views/header.php');
 
 <body class = "sign-in">
     <div class = "container-fluid">
-        <text style="font-size:12px"><b>SECURDE MP</b><br>Brillantes, Aric<br>Chua, Liam Rey</text>
+        <text style="font-size:12px"><b>SECURDE MP</b><br>Brillantes, Aric<br>Chua, Liam<br>Libay, Iris</text>
         
         <!-- Logo -->
         <div class = "row sign-in-logo"><img src = "<?php echo base_url('images/logo/mukhlatlogo1.png'); ?>"></div>
@@ -17,16 +17,16 @@ include(APPPATH . 'views/header.php');
             <!--Sign In-->
             <div class = "col-md-10 col-md-offset-1" style = "margin-bottom: 2%; ">
                 <div id = "sign-in-container" class = "col-md-12 content-container no-padding">
-                    <form class = "form-inline" id = "log-in-form" onsubmit = "return log_in()" method = "post">
+                    <form autocomplete="new-password" class = "form-inline" id = "log-in-form" onsubmit = "return log_in()" method = "post">
                         <div class ="form-group">
                             <h3 class = "sign-in-header no-padding no-margin" style = "margin-left: 40px; padding: 10px;"><strong>Log In</strong></h3>
                         </div>
                         <div class = "pull-right" style = "padding-top: 10px; padding-right: 10px; padding-bottom: 10px">
                             <div class = "form-group" style = "margin-right: 5px;">
-                                <input style="font-size: 20px" id = "log-in-email" type = "text" required name = "log_in_email" class = "form-control sign-in-field" placeholder = "Email"/>
+                                <input autocomplete="new-password" style="font-size: 20px" id = "log-in-email" type = "text" required name = "log_in_email" class = "form-control sign-in-field" placeholder = "Email"/>
                             </div>
-                            <div class = "form-group" style = "margin-right: 5px;">
-                                <input style="font-size: 20px" id = "log-in-password" type = "password" required name = "log_in_password"  class = "form-control sign-in-field" placeholder = "Password"/>
+                            <div autocomplete="new-password" class = "form-group" style = "margin-right: 5px;">
+                                <input autocomplete="new-password" style="font-size: 20px" id = "log-in-password" type = "password" required name = "log_in_password"  class = "form-control sign-in-field" placeholder = "Password"/>
                             </div>
                             <div class = "form-group text-center">
                                 <button type="submit" class="btn btn-primary buttonsgo" id="loginbutton" style = "width: 100%;font-size:24px;">Login</button>

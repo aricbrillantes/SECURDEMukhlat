@@ -14,25 +14,14 @@ $c_topic = $_SESSION['current_topic'];
         <!-- Topic Page Header -->
         <div class = "row">
             <div id = "topic-heading" class = "col-md-12 content-container no-padding">
-                <a onmouseenter="playclip()" class = "btn btn-topic-header" href="<?php echo base_url('topic'); ?>">
+                <a onmouseenter="playclip()" class = "btn btn-topic-header" href="<?php echo base_url('home'); ?>">
                     <h4 class = "pull-left topic-header-title no-padding" style = "margin-top: 3px; margin-bottom: 0px;">
                         <strong class = "text-info text1color" style="cursor:pointer;"><i class = "fa fa-chevron-left" style="cursor:pointer;"></i> 
-                            Back to Topics List
+                            Back to Home
                         </strong>
                     </h4>
                 </a>
-                <?php if (!$is_followed): ?>
-                    <button onmouseenter="playclip()" id = "topic-follow-btn" class = "btn pull-right btn-primary textoutliner" style = "margin: 5px; margin-right: 20px; width: 20%;font-size: 19px;" value = "<?php echo $c_topic->topic_id ?>">
-                        <i class = "fa fa-plus-circle"></i> Follow Topic
-                    </button>
-                    <?php else: ?>
-                        <button onmouseenter="playclip()" id = "topic-follow-btn" class = "btn pull-right btn-danger textoutliner" style = "margin: 5px; margin-right: 20px; width: 20%;font-size: 19px;" value = "<?php echo $c_topic->topic_id ?>">
-                            <i class = "fa fa-minus-circle"></i> Unfollow Topic
-                        <?php endif; ?>
-                    </button>
-                    <a onmouseenter="playclip()" class = "btn btn-success pull-right btn-md textoutliner" style = "margin: 5px; width: 20%" href = "#topic-members-modal" data-toggle = "modal">
-                        <i class = "fa fa-user"></i> Followers
-                    </a>
+                
             </div>
         </div>
         <div class = "row">
