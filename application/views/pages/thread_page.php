@@ -17,12 +17,8 @@ $user = $post->user;
                             Back
                         </strong>
                     </h3>
-    </a>
-                
-    <form  method="post">
-    <input class="btn btn-md pull-right btn-danger" value='Report' name='report' type="submit"> 
-    </form>
-                
+                </a>     
+
                 <p class = "wrap post-header-title"><strong><?php echo utf8_decode($post->topic->topic_name); ?>: </strong> 
                     <small>
                         <i>Post by 
@@ -109,12 +105,12 @@ $user = $post->user;
                                 <!--<button class = "btn btn-primary pull-right" id="text2speak" style = "margin-right: 3px;border-radius: 20px;" onclick="readcontent('<?php $stringy = utf8_decode($post->post_content); $stringy1 = str_replace('\'', '`', $stringy); echo trim(preg_replace('/[^A-Za-z0-9()#,%\/?@$*.:+=_~`-]/', ' ', $stringy1)); ?>')"><i class="glyphicon glyphicon-volume-up" style="padding-top: 5px;"></i></button>-->
                                 </span>        
                                         </div>
-<?php else: ?>                  
+                                <?php else: ?>                  
                                 <div class="media-heading">
                                     <h4 class = "no-padding no-margin text-danger">Deleted Post</h4>
                                 </div>
                                 <p class = "post-content" style = "margin-top: 15px"><i>This post has been deleted.</i></p>
-<?php endif; ?>
+                                <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -130,39 +126,12 @@ $user = $post->user;
                     else:
                         ?>
                         <h4 class = "text-center text-warning no-padding no-margin"><strong>This post has no comments yet!</strong></h4>
-<?php endif; ?>
+                <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
-    
-<!--Report a post-->
-    <?php 
-    if(isset($_POST['report'])){
-     $servername = "127.0.0.1";
-	$username = "root";
-	$password = "";
-	$dbname = "mukhlat";
-	$conn = @new mysqli($servername, $username, $password, $dbname);
-        $logged_user->user_id;
 
-        // Create connection
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-
-        $sql = "INSERT INTO tbl_reports(ReporterId, ReportedId, TopicID, PostID, Reason, DateRP)
-        VALUES ('$logged_user->user_id', '$post->user_id', '$post->topic_id', '$post->post_id', 'test', CURRENT_TIMESTAMP )";
-
-        if (mysqli_query($conn, $sql)) {
-           ;
-        } else {
-            ;
-        }
-        mysqli_close($conn);
-    }
-    ?>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/topic.js"); ?>"></script>
     <?php
