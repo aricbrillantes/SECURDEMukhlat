@@ -138,7 +138,7 @@ include(APPPATH . 'views/header.php');
                                     <input style = "font-size:24px;" id = "sign-up-retype" type = "password" required class = "form-control sign-in-field" placeholder = "Retype Password">
                                 </div>
                                 <div class = "text-center">
-                                    <button onclick="window.scrollTo(0, document.body.scrollHeight);" type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
+                                    <button onclick="window.scrollTo(0, document.body.scrollHeight);" id="register" type = "submit" class = "btn btn-success" style="width:100%; font-size:24px;">Register</button>
                                 </div>
                                 
                             </form>
@@ -178,11 +178,11 @@ include(APPPATH . 'views/header.php');
 <script type="text/javascript">
     var strength = 
     {
-        0: "Worst ☹",
-        1: "Bad ☹",
-        2: "Weak ☹",
-        3: "Good ☺",
-        4: "Strong ☺"
+        0: "Worst",
+        1: "Bad",
+        2: "Weak",
+        3: "Good",
+        4: "Strong"
     };
 
     var password = document.getElementById('password1');
@@ -198,29 +198,48 @@ include(APPPATH . 'views/header.php');
         meter.value = result.score;
 
         // Update the text indicator
-        if(val !== "") {
-//                text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<br><span class='feedback'>" + result.feedback.warning + "<br>" + result.feedback.suggestions + "<br></span"; 
-            if(strength[result.score]==='Worst ☹' && password.value.length<8)
+        if(val !== "") 
+        {
+            if(strength[result.score]==='Worst' && password.value.length>8)
+            {
                 text.innerHTML = "Strength: " + "<strong style='color:red'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:red'>" + "Your password is too short! Try using more letters and numbers!" + "<br>" + "<br></span"; 
-
-            else if(strength[result.score]==='Worst ☹' && password.value.length<8)
+                document.getElementById('register').style.visibility  = "hidden";
+            }
+            
+            else if(strength[result.score]==='Worst' && password.value.length<8)
+            {
                 text.innerHTML = "Strength: " + "<strong style='color:red'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:red'>" + "Your password is very easy to crack! Try using different letters and numbers!" + "<br>" + "<br></span"; 
-
-            else if(strength[result.score]==='Bad ☹'  && password.value.length<8)
+                document.getElementById('register').style.visibility  = "hidden";
+            }
+            
+            else if(strength[result.score]==='Bad'  && password.value.length<8)
+            {    
                 text.innerHTML = "Strength: " + "<strong style='color:orange'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:orange'>" + "Your password is still easy to crack! Try using different letters and numbers!" + "<br>" + "<br></span"; 
-
-            else if(strength[result.score]==='Weak ☹')
+                document.getElementById('register').style.visibility  = "hidden";
+            }
+            
+            else if(strength[result.score]==='Weak')
+            {
                 text.innerHTML = "Strength: " + "<strong style='color:yellow'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:yellow'>" + "Your password is still easy to crack!" + "<br>" + "<br></span"; 
-
-            else if(strength[result.score]==='Good ☺')
+                document.getElementById('register').style.visibility  = "hidden";
+            }
+            
+            else if(strength[result.score]==='Good')
+            {
                 text.innerHTML = "Strength: " + "<strong style='color:green'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:green'>" + "Your password is good!" + "<br>" + "<br></span"; 
-
-            else if(strength[result.score]==='Strong ☺')
+                document.getElementById('register').style.visibility  = "visible";
+            }
+            else if(strength[result.score]==='Strong')
+            {    
                 text.innerHTML = "Strength: " + "<strong style='color:blue'>" + strength[result.score] + "</strong>" + "<br><span class='feedback' style='color:blue'>" + "Your password is strong!" + "<br>" + "<br></span"; 
-
+                document.getElementById('register').style.visibility  = "visible";
+            }
         }
-        else {
+        
+        else 
+        {
             text.innerHTML = "";
+            document.getElementById('register').style.display = "visible";
         }
     });
 </script>    
