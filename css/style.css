@@ -1,6 +1,10 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {background:#1d8f15;}
+
 body{
-    background-color: #D7eadd;
+    background:#e4e6e4;
     font-family: 'AsparagusSprouts', 'AsparagusSprouts', sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body.sign-in{
@@ -13,11 +17,11 @@ body.sign-in{
 }
 
 .modalbg{
-    background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
+    background:#d4f8d2;
 }
 
 .modal-header{
-    background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
+    background:#1d8f15;
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover { 
@@ -73,6 +77,7 @@ text-shadow:
 }
 
 .ptopcolor{
+    background:#1d8f15;
     border-style: solid;
     border-radius: 20px;
     border:0;
@@ -121,8 +126,14 @@ small{
     font-size: 18px;
 }
 
+.bar1color
+{
+    background:#1d8f15;
+}
+
 .text1color{
     font-size: 22px !important;
+    color:#1d8f15;
 }
 
 .textoutliner{
@@ -300,7 +311,7 @@ background-color: lightyellow;
 padding: 5px;
 left: -1000px;
 visibility: hidden;
-color: black;
+color:#14620f;
 text-decoration: none;
 }
 
@@ -476,7 +487,7 @@ snap-drawer {
     width: 120px;
     margin-top: 5px;
     font-size: 18px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -526,7 +537,7 @@ snap-drawer {
     float: right;
     visibility: hidden;
     width: 120px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -560,8 +571,20 @@ snap-drawer {
 }
 
 .buttonsbgcolor{
+    background:#1d8f15;
     border:0;
     cursor:pointer !important;
+    
+}
+
+.buttonsbgcolor:hover
+{
+    background:#14620f;
+}
+
+.buttonsbgcolor:active
+{
+    background:#185729;
 }
 
 .vl {
@@ -593,11 +616,19 @@ snap-drawer {
 .navbaricons:hover{
     transform: scale(1.35);
     color:white;
+    background:#14620f;
 }
+
 .navbaricons:focus{
     outline:0;
     color:white;
 }
+
+.navbaricons .tooltiptext
+{
+    background-color:#14620f;
+}
+
 .navbarprofileicon {
     
     color:white;
@@ -625,6 +656,7 @@ snap-drawer {
     text-decoration:none;
     text-align:center;
     color:white;
+    background:#14620f;
 }
 
 .navbarvoice{
@@ -669,7 +701,7 @@ snap-drawer {
 .search-btn .tooltiptext1 {
     visibility: hidden;
     width: 80px;
-    background-color: green;
+    background-color: #14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -773,7 +805,7 @@ textarea{
 
 .navbar-font{
     font-family: 'AsparagusSprouts', sans-serif;
-    background: linear-gradient(to bottom,#009900,#009900 50%,#007f00 50%,#007f00);
+    background:#1d8f15;
 }
 
 .search-div{
@@ -1023,7 +1055,7 @@ textarea{
 }
 
 .user-topic-header{
-    background-color: #26A69A;
+    background-color: #14620f;
     color: white;
     margin-top: 0px;
     padding: 5px;
@@ -1133,7 +1165,7 @@ textarea{
 }
 
 .user-activities-header{
-    background-color: #26A69A;
+    background-color: #14620f;
     color: white;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -1178,7 +1210,7 @@ p{
 }
 
 .modal-heading{
-    background-color: #26A69A; 
+    background-color: #14620f; 
     padding-bottom: 5px; 
     padding-top: 5px;
     border-top-left-radius: 4px;
@@ -1365,7 +1397,7 @@ END CHAT
 */
 
 .sidebar-header-btn{
-    background-color: #26A69A;
+    background-color: #14620f;
     margin: 0px;
     margin-top: 5px;
     color: white;
@@ -1710,7 +1742,7 @@ transform: rotate(1080deg);
 }
 
 .charLimitMessage{
-    background: rgb(255,50,50);
+    background:#14620f;
     display: none; /* Hidden by default */
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */
@@ -1921,7 +1953,7 @@ transform: rotate(1080deg);
     width: 150px;
     margin-top: 5px;
     font-size: 18px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -1951,7 +1983,7 @@ transform: rotate(1080deg);
     width: 150px;
     margin-top: 5px;
     font-size: 18px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -1969,7 +2001,7 @@ transform: rotate(1080deg);
     width: 150px;
     margin-top: 5px;
     font-size: 18px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -1998,7 +2030,7 @@ transform: rotate(1080deg);
     width: 120px;
     margin-top: 5px;
     font-size: 18px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -2017,7 +2049,7 @@ transform: rotate(1080deg);
     width: 120px;
     font-size: 20px;
     margin-top: 5px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -2042,7 +2074,7 @@ transform: rotate(1080deg);
     visibility: hidden;
     width: 120px;
     font-size: 14px;
-    background-color: black;
+    background-color:#14620f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -2058,11 +2090,12 @@ transform: rotate(1080deg);
 
 .btn .btn-primary .buttonsbgcolor:hover .tooltiptext {
     visibility: visible;
+    background:#14620f;
 }
 
 body ::selection {
   color: white;
-  background: green;
+  background:#14620f;
 }
 
 body::-webkit-scrollbar {

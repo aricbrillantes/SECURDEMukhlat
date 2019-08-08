@@ -3121,12 +3121,12 @@ fieldset[disabled] .btn-default.focus {
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: #00796B;
+  background-color: #14620f;
   border-color: #4DB6AC;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #00796B;
+  background-color: #14620f;
   border-color: #4DB6AC;
 }
 .btn-primary:active,

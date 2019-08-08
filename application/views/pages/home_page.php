@@ -19,7 +19,7 @@ include(APPPATH . 'views/header.php');
                     
                     <div class = "clearfix content-container" style="border-radius:20px;">
                     <center>
-                                <a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor textoutliner" href="#create-topic-modal" data-toggle = "modal" style="margin:1%"><i class = "fa fa-pencil iconin"></i> Create Topic</a>                 
+                        <a onmouseenter="playclip()" id="crettop" class ="btn btn-primary buttonsbgcolor textoutliner" href="#create-topic-modal" data-toggle = "modal" style="margin:1%; background:#1d8f15;"><i class = "fa fa-pencil iconin"></i> Create Topic</a>                 
                                 
                     </center>
                     </div>
@@ -104,54 +104,5 @@ include(APPPATH . 'views/header.php');
             ?>
         </div>
     </div>
-    <!--back to top and go to bottom script-->
-    <script>
-window.addEventListener('load', function (){
-    scrollFunction();
-});
-window.onscroll = function() {scrollFunction();};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("topbut").style.display = "block";
-        document.getElementById('topbut').className = 'balloon';
-    } else {
-        document.getElementById("topbut").style.display = "none";
-        document.getElementById('topbut').className = '';
-    }
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        document.getElementById("botbut").style.display = "none";
-    }
-    else {
-        document.getElementById("botbut").style.display = "block";
-    }
-}
-            // When the user clicks on the button, scroll to the top of the document
-            function topFunction() {                
-                var whistleup = new Audio('<?php echo base_url('images/Slide Whistle up1.mp3'); ?>');
-                window.scroll({
-                  top: 0,
-                  behavior: 'smooth' 
-                });
-                whistleup.play();
-            }
-            function botFunction() {                
-                var fallrock = new Audio('<?php echo base_url('images/falling rocks.mp3'); ?>');
-                window.scroll({
-                  top: 100000000,
-                  behavior: 'smooth' 
-                });
-                fallrock.play();
-            }
-        </script>
-
-        <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
-        <!--back to top and go to bottom buttons-->
-        <!--<div onclick="topFunction()" id="topbut" style="text-align:center;"><p style="padding-top:50%;cursor:pointer;">Up!</p></div>-->
-        <!--<div onclick="botFunction()" id="botbut"><img class="rock1 goingdown" src = "<?php echo base_url('images/rock bottom.png'); ?>"/><p class="centeredbot">Bottom!</p></div>-->
-
+    <script type="text/javascript" src="<?php echo base_url("/js/search.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("/js/post.js"); ?>"></script>
-    
-
-    <?php
-//    include(APPPATH . 'views/chat/chat.php');

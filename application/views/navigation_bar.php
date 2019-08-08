@@ -29,36 +29,6 @@ $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_reques
         }
         return "";
     }
-
-    
-
-//  double check colors
-    document.write('<style type="text/css">.navbar-font {background:#1d8f15;}\n\
-                     body {background:#e4e6e4;background-repeat: no-repeat;background-attachment: fixed;}\n\
-                    .buttonsbgcolor {background:#1d8f15;}\n\
-                    .buttonsbgcolor:hover{background:#14620f;}\n\
-                    .text1color{color:#1d8f15;}\n\
-                    .bar1color{background:#1d8f15;}\n\
-                    .text1color:hover{color:#14620f;}\n\
-                    .buttonsbgcolor:focus{background:#1d8f15;outline:0;}\n\
-                    .buttonsbgcolor:active{background:#185729!important;}\n\
-                    .modalbg{background:#d4f8d2;}\n\
-                    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {background:#1d8f15;}\n\
-                    .navbaricons:hover{background:#14620f;}\n\
-                    .navbarprofileicon:hover{background:#14620f;}\n\
-                    .navbaricons .tooltiptext{background-color:#14620f;}\n\
-                    .camerapic .tooltiptext{background-color:#14620f;}\n\
-                    .playpop .tooltiptext{background-color:#14620f;}\n\
-                    .audiorec .tooltiptext{background-color:#14620f;}\n\
-                    .navbarprofileicon .tooltiptext{background-color:#14620f;}\n\
-                    .search-btn .tooltiptext1{background-color:#14620f;}\n\
-                    #logom .bubbletooltip{background-color:#14620f;}\n\
-                    .trail{background:#185729!important;}\n\
-                    body::-webkit-scrollbar-thumb{background-color:#14620f;}\n\
-                    body ::selection{background:#14620f;}\n\
-                    .modal-header{background:#d4f8d2;;}\n\
-                    .charLimitMessage{background:#14620f;}\n\
-                    .ptopcolor{background:#1d8f15;}<\/style>');    
     
         
 /*------------------------- AFK Timer Script -------------------------*/
