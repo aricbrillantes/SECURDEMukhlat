@@ -16,6 +16,10 @@ body.sign-in{
     height: 500px;
 }
 
+.bg-none{
+    background: none;
+}
+
 .modalbg{
     background:#d4f8d2;
 }
