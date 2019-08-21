@@ -5,6 +5,12 @@ include(APPPATH . 'views/header.php');
     <?php
     include(APPPATH . 'views/navigation_bar.php');
     $logged_user = $_SESSION['logged_user'];
+    if($logged_user == null)
+    {
+        $homeURL = base_url('');
+        header("Location: $homeURL");
+        die();
+    }
     ?>
    
     <div class = "container page">

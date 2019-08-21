@@ -1,5 +1,11 @@
 <?php
 $logged_user = $_SESSION['logged_user'];
+if($logged_user == null)
+{
+    $homeURL = base_url('');
+    header("Location: $homeURL");
+    die();
+}
 ?>
     
 <!-- Sidebar -->

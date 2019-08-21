@@ -1,6 +1,12 @@
 <?php
 $user = $post->user;
 $logged_user = $_SESSION['logged_user'];
+if($logged_user == null)
+{
+    $homeURL = base_url('');
+    header("Location: $homeURL");
+    die();
+}
 if ($post->parent_id !== '0'):
     ?>
     <div class = "media" style = "border-left: 2px solid gray;">

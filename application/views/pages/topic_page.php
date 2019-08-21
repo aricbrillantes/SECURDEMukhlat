@@ -1,8 +1,13 @@
 <?php
 include(APPPATH . 'views/header.php');
-  $logged_user = $_SESSION['logged_user'];  
+$logged_user = $_SESSION['logged_user'];  
 $c_topic = $_SESSION['current_topic'];
-
+if($logged_user == null)
+{
+    $homeURL = base_url('');
+    header("Location: $homeURL");
+    die();
+}
 ?>
 
 <body>
@@ -31,7 +36,7 @@ $c_topic = $_SESSION['current_topic'];
                 <div class = "col-sm-6">
                     <div class = "col-sm-12 topic-description-div no-padding">
                         <h4 class = "no-margin text-center user-topic-header topic-intro-header bar1color">
-                            <strong class="textoutliner"><?php echo utf8_decode($c_topic->topic_name); ?></strong>
+                            <strong class="textoutliner"><?php echo $logged_user->user_id; echo utf8_decode($c_topic->topic_name); ?></strong>
 
                             <?php if ($is_moderated): ?>
                             <br>
