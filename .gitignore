@@ -28,3 +28,5 @@ uploads/*
 *.sublime-project
 application/views/style.css - Shortcut.lnk
 application/config/database.php
+application/controllers/Home.php
+application/controllers/User.php
