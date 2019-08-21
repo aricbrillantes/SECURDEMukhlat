@@ -55,7 +55,7 @@ class User extends CI_Controller {
         $edit_pass = (empty($password) ? $user->password : $password);
         $data = array('first_name' => $firstname,
             'last_name' => $lastname,
-            'password' => $edit_pass,
+            'password' => hash('sha256', $edit_pass),
             'description' => $description,
             'email' => $email,
             'profile_url' => $path,
