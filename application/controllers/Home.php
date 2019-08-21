@@ -14,8 +14,8 @@ class Home extends CI_Controller {
                 $this->load->view('pages/home_page', $data);
             }
         } else {
-            //change error - not logged in
-            $this->load->view('errors/html/error_general');
+            $homeURL = base_url('');
+            header("Location: $homeURL");
         }
     }
 
