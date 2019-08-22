@@ -2,6 +2,8 @@
 include(APPPATH . 'views/header.php');
 $logged_user = $_SESSION['logged_user'];  
 $c_topic = $_SESSION['current_topic'];
+
+//if user is logged out, deny access and redirect them to sign in page
 if($logged_user == null)
 {
     $homeURL = base_url('');

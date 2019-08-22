@@ -2,13 +2,15 @@
 include(APPPATH . 'views/header.php');
 $logged_user = $_SESSION['logged_user'];
 
+//if user is not admin, deny access and redirect them to normal home page
+//if user is logged out, deny access and redirect them to sign in page
 if($logged_user->role_id != 1 || $logged_user == null)
 {
-    
     $homeURL = base_url('');
     header("Location: $homeURL");
     die();
 }
+
 ?>
 <body class = "sign-in">
     <div class = "container" style = "margin-top: 30px;">

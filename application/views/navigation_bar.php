@@ -1,10 +1,16 @@
 <?php
+include(APPPATH . 'views/modals/afk_warning_modal.php');
+
 $logged_user = $_SESSION['logged_user'];
 $unanswered = $logged_user->unanswered_invites + $logged_user->unanswered_requests;
+
+//if user is admin, deny access and redirect them to normal home page
+if($logged_user->role_id != 2 || $logged_user == null)
+{
+    header("Location: http://localhost/SECURDEMukhlat/home");
+}
 ?>
 
-<?php include(APPPATH . 'views/modals/afk_warning_modal.php');
-?>
 
 <p id="afktimer" style="float: right; display:none;">Time Left: 9999<p>
 

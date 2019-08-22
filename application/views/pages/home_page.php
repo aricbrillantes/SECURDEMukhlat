@@ -1,8 +1,9 @@
-
 <?php
 include(APPPATH . 'views/header.php');
 
 $logged_user = $_SESSION['logged_user'];
+
+//if user is logged out, redirect them to their respective home page
 if($logged_user == null)
 {
     $homeURL = base_url('');

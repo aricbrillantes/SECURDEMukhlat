@@ -1,6 +1,18 @@
 <?php
 include(APPPATH . 'views/header.php');
+
+$logged_user = $_SESSION['logged_user'];  
+
+// if user is not logged out, redirect to home_page.php which will 
+// then redirect the user to their respective home page
+if($logged_user != null)
+{
+    header("Location: http://localhost/SECURDEMukhlat/home");
+}
+
 ?>
+
+
 <script src="<?php echo base_url('zxcvbn-master/dist/zxcvbn.js'); ?>"></script>
 <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script>document.cookie = "timing=0;" + ";path=/";</script>
