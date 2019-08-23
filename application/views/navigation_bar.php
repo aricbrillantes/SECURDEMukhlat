@@ -42,7 +42,7 @@ if($logged_user->role_id != 2 || $logged_user == null)
         var start = document.getElementById("start");
         var dis = document.getElementById("afktimer");
         var finishTime;
-        var timerLength = 600; // 600 seconds or 10 minutes
+        var timerLength = 120; // 600 seconds or 10 minutes
         var timeoutID;
         dis.innerHTML = "Time Left: " + timerLength;
         
@@ -65,7 +65,7 @@ if($logged_user->role_id != 2 || $logged_user == null)
             dis.innerHTML = "Time Left: " + Math.max(timeLeft/1000,0);
             timeoutID = window.setTimeout(Update, 100);
 
-            if(timeLeft<=300*1000) //display AFK popup after 5 minutes
+            if(timeLeft<=60*1000) //display AFK popup after 5 minutes
             {
                 $('#afkpopup').modal('show');
             }
